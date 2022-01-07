@@ -43,19 +43,25 @@ Page({
     })
   },
 
+  authFn() {
+    wx.login({
+      success: res => {
+        app.http.Auth({code:res.code})
+        .then(res=>{
+          console.log(res)
+        })
+      }
+    })
+
+  },
   async bannerFn() {
     let {
       data
     } = await (app.http.Banner())
   },
-
   onLoad() {
     that = this;
-    wx.login({
-      success: res => {
-        console.log(res)
-      }
-    })
+    that.authFn();
     // that.bannerFn();
   },
 
