@@ -1,0 +1,77 @@
+/**index.wxss**/
+.home {
+  position: relative;
+}
+
+.banner image {
+  width: 100%;
+  height: 600rpx;
+}
+
+.banner .wx-swiper-dots.wx-swiper-dots-horizontal {
+  margin-bottom: 40rpx;
+}
+
+.banner .wx-swiper-dot {
+  width: 10rpx;
+  display: inline-flex;
+  height: 10rpx;
+  margin-left: 10rpx;
+  justify-content: space-between;
+}
+
+.banner .wx-swiper-dot::before {
+  content: '';
+  flex-grow: 1;
+  background: #ff9900;
+  border-radius: 6rpx;
+}
+
+.banner .wx-swiper-dot-active {
+  width: 36rpx;
+}
+
+.banner .wx-swiper-dot-active::before {
+  background: #fff;
+  width: 36rpx;
+  border-radius: 6rpx;
+}
+
+
+.container {
+  position: relative;
+  margin-top: -40rpx;
+}
+
+.takeaway_menu {
+  width: 700rpx;
+  height: 240rpx;
+  background: #fff;
+  border-radius: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  box-shadow: 2rpx 2rpx 18rpx #aaa;
+}
+
+.activity{
+  width: 700rpx;
+  background: #fff;
+  margin-top: 30rpx;
+  /* border-top-left-radius: 20rpx; */
+  /* borderradius: 20rpx; */
+  box-sizing: border-box;
+  padding: 10rpx;
+}
+.activity-title{
+  display: flex;
+  align-items: center;
+  height: 80rpx;
+}
+.line{
+  width: 8rpx;
+  height: 40rpx;
+  border-radius: 4rpx;
+  background: #ff9900;
+  margin: 0 30rpx 0 10rpx;
+}

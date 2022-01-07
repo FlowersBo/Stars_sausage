@@ -1,0 +1,26 @@
+<!--pages/orderList/orderList.wxml-->
+<navigationBar text="订单" />
+<view class="content">
+  <view class="content-imgWrap" style="height: 100%">
+    <image src="/assets/img/background1.jpg" style="height: 100%;" mode="scaleToFill"></image>
+  </view>
+  <view class="content-imgWrap" style="z-index: 2;height: 300rpx;" style="top:{{top[1]}}px;">
+    <image src="/assets/img/sun.png" mode="widthFix" style="width: 150%;"></image>
+  </view>
+  <view class="content-imgWrap" style="z-index: 3;height: 400rpx;" style="top:{{top[2]}}px;">
+    <image src="/assets/img/planet1.png" mode="widthFix" style="width: 60%;"></image>
+  </view>
+  <view class="content-imgWrap" style="z-index: 4;height: 500rpx;" style="top:{{top[3]}}px;">
+    <image src="/assets/img/earth.png" mode="widthFix" style="width: 40%;"></image>
+  </view>
+
+
+
+  <scroll-view bindscroll="onScorll" class="mainView" scroll-y="true" scroll-x="false" style="z-index: 5;">
+    <block wx:for="{{30}}" wx:key="index">
+      <view class="list-item">
+        <view>这是个啥</view>
+      </view>
+    </block>
+  </scroll-view>
+</view>

@@ -1,0 +1,72 @@
+/* component/navigationBar/navigationBar.wxss */
+.navbar {
+  width: 100%;
+  position: fixed;
+  background: linear-gradient(to right, #FF6F04,40%,#FEB906);
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+.title-container {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  /* background:
+  radial-gradient(circle at 50% 0,
+    rgba(255,0,0,.5),
+    rgba(255,0,0,0) 70.71%),
+  radial-gradient(circle at 6.7% 75%,
+    rgba(0,0,255,.5),
+    rgba(0,0,255,0) 70.71%),
+  radial-gradient(circle at 93.3% 75%,
+    rgba(0,255,0,.5),
+    rgba(0,255,0,0) 70.71%) beige;
+border-radius: 50%; */
+}
+
+.capsule {
+  margin-left: 10px;
+  height: 30px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+}
+.capsules{
+  background: none;
+}
+.capsule>view {
+  width: 45px;
+  height: 60%;
+  position: relative;
+}
+
+.capsule>view:nth-child(2) {
+  border-left: 1px solid #fff;
+}
+
+.capsule image {
+  width: 48%;
+  height: 100%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.title {
+  color: white;
+  position: absolute;
+  top: 6px;
+  left: 104px;
+  right: 104px;
+  height: 30px;
+  line-height: 30px;
+  font-size: 14px;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

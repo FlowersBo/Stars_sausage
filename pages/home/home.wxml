@@ -1,0 +1,27 @@
+<view class="home">
+  <swiper class="banner" indicator-dots="true" autoplay="true"  interval="4000" duration="500" circular="true" style='height:600rpx;'>
+    
+    <block wx:for="{{imgarr}}" wx:key="index">
+      <swiper-item>
+        <!-- mode="aspectFit" -->
+        <image src="{{item.bannerImg}}" class="slide-image" data-bannerurl="{{item.bannerUrl}}" bindtap="gotoUrl"  bindload='imgHeight' />
+      </swiper-item>
+    </block>
+  </swiper>
+  <view class="container" style="z-index:9999;">
+    <view class="takeaway_menu">
+      <view>在线点餐</view>
+      <view>到店购买</view>
+    </view>
+    <view class="activity">
+      <view class="activity-title">
+        <view class="line"></view>
+        <view>最近上新</view>
+      </view>
+      <view wx:for="{{imgList}}" wx:key="index">
+        <image src="{{item}}"></image>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- <noData isFlag="{{isFlag}}" /> -->

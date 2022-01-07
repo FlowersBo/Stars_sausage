@@ -1,0 +1,23 @@
+{
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "name": "订单",
+          "pathName": "pages/orderList/orderList",
+          "query": "",
+          "scene": null
+        }
+      ]
+    }
+  }
+}
