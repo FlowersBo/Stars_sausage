@@ -1,15 +1,17 @@
 // index.js
 let that;
 const app = getApp()
+import Dialog from '../../miniprogram_npm/@vant/weapp/dialog/dialog';
+
 Page({
   data: {
     imgarr: [{
         bannerImg: '/assets/img/1.png',
-        bannerUrl: 'https://www.baidu.com'
+        bannerUrl: 'https://www.autohome.com.cn'
       },
       {
         bannerImg: '/assets/img/2.png',
-        bannerUrl: 'https://www.baidu.com'
+        bannerUrl: 'https://www.zhihu.com'
       },
       {
         bannerImg: '/assets/img/3.png',
@@ -35,49 +37,117 @@ Page({
   //   })
   // },
 
-  gotoUrl(e) {
-    console.log(e)
-    let url = e.currentTarget.dataset.bannerurl;
-    wx.navigateTo({
-      url,
+
+  async bannerFn() {
+    let {
+      data
+    } = await (app.http.Banner({
+      type: 0
+    }));
+    console.log('轮播', data);
+    that.setData({
+      bannerList: data
+    })
+  },
+
+  async activityFn() {
+    let {
+      data
+    } = await (app.http.Banner({
+      type: 1
+    }));
+    console.log('活动图', data);
+    that.setData({
+      activityList: data
     })
   },
 
   authFn() {
     wx.login({
       success: res => {
-        app.http.Auth({code:res.code})
-        .then(res=>{
-          console.log(res)
-        })
+        app.http.Auth({
+            code: res.code
+          })
+          .then(res => {
+            console.log(res);
+            wx.setStorageSync('key', res.data.id)
+          })
       }
     })
+  },
 
+  gotoReserveList(e) {
+    console.log(e)
+    if (!wx.getStorageSync('isLoaction')) {
+      console.log('没有')
+      wx.setStorageSync('isLoaction', true);
+      that.getSelfLocation();
+      return
+    }
+    let url = e.currentTarget.dataset.bannerurl;
+    wx.navigateTo({
+      url
+    })
   },
-  async bannerFn() {
-    let {
-      data
-    } = await (app.http.Banner())
+
+  //获取位置
+  getSelfLocation() {
+    wx.getLocation({
+      type: 'gcj02',
+      success: function (res) {
+        console.log(res)
+        const loaction = {};
+        loaction.latitude = res.latitude;
+        loaction.longitude = res.longitude;
+        wx.setStorageSync('loaction', loaction);
+      },
+      fail: function (res) {
+        wx.getSetting({
+          success: (res) => {
+            if (!res.authSetting['scope.userLocation']) {
+              that.dialogFn();
+            }
+          }
+        })
+      }
+    });
   },
+
+  dialogFn() {
+    Dialog.confirm({
+      title: '位置信息授权',
+      message: '需授权位置信息才能正常使用小程序功能',
+      theme: 'round-button',
+      confirmButtonOpenType: 'openSetting'
+    }).then(() => {
+
+    }).catch(() => {
+      wx.setStorageSync('isLoaction', false);
+    });
+  },
+
   onLoad() {
     that = this;
-    that.authFn();
-    // that.bannerFn();
+    Promise.allSettled([
+        that.authFn(),
+        that.bannerFn(),
+        that.activityFn()
+      ]).then(res => {
+        console.log(res)
+      })
+      .catch({})
   },
+
 
   onShow() {
     this.getTabBar().setData({
       selected: 0
     })
+    if (wx.getStorageSync('isLoaction')) {
+      console.log('调用')
+      that.getSelfLocation();
+    }
   },
-
-
-
-
-
-
-
-
 
 
 

@@ -3,16 +3,16 @@
   <view style="{{'height: ' + statusBarHeight}}"></view>
   <view class='title-container'>
     <view class='capsule' wx:if="{{ back && home }}">
-      <view bindtap='back' wx:if="{{back}}">
-        <image src='/assets/img/back.png'></image>
+      <view class="back" bindtap='back' wx:if="{{back}}">
+        <image class="img" src='/assets/img/back.png'></image>
       </view>
-      <view bindtap='backHome' wx:if="{{home}}">
-        <image src='/assets/img/home.png'></image>
+      <view class="back" bindtap='backHome' wx:if="{{home}}">
+        <image class="img" src='/assets/img/home.png'></image>
       </view>
     </view>
     <view class='capsule capsules' wx:if="{{ back && !home }}">
-      <view bindtap='back' wx:if="{{back}}">
-        <image src='/assets/img/back1.png'></image>
+      <view class="back" bindtap='back' wx:if="{{back}}">
+        <image class="img" src='/assets/img/back1.png'></image>
       </view>
     </view>
     <view class='title'>{{text}}</view>

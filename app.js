@@ -13,7 +13,9 @@ App({
       that.globalData.userTouch = 1;
     }
   },
-
+  // onHide: function() {
+  //   wx.removeStorageSync('isLoaction');
+  // },
   onLaunch: function () {
     const that = this;
     this.autoUpdate();

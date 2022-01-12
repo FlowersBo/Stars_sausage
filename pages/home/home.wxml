@@ -1,27 +1,37 @@
 <view class="home">
-  <swiper class="banner" indicator-dots="true" autoplay="true"  interval="4000" duration="500" circular="true" style='height:600rpx;'>
-    
-    <block wx:for="{{imgarr}}" wx:key="index">
+  <swiper class="banner" indicator-dots="true" autoplay="true" interval="4000" duration="500" circular="true"
+    style='height:560rpx;'>
+
+    <block wx:for="{{bannerList}}" wx:key="index">
       <swiper-item>
         <!-- mode="aspectFit" -->
-        <image src="{{item.bannerImg}}" class="slide-image" data-bannerurl="{{item.bannerUrl}}" bindtap="gotoUrl"  bindload='imgHeight' />
+        <image src="{{item.url}}" class="slide-image" data-bannerurl="{{item.link}}"  bindtap="gotoReserveList"
+          bindload='imgHeight' />
       </swiper-item>
     </block>
   </swiper>
-  <view class="container" style="z-index:9999;">
+  <view class="container" style="z-index:1;">
     <view class="takeaway_menu">
-      <view>在线点餐</view>
-      <view>到店购买</view>
+      <view class="reserve" data-bannerurl="/pages/reserveList/reserveList" bindtap="gotoReserveList">
+        <image class="reserve-img" src="../../assets/img/ordering.png"></image>
+        <view>在线点餐</view>
+      </view>
+      <view class="reserve" data-bannerurl="/pages/reserveList/reserveList" bindtap="gotoReserveList">
+        <image class="reserve-img" src="../../assets/img/purchase.png"></image>
+        <view>到店购买</view>
+      </view>
     </view>
     <view class="activity">
       <view class="activity-title">
         <view class="line"></view>
         <view>最近上新</view>
       </view>
-      <view wx:for="{{imgList}}" wx:key="index">
-        <image src="{{item}}"></image>
+      <view wx:for="{{activityList}}" wx:key="index" bindtap="gotoReserveList">
+        <image mode="scaleToFill" class="activity-img" src="{{item.url}}" class="slide-image"
+          data-bannerurl="{{item.link}}" bindtap="gotoUrl" />
       </view>
     </view>
   </view>
 </view>
+<van-dialog id="van-dialog"/>
 <!-- <noData isFlag="{{isFlag}}" /> -->

@@ -1,7 +1,9 @@
 {
   "pages": [
     "pages/home/home",
-    "pages/orderList/orderList"
+    "pages/orderList/orderList",
+    "pages/webView/webView",
+    "pages/reserveList/reserveList"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -16,7 +18,8 @@
     "color": "#a9b7b7",
     "selectedColor": "#11cd6e",
     "borderStyle": "white",
-    "list": [{
+    "list": [
+      {
         "selectedIconPath": "/assets/tabbar/xiangchang-h.png",
         "iconPath": "/assets/tabbar/xiangchang.png",
         "pagePath": "pages/home/home",
@@ -30,6 +33,14 @@
       }
     ]
   },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
+  },
+  "requiredBackgroundModes": [
+    "location"
+  ],
   "usingComponents": {
     "navigationBar": "/component/navigationBar/navigationBar",
     "noData": "/component/noData/noData",

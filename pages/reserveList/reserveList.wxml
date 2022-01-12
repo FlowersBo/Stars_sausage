@@ -1,0 +1,2 @@
+<!--pages/reserveList/reserveList.wxml-->
+<navigationBar back home text="在线点餐" />

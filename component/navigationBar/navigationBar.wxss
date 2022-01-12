@@ -2,7 +2,8 @@
 .navbar {
   width: 100%;
   position: fixed;
-  background: linear-gradient(to right, #FF6F04,40%,#FEB906);
+  /* background: linear-gradient(to right, #FF6F04,10%,#FEB906); */
+  background: linear-gradient(90deg, #FF6F03 0%, #FEB906 100%);
   top: 0;
   left: 0;
   z-index: 10;
@@ -37,17 +38,17 @@ border-radius: 50%; */
 .capsules{
   background: none;
 }
-.capsule>view {
+.back {
   width: 45px;
   height: 60%;
   position: relative;
 }
 
-.capsule>view:nth-child(2) {
+.back:nth-child(2) {
   border-left: 1px solid #fff;
 }
 
-.capsule image {
+.capsule .img {
   width: 48%;
   height: 100%;
   position: absolute;

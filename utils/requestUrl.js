@@ -15,10 +15,10 @@ const Request = (url, data, method) => {
         console.log(res)
         FN.LoadingOff();
         if (res.statusCode === 200) {
-          if (res.data.status === "200") {
+          if (res.data.code === 200) {
             resolve(res.data);
           } else {
-            FN.Toast(res.data.message);
+            FN.Toast(res.data.msg);
           };
         }else if(res.statusCode === 404){
           FN.Toast('请求错误');
