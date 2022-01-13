@@ -10,7 +10,17 @@ function Auth(data = {}) {
 function Banner(data = {}) {
   return Request(baseUrl + api.banner, data, 'get')
 }
+
+function Prepare(data = {}) {
+  return Request(baseUrl + api.prepare, data, 'get')
+}
+
+function Near(data = {}) {
+  return Request(baseUrl + api.near, data, 'get')
+}
 module.exports = {
   Auth,
-  Banner
+  Banner,
+  Prepare,
+  Near
 }

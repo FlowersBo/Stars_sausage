@@ -1,1 +1,110 @@
 /* pages/reserveList/reserveList.wxss */
+.container {
+  padding-bottom: 120rpx;
+}
+.reserveList {
+  width: 690rpx;
+}
+
+.reserveList .img {
+  width: 100%;
+  height: 340rpx;
+  border-radius: 20rpx;
+  margin-top: 20rpx;
+}
+
+.storeDistance {
+  width: 100%;
+  height: 120rpx;
+  box-sizing: border-box;
+  padding: 0 22rpx;
+  margin: 40rpx 0;
+  background: #FFFFFF;
+  box-shadow: 0 2rpx 20rpx 0 rgba(0, 0, 0, 0.08);
+  border-radius: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.distance {
+  display: flex;
+  align-items: center;
+}
+
+.storeName {
+  margin: 0 10rpx;
+}
+
+.name {
+  width: 260rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.shopList {
+  height: 220rpx;
+  background: #fff;
+  box-shadow: 0 2rpx 20rpx 0 rgba(0, 0, 0, 0.08);
+  border-radius: 20rpx;
+  margin-bottom: 30rpx;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 0 20rpx;
+}
+
+.shopDetail {
+  margin-left: 10rpx;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding: 30rpx 0;
+}
+
+.shopName {
+  font-weight: bold;
+}
+
+.price-count {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.add-subtract {
+  border-radius: 50% !important;
+  background: #FF7403 !important;
+  border: none !important;
+  color: #fff !important;
+}
+
+.van-stepper__minus--disabled {
+  background: #F2F2F2 !important;
+  color: #333 !important;
+}
+
+.inpNumber {
+  color: #333 !important;
+}
+
+.SubmitBarWrap {
+  width: 100%;
+  height: 130rpx;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  background: #fafafa;
+}
+
+.SubmitBar {
+  width: 690rpx;
+  height: 100rpx;
+  margin: 0 auto;
+  background: #2E241D;
+  border-radius: 20rpx;
+
+}

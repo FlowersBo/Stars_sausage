@@ -70,7 +70,7 @@ Page({
           })
           .then(res => {
             console.log(res);
-            wx.setStorageSync('key', res.data.id)
+            wx.setStorageSync('customerId', res.data.id)
           })
       }
     })

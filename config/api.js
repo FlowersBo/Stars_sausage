@@ -1,4 +1,6 @@
 module.exports = {
-	auth: 'reserve/customer/auth', //code
-	banner: 'reserve/common/banner', //轮播
+	auth: 'reserve/customer/auth',
+	banner: 'reserve/common/banner',
+	prepare: 'reserve/order/prepare', //设备下商品列表
+	near: 'reserve/common/near', //设备列表
 }

@@ -1,4 +1,6 @@
 // pages/reserveList/reserveList.js
+let that;
+const app = getApp()
 Page({
 
   /**
@@ -8,11 +10,34 @@ Page({
 
   },
 
+  bindPlusFn(e){
+    console.log('加',e);
+    that.addSubtractFn();
+  },
+
+  bindMinus(e){
+    console.log('减',e);
+    that.addSubtractFn();
+  },
+
+  addSubtractFn(){
+
+  },
+
+  async shopListFn(){
+    let {data} = await(app.http.Prepare({deviceId: '1346017173243428864'}))
+    console.log('商品信息',data);
+    that.setData({
+     device: data
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    that = this;
+    that.shopListFn();
   },
 
   /**
