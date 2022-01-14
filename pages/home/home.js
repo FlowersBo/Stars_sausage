@@ -135,7 +135,9 @@ Page({
       ]).then(res => {
         console.log(res)
       })
-      .catch({})
+      .catch(err=>{
+        console.log(err)
+      })
   },
 
 

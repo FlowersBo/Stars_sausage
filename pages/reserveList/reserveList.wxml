@@ -31,7 +31,7 @@
               ￥8.0 <text style="font-size: 24rpx;color:#999;text-decoration:line-through;margin-left:8rpx;">￥10</text>
             </view>
             <view class="count">
-              <van-stepper disable-input="true" min="0" theme="round" integer="true" button-size="24px"
+              <van-stepper disable-input="true" min="0" max="18" theme="round" integer="true" button-size="24px"
                 custom-class="addSubtract" plus-class="add-subtract subtract" minus-class="add-subtract"
                 input-class="inpNumber" bind:plus="bindPlusFn" bind:minus="bindMinus" />
             </view>
@@ -42,5 +42,12 @@
   </view>
 </view>
 <view class="SubmitBarWrap">
-  <view class="SubmitBar"></view>
+  <view class="SubmitBar">
+    <image animation="{{ani}}" class="shopBag {{start}}" style="width:72rpx;height:106rpx;margin-top:-48rpx;margin-left:20rpx;" mode="widthFix" src="../../assets/img/shop-bag.png"></image>
+    <text class="SubmitBar-count">2</text>
+    <view class="money">
+      合计：￥<text style="font-size:48rpx;font-weight: bold;">16.00</text>
+    </view>
+    <view class="SubmitBar-btn" bindtap="gotoOrder">去结算</view>
+  </view>
 </view>

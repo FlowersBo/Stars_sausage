@@ -10,26 +10,42 @@ Page({
 
   },
 
-  bindPlusFn(e){
-    console.log('加',e);
+  bindPlusFn(e) {
+    console.log('加', e);
     that.addSubtractFn();
   },
 
-  bindMinus(e){
-    console.log('减',e);
+  bindMinus(e) {
+    console.log('减', e);
     that.addSubtractFn();
   },
 
-  addSubtractFn(){
-
-  },
-
-  async shopListFn(){
-    let {data} = await(app.http.Prepare({deviceId: '1346017173243428864'}))
-    console.log('商品信息',data);
+  addSubtractFn() {
+    // this.cartWwing();
     that.setData({
-     device: data
+      start: 'start'
+    });
+    setTimeout(function () {
+      that.setData({
+        start: ''
+      });
+    }, 200)
+  },
+
+  async shopListFn() {
+    let {
+      data
+    } = await (app.http.Prepare({
+      deviceId: '1346017173243428864'
+    }))
+    console.log('商品信息', data);
+    that.setData({
+      device: data
     })
+  },
+
+  gotoOrder(){
+
   },
 
   /**
@@ -38,6 +54,20 @@ Page({
   onLoad: function (options) {
     that = this;
     that.shopListFn();
+  },
+
+  cartWwing: function () {
+    var animation = wx.createAnimation({
+      duration: 100, //动画持续时间
+      timingFunction: 'ease-in', //动画以低速开始
+    })
+    animation.translateX(6).rotate(21).step()
+    animation.translateX(-6).rotate(-21).step()
+    animation.translateX(0).rotate(0).step()
+    this.setData({
+      ani: animation.export()
+    })
+
   },
 
   /**

@@ -18,6 +18,7 @@ const Request = (url, data, method) => {
           if (res.data.code === 200) {
             resolve(res.data);
           } else {
+            reject(res.data.msg);
             FN.Toast(res.data.msg);
           };
         }else if(res.statusCode === 404){
