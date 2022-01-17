@@ -14,11 +14,16 @@ Component({
     home: {
       type: Boolean,
       value: false
+    },
+    isNav:{
+      type: Boolean,
+      value: false
     }
   },
   data: {
     statusBarHeight: app.globalData.StatusBar + 'px',
-    navigationBarHeight: (app.globalData.StatusBar + 44) + 'px'
+    navigationBarHeight: (app.globalData.StatusBar + 44) + 'px',
+    region: '',
   },
 
   methods: {
@@ -36,6 +41,14 @@ Component({
       wx.navigateBack({
         delta: 1
       })
-    }
+    },
+    bindRegionChange: function (e) {
+      this.triggerEvent('city',{
+        region: e.detail.value
+      })
+      this.setData({
+        region: e.detail.value
+      })
+    },
   }
 })

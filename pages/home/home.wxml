@@ -1,7 +1,6 @@
 <view class="home">
   <swiper class="banner" indicator-dots="true" autoplay="true" interval="4000" duration="500" circular="true"
     style='height:560rpx;'>
-
     <block wx:for="{{bannerList}}" wx:key="index">
       <swiper-item>
         <!-- mode="aspectFit" -->
@@ -16,7 +15,7 @@
         <image class="reserve-img" src="../../assets/img/ordering.png"></image>
         <view>在线点餐</view>
       </view>
-      <view class="reserve" data-bannerurl="/pages/reserveList/reserveList" bindtap="gotoReserveList">
+      <view class="reserve" data-bannerurl="/pages/facilityList/facilityList" bindtap="gotoReserveList">
         <image class="reserve-img" src="../../assets/img/purchase.png"></image>
         <view>到店购买</view>
       </view>

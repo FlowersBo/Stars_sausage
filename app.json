@@ -2,8 +2,8 @@
   "pages": [
     "pages/home/home",
     "pages/orderList/orderList",
-    "pages/webView/webView",
-    "pages/reserveList/reserveList"
+    "pages/reserveList/reserveList",
+    "pages/facilityList/facilityList"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -13,6 +13,14 @@ Page({
   bindPlusFn(e) {
     console.log('加', e);
     that.addSubtractFn();
+    that.setData({
+      start: 'start'
+    });
+    setTimeout(function () {
+      that.setData({
+        start: ''
+      });
+    }, 200)
   },
 
   bindMinus(e) {
@@ -22,14 +30,7 @@ Page({
 
   addSubtractFn() {
     // this.cartWwing();
-    that.setData({
-      start: 'start'
-    });
-    setTimeout(function () {
-      that.setData({
-        start: ''
-      });
-    }, 200)
+    
   },
 
   async shopListFn() {
@@ -44,7 +45,7 @@ Page({
     })
   },
 
-  gotoOrder(){
+  gotoOrder() {
 
   },
 

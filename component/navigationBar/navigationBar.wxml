@@ -1,21 +1,42 @@
 <!--component/navigationBar/navigationBar.wxml-->
 <view class="navbar" style="{{'height: ' + navigationBarHeight}}">
-  <view style="{{'height: ' + statusBarHeight}}"></view>
-  <view class='title-container'>
-    <view class='capsule' wx:if="{{ back && home }}">
-      <view class="back" bindtap='back' wx:if="{{back}}">
-        <image class="img" src='/assets/img/back.png'></image>
+  <image wx:if="{{isNav}}" style="width: 750rpx;height:auto;position: relative;" mode="widthFix"
+    src="../../assets/img/shopList.png">
+  </image>
+  <view class="backWrap">
+    <view style="{{'height: ' + statusBarHeight}}"></view>
+    <view class='title-container'>
+      <view class='capsule' wx:if="{{ back && home }}">
+        <view class="back" bindtap='back' wx:if="{{back}}">
+          <image class="img" src='/assets/img/back.png'></image>
+        </view>
+        <view class="back" bindtap='backHome' wx:if="{{home}}">
+          <image class="img" src='/assets/img/home.png'></image>
+        </view>
       </view>
-      <view class="back" bindtap='backHome' wx:if="{{home}}">
-        <image class="img" src='/assets/img/home.png'></image>
+      <view class='capsule capsules' wx:if="{{ back && !home }}">
+        <view class="back" bindtap='back' wx:if="{{back}}">
+          <image class="img" src='/assets/img/back1.png'></image>
+        </view>
       </view>
+      <view class='title'>{{text}}</view>
     </view>
-    <view class='capsule capsules' wx:if="{{ back && !home }}">
-      <view class="back" bindtap='back' wx:if="{{back}}">
-        <image class="img" src='/assets/img/back1.png'></image>
+    <view wx:if="{{isNav}}" class="nav-inp">
+      <view class="inpWrap">
+        <input class="inp" placeholder-style placeholder="请输入店铺名称" type="text" />
+        <view class="searcah">
+          <icon class="iconfont icon-fangdajing"></icon>
+        </view>
       </view>
+      <picker class="section" mode="region" bindchange="bindRegionChange" value="{{region}}">
+        <view class="picker">
+          <view>
+            {{region?region[2]:'选择地区'}}
+          </view>
+          <icon style="font-size: 20rpx;margin:-24rpx 0 0 4rpx" class="iconfont icon-xiajiantou"></icon>
+        </view>
+      </picker>
     </view>
-    <view class='title'>{{text}}</view>
   </view>
 </view>
-<view style="background:#fff;{{'height:' + navigationBarHeight}}"></view>
+<view style="background:#fff;height:{{isNav?'131px':navigationBarHeight}}"></view>

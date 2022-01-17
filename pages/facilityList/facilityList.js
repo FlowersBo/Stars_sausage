@@ -1,4 +1,4 @@
-// pages/webView/webView.js
+// pages/facilityList/facilityList.js
 Page({
 
   /**
@@ -12,9 +12,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      url: options.url
-    })
+
+  },
+
+  cityFn:e=>{
+    console.log('picker发送选择改变，携带值为', e.detail.region)
   },
 
   /**

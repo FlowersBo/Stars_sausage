@@ -1,0 +1,9 @@
+<!--pages/facilityList/facilityList.wxml-->
+<navigationBar isNav back text="附近店铺" bind:city="cityFn"/>
+<view class="container">
+  <view class="facilityList">
+    <block wx:for="{{6}}" wx:key="index">
+      
+    </block>
+  </view>
+</view>
