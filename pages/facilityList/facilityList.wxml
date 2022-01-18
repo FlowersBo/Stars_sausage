@@ -1,9 +1,25 @@
 <!--pages/facilityList/facilityList.wxml-->
-<navigationBar isNav back text="附近店铺" bind:city="cityFn"/>
+<navigationBar isNav back text="附近店铺" bind:city="cityFn" bind:searchVal="searchVal"/>
 <view class="container">
   <view class="facilityList">
     <block wx:for="{{6}}" wx:key="index">
-      
+      <view class="facility">
+        <image style="width:166rpx;height:136rpx;" src="../../assets/img/2.png"></image>
+        <view class="facility-address"> 
+          <view class="address">
+            <view>北京昆泰国际大厦8848</view>
+            <view>10000m</view>
+          </view>
+          <view class="facilityDetail">
+            <icon class="iconfont icon-weizhi1"></icon>
+            <text>朝外大街昆泰国际大厦812室</text>
+          </view>
+          <view class="facilityDetail">
+            <icon class="iconfont icon-shijian"></icon>
+            <text>营业时间：9:00～22:00</text>
+          </view>
+        </view>
+      </view>
     </block>
   </view>
 </view>

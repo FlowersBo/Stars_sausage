@@ -19,6 +19,9 @@ Page({
     console.log('picker发送选择改变，携带值为', e.detail.region)
   },
 
+  searchVal:e=>{
+    console.log('搜索内容',e.detail.val)
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

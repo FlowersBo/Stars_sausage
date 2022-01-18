@@ -117,6 +117,7 @@ border-radius: 50%; */
   text-align: center;
   background: linear-gradient(90deg, #FF6F03 0%, #FEB906 100%);
   border-radius: 50%;
+  z-index: 10;
 }
 
 .icon-fangdajing {

@@ -30,7 +30,6 @@ Page({
 
   addSubtractFn() {
     // this.cartWwing();
-    
   },
 
   async shopListFn() {

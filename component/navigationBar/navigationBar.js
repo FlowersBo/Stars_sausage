@@ -15,7 +15,7 @@ Component({
       type: Boolean,
       value: false
     },
-    isNav:{
+    isNav: {
       type: Boolean,
       value: false
     }
@@ -28,7 +28,7 @@ Component({
 
   methods: {
     backHome: function () {
-      let pages = getCurrentPages();//页面栈 返回几层
+      let pages = getCurrentPages(); //页面栈 返回几层
       console.log(pages)
       wx.reLaunch({
         url: '/pages/home/home',
@@ -43,12 +43,27 @@ Component({
       })
     },
     bindRegionChange: function (e) {
-      this.triggerEvent('city',{
+      this.triggerEvent('city', {
         region: e.detail.value
       })
       this.setData({
         region: e.detail.value
       })
     },
+    bindSearch(e) {
+      this.triggerEvent('searchVal', {
+        val: e.detail.value
+      })
+    },
+    searchValue(e) {
+      this.setData({
+        val: e.detail.value
+      })
+    },
+    searchFn() {
+      this.triggerEvent('searchVal', {
+        val: this.data.val
+      })
+    }
   }
 })
