@@ -44,8 +44,61 @@ Page({
     })
   },
 
-  gotoOrder() {
 
+  getPhoneNumberFn: (e) => {
+    var iv = e.detail.iv;
+    var encryptedData = e.detail.encryptedData;
+    if (e.detail.encryptedData) {
+      try {
+        if (wx.getStorageSync('open_id')) {
+          console.log("iv", iv, '\n', "encryptedData", encryptedData)
+          // 获取登录用户信息
+          const data = {
+            encryptedData: encryptedData,
+            iv: iv,
+            customer_id: customerId,
+            specifications,
+          }
+
+          app.http.getPhone({})
+            .then(res => {
+              console.log("授权返回参数", res);
+              if (res.data.code == "0") {
+                wx.navigateTo({
+                  url: '/pages/orderDetail/orderDetail',
+                })
+              } else {
+                wx.showToast({
+                  title: res.data.message,
+                  icon: 'none',
+                  duration: 2000
+                })
+                wx.hideLoading();
+              }
+            })
+            .catch(rej => {
+              console.log(rej)
+              wx.showToast({
+                title: rej.error,
+                icon: 'none',
+                duration: 2000
+              })
+            })
+        } else {
+          console.log('获取用户手机号失败！');
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    } else {
+      //用户按了取消按钮
+      wx.showModal({
+        title: '提示',
+        content: '您点击了拒绝授权，将无法正常使用小程序，请授权之后再进入',
+        showCancel: false,
+        confirmText: '重新授权'
+      })
+    }
   },
 
   /**
@@ -54,6 +107,15 @@ Page({
   onLoad: function (options) {
     that = this;
     that.shopListFn();
+    wx.getSetting({
+      success(res) {
+        // 已经授权，可以直接调用
+        console.log("已授权", res.authSetting);
+        if (res.authSetting['scope.userInfo']) {
+
+        }
+      }
+    })
   },
 
   cartWwing: function () {

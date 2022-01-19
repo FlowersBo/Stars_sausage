@@ -18,9 +18,13 @@ function Prepare(data = {}) {
 function Near(data = {}) {
   return Request(baseUrl + api.near, data, 'get')
 }
+function getPhone(data={}){
+  return Request(baseUrl + api.near, data, 'get')
+}
 module.exports = {
   Auth,
   Banner,
   Prepare,
-  Near
+  Near,
+  getPhone
 }

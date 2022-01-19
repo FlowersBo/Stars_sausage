@@ -154,6 +154,7 @@
 .SubmitBar-btn {
   width: 180rpx;
   height: 76rpx;
+  color: #fff;
   text-align: center;
   line-height: 76rpx;
   background: linear-gradient(90deg, #FF6F03 0%, #FEB906 100%);
