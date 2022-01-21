@@ -7,14 +7,16 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    isPhone: false,
+    num: 0,
+    overallPrice: 0.00
   },
 
   bindPlusFn(e) {
-    console.log('加', e);
-    that.addSubtractFn();
+    that.addSubtractFn('add', e.currentTarget.dataset.merchantid);
     that.setData({
-      start: 'start'
+      start: 'start',
+      num: that.data.num + 1
     });
     setTimeout(function () {
       that.setData({
@@ -24,28 +26,81 @@ Page({
   },
 
   bindMinus(e) {
-    console.log('减', e);
-    that.addSubtractFn();
-  },
-
-  addSubtractFn() {
-    // this.cartWwing();
-  },
-
-  async shopListFn() {
-    let {
-      data
-    } = await (app.http.Prepare({
-      deviceId: '1346017173243428864'
-    }))
-    console.log('商品信息', data);
+    that.addSubtractFn('', e.currentTarget.dataset.merchantid);
     that.setData({
-      device: data
+      num: that.data.num - 1
     })
   },
 
+  addSubtractFn(add, merchantid) {
+    let products = that.data.products;
+    let overallPrice = 0;
+    products.forEach(element => {
+      if (element.merchantid === merchantid) {
+        if (add) {
+          element.itemCount = element.itemCount + 1
+        } else {
+          element.itemCount = element.itemCount - 1
+        }
+        overallPrice = (overallPrice + element.factAmount * element.itemCount).toFixed(2);
+      }
+      that.setData({
+        products,
+        overallPrice
+      })
+    });
+  },
+
+  async facilityListFn() {
+    let {
+      data
+    } = await (app.http.Near({
+      coordinate: `${wx.getStorageSync('loaction').latitude},${wx.getStorageSync('loaction').longitude}`
+    }));
+    console.log('设备列表', data);
+    if (that.data.deviceId) {
+      data.forEach(element => {
+        element.distance = distance.toFixed();
+        if (element.deviceId === that.data.deviceId) {
+          that.setData({
+            deviceDetail: element
+          })
+          that.shopListFn(element.deviceId);
+        }
+      });
+    }else{
+      data[0].distance = data[0].distance.toFixed();
+      that.setData({
+        deviceDetail: data[0]
+      })
+      that.shopListFn(data[23].deviceId);
+    }
+  },
+
+  async shopListFn(deviceId) {
+    let {
+      data
+    } = await (app.http.Prepare({
+      deviceId
+    }))
+    console.log('商品信息', data);
+    data.products.forEach(element => {
+      element.itemCount = 0
+    });
+    that.setData({
+      device: data,
+      products: data.products
+    })
+  },
+
+  gotoOrderFn() {
+    wx.navigateTo({
+      url: '/pages/orderDetail/orderDetail',
+    })
+  },
 
   getPhoneNumberFn: (e) => {
+    console.log(e)
     var iv = e.detail.iv;
     var encryptedData = e.detail.encryptedData;
     if (e.detail.encryptedData) {
@@ -106,13 +161,19 @@ Page({
    */
   onLoad: function (options) {
     that = this;
-    that.shopListFn();
+    that.facilityListFn();
     wx.getSetting({
       success(res) {
         // 已经授权，可以直接调用
-        console.log("已授权", res.authSetting);
+        console.log("授权", res.authSetting);
         if (res.authSetting['scope.userInfo']) {
-
+          that.setData({
+            isPhone: false
+          })
+        } else {
+          that.setData({
+            isPhone: true
+          })
         }
       }
     })

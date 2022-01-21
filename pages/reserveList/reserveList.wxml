@@ -8,30 +8,30 @@
         <image style="width:60rpx;height:auto;margin-top:-4rpx;" mode="widthFix" src="../../assets/img/shop.png">
         </image>
         <view class="storeName">
-          <view class="name">北京昆泰国际酒店</view>
-          <view style="color:#999;">距离您 <text style="color:#FF7304;">1000m</text> </view>
+          <view class="name">{{deviceDetail.name}}</view>
+          <view style="color:#999;">距离您 <text style="color:#FF7304;">{{deviceDetail.distance}}m</text> </view>
         </view>
       </view>
       <view class="distance">
         <view class="storeName">
           <view>{{active.deviceStatus?'当前可预定':'当前不可预订'}}</view>
-          <view style="color:#FF7304;">9:00~20:00</view>
+          <view style="color:#FF7304;" wx:if="{{deviceDetail.startOpen}}">{{deviceDetail.startOpen}}~{{deviceDetail.endOpen}}</view>
         </view>
         <!-- <icon class="iconfont icon-youjiantou" style="margin-top:-4rpx;"></icon> -->
       </view>
     </view>
-    <block wx:for="{{4}}" wx:key="index">
+    <block wx:for="{{products}}" wx:key="index">
       <view class="shopList">
-        <image style="width:200rpx;height:160rpx;border-radius:10rpx;" src="../../assets/img/2.png"></image>
+        <image style="width:200rpx;height:160rpx;border-radius:10rpx;" src="{{item.url}}"></image>
         <view class="shopDetail">
-          <view class="shopName">星斗锦绣肠-德式原味（60g/根）</view>
-          <view class="materials" style="color: #999;">瘦猪肉、芝士</view>
+          <view class="shopName">{{item.productname}}</view>
+          <view class="materials" style="color: #999;">{{item.description}}</view>
           <view class="price-count">
             <view class="price" style="color: #FF7303;font-weight:bold;">
-              ￥8.0 <text style="font-size: 24rpx;color:#999;text-decoration:line-through;margin-left:8rpx;">￥10</text>
+              ￥{{item.factAmount}} <text style="font-size: 24rpx;color:#999;text-decoration:line-through;margin-left:8rpx;">￥{{item.price}}</text>
             </view>
             <view class="count">
-              <van-stepper disable-input="true" min="0" max="18" theme="round" integer="true" button-size="24px"
+              <van-stepper value="{{item.itemCount}}"  data-merchantid="{{item.merchantid}}" disable-input="true" min="0" max="18" theme="round" integer="true" button-size="24px"
                 custom-class="addSubtract" plus-class="add-subtract subtract" minus-class="add-subtract"
                 input-class="inpNumber" bind:plus="bindPlusFn" bind:minus="bindMinus" />
             </view>
@@ -44,11 +44,11 @@
 <view class="SubmitBarWrap">
   <view class="SubmitBar">
     <image animation="{{ani}}" class="shopBag {{start}}" style="width:72rpx;height:106rpx;margin-top:-48rpx;margin-left:20rpx;" mode="widthFix" src="../../assets/img/shop-bag.png"></image>
-    <text class="SubmitBar-count">2</text>
+    <text class="SubmitBar-count" hidden="{{!num}}">{{num}}</text>
     <view class="money">
-      合计：￥<text style="font-size:48rpx;font-weight: bold;">16.00</text>
+      合计：￥<text style="font-size:48rpx;font-weight: bold;">{{overallPrice}}</text>
     </view>
-    <!-- <view class="SubmitBar-btn" bindtap="gotoOrder">去结算</view> -->
-    <button class="SubmitBar-btn"	open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumberFn">去结算</button>
+    <button class="SubmitBar-btn"	open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumberFn" wx:if="{{isPhone}}">去结算</button>
+    <view wx:else class="SubmitBar-btn" bindtap="gotoOrderFn">去结算</view>
   </view>
 </view>

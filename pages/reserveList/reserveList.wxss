@@ -57,6 +57,7 @@
 }
 
 .shopDetail {
+  flex: 1;
   margin-left: 10rpx;
   display: flex;
   flex-direction: column;
@@ -71,6 +72,7 @@
 }
 
 .price-count {
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -114,7 +116,7 @@
 }
 
 .SubmitBar-count {
-  display: inline-block;
+  /* display: inline-block; */
   min-width: 24rpx;
   min-height: 24rpx;
   padding: 5rpx;
@@ -128,6 +130,7 @@
   line-height: 1;
   z-index: 1;
 }
+
 
 @keyframes animations {
   0% {

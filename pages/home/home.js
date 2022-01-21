@@ -66,7 +66,8 @@ Page({
     wx.login({
       success: res => {
         app.http.Auth({
-            code: res.code
+            code: res.code,
+            mpOpenId:''
           })
           .then(res => {
             console.log(res);
