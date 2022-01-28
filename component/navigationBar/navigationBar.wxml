@@ -19,6 +19,11 @@
           <image class="img" src='/assets/img/back1.png'></image>
         </view>
       </view>
+      <view class='capsule' wx:if="{{ !back && home }}">
+        <view class="back" bindtap='backHome' wx:if="{{home}}">
+          <image class="img" src='/assets/img/home.png'></image>
+        </view>
+      </view>
       <view class='title'>{{text}}</view>
     </view>
     <view wx:if="{{isNav}}" class="nav-inp">

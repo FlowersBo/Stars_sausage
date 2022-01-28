@@ -31,7 +31,7 @@
               ￥{{item.factAmount}} <text style="font-size: 24rpx;color:#999;text-decoration:line-through;margin-left:8rpx;">￥{{item.price}}</text>
             </view>
             <view class="count">
-              <van-stepper value="{{item.itemCount}}"  data-merchantid="{{item.merchantid}}" disable-input="true" min="0" max="18" theme="round" integer="true" button-size="24px"
+              <van-stepper value="{{item.productCount}}"  data-id="{{item.id}}" disable-input="true" min="0" max="{{item.pointStock}}" theme="round" integer="true" button-size="24px"
                 custom-class="addSubtract" plus-class="add-subtract subtract" minus-class="add-subtract"
                 input-class="inpNumber" bind:plus="bindPlusFn" bind:minus="bindMinus" />
             </view>
@@ -49,6 +49,6 @@
       合计：￥<text style="font-size:48rpx;font-weight: bold;">{{overallPrice}}</text>
     </view>
     <button class="SubmitBar-btn"	open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumberFn" wx:if="{{isPhone}}">去结算</button>
-    <view wx:else class="SubmitBar-btn" bindtap="gotoOrderFn">去结算</view>
+    <view wx:else class="SubmitBar-btn" bindtap="gotoPlaceOrderFn">去结算</view>
   </view>
 </view>

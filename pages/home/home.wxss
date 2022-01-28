@@ -95,12 +95,30 @@
   margin: 0 16rpx 0 10rpx;
 }
 
-.activity{
-
-}
 .activity image{
   width: 100%;
   height: 220rpx;
   border-radius: 20rpx;
   margin: 0 auto;
+}
+
+.van-goods-action .van-goods-action--safe{
+  width: 640rpx !important;
+  display: flex !important;
+  justify-content: space-between !important;
+}
+
+.van-goods-action-button, .van-goods-action-button--danger, .van-goods-action-button--first{
+  display:flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.van-button, .van-button--danger, .van-button--normal{
+  width: 200rpx !important;
+  height: 70rpx !important;
+  border-radius: 20rpx !important;
+}
+.van-goods-action-button--first>.van-button{
+  background: #ff9900 !important;
 }

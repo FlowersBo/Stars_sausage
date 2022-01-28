@@ -8,7 +8,8 @@ const Request = (url, data, method) => {
       data: data || {},
       method,
       header: {
-        'content-type': "application/x-www-form-urlencoded"
+        // 'content-type': "application/x-www-form-urlencoded"
+        'content-type': "application/json; charset=utf-8"
       },
       timeout: 20000,
       success(res) {

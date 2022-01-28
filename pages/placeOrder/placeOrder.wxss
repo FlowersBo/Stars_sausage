@@ -1,0 +1,215 @@
+/* pages/placeOrder/placeOrder.wxss */
+.placeOrder {
+  width: 690rpx;
+}
+
+.address {
+  width: 100%;
+  margin: 20rpx 0;
+  display: flex;
+  align-items: center;
+  font-size: 34rpx;
+  font-weight: bold;
+}
+
+.icon-youjiantou {
+  font-size: 20rpx;
+  line-height: 60rpx;
+}
+
+.facility {
+  width: 100%;
+  height: 214rpx;
+  background: #FFFFFF;
+  box-shadow: 0 2rpx 20rpx 0 rgba(0, 0, 0, 0.08);
+  border-radius: 20rpx;
+  box-sizing: border-box;
+  padding: 20rpx;
+}
+
+.facilityAddress {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.facilityName {
+  font-weight: bold;
+  line-height: 48rpx;
+}
+
+.distance {
+  font-size: 22rpx;
+  font-weight: 500;
+  color: #999999;
+  line-height: 48rpx;
+}
+
+.distanceICon {
+  font-size: 30rpx;
+  line-height: 100rpx;
+}
+
+.businessHours {
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30rpx;
+}
+
+.sausageWrap {
+  background: #FFFFFF;
+  box-shadow: 0px 2rpx 20rpx 0 rgba(0, 0, 0, 0.08);
+  border-radius: 20rpx;
+  box-sizing: border-box;
+  padding: 20rpx;
+  margin: 40rpx 0;
+}
+
+.title {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10rpx;
+  font-size: 30rpx;
+  font-weight: bold;
+  border-bottom: 1rpx solid #F0F0F0;
+  margin-bottom: 10rpx;
+}
+
+.sausageNum {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20rpx 0;
+}
+
+.imgWrap {
+  display: flex;
+  align-items: center;
+}
+
+.promotionWrap {
+  height: 100rpx;
+  margin-left: 20rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding: 6rpx 0;
+}
+
+.sausage {
+  display: flex;
+  align-items: center;
+}
+
+.promotion {
+  width: 60rpx;
+  height: 34rpx;
+  background: #FFEBDA;
+  border-radius: 6rpx;
+  font-size: 22rpx;
+  line-height: 34rpx;
+  text-align: center;
+  color: #FF7603;
+  margin-right: 10rpx;
+}
+
+.total {
+  text-align: right;
+  margin-top: 20rpx 0;
+}
+
+.sausageTime {
+  height: 100rpx;
+  background: #FFFFFF;
+  box-shadow: 0 2rpx 20rpx 0 rgba(0, 0, 0, 0.08);
+  border-radius: 20rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20rpx;
+  font-size: 30rpx;
+  font-weight: bold;
+}
+
+.timeImg {
+  display: flex;
+  align-items: center;
+}
+
+
+/* 结算按钮 */
+.SubmitBarWrap {
+  width: 100%;
+  height: 130rpx;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  background: #fafafa;
+}
+
+.SubmitBar {
+  width: 690rpx;
+  height: 100rpx;
+  margin: 0 auto;
+  background: #2E241D;
+  border-radius: 20rpx;
+  display: flex;
+  align-items: center;
+  color: #fff;
+}
+
+.SubmitBar-count {
+  /* display: inline-block; */
+  min-width: 24rpx;
+  min-height: 24rpx;
+  padding: 5rpx;
+  background: #E71600;
+  border-radius: 50%;
+  margin-top: -110rpx;
+  margin-left: -14rpx;
+  font-size: 24rpx;
+  text-align: center;
+  box-sizing: content-box;
+  line-height: 1;
+  z-index: 1;
+}
+
+
+@keyframes animations {
+  0% {
+    transform: translateX(-6px);
+    transform: rotate(-30deg);
+  }
+
+  50% {
+    transform: translateX(6px);
+    transform: rotate(30deg);
+  }
+
+  100% {
+    transform: translateX(0px);
+    transform: rotate(0deg);
+  }
+}
+
+.start {
+  animation: animations 0.2s;
+}
+
+
+.SubmitBar-btn {
+  width: 180rpx;
+  height: 76rpx;
+  color: #fff;
+  text-align: center;
+  line-height: 76rpx;
+  background: linear-gradient(90deg, #FF6F03 0%, #FEB906 100%);
+  border-radius: 10rpx;
+  margin-left: auto;
+  margin-right: 12rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  letter-spacing: 4rpx;
+}

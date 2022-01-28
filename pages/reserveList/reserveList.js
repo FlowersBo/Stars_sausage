@@ -9,11 +9,11 @@ Page({
   data: {
     isPhone: false,
     num: 0,
-    overallPrice: 0.00
+    overallPrice: 0
   },
 
   bindPlusFn(e) {
-    that.addSubtractFn('add', e.currentTarget.dataset.merchantid);
+    that.addSubtractFn('add', e.currentTarget.dataset.id);
     that.setData({
       start: 'start',
       num: that.data.num + 1
@@ -26,29 +26,31 @@ Page({
   },
 
   bindMinus(e) {
-    that.addSubtractFn('', e.currentTarget.dataset.merchantid);
+    that.addSubtractFn('', e.currentTarget.dataset.id);
     that.setData({
       num: that.data.num - 1
     })
   },
 
-  addSubtractFn(add, merchantid) {
+  addSubtractFn(add, id) {
     let products = that.data.products;
     let overallPrice = 0;
+    let price = 0;
     products.forEach(element => {
-      if (element.merchantid === merchantid) {
+      if (element.id === id) {
         if (add) {
-          element.itemCount = element.itemCount + 1
+          element.productCount = element.productCount + 1
         } else {
-          element.itemCount = element.itemCount - 1
+          element.productCount = element.productCount - 1
         }
-        overallPrice = (overallPrice + element.factAmount * element.itemCount).toFixed(2);
       }
-      that.setData({
-        products,
-        overallPrice
-      })
+      price += Number((element.factAmount * element.productCount));
     });
+    overallPrice = price.toFixed(2)
+    that.setData({
+      products,
+      overallPrice
+    })
   },
 
   async facilityListFn() {
@@ -63,15 +65,18 @@ Page({
         element.distance = distance.toFixed();
         if (element.deviceId === that.data.deviceId) {
           that.setData({
-            deviceDetail: element
+            deviceDetail: element,
+            distance: element.distance.toFixed(0)
           })
           that.shopListFn(element.deviceId);
         }
       });
-    }else{
-      data[0].distance = data[0].distance.toFixed();
+    } else {
+      data[0].distance = data[0].distance.toFixed(0);
       that.setData({
-        deviceDetail: data[0]
+        deviceDetail: data[0],
+        deviceId: data[23].deviceId,
+        distance: data[23].distance.toFixed(0)
       })
       that.shopListFn(data[23].deviceId);
     }
@@ -85,7 +90,7 @@ Page({
     }))
     console.log('商品信息', data);
     data.products.forEach(element => {
-      element.itemCount = 0
+      element.productCount = 0
     });
     that.setData({
       device: data,
@@ -93,42 +98,36 @@ Page({
     })
   },
 
-  gotoOrderFn() {
-    wx.navigateTo({
-      url: '/pages/orderDetail/orderDetail',
-    })
+  gotoPlaceOrderFn() {
+    if (that.data.overallPrice > 0) {
+      that.createOrderFn();
+    } else {
+      wx.showToast({
+        title: '请选择商品后下单',
+        icon: 'none',
+        duration: 2000
+      })
+    }
   },
 
   getPhoneNumberFn: (e) => {
-    console.log(e)
-    var iv = e.detail.iv;
-    var encryptedData = e.detail.encryptedData;
     if (e.detail.encryptedData) {
       try {
-        if (wx.getStorageSync('open_id')) {
-          console.log("iv", iv, '\n', "encryptedData", encryptedData)
-          // 获取登录用户信息
-          const data = {
-            encryptedData: encryptedData,
-            iv: iv,
-            customer_id: customerId,
-            specifications,
-          }
-
-          app.http.getPhone({})
+        if (wx.getStorageSync('customerId')) {
+          app.http.getPhone({
+              customerId: wx.getStorageSync('customerId'),
+              encryptedData: e.detail.encryptedData,
+              iv: e.detail.iv,
+            })
             .then(res => {
-              console.log("授权返回参数", res);
-              if (res.data.code == "0") {
-                wx.navigateTo({
-                  url: '/pages/orderDetail/orderDetail',
-                })
+              if (that.data.overallPrice > 0) {
+                that.createOrderFn();
               } else {
                 wx.showToast({
-                  title: res.data.message,
+                  title: '请选择商品后下单',
                   icon: 'none',
                   duration: 2000
                 })
-                wx.hideLoading();
               }
             })
             .catch(rej => {
@@ -146,7 +145,6 @@ Page({
         console.log(e);
       }
     } else {
-      //用户按了取消按钮
       wx.showModal({
         title: '提示',
         content: '您点击了拒绝授权，将无法正常使用小程序，请授权之后再进入',
@@ -154,6 +152,32 @@ Page({
         confirmText: '重新授权'
       })
     }
+  },
+
+  async createOrderFn() {
+    let products = that.data.products;
+    let itemBeans = [];
+    products.forEach((element, key) => {
+      itemBeans[key] = {};
+      itemBeans[key].productCount = element.productCount;
+      itemBeans[key].name = element.productname;
+      itemBeans[key].price = element.price;
+      itemBeans[key].productId = element.id;
+      itemBeans[key].sausageStatus = '';
+      itemBeans[key].stock = '';
+      itemBeans[key].userStatus = '';
+    })
+    console.log('商品', itemBeans);
+    let {
+      data
+    } = await (app.http.createOrder({
+      deviceId: that.data.deviceId,
+      customerId: wx.getStorageSync('customerId'),
+      itemBeans: itemBeans
+    }));
+    wx.navigateTo({
+      url: '/pages/placeOrder/placeOrder?orderId=' + data+'&distance='+that.data.distance,
+    })
   },
 
   /**

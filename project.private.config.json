@@ -29,6 +29,12 @@
           "pathName": "pages/facilityList/facilityList",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "订单确认",
+          "pathName": "pages/placeOrder/placeOrder",
+          "query": "",
+          "scene": null
         }
       ]
     }

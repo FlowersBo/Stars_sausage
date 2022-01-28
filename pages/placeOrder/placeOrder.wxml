@@ -1,0 +1,65 @@
+<!--pages/placeOrder/placeOrder.wxml-->
+<navigationBar back text="订单确认" />
+<view class="container">
+  <view class="placeOrder">
+    <view class="address">
+      <image style="width: 26rpx;" mode="widthFix" src="../../assets/img/address.png"></image>
+      <view style="margin: 0 10rpx;">取餐地点</view>
+      <icon class="iconfont icon-youjiantou"></icon>
+    </view>
+    <view class="facility">
+      <view class="facilityAddress">
+        <view>
+          <view class="facilityName">{{product.pointName}}</view>
+          <view class="distance">距离您位置 <text style="color:#FF7003;">{{distance}}m</text></view>
+        </view>
+        <icon class="iconfont icon-youjiantou distanceICon"></icon>
+      </view>
+      <view style="width: 100%;height:2rpx;background:#F0F0F0;"></view>
+      <view class="businessHours">
+        <view>营业时间</view>
+        <view style="color:#FF7003;">{{product.startOpen}}~{{product.endOpen}}</view>
+      </view>
+    </view>
+    <view class="sausageWrap">
+      <view class="title">餐品详情</view>
+      <view class="sausageDetail">
+        <block wx:for="{{product.detail}}" wx:key="index">
+          <view class="sausageNum">
+            <view class="imgWrap">
+              <image style="width:120rpx;height:100rpx;" src="../../assets/img/2.png"></image>
+              <view class="promotionWrap">
+                <view class="sausage">
+                  <view class="promotion">热销</view>
+                  <view>{{item.productName}}</view>
+                </view>
+                <view style="color:#999">x{{item.quantity}}</view>
+              </view>
+            </view>
+            <view class="price" style="font-size: 24rpx;">￥<text style="font-weight: bold;font-size: 28rpx;">{{item.price}}</text>
+            </view>
+          </view>
+        </block>
+        <view class="total" style="font-size:24rpx;color:#666;">合计：￥<text
+            style="color:#FF7003;font-size: 38rpx;font-weight: bold;">{{overallPrice}}</text> </view>
+      </view>
+    </view>
+    <view class="sausageTime">
+      <view class="timeImg">
+        <image style="width: 28rpx;height: 28rpx;margin:2rpx 6rpx 0 0" src="../../assets/img/time.png"></image>
+        <view>取餐时间</view>
+      </view>
+      <view style="color:#07C160;font-size: 26rpx;font-weight: 500;">{{product.takeMin}}分钟后可取</view>
+    </view>
+  </view>
+</view>
+<view class="SubmitBarWrap">
+  <view class="SubmitBar">
+    <image class="shopBag" style="width:72rpx;height:106rpx;margin-top:-48rpx;margin-left:20rpx;" mode="widthFix" src="../../assets/img/shop-bag.png"></image>
+    <text class="SubmitBar-count">{{productQuantity}}</text>
+    <view class="money">
+      合计：￥<text style="font-size:48rpx;font-weight: bold;">{{overallPrice}}</text>
+    </view>
+    <view class="SubmitBar-btn" bindtap="wxPayFn">去支付</view>
+  </view>
+</view>

@@ -3,7 +3,9 @@
     "pages/home/home",
     "pages/orderList/orderList",
     "pages/reserveList/reserveList",
-    "pages/facilityList/facilityList"
+    "pages/facilityList/facilityList",
+    "pages/placeOrder/placeOrder",
+    "pages/placeOrder/accomplishOrder/accomplishOrder"
   ],
   "window": {
     "backgroundTextStyle": "light",
