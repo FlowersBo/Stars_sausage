@@ -32,8 +32,9 @@ function createOrder(data = {}) {
 function confirm(data = {}) {
   return Request(baseUrl + api.confirm, data, 'get')
 }
-function pay(data = {}) {
-  return Request(baseUrl + api.pay, data, 'post')
+
+function pay(orderId, data = {}) {
+  return Request(`${baseUrl + api.pay}?orderId=${orderId}`, data, 'post')
 }
 module.exports = {
   Auth,

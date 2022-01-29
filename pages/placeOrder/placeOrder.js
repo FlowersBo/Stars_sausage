@@ -1,6 +1,6 @@
 // pages/placeOrder/placeOrder.js
 let that;
-let app = getApp();
+const app = getApp();
 Page({
 
   /**
@@ -33,7 +33,7 @@ Page({
       productQuantity = 0;
     data.detail.forEach(element => {
       price += Number(element.price);
-      productQuantity+= JSON.parse(element.quantity)
+      productQuantity += JSON.parse(element.quantity)
     });
     overallPrice = price.toFixed(2)
     that.setData({
@@ -45,11 +45,27 @@ Page({
 
 
   async wxPayFn() {
-    let {data} = await(app.http.pay({orderId:that.data.orderId}));
-    console.log('支付',data)
-    wx.redirectTo({
-      url: './accomplishOrder/accomplishOrder',
+    let {
+      data
+    } = await (app.http.pay(
+      that.data.orderId
+    ));
+    console.log('支付', data)
+    wx.requestPayment({
+      timeStamp: data.timeStamp,
+      nonceStr: data.nonceStr,
+      package: data.paySign,
+      signType: data.signType,
+      paySign: data.paySign,
+      success(res) {
+        console.log(res)
+        wx.redirectTo({
+          url: './accomplishOrder/accomplishOrder',
+        })
+      },
+      fail(res) {}
     })
+
   },
 
   /**
