@@ -1,7 +1,6 @@
-// pages/facilityList/facilityList.js
-const app = getApp()
+// pages/orderDetail/orderDetail.js
 let that;
-
+const app = getApp();
 Page({
 
   /**
@@ -11,46 +10,40 @@ Page({
 
   },
 
-  async facilityListFn() {
-    let {
-      data
-    } = await (app.http.Near({
-      coordinate: `${wx.getStorageSync('loaction').latitude},${wx.getStorageSync('loaction').longitude}`
-    }));
-    console.log('设备列表', data);
-    data.forEach(element => {
-      element.distance = element.distance.toFixed();
-    });
-    that.setData({
-      equipmentList: data
-    })
-  },
-
-  gotoReserveListFn(e) {
-    console.log(e)
-    let {
-      deviceid
-    } = e.currentTarget.dataset;
-    wx.navigateTo({
-      url: '../reserveList/reserveList?deviceId=' + deviceid
-    })
-  },
-
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     that = this;
-    that.facilityListFn();
+    that.setData({
+      orderId: options.orderId
+    })
+    that.orderDetailFn(options.orderId);
   },
 
-  cityFn: e => {
-    console.log('picker发送选择改变，携带值为', e.detail.region)
+  async orderDetailFn(orderId) {
+    let {
+      data
+    } = await (app.http.Detail({
+      orderId: '1491289808725606400'
+    }));
+    console.log('订单详情', data);
+    // let overallPrice = 0,
+    //   price = 0;
+    // data.detail.forEach(element => {
+    //   price += Number(element.price);
+    // });
+    // overallPrice = price.toFixed(2)
+    that.setData({
+      // overallPrice,
+      order: data
+    })
   },
 
-  searchVal: e => {
-    console.log('搜索内容', e.detail.val)
+  async cancelOrderFn(){
+    let {data} = await(app.http.Cancel({orderId:that.data.orderId}))
   },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

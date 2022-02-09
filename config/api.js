@@ -7,4 +7,6 @@ module.exports = {
 	createOrder: 'reserve/order/create',
 	confirm: 'reserve/order/confirm',
 	pay: 'reserve/order/pay',
+	detail: 'reserve/order/detail',
+	cancel: 'reserve/order/cancel',
 }

@@ -5,7 +5,8 @@
     "pages/reserveList/reserveList",
     "pages/facilityList/facilityList",
     "pages/placeOrder/placeOrder",
-    "pages/placeOrder/accomplishOrder/accomplishOrder"
+    "pages/placeOrder/accomplishOrder/accomplishOrder",
+    "pages/orderDetail/orderDetail"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -7,12 +7,12 @@
   <view style="font-size: 23rpx; margin: 22rpx 0 60rpx 0;">Order payment is successful!</view>
   <view
     style="width: 282rpx;height: 90rpx;background: linear-gradient(90deg, #FF6F03 0%, #FEB906 100%);border-radius: 20rpx;color:#FFF;font-size: 34rpx;text-align: center;line-height:90rpx;"
-    bindtap="fn">订单详情</view>
+    bindtap="gotoOrderDetail">订单详情</view>
   <image src="../../../assets/img/testImg.png" style="width: 720rpx;height: auto;margin-top:64rpx;" mode="widthFix">
   </image>
-  <view class="authorization">
+  <!-- <view class="authorization">
     <van-checkbox value="{{ checked }}" icon-size="16px" checked-color="#FE7404" bind:change="onChange">
     </van-checkbox>
     <view style="margin-left:-10rpx;">授权订阅消息</view>
-  </view>
+  </view> -->
 </view>

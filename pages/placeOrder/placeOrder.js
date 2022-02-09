@@ -54,13 +54,13 @@ Page({
     wx.requestPayment({
       timeStamp: data.timeStamp,
       nonceStr: data.nonceStr,
-      package: data.paySign,
+      package: data.package,
       signType: data.signType,
       paySign: data.paySign,
       success(res) {
         console.log(res)
         wx.redirectTo({
-          url: './accomplishOrder/accomplishOrder',
+          url: './accomplishOrder/accomplishOrder?orderId='+that.data.orderId,
         })
       },
       fail(res) {}

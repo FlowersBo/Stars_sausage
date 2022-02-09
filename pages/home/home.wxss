@@ -102,7 +102,7 @@
   margin: 0 auto;
 }
 
-.van-goods-action .van-goods-action--safe{
+/* .van-goods-action .van-goods-action--safe{
   width: 640rpx !important;
   display: flex !important;
   justify-content: space-between !important;
@@ -121,4 +121,4 @@
 }
 .van-goods-action-button--first>.van-button{
   background: #ff9900 !important;
-}
+} */

@@ -2,21 +2,21 @@
 <navigationBar isNav back text="附近店铺" bind:city="cityFn" bind:searchVal="searchVal"/>
 <view class="container">
   <view class="facilityList">
-    <block wx:for="{{6}}" wx:key="index">
-      <view class="facility">
+    <block wx:for="{{equipmentList}}" wx:key="index">
+      <view class="facility" data-distance="{{item.distance}}" data-deviceid="{{item.deviceId}}" bindtap="gotoReserveListFn">
         <image style="width:166rpx;height:136rpx;" src="../../assets/img/2.png"></image>
         <view class="facility-address"> 
           <view class="address">
-            <view>北京昆泰国际大厦8848</view>
-            <view>10000m</view>
+            <view>{{item.name}}</view>
+            <view>{{item.distance}}m</view>
           </view>
           <view class="facilityDetail">
             <icon class="iconfont icon-weizhi1"></icon>
-            <text>朝外大街昆泰国际大厦812室</text>
+            <text>{{item.address}}</text>
           </view>
           <view class="facilityDetail">
             <icon class="iconfont icon-shijian"></icon>
-            <text>营业时间：9:00～22:00</text>
+            <text>营业时间：{{item.startOpen}}～{{item.endOpen}}</text>
           </view>
         </view>
       </view>

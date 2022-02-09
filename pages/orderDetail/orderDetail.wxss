@@ -1,11 +1,61 @@
-/* pages/placeOrder/placeOrder.wxss */
-.placeOrder {
+/* pages/orderDetail/orderDetail.wxss */
+.orderDetail {
   width: 690rpx;
+  position: relative;
+}
+
+.orderTitle {
+  width: 690rpx;
+  height: 220rpx;
+  margin-top: 20rpx;
+}
+
+.img {
+  width: 260rpx;
+  height: 220rpx;
+  position: absolute;
+  right: -90rpx;
+  z-index: -1;
+}
+
+.title {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title-detail {
+  height: 66rpx;
+  display: flex;
+  align-items: center;
+  vertical-align: middle;
+}
+
+.order-state {
+  height: 120rpx;
+  background: #FFFFFF;
+  box-shadow: 0px 2rpx 20rpx 0px rgba(0, 0, 0, 0.08);
+  border-radius: 20rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 0 20rpx;
+  margin-top: 10rpx;
+}
+
+.state {
+  text-align: center;
+}
+
+.iconfont {
+  font-size: 40rpx;
 }
 
 .address {
   width: 100%;
-  margin: 20rpx 0;
+  margin-bottom: 20rpx;
   display: flex;
   align-items: center;
   font-size: 34rpx;
@@ -66,14 +116,13 @@
   margin: 40rpx 0;
 }
 
-.title {
+.address-title {
   width: 100%;
   box-sizing: border-box;
-  padding: 10rpx 0;
+  padding-bottom: 10rpx;
   font-size: 30rpx;
   font-weight: bold;
   border-bottom: 1rpx solid #F0F0F0;
-  margin-bottom: 10rpx;
 }
 
 .sausageNum {
@@ -120,96 +169,48 @@
   margin-top: 20rpx 0;
 }
 
-.sausageTime {
-  height: 100rpx;
+.order-message {
+  height: 484rpx;
   background: #FFFFFF;
-  box-shadow: 0 2rpx 20rpx 0 rgba(0, 0, 0, 0.08);
+  box-shadow: 0px 2rpx 20rpx 0 rgba(0, 0, 0, 0.08);
   border-radius: 20rpx;
+  box-sizing: border-box;
+  padding: 20rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.message {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding: 0 20rpx;
-  font-size: 30rpx;
-  font-weight: bold;
+  color: #999999;
 }
 
-.timeImg {
+.message-text {
+  color: #333;
+}
+
+.btnWrap{
   display: flex;
-  align-items: center;
+  justify-content: flex-end;
+  margin-top: 40rpx;
 }
 
-
-/* 结算按钮 */
-.SubmitBarWrap {
-  width: 100%;
-  height: 130rpx;
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  background: #fafafa;
-}
-
-.SubmitBar {
-  width: 690rpx;
-  height: 100rpx;
-  margin: 0 auto;
-  background: #2E241D;
-  border-radius: 20rpx;
-  display: flex;
-  align-items: center;
-  color: #fff;
-}
-
-.SubmitBar-count {
-  /* display: inline-block; */
-  min-width: 24rpx;
-  min-height: 24rpx;
-  padding: 5rpx;
-  background: #E71600;
-  border-radius: 50%;
-  margin-top: -110rpx;
-  margin-left: -14rpx;
-  font-size: 24rpx;
+.btn {
+  width: 140rpx;
+  height: 60rpx;
   text-align: center;
-  box-sizing: content-box;
-  line-height: 1;
-  z-index: 1;
+  line-height: 60rpx;
+  color: #999;
+  border: 2rpx solid #999999;
+  border-radius: 16rpx;
+  margin-left: 20rpx;
 }
 
-
-@keyframes animations {
-  0% {
-    transform: translateX(-6px);
-    transform: rotate(-30deg);
-  }
-
-  50% {
-    transform: translateX(6px);
-    transform: rotate(30deg);
-  }
-
-  100% {
-    transform: translateX(0px);
-    transform: rotate(0deg);
-  }
-}
-
-.start {
-  animation: animations 0.2s;
-}
-
-
-.SubmitBar-btn {
-  width: 180rpx;
-  height: 76rpx;
-  color: #fff;
-  text-align: center;
-  line-height: 76rpx;
+.btn1 {
   background: linear-gradient(90deg, #FF6F03 0%, #FEB906 100%);
-  border-radius: 10rpx;
-  margin-left: auto;
-  margin-right: 12rpx;
-  font-size: 32rpx;
-  font-weight: bold;
-  letter-spacing: 4rpx;
+  box-shadow: 0 4rpx 12rpx 0 rgba(255, 118, 4, 0.5);
+  color: #fff;
+  border: none;
 }

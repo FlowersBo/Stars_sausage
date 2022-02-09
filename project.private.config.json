@@ -35,6 +35,12 @@
           "pathName": "pages/placeOrder/placeOrder",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "订单详情",
+          "pathName": "pages/orderDetail/orderDetail",
+          "query": "",
+          "scene": null
         }
       ]
     }

@@ -1,6 +1,6 @@
 // pages/reserveList/reserveList.js
 let that;
-const app = getApp()
+const app = getApp();
 Page({
 
   /**
@@ -62,23 +62,26 @@ Page({
     console.log('设备列表', data);
     if (that.data.deviceId) {
       data.forEach(element => {
-        element.distance = distance.toFixed();
+        element.distance = element.distance.toFixed();
         if (element.deviceId === that.data.deviceId) {
+          console.log(element.distance)
           that.setData({
             deviceDetail: element,
-            distance: element.distance.toFixed(0)
+            distance: element.distance
           })
           that.shopListFn(element.deviceId);
         }
       });
     } else {
-      data[0].distance = data[0].distance.toFixed(0);
+      if (data[0].distance) {
+        data[0].distance = data[0].distance.toFixed();
+      }
       that.setData({
         deviceDetail: data[0],
-        deviceId: data[23].deviceId,
-        distance: data[23].distance.toFixed(0)
+        deviceId: data[0].deviceId,
+        distance: data[0].distance
       })
-      that.shopListFn(data[23].deviceId);
+      that.shopListFn(data[0].deviceId);
     }
   },
 
@@ -176,7 +179,7 @@ Page({
       itemBeans: itemBeans
     }));
     wx.navigateTo({
-      url: '/pages/placeOrder/placeOrder?orderId=' + data+'&distance='+that.data.distance,
+      url: '/pages/placeOrder/placeOrder?orderId=' + data + '&distance=' + that.data.distance,
     })
   },
 
@@ -185,6 +188,11 @@ Page({
    */
   onLoad: function (options) {
     that = this;
+    if (options.deviceId) {
+      that.setData({
+        deviceId: options.deviceId
+      })
+    }
     that.facilityListFn();
     wx.getSetting({
       success(res) {

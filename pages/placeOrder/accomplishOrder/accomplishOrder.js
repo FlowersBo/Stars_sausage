@@ -9,7 +9,7 @@ Page({
     checked: false
   },
 
-  fn() {
+  gotoOrderDetail() {
     // wx.requestSubscribeMessage({
     //   tmplIds: [
     //     '1DRLv3Yd03ny5sgduNAxP_J_hvUIOEZAsRAZFZYvABU'
@@ -21,6 +21,9 @@ Page({
     //     console.log('失败', res);
     //   }
     // })
+    wx.redirectTo({
+      url: '../../orderDetail/orderDetail?orderId='+that.data.orderId,
+    })
   },
 
   onChange(){
@@ -33,7 +36,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    that = this;
+    that = this;    
+    that.setData({
+      orderId: options.orderId
+    })
   },
 
   /**

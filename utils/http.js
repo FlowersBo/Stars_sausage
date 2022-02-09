@@ -36,6 +36,14 @@ function confirm(data = {}) {
 function pay(orderId, data = {}) {
   return Request(`${baseUrl + api.pay}?orderId=${orderId}`, data, 'post')
 }
+
+function Detail(data = {}) {
+  return Request(baseUrl + api.detail, data, 'get')
+}
+
+function Cancel(data = {}) {
+  return Request(baseUrl + api.cancel, data, 'post')
+}
 module.exports = {
   Auth,
   Banner,
@@ -44,5 +52,7 @@ module.exports = {
   getPhone,
   createOrder,
   confirm,
-  pay
+  pay,
+  Detail,
+  Cancel
 }

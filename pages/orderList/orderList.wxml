@@ -17,9 +17,9 @@
 
 
   <scroll-view bindscroll="onScorll" class="mainView" scroll-y="true" scroll-x="false" style="z-index: 5;">
-    <block wx:for="{{30}}" wx:key="index">
+    <block wx:for="{{20}}" wx:key="index">
       <view class="list-item">
-        <view>这是个啥</view>
+        <view style="text-align: center;line-height: 400rpx;font-size: 60rpx;font-weight: bold;">往上划拉！</view>
       </view>
     </block>
   </scroll-view>

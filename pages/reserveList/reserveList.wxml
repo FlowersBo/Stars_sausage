@@ -15,7 +15,8 @@
       <view class="distance">
         <view class="storeName">
           <view>{{active.deviceStatus?'当前可预定':'当前不可预订'}}</view>
-          <view style="color:#FF7304;" wx:if="{{deviceDetail.startOpen}}">{{deviceDetail.startOpen}}~{{deviceDetail.endOpen}}</view>
+          <view style="color:#FF7304;" wx:if="{{deviceDetail.startOpen}}">
+            {{deviceDetail.startOpen}}~{{deviceDetail.endOpen}}</view>
         </view>
         <!-- <icon class="iconfont icon-youjiantou" style="margin-top:-4rpx;"></icon> -->
       </view>
@@ -28,12 +29,14 @@
           <view class="materials" style="color: #999;">{{item.description}}</view>
           <view class="price-count">
             <view class="price" style="color: #FF7303;font-weight:bold;">
-              ￥{{item.factAmount}} <text style="font-size: 24rpx;color:#999;text-decoration:line-through;margin-left:8rpx;">￥{{item.price}}</text>
+              ￥{{item.factAmount}} <text
+                style="font-size: 24rpx;color:#999;text-decoration:line-through;margin-left:8rpx;">￥{{item.price}}</text>
             </view>
             <view class="count">
-              <van-stepper value="{{item.productCount}}"  data-id="{{item.id}}" disable-input="true" min="0" max="{{item.pointStock}}" theme="round" integer="true" button-size="24px"
-                custom-class="addSubtract" plus-class="add-subtract subtract" minus-class="add-subtract"
-                input-class="inpNumber" bind:plus="bindPlusFn" bind:minus="bindMinus" />
+              <van-stepper value="{{item.productCount}}" data-id="{{item.id}}" disable-input="true" min="0"
+                max="{{item.pointStock}}" theme="round" integer="true" button-size="24px" custom-class="addSubtract"
+                plus-class="add-subtract subtract" minus-class="add-subtract" input-class="inpNumber"
+                bind:plus="bindPlusFn" bind:minus="bindMinus" />
             </view>
           </view>
         </view>
@@ -43,12 +46,15 @@
 </view>
 <view class="SubmitBarWrap">
   <view class="SubmitBar">
-    <image animation="{{ani}}" class="shopBag {{start}}" style="width:72rpx;height:106rpx;margin-top:-48rpx;margin-left:20rpx;" mode="widthFix" src="../../assets/img/shop-bag.png"></image>
+    <image animation="{{ani}}" class="shopBag {{start}}"
+      style="width:72rpx;height:106rpx;margin-top:-48rpx;margin-left:20rpx;" mode="widthFix"
+      src="../../assets/img/shop-bag.png"></image>
     <text class="SubmitBar-count" hidden="{{!num}}">{{num}}</text>
     <view class="money">
       合计：￥<text style="font-size:48rpx;font-weight: bold;">{{overallPrice}}</text>
     </view>
-    <button class="SubmitBar-btn"	open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumberFn" wx:if="{{isPhone}}">去结算</button>
+    <button class="SubmitBar-btn" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumberFn"
+      wx:if="{{isPhone}}">去结算</button>
     <view wx:else class="SubmitBar-btn" bindtap="gotoPlaceOrderFn">去结算</view>
   </view>
 </view>
