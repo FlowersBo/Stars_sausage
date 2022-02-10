@@ -1,97 +1,109 @@
 <!--pages/orderDetail/orderDetail.wxml-->
 <navigationBar home back text="订单详情" />
 <view class="container">
-  <view class="orderDetail">
-    <image class="img" src="../../assets/img/catering.png"></image>
-    <view class="orderTitle">
-      <view class="title">
-        <view class="title-detail">
-          <image style="width:30rpx;height:30rpx;margin:4rpx 10rpx 0 0;" src="../../assets/img/qr.png"></image>
-          <view style="font-size: 34rpx;font-weight: bold;">取件码：</view>
-          <view style="font-size: 50rpx;font-weight: bold; color: #FF6F03;">{{order.order.takeCode}}</view>
+  <view class="orderDetailWrap">
+    <view class="orderDetail">
+      <image class="img" src="../../assets/img/catering.png"></image>
+      <view class="orderTitle" wx:if="{{order.order.takeCode>=0}}">
+        <view class="title">
+          <view class="title-detail">
+            <image style="width:30rpx;height:30rpx;margin:4rpx 10rpx 0 0;" src="../../assets/img/qr.png"></image>
+            <view style="font-size: 34rpx;font-weight: bold;">取件码：</view>
+            <view style="font-size: 50rpx;font-weight: bold; color: #FF6F03;">{{order.order.takeCode}}</view>
+          </view>
+          <view style="font-size: 13px;color: #999999;">请凭取餐码到设备上取餐</view>
         </view>
-        <view style="font-size: 13px;color: #999999;">请凭取餐码到设备上取餐</view>
+        <!-- P 待支付 Q 已支付排队中 W已支付待出货 S 成功 SE 异常退款 E 异常 D 废弃 -->
+        <view class="order-state">
+          <view class="state {{order.order.orderstatus==='P'?'statusColor':''}}">
+            <icon class="iconfont icon-dingdan"></icon>
+            <view>已下单</view>
+          </view>
+          <view class="state {{order.order.orderstatus==='Q'||order.order.orderstatus==='W'?'statusColor':''}}">
+            <icon class="iconfont icon-im_naozhong"></icon>
+            <view>准备中</view>
+          </view>
+          <view class="state {{order.order.orderstatus==='W'&&'{{order.order.shipDate}}'?'statusColor':''}}">
+            <icon class="iconfont icon-qingqucan"></icon>
+            <view>待取餐</view>
+          </view>
+          <view class="state {{order.order.orderstatus==='S'?'statusColor':''}}">
+            <icon class="iconfont icon-yiwancheng"></icon>
+            <view>已完成</view>
+          </view>
+          <view class="state {{order.order.orderstatus==='SE'?'statusColor':''}}">
+            <icon class="iconfont icon-xianshi_quxiao"></icon>
+            <view>已取消</view>
+          </view>
+        </view>
       </view>
-      <view class="order-state">
-        <view class="state">
-          <icon class="iconfont icon-dingdan"></icon>
-          <view>已下单</view>
+      <view class="address">
+        <image style="width: 30rpx;" mode="widthFix" src="../../assets/img/address.png"></image>
+        <view style="margin: 0 10rpx;">取餐地点</view>
+        <icon class="iconfont icon-youjiantou"></icon>
+      </view>
+      <view class="facility">
+        <view class="facilityAddress">
+          <view>
+            <view class="facilityName">{{order.pointName}}</view>
+            <view class="distance">距离您的位置 <text style="color:#FF7003;">{{order.distance}}m</text></view>
+          </view>
+          <icon class="iconfont icon-youjiantou distanceICon"></icon>
         </view>
-        <view class="state">
-          <icon class="iconfont icon-im_naozhong"></icon>
-          <view>准备中</view>
-        </view>
-        <view class="state">
-          <icon class="iconfont icon-qingqucan"></icon>
-          <view>待取餐</view>
-        </view>
-        <view class="state">
-          <icon class="iconfont icon-yiwancheng"></icon>
-          <view>已完成</view>
-        </view>
-        <view class="state">
-          <icon class="iconfont icon-xianshi_quxiao"></icon>
-          <view>已取消</view>
+        <view style="width: 100%;height:2rpx;background:#F0F0F0;"></view>
+        <view class="businessHours">
+          <view>营业时间</view>
+          <view style="color:#07C160;">{{order.startOpen}}~{{order.endOpen}}</view>
         </view>
       </view>
-    </view>
-    <view class="address">
-      <image style="width: 26rpx;" mode="widthFix" src="../../assets/img/address.png"></image>
-      <view style="margin: 0 10rpx;">取餐地点</view>
-      <icon class="iconfont icon-youjiantou"></icon>
-    </view>
-    <view class="facility">
-      <view class="facilityAddress">
-        <view>
-          <view class="facilityName">{{orderorder.pointName}}</view>
-          <view class="distance">距离您位置 <text style="color:#FF7003;">{{order.distance}}m</text></view>
-        </view>
-        <icon class="iconfont icon-youjiantou distanceICon"></icon>
-      </view>
-      <view style="width: 100%;height:2rpx;background:#F0F0F0;"></view>
-      <view class="businessHours">
-        <view>营业时间</view>
-        <view style="color:#FF7003;">{{order.startOpen}}~{{order.endOpen}}</view>
-      </view>
-    </view>
-    <view class="sausageWrap">
-      <view class="address-title">餐品详情</view>
-      <view class="sausageDetail">
-        <block wx:for="{{order.detail}}" wx:key="index">
-          <view class="sausageNum">
-            <view class="imgWrap">
-              <image style="width:120rpx;height:100rpx;border-radius: 6rpx;" src="../../assets/img/2.png"></image>
-              <view class="promotionWrap">
-                <view class="sausage">
-                  <view class="promotion">热销</view>
-                  <view>{{item.productName}}</view>
+      <view class="sausageWrap">
+        <view class="address-title">餐品详情</view>
+        <view class="sausageDetail">
+          <block wx:for="{{order.detail}}" wx:key="index">
+            <view class="sausageNum">
+              <view class="imgWrap">
+                <image style="width:120rpx;height:100rpx;border-radius: 6rpx;" src="../../assets/img/2.png"></image>
+                <view class="promotionWrap">
+                  <view class="sausage">
+                    <view class="promotion">热销</view>
+                    <view>{{item.productName}}</view>
+                  </view>
+                  <view style="color:#999">x{{item.quantity}}</view>
                 </view>
-                <view style="color:#999">x{{item.quantity}}</view>
+              </view>
+              <view class="price" style="font-size: 24rpx;">￥<text
+                  style="font-weight: bold;font-size: 28rpx;">{{item.price}}</text>
               </view>
             </view>
-            <view class="price" style="font-size: 24rpx;">￥<text
-                style="font-weight: bold;font-size: 28rpx;">{{item.price}}</text>
-            </view>
-          </view>
-        </block>
-        <view class="total" style="font-size:24rpx;color:#666;">合计：￥<text
-            style="color:#FF7003;font-size: 38rpx;font-weight: bold;">{{overallPrice}}</text> </view>
+          </block>
+          <view class="total" style="font-size:24rpx;color:#666;">合计：￥<text
+              style="color:#FF7003;font-size: 38rpx;font-weight: bold;">{{order.order.orderprice}}</text> </view>
+        </view>
       </view>
-    </view>
-    <view class="order-message">
-      <view class="address-title">订单信息</view>
-      <view class="message">订单号<view class="message-text">{{order.order.id}}</view></view>
-      <view class="message">交易号 <view class="message-text">{{order.order.tradeid}}</view></view>
-      <view class="message">支付方式<view class="message-text">{{order.order.payplatform}}</view></view>
-      <view class="message">下单时间<view class="message-text">{{order.order.orderdate}}</view></view>
-      <view class="message">取餐时间<view class="message-text">{{order.order.shipDate}}</view></view>
-      <view class="message">取餐码<view class="message-text">{{order.order.takeCode}}</view></view>
-    </view>
-    <view class="btnWrap">
-      <view class="btn" bindtap="cancelOrderFn">取消订单</view>
-      <view class="btn btn1">投诉建议</view>
-      <view class="btn">客服电话</view>
+      <view class="order-message">
+        <view class="address-title">订单信息</view>
+        <view class="message">订单号<view class="message-text">{{order.order.id}}</view>
+        </view>
+        <view class="message">交易号 <view class="message-text">{{order.order.tradeid}}</view>
+        </view>
+        <view class="message">支付方式<view class="message-text">{{order.order.payplatform?'':'微信支付'}}</view>
+        </view>
+        <view class="message">下单时间<view class="message-text">{{order.order.orderdate}}</view>
+        </view>
+        <view class="message" wx:if="{{order.order.shipDate}}">取餐时间<view class="message-text">{{order.order.shipDate}}</view>
+        </view>
+        <view class="message">取餐码<view class="message-text">{{order.order.takeCode}}</view>
+        </view>
+      </view>
+      <view class="btnWrap">
+        <view class="btn" bindtap="cancelOrderFn"
+          wx:if="{{order.order.orderstatus==='Q'||order.order.orderstatus==='W'}}">取消订单</view>
+        <view class="btn btn1"
+          wx:if="{{order.order.orderstatus==='S'||order.order.orderstatus==='SE'||order.order.orderstatus==='E'}}">投诉建议
+        </view>
+        <view class="btn">客服电话</view>
+      </view>
     </view>
   </view>
 </view>
-<van-dialog id="van-dialog"/>
+<van-dialog id="van-dialog" />

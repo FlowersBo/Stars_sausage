@@ -2,7 +2,7 @@
 <navigationBar back text="在线点餐" />
 <view class="container">
   <view class="reserveList">
-    <image class="img" src="/assets/img/3.png"></image>
+    <image class="img" src="/assets/img/4.png"></image>
     <view class="storeDistance">
       <view class="distance">
         <image style="width:60rpx;height:auto;margin-top:-4rpx;" mode="widthFix" src="../../assets/img/shop.png">

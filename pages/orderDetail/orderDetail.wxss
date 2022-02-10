@@ -1,4 +1,12 @@
 /* pages/orderDetail/orderDetail.wxss */
+
+.orderDetailWrap{
+  width: 750rpx;
+  overflow-x:hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .orderDetail {
   width: 690rpx;
   position: relative;
@@ -6,7 +14,7 @@
 
 .orderTitle {
   width: 690rpx;
-  height: 220rpx;
+  /* height: 220rpx; */
   margin-top: 20rpx;
 }
 
@@ -49,13 +57,17 @@
   text-align: center;
 }
 
+.statusColor{
+  color: #FF7003;
+}
+
 .iconfont {
   font-size: 40rpx;
 }
 
 .address {
   width: 100%;
-  margin-bottom: 20rpx;
+  /* margin-bottom: 20rpx; */
   display: flex;
   align-items: center;
   font-size: 34rpx;

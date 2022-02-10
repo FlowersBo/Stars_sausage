@@ -134,13 +134,13 @@
 
 @keyframes animations {
   0% {
-    transform: translateX(-6px);
-    transform: rotate(-30deg);
+    transform: translateX(-10px);
+    transform: rotate(-40deg);
   }
 
   50% {
-    transform: translateX(6px);
-    transform: rotate(30deg);
+    transform: translateX(10px);
+    transform: rotate(40deg);
   }
 
   100% {

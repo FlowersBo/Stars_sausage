@@ -1,5 +1,10 @@
 // pages/orderDetail/orderDetail.js
 let that;
+import Dialog from '../../miniprogram_npm/@vant/weapp/dialog/dialog';
+import {
+  getDate
+} from '../../utils/util';
+let dayjs = require('dayjs')
 const app = getApp();
 Page({
 
@@ -15,6 +20,8 @@ Page({
    */
   onLoad: function (options) {
     that = this;
+    let bol=dayjs().isBefore(dayjs('2022-02-11'));
+    console.log(bol)
     that.setData({
       orderId: options.orderId
     })
@@ -27,21 +34,33 @@ Page({
     } = await (app.http.Detail({
       orderId: '1491289808725606400'
     }));
-    console.log('订单详情', data);
     // let overallPrice = 0,
     //   price = 0;
     // data.detail.forEach(element => {
     //   price += Number(element.price);
     // });
     // overallPrice = price.toFixed(2)
+    data.order.orderdate = getDate(data.order.orderdate);
+    if (data.order.shipDate) {
+      data.order.shipDate = getDate(data.order.shipDate);
+    }
+    console.log('订单详情', data);
     that.setData({
       // overallPrice,
       order: data
     })
   },
 
-  async cancelOrderFn(){
-    let {data} = await(app.http.Cancel({orderId:that.data.orderId}))
+  async cancelOrderFn() {
+    Dialog.confirm({
+      title: '取消订单',
+      message: '您确认取消当前订单吗？',
+      theme: 'round-button',
+    }).then(() => {
+      // let {data} = await(app.http.Cancel({orderId:that.data.orderId}))
+    }).catch(() => {
+
+    });
   },
 
   /**

@@ -4,7 +4,8 @@
   "description": "",
   "main": ".eslintrc.js",
   "dependencies": {
-    "@vant/weapp": "^1.10.0"
+    "@vant/weapp": "^1.10.0",
+    "dayjs": "^1.10.7"
   },
   "devDependencies": {},
   "scripts": {

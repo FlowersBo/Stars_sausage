@@ -51,7 +51,7 @@
   color: #fff;
 }
 .mainView .list-item:first-child{
-  margin-top: 200rpx;
+  margin-top: 150rpx;
 }
 .mainView .list-item:last-child{
   margin-bottom: 160rpx;
