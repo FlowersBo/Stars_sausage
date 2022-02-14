@@ -20,8 +20,9 @@ Page({
    */
   onLoad: function (options) {
     that = this;
-    let bol=dayjs().isBefore(dayjs('2022-02-11'));
+    let bol = dayjs().isBefore(dayjs('2022-02-11'));
     console.log(bol)
+    console.log(options.orderId)
     that.setData({
       orderId: options.orderId
     })
@@ -32,7 +33,7 @@ Page({
     let {
       data
     } = await (app.http.Detail({
-      orderId: '1491289808725606400'
+      orderId
     }));
     // let overallPrice = 0,
     //   price = 0;
@@ -51,16 +52,43 @@ Page({
     })
   },
 
-  async cancelOrderFn() {
+  cancelOrderFn() {
     Dialog.confirm({
       title: '取消订单',
       message: '您确认取消当前订单吗？',
       theme: 'round-button',
     }).then(() => {
-      // let {data} = await(app.http.Cancel({orderId:that.data.orderId}))
+      app.http.Cancel(
+          that.data.orderId
+        )
+        .then(res => {
+          console.log(res)
+          if (res.code === 200) {
+            wx.showToast({
+              title: '取消成功',
+              icon: 'none',
+              duration: 2000
+            })
+            setTimeout(function () {
+              wx.navigateBack({
+                delta: 1
+              })
+            }, 1500)
+          }
+        })
+
     }).catch(() => {
 
     });
+  },
+
+  makePhoneFn() {
+    wx.makePhoneCall({
+      phoneNumber: '888888888',
+      fail(err) {
+
+      }
+    })
   },
 
   /**

@@ -1,7 +1,10 @@
 <!--pages/orderList/orderList.wxml-->
-<navigationBar text="订单" />
-<view class="content">
-  <view class="content-imgWrap" style="height: 100%">
+<navigationBar class="custom" text="我的订单" />
+
+
+
+<!-- <view class="content"> -->
+<!-- <view class="content-imgWrap" style="height: 100%">
     <image src="/assets/img/background1.jpg" style="height: 100%;" mode="scaleToFill"></image>
   </view>
   <view class="content-imgWrap" style="z-index: 2;height: 300rpx;" style="top:{{top[1]}}px;">
@@ -12,15 +15,46 @@
   </view>
   <view class="content-imgWrap" style="z-index: 4;height: 500rpx;" style="top:{{top[3]}}px;">
     <image src="/assets/img/earth.png" mode="widthFix" style="width: 40%;"></image>
-  </view>
+  </view> -->
+<!-- <scroll-view bindscroll="onScorll" class="mainView" scroll-y="true" scroll-x="false" style="z-index: 5;"> -->
 
-
-
-  <scroll-view bindscroll="onScorll" class="mainView" scroll-y="true" scroll-x="false" style="z-index: 5;">
-    <block wx:for="{{20}}" wx:key="index">
-      <view class="list-item">
-        <view style="text-align: center;line-height: 400rpx;font-size: 60rpx;font-weight: bold;">往上划拉！</view>
+<scroll-y id="tip" class="scroll-view" pull="{{pull}}" push="{{push}}"
+  style="position: absolute;top: {{customHeight}}px;bottom: 0;width: 100%;flex: 1;" bindrefresh="refresh"
+  bindtoload="toload" bindtouchend="onScorll">
+  <block wx:for="{{orderList}}" wx:key="index" style="z-index:5;">
+    <view class="list-item" data-orderid="{{item.id}}" bindtap="gotoOrderDetailFn">
+      <view class="orderTitle">
+        <image src="../../assets/img/cat.png" style="width:62rpx;height: 62rpx;"></image>
+        <view style="margin:0 4rpx;">{{item.pointName}}</view>
+        <icon class="iconfont icon-youjiantou"></icon>
+        <!-- P 待支付 Q 已支付排队中 W已支付待出货 S 成功 SE 异常退款 E 异常 D 废弃 -->
+        <view class="startus">{{item.orderStatus==='Q'?'排队中':(item.orderStatus==='W'?'待出货':(item.orderStatus==='S'?'取餐成功':'异常'))}}</view>
       </view>
-    </block>
-  </scroll-view>
-</view>
+      <view class="shopWrap">
+        <view class="shop">
+          <view class="commodityList" wx:for="{{item.detailList}}" wx:for-item="items" wx:key="index" wx:if="{{index<2}}">
+            <view class="imgWrap">
+              <image style="width: 190rpx;height: 140rpx;border-radius: 10rpx;" src="{{items.pictureUrl}}"></image>
+              <view class="commodityName" wx:if="{{item.detailList.length>1}}">星斗锦绣芝士味道烤肠</view>
+            </view>
+          </view>
+          <view class="omit" wx:if="{{item.detailList.length<2}}">星斗锦绣芝士味道烤肠</view>
+          <view class="ellipsis" wx:if="{{item.detailList.length>2}}">...</view>
+        </view>
+        <view style="color: #808080;">共{{item.detailList.length}}根</view>
+      </view>
+      <view class="orderDate">
+        <view>下单时间：{{item.orderDate}}</view>
+        <view style="font-size: 24rpx;">合计：￥<text
+            style="font-size: 38rpx;color: #FF7303;font-weight: bold;line-height: 48rpx;">{{item.orderPrice}}</text> </view>
+      </view>
+      <view class="btnWrap">
+        <view class="btn" data-btn="0" data-orderid="{{item.id}}" catchtap="bindnavFn">再来一单</view>
+        <view class="btn" data-btn="1" data-orderid="{{item.id}}" catchtap="bindnavFn">评价</view>
+      </view>
+    </view>
+  </block>
+  <!-- </scroll-view> -->
+  <noData isFlag="{{isFlag}}"></noData>
+</scroll-y>
+<!-- </view> -->

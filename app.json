@@ -47,6 +47,7 @@
   "usingComponents": {
     "navigationBar": "/component/navigationBar/navigationBar",
     "noData": "/component/noData/noData",
+    "scroll-y": "/component/scroll-y/index",
     "van-button": "@vant/weapp/button/index",
     "van-cell": "@vant/weapp/cell/index",
     "van-cell-group": "@vant/weapp/cell-group/index",

@@ -41,8 +41,12 @@ function Detail(data = {}) {
   return Request(baseUrl + api.detail, data, 'get')
 }
 
-function Cancel(data = {}) {
-  return Request(baseUrl + api.cancel, data, 'post')
+function Cancel(orderId, data = {}) {
+  return Request(`${baseUrl + api.cancel}?orderId=${orderId}`, data, 'post')
+}
+
+function OrderList(data = {}) {
+  return Request(baseUrl + api.orderList, data, 'get')
 }
 module.exports = {
   Auth,
@@ -54,5 +58,6 @@ module.exports = {
   confirm,
   pay,
   Detail,
-  Cancel
+  Cancel,
+  OrderList
 }

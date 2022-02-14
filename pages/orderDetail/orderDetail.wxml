@@ -31,7 +31,7 @@
             <icon class="iconfont icon-yiwancheng"></icon>
             <view>已完成</view>
           </view>
-          <view class="state {{order.order.orderstatus==='SE'?'statusColor':''}}">
+          <view class="state {{order.order.orderstatus==='SE'||order.order.orderstatus==='D'?'statusColor':''}}">
             <icon class="iconfont icon-xianshi_quxiao"></icon>
             <view>已取消</view>
           </view>
@@ -97,11 +97,11 @@
       </view>
       <view class="btnWrap">
         <view class="btn" bindtap="cancelOrderFn"
-          wx:if="{{order.order.orderstatus==='Q'||order.order.orderstatus==='W'}}">取消订单</view>
+          >取消订单</view>
         <view class="btn btn1"
           wx:if="{{order.order.orderstatus==='S'||order.order.orderstatus==='SE'||order.order.orderstatus==='E'}}">投诉建议
         </view>
-        <view class="btn">客服电话</view>
+        <view class="btn" catchtap="makePhoneFn">客服电话</view>
       </view>
     </view>
   </view>

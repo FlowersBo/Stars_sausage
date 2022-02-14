@@ -9,4 +9,5 @@ module.exports = {
 	pay: 'reserve/order/pay',
 	detail: 'reserve/order/detail',
 	cancel: 'reserve/order/cancel',
+	orderList: 'reserve/order/list',
 }
