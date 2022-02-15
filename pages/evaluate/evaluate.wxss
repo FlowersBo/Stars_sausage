@@ -1,0 +1,61 @@
+/* pages/evaluate/evaluate.wxss */
+.evaluate {
+  width: 690rpx;
+}
+
+.evaluate {
+  background: #FFFFFF;
+  box-shadow: 0 2rpx 20rpx 0 rgba(0, 0, 0, 0.08);
+  border-radius: 20rpx;
+  box-sizing: border-box;
+  padding: 20rpx;
+  margin-top: 40rpx;
+}
+
+.commodityWrap {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  font-size: 30rpx;
+}
+
+.star {
+  display: flex;
+  align-items: center;
+  margin-top: 6rpx;
+}
+
+van-rate {
+  margin-top: 4rpx;
+}
+
+.van-cell {
+  background: #F5F5F5 !important;
+  border-radius: 20rpx !important;
+  margin-top: 30rpx;
+}
+
+.van-field__word-limit {
+  position: absolute;
+  bottom: 10rpx;
+  right: 10rpx;
+}
+
+.van-uploader {
+  margin-top: 30rpx !important;
+}
+
+
+
+.btn {
+  width: 500rpx;
+  height: 90rpx;
+  text-align: center;
+  line-height: 90rpx;
+  color: #fff;
+  font-size: 34rpx;
+  font-weight: bold;
+  background: linear-gradient(90deg, #FF6F03 0%, #FEB906 100%);
+  border-radius: 20rpx;
+  margin-top: 90rpx;
+}

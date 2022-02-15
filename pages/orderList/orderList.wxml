@@ -1,8 +1,5 @@
 <!--pages/orderList/orderList.wxml-->
 <navigationBar class="custom" text="我的订单" />
-
-
-
 <!-- <view class="content"> -->
 <!-- <view class="content-imgWrap" style="height: 100%">
     <image src="/assets/img/background1.jpg" style="height: 100%;" mode="scaleToFill"></image>
@@ -28,7 +25,7 @@
         <view style="margin:0 4rpx;">{{item.pointName}}</view>
         <icon class="iconfont icon-youjiantou"></icon>
         <!-- P 待支付 Q 已支付排队中 W已支付待出货 S 成功 SE 异常退款 E 异常 D 废弃 -->
-        <view class="startus">{{item.orderStatus==='Q'?'排队中':(item.orderStatus==='W'?'待出货':(item.orderStatus==='S'?'取餐成功':'异常'))}}</view>
+        <view class="startus">{{item.orderStatus==='Q'?'排队中':(item.orderStatus==='W'?'待出货':(item.orderStatus==='S'?'取餐成功':'已取消'))}}</view>
       </view>
       <view class="shopWrap">
         <view class="shop">
@@ -50,7 +47,7 @@
       </view>
       <view class="btnWrap">
         <view class="btn" data-btn="0" data-orderid="{{item.id}}" catchtap="bindnavFn">再来一单</view>
-        <view class="btn" data-btn="1" data-orderid="{{item.id}}" catchtap="bindnavFn">评价</view>
+        <view class="btn" data-btn="1" data-orderid="{{item.id}}" catchtap="bindnavFn">订单详情</view>
       </view>
     </view>
   </block>

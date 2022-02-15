@@ -6,7 +6,8 @@
     "pages/facilityList/facilityList",
     "pages/placeOrder/placeOrder",
     "pages/placeOrder/accomplishOrder/accomplishOrder",
-    "pages/orderDetail/orderDetail"
+    "pages/orderDetail/orderDetail",
+    "pages/evaluate/evaluate"
   ],
   "window": {
     "backgroundTextStyle": "light",

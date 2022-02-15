@@ -10,4 +10,5 @@ module.exports = {
 	detail: 'reserve/order/detail',
 	cancel: 'reserve/order/cancel',
 	orderList: 'reserve/order/list',
+	upload: 'reserve/common/upload',
 }

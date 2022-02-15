@@ -178,9 +178,18 @@ Page({
       customerId: wx.getStorageSync('customerId'),
       itemBeans: itemBeans
     }));
-    wx.navigateTo({
-      url: '/pages/placeOrder/placeOrder?orderId=' + data + '&distance=' + that.data.distance,
-    })
+    console.log('订单号',data)
+    if (data) {
+      wx.navigateTo({
+        url: '/pages/placeOrder/placeOrder?orderId=' + data + '&distance=' + that.data.distance,
+      })
+    } else {
+      wx.showToast({
+        title: '创建订单失败',
+        icon: 'error',
+        duration: 2000
+      })
+    }
   },
 
   /**

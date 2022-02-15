@@ -41,6 +41,12 @@
           "pathName": "pages/orderDetail/orderDetail",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "投诉建议",
+          "pathName": "pages/evaluate/evaluate",
+          "query": "orderId=1490864145250123776",
+          "scene": null
         }
       ]
     }

@@ -49,6 +49,7 @@ function OrderList(data = {}) {
   return Request(baseUrl + api.orderList, data, 'get')
 }
 module.exports = {
+  baseUrl,
   Auth,
   Banner,
   Prepare,
