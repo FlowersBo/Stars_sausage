@@ -3,9 +3,9 @@
 <view class="container">
   <view class="evaluate">
     <view class="commodityWrap">
-      <image src="../../assets/img/2.png" style="width: 170rpx;height: 140rpx;border-radius: 10rpx;"></image>
+      <image src="{{commodityImg}}" style="width: 170rpx;height: 140rpx;border-radius: 10rpx;"></image>
       <view style="margin-left: 20rpx;">
-        <view class="commodity-name">味滋美（新立街店）</view>
+        <view class="commodity-name">{{pointName}}</view>
         <view class="star">
           <view style="font-size: 26rpx;color:#666666;font-weight: 400;">餐品评星</view>
           <van-rate value="{{starNum}}" void-icon="/assets/img/star-off.png" icon="/assets/img/star-on.png" size="25"
@@ -14,12 +14,13 @@
       </view>
     </view>
     <van-cell-group>
-      <van-field value="{{ message }}" custom-style="height:300rpx;padding:10rpx;font-size:28rpx;" type="textarea"
-        placeholder="您品尝过烤肠，请描述您的问题或建议" autosize maxlength="100" show-word-limit bind:blur="fieldFn" />
+      <van-field value="{{ fieldVal }}" custom-style="height:300rpx;padding:10rpx;font-size:28rpx;" type="textarea"
+        placeholder="您已品尝过烤肠，请描述您的问题或建议" autosize maxlength="100" show-word-limit bind:input="fieldFn" />
     </van-cell-group>
 
-    <van-uploader file-list="{{ fileList }}" deletable="{{ true }}" max-count="3" bind:after-read="afterRead"
+    <van-uploader file-list="{{ fileList }}" deletable="{{ true }}" max-count="3" bind:after-read="afterRead" multiple="{{true}}" upload-text="上传图片"
       bind:click-preview="readPhoto" bind:delete="deletePhoto" />
+      <view style="color:#999999;font-size:22rpx;">最多拍照上传3张</view>
   </view>
-  <view class="btn">提交</view>
+  <button class="btn {{isShow?'isBtn':''}}" disabled="{{isShow}}" bindtap="submitFrom">提交评价</button>
 </view>

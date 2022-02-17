@@ -2,7 +2,7 @@ import * as api from '../config/api';
 import {
   Request
 } from './requestUrl';
-let baseUrl = 'http://res.morninggo.cn/'; //测试
+let baseUrl = 'https://res.morninggo.cn/';
 // let baseUrl = 'https://api.morninggo.cn/';
 
 function Auth(data = {}) {
@@ -48,6 +48,16 @@ function Cancel(orderId, data = {}) {
 function OrderList(data = {}) {
   return Request(baseUrl + api.orderList, data, 'get')
 }
+
+function Recreate(orderId, data = {}) {
+  console.log(orderId)
+  return Request(`${baseUrl + api.recreate}?orderId=${orderId}`, data, 'post')
+}
+
+function Suggest(data = {}) {
+  return Request(baseUrl + api.suggest, data, 'post')
+}
+
 module.exports = {
   baseUrl,
   Auth,
@@ -60,5 +70,7 @@ module.exports = {
   pay,
   Detail,
   Cancel,
-  OrderList
+  OrderList,
+  Recreate,
+  Suggest
 }

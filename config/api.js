@@ -11,4 +11,6 @@ module.exports = {
 	cancel: 'reserve/order/cancel',
 	orderList: 'reserve/order/list',
 	upload: 'reserve/common/upload',
+	suggest: 'reserve/common/suggest',
+	recreate: 'reserve/order/recreate',
 }

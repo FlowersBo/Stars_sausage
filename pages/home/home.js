@@ -66,11 +66,9 @@ Page({
     wx.login({
       success: res => {
         app.http.Auth({
-            code: res.code,
-            mpOpenId:''
+            code: res.code
           })
           .then(res => {
-            console.log(res);
             wx.setStorageSync('customerId', res.data.id)
           })
       }

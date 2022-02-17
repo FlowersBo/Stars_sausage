@@ -5,53 +5,108 @@ Page({
 
   /**
    * 页面的初始数据
-   */  data: {
+   */
+  data: {
     starNum: 5,
     fieldVal: '',
-    message: '',
+    fieldVal: '',
     fileList: [],
+    isShow: false
   },
 
   onChange(event) {
     this.setData({
       starNum: event.detail,
     });
-    console.log('星数', event.detail)
   },
 
   fieldFn(e) {
-    console.log(e.detail.value)
     this.setData({
-      fieldVal: e.detail.value,
+      fieldVal: e.detail,
     });
   },
 
   afterRead(event) {
-    console.log(event)
-    const { file } = event.detail;
+    that.setData({
+      isShow: true
+    })
+    let i = 0;
+    const {
+      file
+    } = event.detail;
     // 当设置 mutiple 为 true 时, file 为数组格式，否则为对象格式
-    wx.uploadFile({
-      url: `${app.http.baseUrl}/reserve/common/upload`, // 仅为示例，非真实的接口地址
-      filePath: file.url,
-      name: 'file',
-      formData: { user: 'test' },
-      success(res) {
-        // 上传完成需要更新 fileList
-        const { fileList = [] } = that.data;
-        fileList.push({ ...file, url: JSON.parse(res.data) });
-        console.log(file) 
-        console.log(fileList)
-        that.setData({ fileList });
-      },
+    file.forEach(element => {
+      wx.uploadFile({
+        url: `${app.http.baseUrl}/reserve/common/upload`,
+        filePath: element.url,
+        name: 'file',
+        formData: {
+          user: 'test'
+        },
+        success(res) {
+          i++;
+          const {
+            fileList = []
+          } = that.data;
+          fileList.push({
+            ...element,
+            url: JSON.parse(res.data).data
+          });
+          console.log(file)
+          console.log(fileList)
+          that.setData({
+            fileList
+          })
+          if (i >= file.length) {
+            that.setData({
+              isShow: false
+            })
+          }
+        },
+      });
     });
+
   },
 
-  readPhoto(event){
-    console.log(event)
+  readPhoto(event) {},
+
+  deletePhoto(event) {
+    let fileList = that.data.fileList;
+    fileList.splice(event.detail.index, 1);
+    that.setData({
+      fileList
+    })
+    // fileList.forEach((element,key) => {
+    //   if(element.url===event.detail.file.url){
+    //     fileList.splice(key,1);
+    //     that.setData({
+    //       fileList
+    //     })
+    //     return false
+    //   }
+    // });
   },
 
-  deletePhoto(event){
-    console.log(event)
+  submitFrom() {
+    let pic = [],
+      fileList = that.data.fileList;
+    fileList.forEach(element => {
+      pic.push(element.url)
+    });
+    console.log(pic)
+    app.http.Suggest({
+        orderId: that.data.orderId,
+        grade: that.data.starNum,
+        content: that.data.fieldVal,
+        pic
+      })
+      .then(res => {
+        if (res.code == 200) {
+          wx.navigateBack({
+            delta: 1
+          })
+        }
+      })
   },
 
   /**
@@ -59,6 +114,11 @@ Page({
    */
   onLoad: function (options) {
     that = this;
+    that.setData({
+      orderId: options.orderId,
+      commodityImg: options.commodityImg,
+      pointName: options.pointName
+    })
   },
 
   /**

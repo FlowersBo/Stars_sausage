@@ -55,6 +55,7 @@
 
 .state {
   text-align: center;
+  font-weight: bold;
 }
 
 .statusColor{
@@ -67,7 +68,7 @@
 
 .address {
   width: 100%;
-  /* margin-bottom: 20rpx; */
+  margin-top: 10rpx;
   display: flex;
   align-items: center;
   font-size: 34rpx;

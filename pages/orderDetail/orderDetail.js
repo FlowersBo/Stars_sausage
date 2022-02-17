@@ -26,7 +26,6 @@ Page({
     that.setData({
       orderId: options.orderId
     })
-    that.orderDetailFn(options.orderId);
   },
 
   async orderDetailFn(orderId) {
@@ -48,7 +47,9 @@ Page({
     console.log('订单详情', data);
     that.setData({
       // overallPrice,
-      order: data
+      order: data,
+      commodityImg: data.detail[0].pictureUrl,
+      pointName: data.pointName,
     })
   },
 
@@ -91,6 +92,12 @@ Page({
     })
   },
 
+  gotoEvaluateFn(){
+    wx.navigateTo({
+      url: '../evaluate/evaluate?orderId='+that.data.orderId+'&commodityImg='+that.data.commodityImg+'&pointName='+that.data.pointName,
+    })
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -102,7 +109,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    that.orderDetailFn(that.data.orderId);
   },
 
   /**

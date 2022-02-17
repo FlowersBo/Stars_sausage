@@ -8,7 +8,7 @@
   box-shadow: 0 2rpx 20rpx 0 rgba(0, 0, 0, 0.08);
   border-radius: 20rpx;
   box-sizing: border-box;
-  padding: 20rpx;
+  padding: 40rpx 20rpx;
   margin-top: 40rpx;
 }
 
@@ -23,6 +23,10 @@
   display: flex;
   align-items: center;
   margin-top: 6rpx;
+}
+
+textarea{
+  height: 240rpx !important;
 }
 
 van-rate {
@@ -45,17 +49,36 @@ van-rate {
   margin-top: 30rpx !important;
 }
 
+.van-uploader__preview{
+  margin: 0 12px 8px 0 !important;
+}
 
+/* .van-uploader__preview image{
+  border-radius: 10rpx !important;
+} */
+
+.van-uploader__upload-text{
+  font-size: var(--uploader-text-font-size,10px) !important;
+  margin-top: var(--padding-xs,4px) !important;
+  color: #999999 !important;
+}
 
 .btn {
-  width: 500rpx;
-  height: 90rpx;
+  width: 690rpx;
+  height: 100rpx;
   text-align: center;
-  line-height: 90rpx;
+  line-height: 100rpx;
   color: #fff;
-  font-size: 34rpx;
+  font-size: 36rpx;
   font-weight: bold;
   background: linear-gradient(90deg, #FF6F03 0%, #FEB906 100%);
-  border-radius: 20rpx;
-  margin-top: 90rpx;
+  border-radius: 30rpx;
+  margin-top: 150rpx;
 }
+.isBtn{
+  background: linear-gradient(90deg, #ddd 0%, #ddd 100%);
+}
+button::after{
+  border: none;
+}
+

@@ -63,7 +63,13 @@ Page({
           url: './accomplishOrder/accomplishOrder?orderId='+that.data.orderId,
         })
       },
-      fail(res) {}
+      fail(res) {
+        wx.showToast({
+          title: '支付失败',
+          icon: 'error',
+          duration: 2000
+        })
+      }
     })
 
   },

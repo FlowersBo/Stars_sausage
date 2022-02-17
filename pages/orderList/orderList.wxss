@@ -67,7 +67,7 @@
 /* 列表 */
 .orderTitle {
   width: 100%;
-  height: 80rpx;
+  height: 80rpx; 
   display: flex;
   align-items: center;
   font-weight: bold;
@@ -78,7 +78,7 @@
 
 .icon-youjiantou {
   font-size: 24rpx;
-  margin-top: -18rpx;
+  margin-top: -22rpx;
 }
 
 .startus {
@@ -160,7 +160,7 @@
   margin-left: 20rpx;
 }
 
-.btn:first-child {
+.btn1:first-child {
   background: linear-gradient(90deg, #FF6F03 0%, #FEB906 100%);
   box-shadow: 0 4rpx 12rpx 0px rgba(255, 118, 4, 0.5);
   color: #fff;

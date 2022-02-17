@@ -21,11 +21,11 @@
   <block wx:for="{{orderList}}" wx:key="index" style="z-index:5;">
     <view class="list-item" data-orderid="{{item.id}}" bindtap="gotoOrderDetailFn">
       <view class="orderTitle">
-        <image src="../../assets/img/cat.png" style="width:62rpx;height: 62rpx;"></image>
+        <image src="../../assets/img/cat.png" style="width:62rpx;height: 62rpx;margin-left:-10rpx"></image>
         <view style="margin:0 4rpx;">{{item.pointName}}</view>
         <icon class="iconfont icon-youjiantou"></icon>
         <!-- P 待支付 Q 已支付排队中 W已支付待出货 S 成功 SE 异常退款 E 异常 D 废弃 -->
-        <view class="startus">{{item.orderStatus==='Q'?'排队中':(item.orderStatus==='W'?'待出货':(item.orderStatus==='S'?'取餐成功':'已取消'))}}</view>
+        <view class="startus">{{item.orderStatus==='Q'?'准备中':(item.orderStatus==='W'?'准备中':((item.orderStatus==='W'&&order.order.roastDate)?'待取餐':(item.orderStatus==='S'?'取餐成功':'已取消')))}}</view>
       </view>
       <view class="shopWrap">
         <view class="shop">
@@ -46,7 +46,7 @@
             style="font-size: 38rpx;color: #FF7303;font-weight: bold;line-height: 48rpx;">{{item.orderPrice}}</text> </view>
       </view>
       <view class="btnWrap">
-        <view class="btn" data-btn="0" data-orderid="{{item.id}}" catchtap="bindnavFn">再来一单</view>
+        <view class="btn btn1" wx:if="{{item.orderStatus==='S'}}" data-btn="0" data-orderid="{{item.id}}" catchtap="bindnavFn">再来一单</view>
         <view class="btn" data-btn="1" data-orderid="{{item.id}}" catchtap="bindnavFn">订单详情</view>
       </view>
     </view>

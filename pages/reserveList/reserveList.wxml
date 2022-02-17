@@ -1,5 +1,5 @@
 <!--pages/reserveList/reserveList.wxml-->
-<navigationBar back text="在线点餐" />
+<navigationBar back text="排队购餐" />
 <view class="container">
   <view class="reserveList">
     <image class="img" src="/assets/img/4.png"></image>
@@ -14,7 +14,7 @@
       </view>
       <view class="distance">
         <view class="storeName">
-          <view>{{active.deviceStatus?'当前可预定':'当前不可预订'}}</view>
+          <view>{{active.deviceStatus?'当前可购买':'当前不可购买'}}</view>
           <view style="color:#FF7304;" wx:if="{{deviceDetail.startOpen}}">
             {{deviceDetail.startOpen}}~{{deviceDetail.endOpen}}</view>
         </view>

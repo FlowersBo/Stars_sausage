@@ -21,10 +21,11 @@
           </view>
           <view class="state {{order.order.orderstatus==='Q'||order.order.orderstatus==='W'?'statusColor':''}}">
             <icon class="iconfont icon-im_naozhong"></icon>
-            <view wx:if="{{order.order.orderstatus==='Q'}}">排队中</view>
-            <view wx:if="{{order.order.orderstatus==='W'}}">准备中</view>
+            <view wx:if="{{order.order.orderstatus=='Q'}}">排队中</view>
+            <view wx:else>准备中</view>
           </view>
-          <view class="state {{order.order.orderstatus==='W'&&'{{order.order.shipDate}}'?'statusColor':''}}">
+
+          <view class="state {{(order.order.orderstatus==='W'&&order.order.roastDate)?'statusColor':''}}">
             <icon class="iconfont icon-qingqucan"></icon>
             <view>待取餐</view>
           </view>
@@ -41,7 +42,7 @@
         </view>
       </view>
       <view class="address">
-        <image style="width: 30rpx;" mode="widthFix" src="../../assets/img/address.png"></image>
+        <image style="width: 32rpx;height:32rpx;" src="../../assets/img/address.png"></image>
         <view style="margin: 0 10rpx;">取餐地点</view>
         <icon class="iconfont icon-youjiantou"></icon>
       </view>
@@ -65,7 +66,7 @@
           <block wx:for="{{order.detail}}" wx:key="index">
             <view class="sausageNum">
               <view class="imgWrap">
-                <image style="width:120rpx;height:100rpx;border-radius: 6rpx;" src="../../assets/img/2.png"></image>
+                <image style="width:120rpx;height:100rpx;border-radius: 6rpx;" src="{{item.pictureUrl}}"></image>
                 <view class="promotionWrap">
                   <view class="sausage">
                     <view class="promotion">热销</view>
@@ -87,9 +88,10 @@
         <view class="address-title">订单信息</view>
         <view class="message">订单号<view class="message-text">{{order.order.id}}</view>
         </view>
-        <view class="message">交易号 <view class="message-text">{{order.order.tradeid}}</view>
+        <view class="message" wx:if="{{order.order.tradeid}}">交易号 <view class="message-text">{{order.order.tradeid}}
+          </view>
         </view>
-        <view class="message">支付方式<view class="message-text">{{order.order.payplatform?'':'微信支付'}}</view>
+        <view class="message">支付方式<view class="message-text">{{order.order.payplatform?'微信支付':'微信支付'}}</view>
         </view>
         <view class="message">下单时间<view class="message-text">{{order.order.orderdate}}</view>
         </view>
@@ -100,9 +102,11 @@
         </view>
       </view>
       <view class="btnWrap">
-        <view class="btn" bindtap="cancelOrderFn">取消订单</view>
+        <view class="btn" wx:if="{{order.order.orderstatus==='Q'||order.order.orderstatus==='W'}}"
+          bindtap="cancelOrderFn">取消订单</view>
         <view class="btn btn1"
-          wx:if="{{order.order.orderstatus==='S'||order.order.orderstatus==='SE'||order.order.orderstatus==='E'}}">投诉建议
+          wx:if="{{(order.order.orderstatus==='S'||order.order.orderstatus==='SE'||order.order.orderstatus==='E') && !order.isSuggest}}"
+          catchtap="gotoEvaluateFn">投诉建议
         </view>
         <view class="btn" catchtap="makePhoneFn">客服电话</view>
       </view>

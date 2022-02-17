@@ -144,23 +144,16 @@ Page({
     let btn = e.currentTarget.dataset.btn,
       orderId = e.currentTarget.dataset.orderid;
     if (btn === '0') {
-      app.http.createOrder({
-          deviceId: that.data.deviceId,
-          customerId: wx.getStorageSync('customerId'),
-          itemBeans: itemBeans
-        })
+      app.http.Recreate(
+          orderId
+        )
         .then(res => {
-          if (res.code == 200) {
-            wx.navigateTo({
-              url: '../placeOrder/placeOrder?orderId=' + orderId,
-            })
-          } else {
-            wx.showToast({
-              title: '创建订单失败',
-              icon: 'error',
-              duration: 2000
-            })
-          }
+          wx.navigateTo({
+            url: '../placeOrder/placeOrder?orderId=' + orderId,
+          })
+        })
+        .catch(err=>{
+          
         })
     } else {
       wx.navigateTo({

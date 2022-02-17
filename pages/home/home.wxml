@@ -13,11 +13,11 @@
     <view class="takeaway_menu">
       <view class="reserve" data-bannerurl="/pages/reserveList/reserveList" bindtap="gotoReserveList">
         <image class="reserve-img" src="../../assets/img/ordering.png"></image>
-        <view style="margin-top:14rpx;">在线点餐</view>
+        <view style="margin-top:14rpx;">排队购餐</view>
       </view>
       <view class="reserve" data-bannerurl="/pages/facilityList/facilityList" bindtap="gotoReserveList">
         <image class="reserve-img" src="../../assets/img/purchase.png"></image>
-        <view style="margin-top:14rpx;">到店购买</view>
+        <view style="margin-top:14rpx;">附近店铺</view>
       </view>
     </view>
     <view class="activity">
