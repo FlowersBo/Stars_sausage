@@ -85,7 +85,7 @@ Page({
 
   makePhoneFn() {
     wx.makePhoneCall({
-      phoneNumber: '888888888',
+      phoneNumber: '4008800975',
       fail(err) {
 
       }

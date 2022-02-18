@@ -3,7 +3,7 @@
 <view class="container">
   <view class="placeOrder">
     <view class="address">
-      <image style="width: 26rpx;" mode="widthFix" src="../../assets/img/address.png"></image>
+      <image style="width: 30rpx;height: 30rpx;" src="../../assets/img/address.png"></image>
       <view style="margin: 0 10rpx;">取餐地点</view>
       <icon class="iconfont icon-youjiantou"></icon>
     </view>
