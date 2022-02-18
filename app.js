@@ -26,7 +26,6 @@ App({
         that.globalData.windowWidth = e.windowWidth;
         that.globalData.windowHeight = e.windowHeight;
         that.globalData.StatusBar = e.statusBarHeight;
-        console.log(e)
         let capsule = wx.getMenuButtonBoundingClientRect();
         let capsuleHeight = capsule.height;
         if (capsuleHeight) {

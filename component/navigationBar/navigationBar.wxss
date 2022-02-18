@@ -37,8 +37,8 @@ border-radius: 50%; */
 }
 
 .capsule {
-  height: 30px;
-  background: rgba(255, 255, 255, 0.8);
+  /* height: 30px; */
+  background: rgba(255, 255, 255, .7);
   border-radius: 16px;
   display: flex;
   align-items: center;

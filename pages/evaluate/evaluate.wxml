@@ -18,9 +18,11 @@
         placeholder="您已品尝过烤肠，请描述您的问题或建议" autosize maxlength="100" show-word-limit bind:input="fieldFn" />
     </van-cell-group>
 
-    <van-uploader file-list="{{ fileList }}" deletable="{{ true }}" max-count="3" bind:after-read="afterRead" multiple="{{true}}" upload-text="上传图片"
-      bind:click-preview="readPhoto" bind:delete="deletePhoto" />
-      <view style="color:#999999;font-size:22rpx;">最多拍照上传3张</view>
+    <van-uploader file-list="{{ fileList }}" deletable="{{ true }}" max-count="3" bind:after-read="afterRead"
+      multiple="{{true}}" upload-text="上传图片" bind:click-preview="readPhoto" bind:delete="deletePhoto" />
+    <view style="color:#999999;font-size:22rpx;">最多拍照上传3张</view>
   </view>
   <button class="btn {{isShow?'isBtn':''}}" disabled="{{isShow}}" bindtap="submitFrom">提交评价</button>
 </view>
+
+<!-- <van-icon class="iconfont" class-prefix="icon" name="shijian" /> -->

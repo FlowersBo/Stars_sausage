@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    isPhone: false,
+    isPhone: true,
     num: 0,
     overallPrice: 0
   },
@@ -123,6 +123,10 @@ Page({
               iv: e.detail.iv,
             })
             .then(res => {
+              wx.setStorageSync('phoneNumber', res.data.phoneNumber);
+              that.setData({
+                isPhone: false
+              })
               if (that.data.overallPrice > 0) {
                 that.createOrderFn();
               } else {
@@ -142,6 +146,11 @@ Page({
               })
             })
         } else {
+          wx.showToast({
+            title: '获取手机号失败',
+            icon: 'none',
+            duration: 2000
+          })
           console.log('获取用户手机号失败！');
         }
       } catch (e) {
@@ -178,7 +187,7 @@ Page({
       customerId: wx.getStorageSync('customerId'),
       itemBeans: itemBeans
     }));
-    console.log('订单号',data)
+    console.log('订单号', data)
     if (data) {
       wx.navigateTo({
         url: '/pages/placeOrder/placeOrder?orderId=' + data + '&distance=' + that.data.distance,
@@ -207,7 +216,7 @@ Page({
       success(res) {
         // 已经授权，可以直接调用
         console.log("授权", res.authSetting);
-        if (res.authSetting['scope.userInfo']) {
+        if (wx.getStorageSync('phoneNumber')) {
           that.setData({
             isPhone: false
           })

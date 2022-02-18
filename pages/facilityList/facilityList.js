@@ -1,4 +1,5 @@
 // pages/facilityList/facilityList.js
+import {kmUnit} from '../../utils/util';
 const app = getApp()
 let that;
 
@@ -20,6 +21,7 @@ Page({
     console.log('设备列表', data);
     data.forEach(element => {
       element.distance = element.distance.toFixed();
+      element.distance = kmUnit(Number(element.distance));
     });
     that.setData({
       equipmentList: data

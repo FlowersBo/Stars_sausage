@@ -62,11 +62,12 @@ Page({
     })
   },
 
-  authFn() {
+  authFn(mpOpenId = '') {
     wx.login({
       success: res => {
         app.http.Auth({
-            code: res.code
+            code: res.code,
+            mpOpenId
           })
           .then(res => {
             wx.setStorageSync('customerId', res.data.id)
@@ -125,16 +126,21 @@ Page({
     });
   },
 
-  onLoad() {
+  onLoad(options) {
     that = this;
+    console.log('跳转拿到参数', options);
+    let mpOpenId = options.mpOpenId;
+    if(!mpOpenId){
+      mpOpenId = '';
+    }
     Promise.allSettled([
-        that.authFn(),
+        that.authFn(mpOpenId),
         that.bannerFn(),
         that.activityFn()
       ]).then(res => {
         console.log(res)
       })
-      .catch(err=>{
+      .catch(err => {
         console.log(err)
       })
   },

@@ -14,7 +14,7 @@
       </view>
       <view class="distance">
         <view class="storeName">
-          <view>{{active.deviceStatus?'当前可购买':'当前不可购买'}}</view>
+          <view>{{device.deviceStatus?'当前可购买':'当前不可购买'}}</view>
           <view style="color:#FF7304;" wx:if="{{deviceDetail.startOpen}}">
             {{deviceDetail.startOpen}}~{{deviceDetail.endOpen}}</view>
         </view>

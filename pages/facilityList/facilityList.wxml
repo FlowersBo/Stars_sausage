@@ -8,7 +8,7 @@
         <view class="facility-address"> 
           <view class="address">
             <view>{{item.name}}</view>
-            <view>{{item.distance}}m</view>
+            <view>{{item.distance}}</view>
           </view>
           <view class="facilityDetail">
             <icon class="iconfont icon-weizhi1"></icon>

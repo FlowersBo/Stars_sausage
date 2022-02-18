@@ -65,7 +65,6 @@ Page({
         },
       });
     });
-
   },
 
   readPhoto(event) {},

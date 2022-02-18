@@ -18,8 +18,23 @@ const getDate = tm => {
   return tt;
 }
 
+function kmUnit(m) {
+  var v;
+  if (typeof m === 'number' && !isNaN(m)) {
+    if (m >= 1000) {
+      v = (m / 1000).toFixed(2) + 'km'
+    } else {
+      v = m + 'm'
+    }
+  } else {
+    v = '0m'
+  }
+  return v;
+}
+
 
 module.exports = {
   formatTime,
-  getDate
+  getDate,
+  kmUnit
 }

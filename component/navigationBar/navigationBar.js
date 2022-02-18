@@ -23,6 +23,7 @@ Component({
   data: {
     statusBarHeight: app.globalData.StatusBar + 'px',
     navigationBarHeight: (app.globalData.StatusBar + 44) + 'px',
+    Custom: app.globalData.Custom,
     region: '',
   },
 

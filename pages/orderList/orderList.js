@@ -21,7 +21,6 @@ Page({
     orderList: [],
     pageNum: 1,
     pageSize: 20,
-    commodityList: [{}, {}, {}],
     isFlag: false
   },
 

@@ -37,7 +37,7 @@
 }
 
 .address>view:last-child {
-  max-width: 130rpx;
+  max-width: 140rpx;
   color: #FF6F03;
   font-weight: bold;
   overflow: hidden;
