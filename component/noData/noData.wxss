@@ -15,10 +15,10 @@
 
 .mask_icon {
   font-size: 400rpx;
-  color: #FF9900;
+  color: #FEB906;
 }
 
 .icon_text {
-  color: #FF9900;
+  color: #FEB906;
   margin-top: 30rpx;
 }

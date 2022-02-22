@@ -92,9 +92,9 @@ Page({
     })
   },
 
-  gotoEvaluateFn(){
+  gotoEvaluateFn() {
     wx.navigateTo({
-      url: '../evaluate/evaluate?orderId='+that.data.orderId+'&commodityImg='+that.data.commodityImg+'&pointName='+that.data.pointName,
+      url: '../evaluate/evaluate?orderId=' + that.data.orderId + '&commodityImg=' + that.data.commodityImg + '&pointName=' + that.data.pointName,
     })
   },
 

@@ -5,11 +5,14 @@
     <image class="img" src="/assets/img/4.png"></image>
     <view class="storeDistance">
       <view class="distance">
-        <image style="width:60rpx;height:auto;margin-top:-4rpx;" mode="widthFix" src="../../assets/img/shop.png">
+        <image style="width:60rpx;height:56rpx;margin-top:-4rpx;" src="../../assets/img/shop.png">
         </image>
         <view class="storeName">
           <view class="name">{{deviceDetail.name}}</view>
-          <view style="color:#999;">距离您 <text style="color:#FF7304;">{{deviceDetail.distance}}m</text> </view>
+          <view class="store-distance" bindtap="gotoFacilityList">
+            <view style="color:#999;">距离您 <text style="color:#FF7304;">{{deviceDetail.distance}}</text> </view>
+            <icon class="iconfont icon-youjiantou" style="font-size: 22rpx; margin:-26rpx 0 0 6rpx;"></icon>
+          </view>
         </view>
       </view>
       <view class="distance">
@@ -18,7 +21,6 @@
           <view style="color:#FF7304;" wx:if="{{deviceDetail.startOpen}}">
             {{deviceDetail.startOpen}}~{{deviceDetail.endOpen}}</view>
         </view>
-        <!-- <icon class="iconfont icon-youjiantou" style="margin-top:-4rpx;"></icon> -->
       </view>
     </view>
     <block wx:for="{{products}}" wx:key="index">
@@ -30,11 +32,11 @@
           <view class="price-count">
             <view class="price" style="color: #FF7303;font-weight:bold;">
               ￥{{item.factAmount}} <text
-                style="font-size: 24rpx;color:#999;text-decoration:line-through;margin-left:8rpx;">￥{{item.price}}</text>
+                style="font-size: 26rpx;color:#999;text-decoration:line-through;margin-left:8rpx;">￥{{item.price}}</text>
             </view>
             <view class="count">
               <van-stepper value="{{item.productCount}}" data-id="{{item.id}}" disable-input="true" min="0"
-                max="{{item.pointStock}}" theme="round" integer="true" button-size="24px" custom-class="addSubtract"
+                max="{{item.pointStock}}" theme="round" integer="true" button-size="26px" custom-class="addSubtract"
                 plus-class="add-subtract subtract" minus-class="add-subtract" input-class="inpNumber"
                 bind:plus="bindPlusFn" bind:minus="bindMinus" />
             </view>

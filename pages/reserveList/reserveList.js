@@ -1,5 +1,8 @@
 // pages/reserveList/reserveList.js
 let that;
+import {
+  kmUnit
+} from '../../utils/util';
 const app = getApp();
 Page({
 
@@ -62,7 +65,7 @@ Page({
     console.log('设备列表', data);
     if (that.data.deviceId) {
       data.forEach(element => {
-        element.distance = element.distance.toFixed();
+        element.distance = kmUnit(Number(element.distance));
         if (element.deviceId === that.data.deviceId) {
           console.log(element.distance)
           that.setData({
@@ -111,6 +114,12 @@ Page({
         duration: 2000
       })
     }
+  },
+
+  gotoFacilityList(){
+    wx.navigateTo({
+      url: '../facilityList/facilityList',
+    })
   },
 
   getPhoneNumberFn: (e) => {

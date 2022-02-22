@@ -130,7 +130,7 @@ Page({
     that = this;
     console.log('跳转拿到参数', options);
     let mpOpenId = options.mpOpenId;
-    if(!mpOpenId){
+    if (!mpOpenId) {
       mpOpenId = '';
     }
     Promise.allSettled([

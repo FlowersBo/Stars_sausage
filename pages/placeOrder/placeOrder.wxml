@@ -36,7 +36,8 @@
                 <view style="color:#999">x{{item.quantity}}</view>
               </view>
             </view>
-            <view class="price" style="font-size: 24rpx;">￥<text style="font-weight: bold;font-size: 28rpx;">{{item.price}}</text>
+            <view class="price" style="font-size: 24rpx;">￥<text
+                style="font-weight: bold;font-size: 28rpx;">{{item.price}}</text>
             </view>
           </view>
         </block>
@@ -55,7 +56,8 @@
 </view>
 <view class="SubmitBarWrap">
   <view class="SubmitBar">
-    <image class="shopBag" style="width:72rpx;height:106rpx;margin-top:-48rpx;margin-left:20rpx;" mode="widthFix" src="../../assets/img/shop-bag.png"></image>
+    <image class="shopBag" style="width:72rpx;height:106rpx;margin-top:-48rpx;margin-left:20rpx;" mode="widthFix"
+      src="../../assets/img/shop-bag.png"></image>
     <text class="SubmitBar-count">{{productQuantity}}</text>
     <view class="money">
       合计：￥<text style="font-size:48rpx;font-weight: bold;">{{overallPrice}}</text>

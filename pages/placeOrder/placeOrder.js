@@ -60,7 +60,7 @@ Page({
       success(res) {
         console.log(res)
         wx.redirectTo({
-          url: './accomplishOrder/accomplishOrder?orderId='+that.data.orderId,
+          url: './accomplishOrder/accomplishOrder?orderId=' + that.data.orderId,
         })
       },
       fail(res) {

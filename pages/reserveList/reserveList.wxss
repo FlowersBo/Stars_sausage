@@ -16,7 +16,7 @@
 
 .storeDistance {
   width: 100%;
-  height: 120rpx;
+  height: 140rpx;
   box-sizing: border-box;
   padding: 0 22rpx;
   margin: 40rpx 0;
@@ -33,8 +33,17 @@
   align-items: center;
 }
 
+.store-distance{
+  display: flex;
+  align-items: center;
+}
+
 .storeName {
   margin: 0 10rpx;
+}
+
+.storeName view{
+  margin: 6rpx 0;
 }
 
 .name {
