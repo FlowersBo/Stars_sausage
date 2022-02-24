@@ -21,7 +21,7 @@ Page({
     //     console.log('失败', res);
     //   }
     // })
-    wx.redirectTo({
+    wx.reLaunch({
       url: '../../orderDetail/orderDetail?orderId='+that.data.orderId,
     })
   },

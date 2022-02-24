@@ -45,6 +45,9 @@ Page({
       data.order.shipDate = getDate(data.order.shipDate);
     }
     console.log('订单详情', data);
+    wx.hideLoading()
+    wx.hideNavigationBarLoading() //在标题栏中隐藏加载
+    wx.stopPullDownRefresh()
     that.setData({
       // overallPrice,
       order: data,
@@ -109,6 +112,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    wx.showLoading({
+      title: '加载中'
+    })
     that.orderDetailFn(that.data.orderId);
   },
 
@@ -130,7 +136,8 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    console.log('下拉')
+    that.orderDetailFn(that.data.orderId);
   },
 
   /**

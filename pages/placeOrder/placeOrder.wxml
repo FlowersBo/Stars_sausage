@@ -13,7 +13,7 @@
           <view class="facilityName">{{product.pointName}}</view>
           <view class="distance">距离您位置 <text style="color:#FF7003;">{{distance}}m</text></view>
         </view>
-        <icon class="iconfont icon-youjiantou distanceICon"></icon>
+        <!-- <icon class="iconfont icon-youjiantou distanceICon"></icon> -->
       </view>
       <view style="width: 100%;height:2rpx;background:#F0F0F0;"></view>
       <view class="businessHours">

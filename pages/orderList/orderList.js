@@ -50,7 +50,6 @@ Page({
     that.setData({
       navigationBarHeight
     })
-    that.orderListFn();
   },
 
   async orderListFn(pageNum = 1) {
@@ -151,8 +150,8 @@ Page({
             url: '../placeOrder/placeOrder?orderId=' + orderId,
           })
         })
-        .catch(err=>{
-          
+        .catch(err => {
+
         })
     } else {
       wx.navigateTo({
@@ -162,12 +161,17 @@ Page({
   },
 
   /**
-   * 生命周期函数--监听页面显示
+   * 生命周期函数--监听页面显示 
    */
   onShow: function () {
     this.getTabBar().setData({
       selected: 1
     })
+    that.setData({
+      pageNum: 1,
+      orderList: []
+    })
+    that.orderListFn();
   },
 
 

@@ -116,12 +116,6 @@ Page({
     }
   },
 
-  gotoFacilityList(){
-    wx.navigateTo({
-      url: '../facilityList/facilityList',
-    })
-  },
-
   getPhoneNumberFn: (e) => {
     if (e.detail.encryptedData) {
       try {
@@ -210,6 +204,14 @@ Page({
     }
   },
 
+  gotoFacilityList() {
+    if (that.data.pageRoute) {
+      wx.navigateTo({
+        url: '../facilityList/facilityList',
+      })
+    }
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -236,6 +238,20 @@ Page({
         }
       }
     })
+
+    let pages = getCurrentPages();
+    let prevPage = pages[pages.length - 2];
+    console.log(prevPage.route);
+    if (prevPage.route == 'pages/facilityList/facilityList') {
+      console.log(prevPage.route);
+      that.setData({
+        pageRoute: ''
+      })
+    } else {
+      that.setData({
+        pageRoute: prevPage.route
+      })
+    }
   },
 
   cartWwing: function () {

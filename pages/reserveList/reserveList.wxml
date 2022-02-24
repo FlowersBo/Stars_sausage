@@ -11,7 +11,7 @@
           <view class="name">{{deviceDetail.name}}</view>
           <view class="store-distance" bindtap="gotoFacilityList">
             <view style="color:#999;">距离您 <text style="color:#FF7304;">{{deviceDetail.distance}}</text> </view>
-            <icon class="iconfont icon-youjiantou" style="font-size: 22rpx; margin:-26rpx 0 0 6rpx;"></icon>
+            <icon class="iconfont icon-youjiantou" style="font-size: 22rpx; margin:-26rpx 0 0 6rpx;" wx:if="{{pageRoute}}"></icon>
           </view>
         </view>
       </view>
