@@ -13,13 +13,14 @@
           </view>
           <view style="font-size: 13px;color: #999999;">请凭取餐码到设备上取餐</view>
         </view>
-        <!-- P 待支付 Q 已支付排队中 W已支付待出货 S 成功 SE 异常退款 E 异常 D 废弃 -->
+        <!-- P 待支付 Q 已支付排队中 W已支付待出货 S 成功 SE 退款 E 异常 D 废弃 -->
         <view class="order-state">
           <view class="state {{order.order.orderstatus==='P'?'statusColor':''}}">
             <icon class="iconfont icon-dingdan"></icon>
             <view>已下单</view>
           </view>
-          <view class="state {{order.order.orderstatus==='Q'||order.order.orderstatus==='W'?'statusColor':''}}">
+          <view
+            class="state {{!order.order.roastDate&&(order.order.orderstatus==='Q'||order.order.orderstatus==='W'?'statusColor':'')}}">
             <icon class="iconfont icon-im_naozhong"></icon>
             <view wx:if="{{order.order.orderstatus=='Q'}}">排队中</view>
             <view wx:else>准备中</view>
@@ -29,16 +30,21 @@
             <icon class="iconfont icon-qingqucan"></icon>
             <view>待取餐</view>
           </view>
-          <view wx:if="{{order.order.orderstatus==='SE'||order.order.orderstatus==='D'}}"
-            class="state {{order.order.orderstatus==='SE'||order.order.orderstatus==='D'?'statusColor':''}}">
+
+          <view wx:if="{{order.order.orderstatus==='SE'}}"
+            class="state {{order.order.orderstatus==='SE'?'statusColor':''}}">
             <icon class="iconfont icon-xianshi_quxiao"></icon>
             <view>已取消</view>
           </view>
-          <view wx:else class="state {{order.order.orderstatus==='S'?'statusColor':''}}">
+          <view wx:elif="{{order.order.orderstatus==='E'}}"
+            class="state {{order.order.orderstatus==='E'?'statusColor':''}}">
+            <icon class="iconfont icon-yichang"></icon>
+            <view>异常</view>
+          </view>
+          <view wx:else class="state {{(order.order.orderstatus==='S'||order.order.orderstatus==='D')?'statusColor':''}}">
             <icon class="iconfont icon-yiwancheng"></icon>
             <view>已完成</view>
           </view>
-
         </view>
       </view>
       <view class="address">

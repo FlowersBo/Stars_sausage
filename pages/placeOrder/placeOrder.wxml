@@ -11,7 +11,7 @@
       <view class="facilityAddress">
         <view>
           <view class="facilityName">{{product.pointName}}</view>
-          <view class="distance">距离您位置 <text style="color:#FF7003;">{{distance}}m</text></view>
+          <view class="distance">距离您位置 <text style="color:#FF7003;">{{distance}}</text></view>
         </view>
         <!-- <icon class="iconfont icon-youjiantou distanceICon"></icon> -->
       </view>
@@ -27,7 +27,7 @@
         <block wx:for="{{product.detail}}" wx:key="index">
           <view class="sausageNum">
             <view class="imgWrap">
-              <image style="width:120rpx;height:100rpx;" src="../../assets/img/2.png"></image>
+              <image style="width:120rpx;height:100rpx;border-radius: 6rpx;" src="{{item.pictureUrl}}"></image>
               <view class="promotionWrap">
                 <view class="sausage">
                   <view class="promotion">热销</view>

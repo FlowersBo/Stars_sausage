@@ -71,18 +71,17 @@ Page({
             wx.showToast({
               title: '取消成功',
               icon: 'none',
-              duration: 2000
+              duration: 1000
             })
             setTimeout(function () {
               wx.navigateBack({
                 delta: 1
               })
-            }, 1500)
+            }, 1000)
           }
         })
-
-    }).catch(() => {
-
+    }).catch(err => {
+      console.log(err)
     });
   },
 
@@ -112,9 +111,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    wx.showLoading({
-      title: '加载中'
-    })
     that.orderDetailFn(that.data.orderId);
   },
 
@@ -136,7 +132,6 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    console.log('下拉')
     that.orderDetailFn(that.data.orderId);
   },
 

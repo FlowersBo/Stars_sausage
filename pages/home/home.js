@@ -42,7 +42,7 @@ Page({
     let {
       data
     } = await (app.http.Banner({
-      type: 0
+      type: 1
     }));
     console.log('轮播', data);
     that.setData({
@@ -54,7 +54,7 @@ Page({
     let {
       data
     } = await (app.http.Banner({
-      type: 1
+      type: 2
     }));
     console.log('活动图', data);
     that.setData({
@@ -63,6 +63,7 @@ Page({
   },
 
   authFn(mpOpenId = '') {
+    console.log('传参', mpOpenId)
     wx.login({
       success: res => {
         app.http.Auth({
@@ -79,14 +80,12 @@ Page({
   gotoReserveList(e) {
     console.log(e)
     if (!wx.getStorageSync('isLoaction')) {
-      console.log('没有')
       wx.setStorageSync('isLoaction', true);
       that.getSelfLocation();
       return
     }
-    let url = e.currentTarget.dataset.bannerurl;
     wx.navigateTo({
-      url
+      url: e.currentTarget.dataset.bannerurl
     })
   },
 

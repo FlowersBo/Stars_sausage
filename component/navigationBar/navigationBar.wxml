@@ -28,7 +28,7 @@
     </view>
     <view wx:if="{{isNav}}" class="nav-inp">
       <view class="inpWrap">
-        <input class="inp" confirm-type="搜索店铺" placeholder-style placeholder="请输入店铺名称" type="text" bindblur="searchValue" bindconfirm="bindSearch"/>
+        <input class="inp" confirm-type="搜索店铺" placeholder-style placeholder="请输入店铺名称" type="text" value="{{pointName}}" bindblur="searchValue" bindconfirm="bindSearch" />
         <view class="searcah" catchtap="searchFn">
           <icon class="iconfont icon-fangdajing"></icon>
         </view>
@@ -36,7 +36,7 @@
       <picker class="section" mode="region" bindchange="bindRegionChange" value="{{region}}">
         <view class="picker">
           <view>
-            {{region?region[2]:'选择地区'}}
+            {{region?region:'选择地区'}}
           </view>
           <icon style="font-size: 20rpx;margin:-24rpx 0 0 4rpx" class="iconfont icon-xiajiantou"></icon>
         </view>

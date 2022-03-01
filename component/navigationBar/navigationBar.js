@@ -18,8 +18,29 @@ Component({
     isNav: {
       type: Boolean,
       value: false
-    }
+    },
+    pointName: {
+      type: String,
+      value: ''
+    },
+    region: {
+      type: String,
+      value: ''
+    },
   },
+
+  // attached: function () {
+  //   this.setData({
+  //     region: '',
+  //     pointName: '',
+  //   })
+  // },
+
+  // observers: {
+  //   region(data) {},
+  //   pointName() {}
+  // },
+
   data: {
     statusBarHeight: app.globalData.StatusBar + 'px',
     navigationBarHeight: (app.globalData.StatusBar + 44) + 'px',
@@ -45,10 +66,11 @@ Component({
     },
     bindRegionChange: function (e) {
       this.triggerEvent('city', {
-        region: e.detail.value
+        region: e.detail.value,
+        regionCode: e.detail.code
       })
       this.setData({
-        region: e.detail.value
+        region: e.detail.value[2]
       })
     },
     bindSearch(e) {
@@ -58,13 +80,17 @@ Component({
     },
     searchValue(e) {
       this.setData({
+        pointName: e.detail.value
+      })
+      this.triggerEvent('searchVal', {
         val: e.detail.value
       })
     },
-    searchFn() {
-      this.triggerEvent('searchVal', {
-        val: this.data.val
-      })
-    }
+    // searchFn(e) {
+    //   console.log(e)
+    //   this.triggerEvent('searchVal', {
+    //     val: this.data.pointName
+    //   })
+    // },
   }
 })

@@ -2,7 +2,7 @@
 <navigationBar back text="排队购餐" />
 <view class="container">
   <view class="reserveList">
-    <image class="img" src="/assets/img/4.png"></image>
+    <image class="img" src="/assets/img/IMG.png"></image>
     <view class="storeDistance">
       <view class="distance">
         <image style="width:60rpx;height:56rpx;margin-top:-4rpx;" src="../../assets/img/shop.png">

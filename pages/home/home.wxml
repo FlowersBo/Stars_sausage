@@ -4,7 +4,7 @@
     <block wx:for="{{bannerList}}" wx:key="index">
       <swiper-item>
         <!-- mode="aspectFit" -->
-        <image src="{{item.url}}" class="slide-image" data-bannerurl="{{item.link}}"  bindtap="gotoReserveList"
+        <image src="{{item.url}}" class="slide-image" data-bannerurl="{{item.link}}" bindtap="gotoReserveList"
           bindload='imgHeight' />
       </swiper-item>
     </block>
@@ -23,14 +23,14 @@
     <view class="activity">
       <view class="activity-title">
         <view class="line"></view>
-        <view>最近上新</view>
+        <view style="font-weight: bold;">最近上新</view>
       </view>
-      <view wx:for="{{activityList}}" wx:key="index" bindtap="gotoReserveList">
-        <image mode="scaleToFill" class="activity-img" src="{{item.url}}" class="slide-image"
-          data-bannerurl="{{item.link}}" bindtap="gotoUrl" />
+      <view wx:for="{{activityList}}" wx:key="index"
+          data-bannerurl="{{item.link}}" bindtap="gotoReserveList">
+        <image mode="scaleToFill" class="activity-img" src="{{item.url}}" class="slide-image" />
       </view>
     </view>
   </view>
 </view>
-<van-dialog id="van-dialog"/>
+<van-dialog id="van-dialog" />
 <!-- <noData isFlag="{{isFlag}}" /> -->

@@ -95,17 +95,18 @@ border-radius: 50%; */
 
 .inpWrap {
   width: 510rpx;
-  position: relative;
-}
-
-.inp {
-  width: 510rpx;
   height: 74rpx;
   background: #FFFFFF;
   border-radius: 38rpx;
   box-sizing: border-box;
   padding-left: 30rpx;
   font-size: 24rpx;
+  position: relative;
+}
+
+.inp {
+  width: 410rpx;
+  height: 74rpx;
 }
 
 .searcah {
@@ -119,7 +120,6 @@ border-radius: 50%; */
   text-align: center;
   background: linear-gradient(90deg, #FF6F03 0%, #FEB906 100%);
   border-radius: 50%;
-  z-index: 10;
 }
 
 .icon-fangdajing {
