@@ -8,7 +8,7 @@
   <view
     style="width: 282rpx;height: 90rpx;background: linear-gradient(90deg, #FF6F03 0%, #FEB906 100%);border-radius: 20rpx;color:#FFF;font-size: 34rpx;text-align: center;line-height:90rpx;"
     bindtap="gotoOrderDetail">订单详情</view>
-  <image src="../../../assets/img/testImg.png" style="width: 720rpx;height: auto;margin-top:64rpx;" mode="widthFix">
+  <image src="/assets/img/hd.png" style="width: 720rpx;height: auto;margin-top:64rpx;border-radius: 20rpx;" mode="widthFix">
   </image>
   <!-- <view class="authorization">
     <van-checkbox value="{{ checked }}" icon-size="16px" checked-color="#FE7404" bind:change="onChange">

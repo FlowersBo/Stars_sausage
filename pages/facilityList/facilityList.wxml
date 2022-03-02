@@ -4,7 +4,7 @@
   <view class="facilityList">
     <block wx:for="{{equipmentList}}" wx:key="index">
       <view class="facility" data-distance="{{item.distance}}" data-deviceid="{{item.deviceId}}" bindtap="gotoReserveListFn">
-        <image style="width:166rpx;height:136rpx;border-radius:10rpx;" src="../../assets/img/2.png"></image>
+        <image style="width:166rpx;height:136rpx;border-radius:10rpx;" src="/assets/img/IMG.png"></image>
         <view class="facility-address"> 
           <view class="address">
             <view>{{item.name}}</view>

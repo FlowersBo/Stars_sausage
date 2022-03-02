@@ -19,7 +19,7 @@
           <image class="img" src='/assets/img/back1.png'></image>
         </view>
       </view>
-      <view class='capsule' style="{{'height:'+Custom.height+'px;'+'width:'+Custom.width+'px;'}}" wx:if="{{ !back && home }}">
+      <view class='capsule' style="{{'height:'+Custom.height+'px;'}}" wx:if="{{ !back && home }}">
         <view class="back" bindtap='backHome' wx:if="{{home}}">
           <image class="img" src='/assets/img/home.png'></image>
         </view>

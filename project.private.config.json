@@ -19,12 +19,6 @@
           "scene": null
         },
         {
-          "name": "在线点餐",
-          "pathName": "pages/reserveList/reserveList",
-          "query": "",
-          "scene": null
-        },
-        {
           "name": "附近店铺",
           "pathName": "pages/facilityList/facilityList",
           "query": "",
