@@ -143,7 +143,6 @@
   z-index: 1;
 }
 
-
 @keyframes animations {
   0% {
     transform: translateX(-10px);
@@ -179,4 +178,9 @@
   font-size: 32rpx;
   font-weight: bold;
   letter-spacing: 4rpx;
+}
+
+
+.deviceStatus{
+  background: #ccc;
 }

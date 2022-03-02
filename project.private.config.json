@@ -47,6 +47,12 @@
           "pathName": "pages/evaluate/evaluate",
           "query": "orderId=1490864145250123776",
           "scene": null
+        },
+        {
+          "name": "购餐",
+          "pathName": "pages/reserveList/reserveList",
+          "query": "deviceId=1349273791045304320",
+          "scene": null
         }
       ]
     }

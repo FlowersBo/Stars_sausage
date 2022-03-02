@@ -36,7 +36,7 @@
             </view>
             <view class="count">
               <van-stepper value="{{item.productCount}}" data-id="{{item.id}}" disable-input="true" min="0"
-                max="{{item.pointStock}}" theme="round" integer="true" button-size="26px" custom-class="addSubtract"
+                max="{{item.store}}" disable-plus="{{isPlus}}" theme="round" integer="true" button-size="26px" custom-class="addSubtract"
                 plus-class="add-subtract subtract" minus-class="add-subtract" input-class="inpNumber"
                 bind:plus="bindPlusFn" bind:minus="bindMinus" />
             </view>
@@ -57,6 +57,6 @@
     </view>
     <button class="SubmitBar-btn" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumberFn"
       wx:if="{{isPhone}}">去结算</button>
-    <view wx:else class="SubmitBar-btn" bindtap="gotoPlaceOrderFn">去结算</view>
+    <view wx:else class="SubmitBar-btn {{device.deviceStatus?'':'deviceStatus'}}" bindtap="gotoPlaceOrderFn">去结算</view>
   </view>
 </view>

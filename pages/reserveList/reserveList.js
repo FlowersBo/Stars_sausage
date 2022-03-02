@@ -12,7 +12,8 @@ Page({
   data: {
     isPhone: true,
     num: 0,
-    overallPrice: 0
+    overallPrice: 0,
+    isPlus: false
   },
 
   bindPlusFn(e) {
@@ -38,7 +39,11 @@ Page({
   addSubtractFn(add, id) {
     let products = that.data.products;
     let overallPrice = 0;
-    let price = 0;
+    let price = 0,
+      count = 0;
+    let storeA = that.data.storeA,
+      storeB = that.data.storeB,
+      totalLimit = that.data.totalLimit;
     products.forEach(element => {
       if (element.id === id) {
         if (add) {
@@ -48,7 +53,18 @@ Page({
         }
       }
       price += Number((element.factAmount * element.productCount));
+      count += Number((element.productCount))
     });
+    console.log(count)
+    if (count >= (totalLimit - 1)) {
+      that.setData({
+        isPlus: true
+      })
+    } else {
+      that.setData({
+        isPlus: false
+      })
+    }
     overallPrice = price.toFixed(2)
     that.setData({
       products,
@@ -67,10 +83,9 @@ Page({
       data.forEach(element => {
         element.distance = kmUnit(Number(element.distance));
         if (element.deviceId === that.data.deviceId) {
-          console.log(element.distance)
           that.setData({
             deviceDetail: element,
-            distance: element.distance
+            distance: element.distance,
           })
           that.shopListFn(element.deviceId);
         }
@@ -82,7 +97,7 @@ Page({
       that.setData({
         deviceDetail: data[0],
         deviceId: data[0].deviceId,
-        distance: data[0].distance
+        distance: data[0].distance,
       })
       that.shopListFn(data[0].deviceId);
     }
@@ -96,15 +111,35 @@ Page({
     }))
     console.log('商品信息', data);
     data.products.forEach(element => {
-      element.productCount = 0
+      element.productCount = 0;
+    });
+
+    [data.storeA, data.storeB].forEach((element, key) => {
+      data.products.forEach((el, k) => {
+        if (key === k) {
+          el.store = element
+        }
+      });
     });
     that.setData({
       device: data,
-      products: data.products
+      deviceStatus: data.deviceStatus,
+      products: data.products,
+      storeA: data.storeA,
+      storeB: data.storeB,
+      totalLimit: data.totalLimit,
     })
   },
 
   gotoPlaceOrderFn() {
+    if (!that.data.deviceStatus) {
+      wx.showToast({
+        title: '当前设备不可购买',
+        icon: 'none',
+        duration: 2000
+      })
+      return
+    }
     if (that.data.overallPrice > 0) {
       that.createOrderFn();
     } else {
@@ -241,9 +276,7 @@ Page({
 
     let pages = getCurrentPages();
     let prevPage = pages[pages.length - 2];
-    console.log(prevPage.route);
     if (prevPage.route == 'pages/facilityList/facilityList') {
-      console.log(prevPage.route);
       that.setData({
         pageRoute: ''
       })
