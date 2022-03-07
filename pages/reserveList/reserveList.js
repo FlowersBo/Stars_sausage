@@ -55,8 +55,9 @@ Page({
       price += Number((element.factAmount * element.productCount));
       count += Number((element.productCount))
     });
-    console.log(count)
-    if (count > 0 && count >= (totalLimit - 1)) {
+    console.log('累加',count)
+    console.log('总数', totalLimit)
+    if (count >= totalLimit) {
       that.setData({
         isPlus: true
       })
@@ -121,6 +122,15 @@ Page({
         }
       });
     });
+    if (data.totalLimit <= 0) {
+      that.setData({
+        isPlus: true
+      })
+    } else {
+      that.setData({
+        isPlus: false
+      })
+    }
     that.setData({
       device: data,
       deviceStatus: data.deviceStatus,
