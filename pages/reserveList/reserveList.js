@@ -56,7 +56,7 @@ Page({
       count += Number((element.productCount))
     });
     console.log(count)
-    if (count >= (totalLimit - 1)) {
+    if (count > 0 && count >= (totalLimit - 1)) {
       that.setData({
         isPlus: true
       })
