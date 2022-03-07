@@ -1,7 +1,7 @@
 /**index.wxss**/
 .home {
   position: relative;
-  background: #fff;
+  background: #fafafa;
 }
 
 .banner image {
@@ -72,7 +72,6 @@
 
 .activity {
   width: 700rpx;
-  background: #fff;
   margin-top: 20rpx;
   /* border-top-left-radius: 20rpx; */
   /* borderradius: 20rpx; */
