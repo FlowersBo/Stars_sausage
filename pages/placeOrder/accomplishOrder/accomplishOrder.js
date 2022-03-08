@@ -6,27 +6,36 @@ Page({
    * 页面的初始数据
    */
   data: {
-    checked: false
+    checked: true
   },
 
   gotoOrderDetail() {
-    // wx.requestSubscribeMessage({
-    //   tmplIds: [
-    //     '1DRLv3Yd03ny5sgduNAxP_J_hvUIOEZAsRAZFZYvABU'
-    //   ],
-    //   success(res) {
-    //     console.log('成功', res);
-    //   },
-    //   fail(res) {
-    //     console.log('失败', res);
-    //   }
-    // })
-    wx.reLaunch({
-      url: '../../orderDetail/orderDetail?orderId='+that.data.orderId,
-    })
+    if(that.data.checked){
+      wx.requestSubscribeMessage({
+        tmplIds: [
+          '2_NKjce9y1m8c7VIhgWpT4l4nnOMWlR6V7lD03QANsA'
+        ],
+        success(res) {
+          console.log('成功', res);
+          wx.reLaunch({
+            url: '../../orderDetail/orderDetail?orderId=' + that.data.orderId,
+          })
+        },
+        fail(res) {
+          console.log('失败', res);
+          wx.reLaunch({
+            url: '../../orderDetail/orderDetail?orderId=' + that.data.orderId,
+          })
+        }
+      })
+    }else{
+      wx.reLaunch({
+        url: '../../orderDetail/orderDetail?orderId=' + that.data.orderId,
+      })
+    }
   },
 
-  onChange(){
+  onChange() {
     that.setData({
       checked: !that.data.checked
     })
@@ -36,7 +45,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    that = this;    
+    that = this;
     that.setData({
       orderId: options.orderId
     })

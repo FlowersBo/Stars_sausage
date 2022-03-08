@@ -10,9 +10,9 @@
     bindtap="gotoOrderDetail">订单详情</view>
   <image src="/assets/img/hd.png" style="width: 720rpx;height: auto;margin-top:64rpx;border-radius: 20rpx;" mode="widthFix">
   </image>
-  <!-- <view class="authorization">
+  <view class="authorization">
     <van-checkbox value="{{ checked }}" icon-size="16px" checked-color="#FE7404" bind:change="onChange">
     </van-checkbox>
-    <view style="margin-left:-10rpx;">授权订阅消息</view>
-  </view> -->
+    <view style="margin-left:-6rpx;">授权订阅消息</view>
+  </view>
 </view>

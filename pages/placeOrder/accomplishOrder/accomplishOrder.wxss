@@ -1,7 +1,7 @@
 /* pages/placeOrder/accomplishOrder/accomplishOrder.wxss */
 .authorization{
   position: fixed;
-  bottom: 40rpx;
+  bottom: 140rpx;
   display: flex;
   align-items: center;
   color: #999;
