@@ -40,10 +40,10 @@ Page({
     //   price += Number(element.price);
     // });
     // overallPrice = price.toFixed(2)
-    data.order.orderdate = getDate(data.order.orderdate);
-    if (data.order.shipDate) {
-      data.order.shipDate = getDate(data.order.shipDate);
-    }
+    // data.order.orderdate = getDate(data.order.orderdate);
+    // if (data.order.shipDate) {
+    //   data.order.shipDate = getDate(data.order.shipDate);
+    // }
     console.log('订单详情', data);
     wx.hideLoading()
     wx.hideNavigationBarLoading() //在标题栏中隐藏加载

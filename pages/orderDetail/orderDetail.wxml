@@ -101,7 +101,7 @@
         </view>
         <view class="message">下单时间<view class="message-text">{{order.order.orderdate}}</view>
         </view>
-        <view class="message" wx:if="{{order.order.shipDate}}">取餐时间<view class="message-text">{{order.order.shipDate}}
+        <view class="message" wx:if="{{order.order.roastDate}}">取餐时间<view class="message-text">{{order.order.roastDate}}
           </view>
         </view>
         <view class="message">取餐码<view class="message-text">{{order.order.takeCode}}</view>
