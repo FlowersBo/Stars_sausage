@@ -17,7 +17,7 @@ Page({
   },
 
   bindPlusFn(e) {
-    that.addSubtractFn('add', e.currentTarget.dataset.id);
+    that.addSubtractFn('add', e.currentTarget.dataset.id, e.currentTarget.dataset.channel);
     that.setData({
       start: 'start',
       num: that.data.num + 1
@@ -30,13 +30,13 @@ Page({
   },
 
   bindMinus(e) {
-    that.addSubtractFn('', e.currentTarget.dataset.id);
+    that.addSubtractFn('', e.currentTarget.dataset.id, e.currentTarget.dataset.channel);
     that.setData({
       num: that.data.num - 1
     })
   },
 
-  addSubtractFn(add, id) {
+  addSubtractFn(add, id, channel) {
     let products = that.data.products;
     let overallPrice = 0;
     let price = 0,
@@ -45,7 +45,7 @@ Page({
       storeB = that.data.storeB,
       totalLimit = that.data.totalLimit;
     products.forEach(element => {
-      if (element.id === id) {
+      if (element.id === id && element.channel === channel) {
         if (add) {
           element.productCount = element.productCount + 1
         } else {
@@ -55,7 +55,7 @@ Page({
       price += Number((element.factAmount * element.productCount));
       count += Number((element.productCount))
     });
-    console.log('累加',count)
+    console.log('累加', count)
     console.log('总数', totalLimit)
     if (count >= totalLimit) {
       that.setData({
@@ -93,7 +93,7 @@ Page({
       });
     } else {
       if (data[0].distance) {
-        data[0].distance =kmUnit(Number(data[0].distance));
+        data[0].distance = kmUnit(Number(data[0].distance));
       }
       that.setData({
         deviceDetail: data[0],

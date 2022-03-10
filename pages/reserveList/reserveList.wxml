@@ -35,7 +35,7 @@
                 style="font-size: 26rpx;color:#999;text-decoration:line-through;margin-left:8rpx;">￥{{item.price}}</text>
             </view>
             <view class="count">
-              <van-stepper value="{{item.productCount}}" data-id="{{item.id}}" disable-input="true" min="0"
+              <van-stepper value="{{item.productCount}}" data-id="{{item.id}}" data-channel="{{item.channel}}" disable-input="true" min="0"
                 max="{{item.store}}" disable-plus="{{isPlus}}" theme="round" integer="true" button-size="26px" custom-class="addSubtract"
                 plus-class="add-subtract subtract" minus-class="add-subtract" input-class="inpNumber"
                 bind:plus="bindPlusFn" bind:minus="bindMinus" />
