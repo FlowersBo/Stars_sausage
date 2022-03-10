@@ -93,7 +93,7 @@ Page({
       });
     } else {
       if (data[0].distance) {
-        data[0].distance = data[0].distance.toFixed();
+        data[0].distance =kmUnit(Number(data[0].distance));
       }
       that.setData({
         deviceDetail: data[0],
