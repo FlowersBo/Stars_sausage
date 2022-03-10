@@ -71,7 +71,8 @@ Page({
             mpOpenId
           })
           .then(res => {
-            wx.setStorageSync('customerId', res.data.id)
+            wx.setStorageSync('customerId', res.data.id);
+            wx.setStorageSync('phoneNumber', res.data.phone);
           })
       }
     })
@@ -132,8 +133,10 @@ Page({
     if (!mpOpenId) {
       mpOpenId = '';
     }
+    that.setData({
+      mpOpenId
+    })
     Promise.allSettled([
-        that.authFn(mpOpenId),
         that.bannerFn(),
         that.activityFn()
       ]).then(res => {
@@ -148,9 +151,10 @@ Page({
   onShow() {
     this.getTabBar().setData({
       selected: 0
-    })
+    });
+    that.authFn(that.data.mpOpenId);
     if (wx.getStorageSync('isLoaction')) {
-      console.log('调用')
+      console.log('调用地址')
       that.getSelfLocation();
     }
   },

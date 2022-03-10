@@ -224,7 +224,7 @@ Page({
       itemBeans[key].price = element.price;
       itemBeans[key].productId = element.id;
       itemBeans[key].sausageStatus = '';
-      itemBeans[key].stock = '';
+      itemBeans[key].stock = element.channel;
       itemBeans[key].userStatus = '';
     })
     console.log('商品', itemBeans);
