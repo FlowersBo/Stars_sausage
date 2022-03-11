@@ -108,7 +108,7 @@
         </view>
       </view>
       <view class="btnWrap">
-        <view class="btn" wx:if="{{order.order.orderstatus==='Q'||order.order.orderstatus==='W'}}"
+        <view class="btn" wx:if="{{order.order.orderstatus==='Q'||order.order.orderstatus==='W'}}" data-orderstatus="{{order.order.orderstatus}}"
           bindtap="cancelOrderFn">取消订单</view>
         <view class="btn btn1"
           wx:if="{{(order.order.orderstatus==='S'||order.order.orderstatus==='SE'||order.order.orderstatus==='E') && !order.isSuggest}}"

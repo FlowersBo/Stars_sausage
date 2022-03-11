@@ -56,10 +56,11 @@ Page({
     })
   },
 
-  cancelOrderFn() {
+  cancelOrderFn(e) {
+    let orderstatus = e.currentTarget.dataset.orderstatus;
     Dialog.confirm({
       title: '取消订单',
-      message: '您确认取消当前订单吗？',
+      message: `${orderstatus==='W'?'当前烤肠已经烤制，如果取消则只能退40%订单金额，是否确认取消当前订单?':'您确认取消当前订单吗?'}` ,
       theme: 'round-button',
     }).then(() => {
       app.http.Cancel(
