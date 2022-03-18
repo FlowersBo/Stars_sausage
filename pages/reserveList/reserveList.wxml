@@ -11,7 +11,8 @@
           <view class="name">{{deviceDetail.name}}</view>
           <view class="store-distance" bindtap="gotoFacilityList">
             <view style="color:#999;">距离您 <text style="color:#FF7304;">{{deviceDetail.distance}}</text> </view>
-            <icon class="iconfont icon-youjiantou" style="font-size: 22rpx; margin:-26rpx 0 0 6rpx;" wx:if="{{pageRoute}}"></icon>
+            <icon class="iconfont icon-youjiantou" style="font-size: 22rpx; margin:-26rpx 0 0 6rpx;"
+              wx:if="{{pageRoute}}"></icon>
           </view>
         </view>
       </view>
@@ -35,10 +36,17 @@
                 style="font-size: 26rpx;color:#999;text-decoration:line-through;margin-left:8rpx;">￥{{item.price}}</text>
             </view>
             <view class="count">
-              <van-stepper value="{{item.productCount}}" data-id="{{item.id}}" data-channel="{{item.channel}}" disable-input="true" min="0"
-                max="{{item.store}}" disable-plus="{{isPlus}}" theme="round" integer="true" button-size="26px" custom-class="addSubtract"
-                plus-class="add-subtract subtract" minus-class="add-subtract" input-class="inpNumber"
-                bind:plus="bindPlusFn" bind:minus="bindMinus" />
+              <wxs module="fn">
+                module.exports = {
+                  flight: function (flightDetail) {
+                    return flightDetail[0];
+                  }
+                }
+              </wxs>
+              <van-stepper value="{{item.productCount}}" data-id="{{item.id}}" data-channel="{{item.channel}}"
+                disable-input="true" min="0" max="{{fn.flight(item.store)}}" disable-plus="{{item.isPlus}}" theme="round"
+                integer="true" button-size="26px" custom-class="addSubtract" plus-class="add-subtract subtract"
+                minus-class="add-subtract" input-class="inpNumber" bind:plus="bindPlusFn" bind:minus="bindMinus" />
             </view>
           </view>
         </view>

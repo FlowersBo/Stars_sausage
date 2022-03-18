@@ -12,8 +12,7 @@ Page({
   data: {
     isPhone: true,
     num: 0,
-    overallPrice: 0,
-    isPlus: false
+    overallPrice: 0
   },
 
   bindPlusFn(e) {
@@ -57,15 +56,17 @@ Page({
     });
     console.log('累加', count)
     console.log('总数', totalLimit)
-    if (count >= totalLimit) {
-      that.setData({
-        isPlus: true
-      })
-    } else {
-      that.setData({
-        isPlus: false
-      })
-    }
+    products.forEach(element => {
+      if (count >= totalLimit) {
+        element.isPlus = true;
+      } else {
+        element.isPlus = false;
+        if (element.store[1])
+          element.isPlus = true;
+        else
+          element.isPlus = false;
+      }
+    });
     overallPrice = price.toFixed(2)
     that.setData({
       products,
@@ -114,23 +115,36 @@ Page({
     data.products.forEach(element => {
       element.productCount = 0;
     });
-
-    [data.storeA, data.storeB].forEach((element, key) => {
+    let storeA = data.storeA,
+      storeB = data.storeB,
+      aIceStatus = data.aIceStatus,
+      bIceStatus = data.bIceStatus;
+      // Object.values(form)//将form对象转化数组，返回值是form值的数组
+    [
+      [storeA, aIceStatus],
+      [storeB, bIceStatus]
+    ].forEach((element, key) => {
       data.products.forEach((el, k) => {
         if (key === k) {
           el.store = element
         }
       });
     });
-    if (data.totalLimit <= 0) {
-      that.setData({
-        isPlus: true
-      })
-    } else {
-      that.setData({
-        isPlus: false
-      })
-    }
+
+    data.products.forEach(element => {
+      if (data.totalLimit <= 0) {
+        element.isPlus = true;
+      } else {
+        element.isPlus = false;
+        if (element.store[1]) {
+          element.isPlus = true;
+        } else {
+          element.isPlus = false;
+        }
+      }
+    });
+
+
     that.setData({
       device: data,
       deviceStatus: data.deviceStatus,
