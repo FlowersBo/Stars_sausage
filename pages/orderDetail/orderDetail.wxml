@@ -41,7 +41,8 @@
             <icon class="iconfont icon-yichang"></icon>
             <view>异常</view>
           </view>
-          <view wx:else class="state {{(order.order.orderstatus==='S'||order.order.orderstatus==='D')?'statusColor':''}}">
+          <view wx:else
+            class="state {{(order.order.orderstatus==='S'||order.order.orderstatus==='D')?'statusColor':''}}">
             <icon class="iconfont icon-yiwancheng"></icon>
             <view>已完成</view>
           </view>
@@ -50,20 +51,32 @@
       <view class="address">
         <image style="width: 32rpx;height:32rpx;" src="../../assets/img/address.png"></image>
         <view style="margin: 0 10rpx;">取餐地点</view>
-        <icon class="iconfont icon-youjiantou"></icon>
+        <!-- <icon class="iconfont icon-youjiantou"></icon> -->
       </view>
       <view class="facility">
         <view class="facilityAddress">
           <view>
             <view class="facilityName">{{order.pointName}}</view>
-            <view class="distance">距离您的位置 <text style="color:#FF7003;">{{order.distance}}m</text></view>
+            <view style="margin: 6rpx 0;">地址：{{order.address}}</view>
+            <view class="distance">距离您的位置 <text style="color:#FF7003;">{{order.distance}}</text></view>
+          </view>
+          <view class="navigation" bindtap="gotoNavigation">
+            <view class='plane' animation="{{slide_up1}}">
+              <image src='/assets/img/plane.png'></image>
+            </view>
+            <!-- <icon class="iconfont icon-daohang"></icon> -->
+            导航
           </view>
           <!-- <icon class="iconfont icon-youjiantou distanceICon"></icon> -->
         </view>
         <view style="width: 100%;height:2rpx;background:#F0F0F0;"></view>
-        <view class="businessHours">
+        <!-- <view class="businessHours">
           <view>营业时间</view>
           <view style="color:#07C160;">{{order.startOpen}}~{{order.endOpen}}</view>
+        </view> -->
+        <view class="businessHours" wx:if="{{order.order.orderstatus==='W'}}">
+          <view>剩余烤制时长：</view>
+          <view style="color:#07C160;">{{order.takeMin}}分钟</view>
         </view>
       </view>
       <view class="sausageWrap">
@@ -108,8 +121,8 @@
         </view>
       </view>
       <view class="btnWrap">
-        <view class="btn" wx:if="{{order.order.orderstatus==='Q'||order.order.orderstatus==='W'}}" data-orderstatus="{{order.order.orderstatus}}"
-          bindtap="cancelOrderFn">取消订单</view>
+        <view class="btn" wx:if="{{order.order.orderstatus==='Q'||order.order.orderstatus==='W'}}"
+          data-orderstatus="{{order.order.orderstatus}}" bindtap="cancelOrderFn">取消订单</view>
         <view class="btn btn1"
           wx:if="{{(order.order.orderstatus==='S'||order.order.orderstatus==='SE'||order.order.orderstatus==='E') && !order.isSuggest}}"
           catchtap="gotoEvaluateFn">投诉建议

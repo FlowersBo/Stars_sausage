@@ -13,7 +13,8 @@ Page({
     if(that.data.checked){
       wx.requestSubscribeMessage({
         tmplIds: [
-          '2_NKjce9y1m8c7VIhgWpT4l4nnOMWlR6V7lD03QANsA'
+          '2_NKjce9y1m8c7VIhgWpT4l4nnOMWlR6V7lD03QANsA',
+          'I3naEtNu1kd1l6MjdH1Hn0FN5LRY5X4gmuieJdJvAz4'
         ],
         success(res) {
           console.log('成功', res);

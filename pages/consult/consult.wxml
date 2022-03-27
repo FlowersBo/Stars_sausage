@@ -1,0 +1,18 @@
+<!--pages/consult/consult.wxml-->
+<view class="navbar" style="{{'height:' + navigationBarHeight}}">
+  <image wx:if="{{isNav}}" style="width: 750rpx;height:auto;position: relative;" mode="widthFix"
+    src="../../assets/img/shopList.png">
+  </image>
+  <view class="backWrap">
+    <view style="{{'height: ' + statusBarHeight}}"></view>
+    <view class='title-container'>
+      <view class='capsule' style="{{'height:'+Custom.height+'px;'+'width:'+Custom.width+'px;'}}">
+        <view class="back" bindtap='back'>
+          <image class="img" src='/assets/img/back1.png'></image>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<image style="width: 100%;" mode="widthFix"
+  src="https://mgproduct.oss-cn-beijing.aliyuncs.com/view/%E7%94%BB%E6%9D%BF%202.png"></image>

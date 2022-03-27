@@ -52,7 +52,7 @@
     "useCompilerPlugins": false
   },
   "compileType": "miniprogram",
-  "libVersion": "2.21.2",
+  "libVersion": "2.23.2",
   "appid": "wxba5acdc1e30fa763",
   "projectname": "Stars_sausage",
   "debugOptions": {

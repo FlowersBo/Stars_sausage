@@ -1,0 +1,35 @@
+/* pages/consult/consult.wxss */
+@import "/utils/iconfont.wxss";
+
+.navbar {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  background-color: rgba(255,255,255,0)
+}
+
+.backWrap {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.title-container {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.capsule {
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  margin-left: 10rpx;
+}
+.img {
+  width: 45rpx;
+  height: 45rpx;
+  opacity: 1;
+}

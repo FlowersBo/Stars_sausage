@@ -1,0 +1,5 @@
+<!--pages/facilityListMap/facilityListMap.wxml-->
+<view class="facilityListMap">
+  <map id="map" longitude="{{longitude}}" latitude="{{latitude}}"bindmarkertap="showModal"
+   style="width: 100%; height: {{2*viewHeight/3}}px;" ></map>
+</view>

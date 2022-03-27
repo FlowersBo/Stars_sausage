@@ -25,7 +25,6 @@ Page({
     Height: "", //这是swiper要动态设置的高度属性
     isFlag: true
   },
-
   // imgHeight(e) {
   //   console.log(e)
   //   var winWid = wx.getSystemInfoSync().windowWidth; //获取当前屏幕的宽度
@@ -85,9 +84,24 @@ Page({
       that.getSelfLocation();
       return
     }
-    wx.navigateTo({
-      url: e.currentTarget.dataset.bannerurl
-    })
+    if(e.currentTarget.dataset.index===0){
+      wx.navigateToMiniProgram({
+        appId: 'wx8ab6fcdcbc881c7d',
+        // path: 'page/index/index?id=123',
+        // extraData: {
+        //   foo: 'bar'
+        // },
+        // envVersion: 'develop',
+        success(res) {
+          // 打开成功
+          console.log('打开成功',res)
+        }
+      })
+    }else{
+      wx.navigateTo({
+        url: e.currentTarget.dataset.bannerurl
+      })
+    }
   },
 
   //获取位置

@@ -13,11 +13,11 @@
     <view class="takeaway_menu">
       <view class="reserve" data-bannerurl="/pages/reserveList/reserveList" bindtap="gotoReserveList">
         <image class="reserve-img" src="../../assets/img/ordering.png"></image>
-        <view style="margin-top:14rpx;">排队购餐</view>
+        <view style="margin-top:14rpx;">在线预订</view>
       </view>
       <view class="reserve" data-bannerurl="/pages/facilityList/facilityList" bindtap="gotoReserveList">
         <image class="reserve-img" src="../../assets/img/purchase.png"></image>
-        <view style="margin-top:14rpx;">附近店铺</view>
+        <view style="margin-top:14rpx;">附近设备</view>
       </view>
     </view>
     <view class="activity">
@@ -26,7 +26,7 @@
         <view style="font-weight: bold;">最近上新</view>
       </view>
       <view wx:for="{{activityList}}" wx:key="index"
-          data-bannerurl="{{item.link}}" bindtap="gotoReserveList" style="margin-bottom: 20rpx;">
+          data-bannerurl="{{item.link}}" data-index="{{index}}" bindtap="gotoReserveList" style="margin-bottom: 20rpx;">
         <image mode="scaleToFill" class="activity-img" src="{{item.url}}" class="slide-image" />
       </view>
     </view>

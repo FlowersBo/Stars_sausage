@@ -1,13 +1,15 @@
 {
   "pages": [
     "pages/home/home",
+    "pages/consult/consult",
     "pages/orderList/orderList",
     "pages/reserveList/reserveList",
     "pages/facilityList/facilityList",
     "pages/placeOrder/placeOrder",
     "pages/placeOrder/accomplishOrder/accomplishOrder",
     "pages/orderDetail/orderDetail",
-    "pages/evaluate/evaluate"
+    "pages/evaluate/evaluate",
+    "pages/facilityListMap/facilityListMap"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -22,8 +24,7 @@
     "color": "#a9b7b7",
     "selectedColor": "#11cd6e",
     "borderStyle": "white",
-    "list": [
-      {
+    "list": [{
         "selectedIconPath": "/assets/tabbar/xiangchang-h.png",
         "iconPath": "/assets/tabbar/xiangchang.png",
         "pagePath": "pages/home/home",
@@ -37,9 +38,15 @@
       }
     ]
   },
+  "plugins": {
+    "routePlan": {
+      "version": "1.0.19",
+      "provider": "wx50b5593e81dd937a"
+    }
+  },
   "permission": {
     "scope.userLocation": {
-      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+      "desc": "你的位置信息将用于小程序定位"
     }
   },
   "requiredBackgroundModes": [

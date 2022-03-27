@@ -2,6 +2,9 @@
 let that;
 import Dialog from '../../miniprogram_npm/@vant/weapp/dialog/dialog';
 import {
+  kmUnit
+} from '../../utils/util';
+import {
   getDate
 } from '../../utils/util';
 let dayjs = require('dayjs')
@@ -28,11 +31,29 @@ Page({
     })
   },
 
+  // 跳转导航
+  gotoNavigation() {
+    // setTimeout(function () {
+      app.sliderightupshow(this, 'slide_up1', 80, -180, 1);
+    // }.bind(this), 1);
+
+    setTimeout(function () {
+      wx.openLocation({
+        latitude: Number(that.data.order.pointCoordinate[0]), //维度
+        longitude: Number(that.data.order.pointCoordinate[1]), //经度
+        name: that.data.order.pointName, //目的地定位名称
+        scale: 18, //缩放比例
+        address: that.data.order.address //导航详细地址
+      })
+    }, 100)
+  },
+
   async orderDetailFn(orderId) {
     let {
       data
     } = await (app.http.Detail({
-      orderId
+      orderId,
+      coordinate: `${wx.getStorageSync('loaction').latitude},${wx.getStorageSync('loaction').longitude}`
     }));
     // let overallPrice = 0,
     //   price = 0;
@@ -48,6 +69,8 @@ Page({
     wx.hideLoading()
     wx.hideNavigationBarLoading() //在标题栏中隐藏加载
     wx.stopPullDownRefresh()
+    data.distance = kmUnit(Number(data.distance));
+    data.pointCoordinate = data.pointCoordinate.split(",");
     that.setData({
       // overallPrice,
       order: data,
@@ -60,7 +83,7 @@ Page({
     let orderstatus = e.currentTarget.dataset.orderstatus;
     Dialog.confirm({
       title: '取消订单',
-      message: `${orderstatus==='W'?'当前烤肠已经烤制，是否确认取消当前订单?':'您确认取消当前订单吗?'}` ,
+      message: `${orderstatus==='W'?'当前烤肠已经烤制，是否确认取消当前订单?':'您确认取消当前订单吗?'}`,
       theme: 'round-button',
     }).then(() => {
       app.http.Cancel(
@@ -119,7 +142,9 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    setTimeout(function () {
+      app.sliderightupshow(this, 'slide_up1', 0, 0, 1);
+    }.bind(this), 1);
   },
 
   /**

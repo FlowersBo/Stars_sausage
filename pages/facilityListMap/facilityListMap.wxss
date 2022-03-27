@@ -1,0 +1,5 @@
+/* pages/facilityListMap/facilityListMap.wxss */
+.facilityListMap{
+  width: 100%;
+  height: 100%;
+}

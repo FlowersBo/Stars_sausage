@@ -33,7 +33,7 @@
         {
           "name": "订单详情",
           "pathName": "pages/orderDetail/orderDetail",
-          "query": "",
+          "query": "orderId=1498537686456074240",
           "scene": null
         },
         {
@@ -46,6 +46,12 @@
           "name": "购餐",
           "pathName": "pages/reserveList/reserveList",
           "query": "deviceId=1349273791045304320",
+          "scene": null
+        },
+        {
+          "name": "点位地图",
+          "pathName": "pages/facilityListMap/facilityListMap",
+          "query": "",
           "scene": null
         }
       ]

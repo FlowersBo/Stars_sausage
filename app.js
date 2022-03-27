@@ -102,5 +102,19 @@ App({
         content: '当前微信版本过低，无法使用该功能，请升级到最新微信版本后重试。'
       })
     }
-  }
+  },
+   //纸飞机向右下滑动渐入渐出
+   sliderightupshow: function (that, param, px1, px2, opacity) {
+    var animation = wx.createAnimation({
+      duration: 90,
+      timingFunction: 'ease',
+    });
+    animation.translate(px1, px2).opacity(opacity).step()
+    //将param转换为key
+    var json = '{"' + param + '":""}'
+    json = JSON.parse(json);
+    json[param] = animation.export()
+    //设置动画
+    that.setData(json)
+  },
 })
