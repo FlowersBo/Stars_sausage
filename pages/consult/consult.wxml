@@ -1,8 +1,5 @@
 <!--pages/consult/consult.wxml-->
 <view class="navbar" style="{{'height:' + navigationBarHeight}}">
-  <image wx:if="{{isNav}}" style="width: 750rpx;height:auto;position: relative;" mode="widthFix"
-    src="../../assets/img/shopList.png">
-  </image>
   <view class="backWrap">
     <view style="{{'height: ' + statusBarHeight}}"></view>
     <view class='title-container'>

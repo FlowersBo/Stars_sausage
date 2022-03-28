@@ -1,5 +1,120 @@
 /* pages/facilityListMap/facilityListMap.wxss */
-.facilityListMap{
+@import "/utils/iconfont.wxss";
+.navbar {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  background-color: rgba(255,255,255,0)
+}
+
+.backWrap {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.title-container {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.capsule {
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  margin-left: 10rpx;
+}
+.img {
+  width: 45rpx;
+  height: 45rpx;
+  opacity: 1;
+}
+.facilityListMap {
   width: 100%;
   height: 100%;
+}
+
+.equipmentTitle {
+  display: flex;
+  align-items: center;
+  font-size: 36rpx;
+  font-weight: bold;
+  margin-top: 10rpx;
+  box-sizing: border-box;
+  padding-left: 20rpx;
+}
+
+.page-section-spacing {
+  margin-top: 20rpx;
+}
+
+.scroll-view_H {
+  white-space: nowrap;
+}
+
+.equipmentList {
+  width: 720rpx;
+  height: 200rpx;
+  background: #fff;
+  border-radius: 20rpx;
+  margin: 20rpx auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding: 10rpx;
+  font-size: 28rpx;
+  border: 1rpx solid #eee;
+  box-shadow: 2rpx 10rpx 6rpx #eee;
+}
+
+.equipmentList:first-child {
+  margin-top: 0;
+}
+
+.equipment-left {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding: 20rpx 0;
+}
+
+.equipment-right {
+  width: 160rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.navigationBtn {
+  width: 120rpx;
+  height: 50rpx;
+  text-align: center;
+  line-height: 50rpx;
+  border-radius: 10rpx;
+  background: #FFB606;
+  color: #fff;
+  margin-top: 10rpx;
+}
+.color-on{
+  background: #dbd4c4;
+  color: #fff;
+}
+.btn{
+  width: 620rpx;
+  margin: 0 auto;
+  height: 80rpx;
+  text-align: center;
+  line-height: 80rpx;
+  border-radius: 20rpx;
+  background: #FFB606;
+  color: #fff;
+  font-weight: bold;
+  font-size: 36rpx;
+  margin-top: 40rpx;
 }

@@ -7,20 +7,21 @@
       <view class="distance">
         <image style="width:60rpx;height:56rpx;margin-top:-4rpx;" src="../../assets/img/shop.png">
         </image>
-        <view class="storeName">
+        <view class="store">
           <view class="name">{{deviceDetail.name}}</view>
-          <view class="store-distance" bindtap="gotoFacilityList">
+          <view class="store-distance">
             <view style="color:#999;">距离您 <text style="color:#FF7304;">{{deviceDetail.distance}}</text> </view>
-            <icon class="iconfont icon-youjiantou" style="font-size: 22rpx; margin:-26rpx 0 0 6rpx;"
-              wx:if="{{pageRoute}}"></icon>
+            <!-- <icon class="iconfont icon-youjiantou" style="font-size: 22rpx; margin:-26rpx 0 0 6rpx;"
+              wx:if="{{pageRoute}}"></icon> -->
           </view>
         </view>
       </view>
       <view class="distance">
         <view class="storeName">
           <view>{{device.deviceStatus?'当前可购买':'当前不可购买'}}</view>
-          <view style="color:#FF7304;" wx:if="{{deviceDetail.startOpen}}">
-            {{deviceDetail.startOpen}}~{{deviceDetail.endOpen}}</view>
+          <!-- <view style="color:#FF7304;" wx:if="{{deviceDetail.startOpen}}">
+            {{deviceDetail.startOpen}}~{{deviceDetail.endOpen}}</view> -->
+            <view class="btn" bindtap="gotoFacilityList">切换点位</view>
         </view>
       </view>
     </view>
@@ -44,7 +45,7 @@
                 }
               </wxs>
               <van-stepper value="{{item.productCount}}" data-id="{{item.id}}" data-channel="{{item.channel}}"
-                disable-input="true" min="0" max="{{fn.flight(item.store)}}" disable-plus="{{item.isPlus}}" theme="round"
+                disable-input="true" min="0" max="{{fn.flight(item.store)}}" disable-plus="{{item.isPlus||!device.deviceStatus}}" theme="round"
                 integer="true" button-size="26px" custom-class="addSubtract" plus-class="add-subtract subtract"
                 minus-class="add-subtract" input-class="inpNumber" bind:plus="bindPlusFn" bind:minus="bindMinus" />
             </view>

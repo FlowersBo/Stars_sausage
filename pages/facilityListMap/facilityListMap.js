@@ -16,6 +16,55 @@ Page({
     isFlag: false,
     scale: 10.5,
   },
+  upper(e) {
+    console.log(e)
+  },
+
+  lower(e) {},
+
+  scroll(e) {},
+  scrollToTop() {
+    this.setAction({
+      scrollTop: 0
+    })
+  },
+
+  equipmentFn(e) {
+    console.log(e);
+    let equipmentList = that.data.equipmentList;
+    equipmentList.forEach(element => {
+      if (e.currentTarget.dataset.id === element.id) {
+        element.isShow = true;
+        element.iconPath = '/assets/img/mapOn.png';
+        element.callout.bgColor = '#EF6819';
+        this.mapCtx.moveToLocation({
+          longitude: element.longitude,
+          latitude: element.latitude,
+          complete(res) {
+            console.log(res)
+          }
+        })
+        that.setData({
+          deviceId: element.deviceId
+        })
+      } else {
+        element.isShow = false;
+        element.iconPath = '/assets/img/map.png';
+        element.callout.bgColor = '#FFB606';
+      }
+    });
+    that.setData({
+      equipmentList
+    })
+
+    this.mapCtx.addMarkers({
+      markers: equipmentList,
+      clear: true,
+      complete(res) {
+        console.log(res)
+      }
+    })
+  },
 
   async facilityListFn() {
     let {
@@ -33,14 +82,14 @@ Page({
         element.longitude = Number(element.coordinate.split(',')[1]);
         element.latitude = Number(element.coordinate.split(',')[0]);
         element.id = Number(element.id);
-        element.width = 20;
-        element.height = 20;
+        element.width = 30;
+        element.height = 30;
         element.iconPath = '/assets/img/map.png';
-        // element.joinCluster = true;
+        element.joinCluster = true;
         element.callout = {
           content: element.name,
           display: 'ALWAYS',
-          padding: '2px',
+          padding: '6px',
           borderRadius: '20px',
           color: '#fff',
           bgColor: '#FFB606'
@@ -63,19 +112,23 @@ Page({
   },
 
   gotoReserveListFn(e) {
-    console.log(e)
-    let {
-      deviceid
-    } = e.currentTarget.dataset;
+    if (!this.data.deviceId) {
+      wx.showToast({
+        title: '请选择点位后下单',
+        icon: 'none',
+        duration: 2000
+      })
+      return
+    }
     wx.navigateTo({
-      url: '../reserveList/reserveList?deviceId=' + deviceid
+      url: '../reserveList/reserveList?deviceId=' + this.data.deviceId
     })
   },
 
   showModal(e) {
     console.log('当前id', e)
     that.data.equipmentList.forEach(element => {
-      if (e.markerId === element.id) {
+      if (e.currentTarget.dataset.id === element.id) {
         let plugin = requirePlugin('routePlan');
         let key = '6UXBZ-3HTWX-MMW4G-TX4UC-RP2U6-K7B4V'; //使用在腾讯位置服务申请的key
         let referer = '星斗锦绣肠'; //调用插件的app的名称
@@ -105,6 +158,10 @@ Page({
    */
   onLoad: function (options) {
     that = this;
+    that.setData({
+      statusBarHeight: app.globalData.StatusBar + 'px',
+      navigationBarHeight: (app.globalData.StatusBar + 44) + 'px'
+    })
     that.facilityListFn();
     that.setData({
       longitude: wx.getStorageSync('loaction').longitude,
@@ -132,7 +189,11 @@ Page({
       }
     })
   },
-
+  back: function () {
+    wx.navigateBack({
+      delta: 1
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

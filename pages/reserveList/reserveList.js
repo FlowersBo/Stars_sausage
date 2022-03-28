@@ -12,7 +12,8 @@ Page({
   data: {
     isPhone: true,
     num: 0,
-    overallPrice: 0
+    overallPrice: 0,
+    mpOpenId: ''
   },
 
   bindPlusFn(e) {
@@ -78,7 +79,7 @@ Page({
     let {
       data
     } = await (app.http.Near({
-      coordinate: `${wx.getStorageSync('loaction').latitude},${wx.getStorageSync('loaction').longitude}`
+      coordinate: that.data.mpOpenId?'':(wx.getStorageSync('loaction').latitude+','+wx.getStorageSync('loaction').longitude)
     }));
     console.log('设备列表', data);
     if (that.data.deviceId) {
@@ -89,6 +90,12 @@ Page({
             deviceDetail: element,
             distance: element.distance,
           })
+          if (that.data.mpOpenId) {
+            const loaction = {};
+            loaction.latitude = Number(element.coordinate.split(",")[0]);
+            loaction.longitude =Number(element.coordinate.split(",")[1]);
+            wx.setStorageSync('loaction', loaction);
+          }
           that.shopListFn(element.deviceId);
         }
       });
@@ -119,7 +126,7 @@ Page({
       storeB = data.storeB,
       aIceStatus = data.aIceStatus,
       bIceStatus = data.bIceStatus;
-      // Object.values(form)//将form对象转化数组，返回值是form值的数组
+    // Object.values(form)//将form对象转化数组，返回值是form值的数组
     [
       [storeA, aIceStatus],
       [storeB, bIceStatus]
@@ -264,11 +271,11 @@ Page({
   },
 
   gotoFacilityList() {
-    if (that.data.pageRoute) {
-      wx.navigateTo({
-        url: '../facilityList/facilityList',
-      })
-    }
+    // if (that.data.pageRoute) {
+    wx.navigateTo({
+      url: '../facilityList/facilityList',
+    })
+    // }
   },
 
   /**
@@ -276,6 +283,13 @@ Page({
    */
   onLoad: function (options) {
     that = this;
+    let mpOpenId = options.mpOpenId;
+    if (!mpOpenId) {
+      mpOpenId = '';
+    }
+    that.setData({
+      mpOpenId
+    })
     if (options.deviceId) {
       that.setData({
         deviceId: options.deviceId
@@ -336,9 +350,24 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    that.authFn(that.data.mpOpenId);
   },
 
+  authFn(mpOpenId = '') {
+    console.log('传参', mpOpenId)
+    wx.login({
+      success: res => {
+        app.http.Auth({
+            code: res.code,
+            mpOpenId
+          })
+          .then(res => {
+            wx.setStorageSync('customerId', res.data.id);
+            wx.setStorageSync('phoneNumber', res.data.phone);
+          })
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面隐藏
    */

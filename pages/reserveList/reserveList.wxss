@@ -33,16 +33,22 @@
   align-items: center;
 }
 
-.store-distance{
+.store-distance {
   display: flex;
   align-items: center;
 }
 
-.storeName {
+.store {
   margin: 0 10rpx;
 }
 
-.storeName view{
+.storeName {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.store view,.storeName view {
   margin: 6rpx 0;
 }
 
@@ -181,6 +187,16 @@
 }
 
 
-.deviceStatus{
+.deviceStatus {
   background: #ccc;
+}
+
+.btn {
+  width: 120rpx;
+  height: 60rpx;
+  text-align: center;
+  line-height: 60rpx;
+  border-radius: 20rpx;
+  background: #FFB606;
+  color: #fff;
 }
