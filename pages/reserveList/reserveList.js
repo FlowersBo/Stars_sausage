@@ -1,4 +1,5 @@
 // pages/reserveList/reserveList.js
+import Dialog from '../../miniprogram_npm/@vant/weapp/dialog/dialog';
 let that;
 import {
   kmUnit
@@ -79,7 +80,7 @@ Page({
     let {
       data
     } = await (app.http.Near({
-      coordinate: that.data.mpOpenId?'':(wx.getStorageSync('loaction').latitude+','+wx.getStorageSync('loaction').longitude)
+      coordinate: that.data.mpOpenId ? '' : (wx.getStorageSync('loaction').latitude + ',' + wx.getStorageSync('loaction').longitude)
     }));
     console.log('设备列表', data);
     if (that.data.deviceId) {
@@ -93,7 +94,7 @@ Page({
           if (that.data.mpOpenId) {
             const loaction = {};
             loaction.latitude = Number(element.coordinate.split(",")[0]);
-            loaction.longitude =Number(element.coordinate.split(",")[1]);
+            loaction.longitude = Number(element.coordinate.split(",")[1]);
             wx.setStorageSync('loaction', loaction);
           }
           that.shopListFn(element.deviceId);
@@ -151,6 +152,20 @@ Page({
       }
     });
 
+    if (!data.deviceStatus) {
+      Dialog.confirm({
+          title: '提示',
+          message: '当前点位不可预订',
+          theme: 'round-button',
+          showCancelButton: false,
+          confirmButtonText: '返回'
+        })
+        .then(() => {
+          wx.navigateBack({
+            delta: 1
+          })
+        })
+    }
 
     that.setData({
       device: data,

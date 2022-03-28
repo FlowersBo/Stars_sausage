@@ -34,17 +34,27 @@ Page({
   // 跳转导航
   gotoNavigation() {
     // setTimeout(function () {
-      app.sliderightupshow(this, 'slide_up1', 80, -180, 1);
+    app.sliderightupshow(this, 'slide_up1', 80, -180, 1);
     // }.bind(this), 1);
 
     setTimeout(function () {
-      wx.openLocation({
-        latitude: Number(that.data.order.pointCoordinate[0]), //维度
-        longitude: Number(that.data.order.pointCoordinate[1]), //经度
-        name: that.data.order.pointName, //目的地定位名称
-        scale: 18, //缩放比例
-        address: that.data.order.address //导航详细地址
-      })
+      // wx.openLocation({
+      //   latitude: Number(that.data.order.pointCoordinate[0]), //维度
+      //   longitude: Number(that.data.order.pointCoordinate[1]), //经度
+      //   name: that.data.order.pointName, //目的地定位名称
+      //   scale: 18, //缩放比例
+      //   address: that.data.order.address //导航详细地址
+      // })
+      let key = '6UXBZ-3HTWX-MMW4G-TX4UC-RP2U6-K7B4V'; //使用在腾讯位置服务申请的key
+      let referer = '星斗锦绣肠'; //调用插件的app的名称
+      let endPoint = JSON.stringify({ //终点
+        'name': that.data.pointName,
+        'latitude': Number(that.data.order.pointCoordinate[0]),
+        'longitude': Number(that.data.order.pointCoordinate[1])
+      });
+      wx.navigateTo({
+        url: 'plugin://routePlan/index?key=' + key + '&referer=' + referer + '&endPoint=' + endPoint
+      });
     }, 100)
   },
 
