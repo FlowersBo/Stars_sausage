@@ -101,6 +101,8 @@
   width: 150rpx;
   height: 150rpx;
   text-align: center;
+  color: #FFB606;
+  font-weight: bold;
 }
 
 .facilityName {

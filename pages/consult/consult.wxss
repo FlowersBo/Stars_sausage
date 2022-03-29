@@ -1,5 +1,8 @@
 /* pages/consult/consult.wxss */
 @import "/utils/iconfont.wxss";
+page{
+  height: 812px;
+}
 .navbar {
   width: 100%;
   position: fixed;

@@ -84,7 +84,7 @@ Page({
       that.getSelfLocation();
       return
     }
-    if(e.currentTarget.dataset.index===0){
+    if (e.currentTarget.dataset.index === 0) {
       wx.navigateToMiniProgram({
         appId: 'wx8ab6fcdcbc881c7d',
         // path: 'page/index/index?id=123',
@@ -94,10 +94,10 @@ Page({
         // envVersion: 'develop',
         success(res) {
           // 打开成功
-          console.log('打开成功',res)
+          console.log('打开成功', res)
         }
       })
-    }else{
+    } else {
       wx.navigateTo({
         url: e.currentTarget.dataset.bannerurl
       })

@@ -154,7 +154,7 @@ Page({
   onHide: function () {
     setTimeout(function () {
       app.sliderightupshow(this, 'slide_up1', 0, 0, 1);
-    }.bind(this), 1);
+    }.bind(this), 101);
   },
 
   /**
