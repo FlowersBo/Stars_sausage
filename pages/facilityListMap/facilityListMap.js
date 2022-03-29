@@ -1,6 +1,7 @@
 // pages/facilityListMap/facilityListMap.js
 import {
-  kmUnit
+  kmUnit,
+  unfreezeNavigateTo
 } from '../../utils/util';
 const app = getApp()
 let that;
@@ -15,6 +16,7 @@ Page({
     pointName: '',
     isFlag: false,
     scale: 10.5,
+    isShow: true
   },
   upper(e) {
     console.log(e)
@@ -66,60 +68,79 @@ Page({
     })
   },
 
-  async facilityListFn() {
-    let {
-      data
-    } = await (app.http.Near({
-      coordinate: `${wx.getStorageSync('loaction').latitude},${wx.getStorageSync('loaction').longitude}`,
-      point: that.data.point,
-      pointName: that.data.pointName
-    }));
-    console.log('设备列表', data);
-    if (data) {
-      data.forEach(element => {
-        // element.distance = element.distance.toFixed();
-        element.distance = kmUnit(Number(element.distance));
-        element.longitude = Number(element.coordinate.split(',')[1]);
-        element.latitude = Number(element.coordinate.split(',')[0]);
-        element.id = Number(element.id);
-        element.width = 30;
-        element.height = 30;
-        element.iconPath = '/assets/img/map.png';
-        element.joinCluster = true;
-        element.callout = {
-          content: element.name,
-          display: 'ALWAYS',
-          padding: '6px',
-          borderRadius: '20px',
-          color: '#fff',
-          bgColor: '#FFB606'
-        }
-      });
-      that.setData({
-        isFlag: false,
-        equipmentList: data
-      })
-      that.bindEvent();
-    } else {
+  tapAddList() {
+    let isAgency = false;
+    that.facilityListFn(isAgency);
+    that.setData({
+      isShow: !that.data.isShow
+    })
+  },
+
+  async facilityListFn(isAgency = true) {
+    try {
+     let {data} = await (app.http.Near({
+        coordinate: `${wx.getStorageSync('loaction').latitude},${wx.getStorageSync('loaction').longitude}`,
+        // point: that.data.point,
+        // pointName: that.data.pointName,
+        isAgency
+      }))
+      if (data.length > 0) {
+        data.forEach(element => {
+          element.distance = kmUnit(Number(element.distance));
+          element.longitude = Number(element.coordinate.split(',')[1]);
+          element.latitude = Number(element.coordinate.split(',')[0]);
+          element.id = Number(element.id);
+          element.width = 30;
+          element.height = 30;
+          element.iconPath = '/assets/img/map.png';
+          element.joinCluster = true;
+          element.callout = {
+            content: element.name,
+            display: 'ALWAYS',
+            padding: '6px',
+            borderRadius: '20px',
+            color: '#fff',
+            bgColor: '#FFB606'
+          }
+        });
+        that.setData({
+          isFlag: false,
+          equipmentList: data
+        })
+        that.bindEvent();
+      } else {
+        that.setData({
+          isFlag: true,
+          equipmentList: []
+        })
+      }
+    } catch (err) {
       that.setData({
         isFlag: true,
         equipmentList: []
       })
     }
-    wx.hideLoading()
-    wx.hideNavigationBarLoading() //在标题栏中隐藏加载
-    wx.stopPullDownRefresh()
+
+    // .then(res => {
+
+    // })
+    // .catch(err => {
+
+    // })
   },
 
   gotoReserveListFn(e) {
     if (!this.data.deviceId) {
       wx.showToast({
-        title: '请选择点位后下单',
+        title: that.data.isFlag ? '附近暂无点位' : '请选择点位后下单',
         icon: 'none',
         duration: 2000
       })
       return
     }
+    unfreezeNavigateTo({
+      url: 'pages/reserveList/reserveList'
+    });
     wx.navigateTo({
       url: '../reserveList/reserveList?deviceId=' + this.data.deviceId
     })
@@ -226,12 +247,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    that.setData({
-      pointName: '',
-      point: '',
-      region: ''
-    })
-    that.facilityListFn();
+
   },
 
   /**

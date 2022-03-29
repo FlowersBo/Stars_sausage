@@ -32,9 +32,45 @@ function kmUnit(m) {
   return v;
 }
 
+const MAX_VALUE = 10;
+/**
+ * 解除小程序页面10层限制
+ * @param obj
+ */
+export function unfreezeNavigateTo(obj) {
+  let pages = getCurrentPages(),  // 页面栈
+      len = pages.length,
+      dlt = '',
+      url = '/' + obj.url.replace(/^\//, ''); // 如果有，将第一个‘/’去掉，然后再补上
+      console.log(pages)
+  // 查找目标页在页面栈的位置
+  for (let i = 0; i < len; i++) {
+    if (pages[i].route == url) {
+      dlt = i + 1; //目标页在栈中的位置
+      break;
+    }
+  }
+  // 保存数据
+  if (!dlt) { //页面不在栈中
+    if (len < MAX_VALUE) {
+      wx.navigateTo({
+        url
+      });
+    } else {
+      wx.redirectTo({
+        url
+      });
+    }
+  } else {
+    wx.navigateBack({
+      delta: len - dlt
+    });
+  }
+}
 
 module.exports = {
   formatTime,
   getDate,
-  kmUnit
+  kmUnit,
+  unfreezeNavigateTo
 }

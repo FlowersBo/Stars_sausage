@@ -2,7 +2,8 @@
 import Dialog from '../../miniprogram_npm/@vant/weapp/dialog/dialog';
 let that;
 import {
-  kmUnit
+  kmUnit,
+  unfreezeNavigateTo
 } from '../../utils/util';
 const app = getApp();
 Page({
@@ -287,8 +288,11 @@ Page({
 
   gotoFacilityList() {
     // if (that.data.pageRoute) {
+    unfreezeNavigateTo({
+      url: 'pages/facilityListMap/facilityListMap'
+    });
     wx.navigateTo({
-      url: '../facilityList/facilityList',
+      url: '/pages/facilityListMap/facilityListMap',
     })
     // }
   },
@@ -351,7 +355,6 @@ Page({
     this.setData({
       ani: animation.export()
     })
-
   },
 
   /**

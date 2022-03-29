@@ -1,6 +1,7 @@
 // pages/facilityList/facilityList.js
 import {
-  kmUnit
+  kmUnit,
+  unfreezeNavigateTo
 } from '../../utils/util';
 const app = getApp()
 let that;
@@ -13,7 +14,7 @@ Page({
   data: {
     point: '',
     pointName: '',
-    isFlag: false
+    isFlag: false,
   },
 
   async facilityListFn() {
@@ -50,6 +51,9 @@ Page({
     let {
       deviceid
     } = e.currentTarget.dataset;
+    unfreezeNavigateTo({
+      url: 'pages/reserveList/reserveList'
+    });
     wx.navigateTo({
       url: '../reserveList/reserveList?deviceId=' + deviceid
     })

@@ -52,7 +52,7 @@ border-radius: 50%; */
 
 .back {
   width: 45px;
-  height: 60%;
+  height: 100%;
   position: relative;
 }
 
@@ -62,7 +62,7 @@ border-radius: 50%; */
 
 .capsule .img {
   width: 48%;
-  height: 100%;
+  height: 60%;
   position: absolute;
   left: 50%;
   top: 50%;

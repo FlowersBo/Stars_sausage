@@ -27,6 +27,11 @@
   align-items: center;
   margin-left: 10rpx;
 }
+.back{
+  width: 80rpx;
+  height: 100%;
+  line-height: 100%;
+}
 .img {
   width: 45rpx;
   height: 45rpx;
@@ -117,4 +122,15 @@
   font-weight: bold;
   font-size: 36rpx;
   margin-top: 40rpx;
+}
+.noList{
+  background: #ccc;
+}
+.addBtn{
+  width: 100%;
+  text-align: center;
+  height: 60rpx;
+  font-size: 30rpx;
+  color: #ffb606;
+  margin-top: 30rpx;
 }
