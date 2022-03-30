@@ -41,6 +41,22 @@ App({
         }
       }
     })
+    !function(){
+      var PageTmp = Page;
+      Page = function (pageConfig) {
+        // 设置全局默认分享
+        pageConfig = Object.assign({
+          onShareAppMessage:function () {
+            return {
+              title: '星斗烤肠研究院',
+              // imageUrl: '/public/img/cat.jpg',
+              path: '/pages/home/home'
+            };
+          }
+        },pageConfig);
+        PageTmp(pageConfig);
+      };
+    }();
   },
   // 版本更新
   autoUpdate: function () {

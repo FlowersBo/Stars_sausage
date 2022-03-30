@@ -23,7 +23,19 @@
     <scroll-view scroll-y="true" style="width: 100%; height: {{viewHeight/3}}px;" bindscrolltoupper="upper"
       bindscrolltolower="lower" bindscroll="scroll" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
       <view wx:if="{{!isFlag}}" class="equipmentList {{item.isShow?'color-on':''}}" wx:for="{{equipmentList}}"
-        wx:key="index" data-id="{{item.id}}" bindtap="equipmentFn">
+        wx:key="index" wx:for-item="item" data-id="{{item.id}}" data-index="{{index}}" bindtap="equipmentFn">
+        <view class="ribbon {{items.status?'':'no-ribbon'}}" wx:for="{{equipmentStatusList}}" wx:for-item="items"
+         wx:if="{{items.id===item.id}}">
+          <!-- <wxs module="fn">
+            module.exports = {
+              flight: function (index) {
+               console.log(index)
+              }
+            }
+          </wxs>
+          <view>{{fn.flight(item.index)}}</view> -->
+          {{items.status?'可预订':'不可预订'}}
+        </view>
         <view class="equipment-left">
           <view style="font-size: 32rpx;font-weight: bold;">{{item.name}}</view>
           <view>地址：{{item.address}}</view>

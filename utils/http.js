@@ -57,7 +57,9 @@ function Recreate(orderId, data = {}) {
 function Suggest(data = {}) {
   return Request(baseUrl + api.suggest, data, 'post')
 }
-
+function Status(data = {}) {
+  return Request(baseUrl + api.status, data, 'get')
+}
 module.exports = {
   baseUrl,
   Auth,
@@ -72,5 +74,6 @@ module.exports = {
   Cancel,
   OrderList,
   Recreate,
-  Suggest
+  Suggest,
+  Status
 }

@@ -152,20 +152,26 @@ Page({
         }
       }
     });
-
     if (!data.deviceStatus) {
-      Dialog.confirm({
-          title: '提示',
-          message: '当前点位不可预订',
-          theme: 'round-button',
-          showCancelButton: false,
-          confirmButtonText: '返回'
+      setTimeout(function(){
+        wx.showToast({
+          title: '很抱歉，当前设备暂不可预订，您可切换点位购买',
+          icon: 'none',
+          duration: 5000
         })
-        .then(() => {
-          wx.navigateBack({
-            delta: 1
-          })
-        })
+      },500)
+      // Dialog.confirm({
+      //     title: '提示',
+      //     message: '当前点位不可预订',
+      //     theme: 'round-button',
+      //     showCancelButton: false,
+      //     confirmButtonText: '返回'
+      //   })
+      //   .then(() => {
+      //     wx.navigateBack({
+      //       delta: 1
+      //     })
+      //   })
     }
 
     that.setData({
@@ -291,9 +297,9 @@ Page({
     unfreezeNavigateTo({
       url: 'pages/facilityListMap/facilityListMap'
     });
-    wx.navigateTo({
-      url: '/pages/facilityListMap/facilityListMap',
-    })
+    // wx.navigateTo({
+    //   url: '/pages/facilityListMap/facilityListMap',
+    // })
     // }
   },
 
@@ -301,6 +307,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options)
     that = this;
     let mpOpenId = options.mpOpenId;
     if (!mpOpenId) {

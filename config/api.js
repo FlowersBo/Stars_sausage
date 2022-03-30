@@ -13,4 +13,5 @@ module.exports = {
 	upload: 'reserve/common/upload',
 	suggest: 'reserve/common/suggest',
 	recreate: 'reserve/order/recreate',
+	status: 'reserve/order/dev/status', //设备状态
 }

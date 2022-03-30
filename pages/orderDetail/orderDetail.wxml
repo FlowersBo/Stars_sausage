@@ -8,7 +8,7 @@
         <view class="title">
           <view class="title-detail">
             <image style="width:30rpx;height:30rpx;margin:4rpx 10rpx 0 0;" src="../../assets/img/qr.png"></image>
-            <view style="font-size: 34rpx;font-weight: bold;">取件码：</view>
+            <view style="font-size: 34rpx;font-weight: bold;">取餐码：</view>
             <view style="font-size: 50rpx;font-weight: bold; color: #FF6F03;">{{order.order.takeCode}}</view>
           </view>
           <view style="font-size: 13px;color: #999999;">请凭取餐码到设备上取餐</view>
@@ -75,8 +75,8 @@
           <view style="color:#07C160;">{{order.startOpen}}~{{order.endOpen}}</view>
         </view> -->
         <view class="businessHours" wx:if="{{order.order.orderstatus==='W'}}">
-          <view>取餐时间：</view>
-          <view style="color:#07C160;">{{order.takeMin}}分钟后可取</view>
+          <view>预计取餐时间：</view>
+          <view style="color:#07C160;">{{order.takeMin}}</view>
         </view>
       </view>
       <view class="sausageWrap">

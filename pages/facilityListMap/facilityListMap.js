@@ -16,7 +16,8 @@ Page({
     pointName: '',
     isFlag: false,
     scale: 10.5,
-    isShow: true
+    isShow: true,
+    equipmentStatusList: []
   },
   upper(e) {
     console.log(e)
@@ -46,6 +47,7 @@ Page({
             console.log(res)
           }
         })
+        console.log(element);
         that.setData({
           deviceId: element.deviceId
         })
@@ -72,13 +74,16 @@ Page({
     let isAgency = false;
     that.facilityListFn(isAgency);
     that.setData({
-      isShow: !that.data.isShow
+      isShow: !that.data.isShow,
+      equipmentStatusList: []
     })
   },
 
   async facilityListFn(isAgency = true) {
     try {
-     let {data} = await (app.http.Near({
+      let {
+        data
+      } = await (app.http.Near({
         coordinate: `${wx.getStorageSync('loaction').latitude},${wx.getStorageSync('loaction').longitude}`,
         // point: that.data.point,
         // pointName: that.data.pointName,
@@ -108,6 +113,7 @@ Page({
           equipmentList: data
         })
         that.bindEvent();
+        that.deviceStatusFn(data);
       } else {
         that.setData({
           isFlag: true,
@@ -129,6 +135,30 @@ Page({
     // })
   },
 
+
+  deviceStatusFn(equipmentList) {
+    let equipmentStatusList = that.data.equipmentStatusList;
+    equipmentList.forEach(element => {
+      app.http.Status({
+          deviceId: element.deviceId
+        })
+        .then(res => {
+          let data = {};
+          data.id = element.id;
+          data.status = res.data;
+          console.log(data)
+          equipmentStatusList = equipmentStatusList.concat(data);
+          console.log(equipmentStatusList);
+          that.setData({
+            equipmentStatusList,
+          })
+        })
+        .catch(err => {
+
+        })
+    })
+  },
+
   gotoReserveListFn(e) {
     if (!this.data.deviceId) {
       wx.showToast({
@@ -139,11 +169,12 @@ Page({
       return
     }
     unfreezeNavigateTo({
-      url: 'pages/reserveList/reserveList'
+      url: 'pages/reserveList/reserveList?deviceId=' + this.data.deviceId
     });
-    wx.navigateTo({
-      url: '../reserveList/reserveList?deviceId=' + this.data.deviceId
-    })
+    console.log(this.data.deviceId)
+    // wx.navigateTo({
+    //   url: '../reserveList/reserveList?deviceId=' + this.data.deviceId
+    // })
   },
 
   showModal(e) {

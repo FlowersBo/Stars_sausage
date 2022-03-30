@@ -104,7 +104,7 @@
 }
 
 .van-stepper__minus--disabled {
-  background: #F2F2F2 !important;
+  background: #ccc !important;
   color: #333 !important;
 }
 

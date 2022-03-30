@@ -26,8 +26,8 @@
         <view style="font-weight: bold;">最近上新</view>
       </view>
       <view wx:for="{{activityList}}" wx:key="index"
-          data-bannerurl="{{item.link}}" data-index="{{index}}" bindtap="gotoReserveList" style="margin-bottom: 20rpx;">
-        <image mode="scaleToFill" class="activity-img" src="{{item.url}}" class="slide-image" />
+          data-bannerurl="{{item.link}}" data-index="{{index}}" bindtap="gotoReserveList" style="margin-bottom: 20rpx;" class="activity-img">
+        <image mode="scaleToFill" src="{{item.url}}" class="slide-image" />
       </view>
     </view>
   </view>
