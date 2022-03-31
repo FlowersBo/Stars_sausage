@@ -81,37 +81,50 @@ Page({
     let {
       data
     } = await (app.http.Near({
-      coordinate: that.data.mpOpenId ? '' : (wx.getStorageSync('loaction').latitude + ',' + wx.getStorageSync('loaction').longitude)
+      coordinate: that.data.mpOpenId ? '' : (wx.getStorageSync('loaction').latitude + ',' + wx.getStorageSync('loaction').longitude),
+      isAgency: true,
+      deviceId: that.data.deviceId ? that.data.deviceId : ''
     }));
     console.log('设备列表', data);
-    if (that.data.deviceId) {
-      data.forEach(element => {
-        element.distance = kmUnit(Number(element.distance));
-        if (element.deviceId === that.data.deviceId) {
-          that.setData({
-            deviceDetail: element,
-            distance: element.distance,
-          })
-          if (that.data.mpOpenId) {
-            const loaction = {};
-            loaction.latitude = Number(element.coordinate.split(",")[0]);
-            loaction.longitude = Number(element.coordinate.split(",")[1]);
-            wx.setStorageSync('loaction', loaction);
-          }
-          that.shopListFn(element.deviceId);
-        }
-      });
-    } else {
-      if (data[0].distance) {
-        data[0].distance = kmUnit(Number(data[0].distance));
-      }
-      that.setData({
-        deviceDetail: data[0],
-        deviceId: data[0].deviceId,
-        distance: data[0].distance,
-      })
-      that.shopListFn(data[0].deviceId);
+    // if (that.data.deviceId) {
+    //   data[0].distance = kmUnit(Number(data[0].distance));
+    //   that.setData({
+    //     deviceDetail: data[0]
+    //   })
+    //   // data.forEach(element => {
+    //   //   element.distance = kmUnit(Number(element.distance));
+    //   //   if (element.deviceId === that.data.deviceId) {
+    //   //     that.setData({
+    //   //       deviceDetail: element,
+    //   //       distance: element.distance,
+    //   //     })
+    //   //     if (that.data.mpOpenId) {
+    //   //       const loaction = {};
+    //   //       loaction.latitude = Number(element.coordinate.split(",")[0]);
+    //   //       loaction.longitude = Number(element.coordinate.split(",")[1]);
+    //   //       wx.setStorageSync('loaction', loaction);
+    //   //     }
+    //   //     that.shopListFn(element.deviceId);
+    //   //   }
+    //   // });
+    // } else {
+    //   if (data[0].distance) {
+    //     data[0].distance = kmUnit(Number(data[0].distance));
+    //   }
+    //   that.setData({
+    //     deviceDetail: data[0],
+    //     deviceId: data[0].deviceId
+    //   })
+    // }
+    if (data[0].distance) {
+      data[0].distance = kmUnit(Number(data[0].distance));
     }
+    that.setData({
+      deviceDetail: data[0],
+      distance: data[0].distance,
+      deviceId: data[0].deviceId
+    })
+    that.shopListFn(data[0].deviceId);
   },
 
   async shopListFn(deviceId) {
@@ -153,13 +166,13 @@ Page({
       }
     });
     if (!data.deviceStatus) {
-      setTimeout(function(){
+      setTimeout(function () {
         wx.showToast({
           title: '很抱歉，当前设备暂不可预订，您可切换点位购买',
           icon: 'none',
           duration: 5000
         })
-      },500)
+      }, 500)
       // Dialog.confirm({
       //     title: '提示',
       //     message: '当前点位不可预订',
