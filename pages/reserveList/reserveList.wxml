@@ -1,5 +1,5 @@
 <!--pages/reserveList/reserveList.wxml-->
-<navigationBar back text="在线预订" />
+<navigationBar home back text="在线预订" />
 <view class="container">
   <view class="reserveList">
     <image class="img" src="/assets/img/IMG.png"></image>

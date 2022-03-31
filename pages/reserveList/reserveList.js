@@ -351,17 +351,17 @@ Page({
       }
     })
 
-    let pages = getCurrentPages();
-    let prevPage = pages[pages.length - 2];
-    if (prevPage.route == 'pages/facilityList/facilityList') {
-      that.setData({
-        pageRoute: ''
-      })
-    } else {
-      that.setData({
-        pageRoute: prevPage.route
-      })
-    }
+    // let pages = getCurrentPages();
+    // let prevPage = pages[pages.length - 2];
+    // if (prevPage.route == 'pages/facilityList/facilityList') {
+    //   that.setData({
+    //     pageRoute: ''
+    //   })
+    // } else {
+    //   that.setData({
+    //     pageRoute: prevPage.route
+    //   })
+    // }
   },
 
   cartWwing: function () {

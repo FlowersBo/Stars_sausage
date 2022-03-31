@@ -45,7 +45,7 @@
         {
           "name": "购餐",
           "pathName": "pages/reserveList/reserveList",
-          "query": "deviceId=1349273791045304320",
+          "query": "deviceId=1346017173205680128&mpOpenId=11111111111111111111111",
           "scene": null
         },
         {
