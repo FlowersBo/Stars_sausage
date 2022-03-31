@@ -116,9 +116,7 @@ Page({
     //     deviceId: data[0].deviceId
     //   })
     // }
-    if (data[0].distance) {
-      data[0].distance = kmUnit(Number(data[0].distance));
-    }
+    data[0].distance = kmUnit(Number(data[0].distance));
     that.setData({
       deviceDetail: data[0],
       distance: data[0].distance,
