@@ -41,6 +41,7 @@ App({
         }
       }
     })
+
     !function(){
       var PageTmp = Page;
       Page = function (pageConfig) {
@@ -49,8 +50,8 @@ App({
           onShareAppMessage:function () {
             return {
               title: '星斗烤肠研究院',
-              // imageUrl: '/public/img/cat.jpg',
               path: '/pages/home/home'
+              // imageUrl: '/public/img/cat.jpg',
             };
           }
         },pageConfig);

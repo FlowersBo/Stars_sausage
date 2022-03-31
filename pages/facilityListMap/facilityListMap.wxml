@@ -25,7 +25,7 @@
       <view wx:if="{{!isFlag}}" class="equipmentList {{item.isShow?'color-on':''}}" wx:for="{{equipmentList}}"
         wx:key="index" wx:for-item="item" data-id="{{item.id}}" data-index="{{index}}" bindtap="equipmentFn">
         <view class="ribbon {{items.status?'':'no-ribbon'}}" wx:for="{{equipmentStatusList}}" wx:for-item="items"
-         wx:if="{{items.id===item.id}}">
+         wx:if="{{items.id===item.id}}" wx:key="id">
           <!-- <wxs module="fn">
             module.exports = {
               flight: function (index) {

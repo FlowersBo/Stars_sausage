@@ -7,10 +7,6 @@ const app = getApp()
 let that;
 
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
     point: '',
     pointName: '',
@@ -182,20 +178,18 @@ Page({
     that.data.equipmentList.forEach(element => {
       if (e.currentTarget.dataset.id === element.id) {
         let plugin = requirePlugin('routePlan');
-        let key = '6UXBZ-3HTWX-MMW4G-TX4UC-RP2U6-K7B4V'; //使用在腾讯位置服务申请的key
-        let referer = '星斗锦绣肠'; //调用插件的app的名称
-        let endPoint = JSON.stringify({ //终点
+        let key = '6UXBZ-3HTWX-MMW4G-TX4UC-RP2U6-K7B4V';
+        let referer = '星斗锦绣肠';
+        let mode = 'walking';
+        let themeColor = '#FFB606';
+        let endPoint = JSON.stringify({
           'name': element.name,
           'latitude': element.latitude,
           'longitude': element.longitude
         });
         wx.navigateTo({
-          url: 'plugin://routePlan/index?key=' + key + '&referer=' + referer + '&endPoint=' + endPoint
+          url: 'plugin://routePlan/index?key=' + key + '&referer=' + referer + '&endPoint=' + endPoint + '&mode=' + mode+'&themeColor='+themeColor
         });
-
-
-
-
         // this.mapCtx.openMapApp({
         //   longitude: element.longitude,
         //   latitude: element.latitude,
@@ -291,7 +285,7 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  // onShareAppMessage: function () {
 
-  }
+  // }
 })

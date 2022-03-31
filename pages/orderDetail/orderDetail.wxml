@@ -31,18 +31,18 @@
             <view>待取餐</view>
           </view>
 
-          <view wx:if="{{order.order.orderstatus==='SE'}}"
-            class="state {{order.order.orderstatus==='SE'?'statusColor':''}}">
+          <view wx:if="{{order.order.orderstatus==='SE'||order.order.orderstatus==='D'}}"
+            class="state statusColor">
             <icon class="iconfont icon-xianshi_quxiao"></icon>
             <view>已取消</view>
           </view>
           <view wx:elif="{{order.order.orderstatus==='E'}}"
-            class="state {{order.order.orderstatus==='E'?'statusColor':''}}">
+            class="state statusColor">
             <icon class="iconfont icon-yichang"></icon>
             <view>异常</view>
           </view>
           <view wx:else
-            class="state {{(order.order.orderstatus==='S'||order.order.orderstatus==='D')?'statusColor':''}}">
+            class="state {{order.order.orderstatus==='S'?'statusColor':''}}">
             <icon class="iconfont icon-yiwancheng"></icon>
             <view>已完成</view>
           </view>
@@ -114,7 +114,7 @@
         </view>
         <view class="message">下单时间<view class="message-text">{{order.order.orderdate}}</view>
         </view>
-        <view class="message" wx:if="{{order.order.roastDate}}">取餐时间<view class="message-text">{{order.order.roastDate}}
+        <view class="message" wx:if="{{order.order.shipDate}}">取餐时间<view class="message-text">{{order.order.shipDate}}
           </view>
         </view>
         <view class="message">取餐码<view class="message-text">{{order.order.takeCode}}</view>
@@ -124,7 +124,7 @@
         <view class="btn" wx:if="{{order.order.orderstatus==='Q'||order.order.orderstatus==='W'}}"
           data-orderstatus="{{order.order.orderstatus}}" bindtap="cancelOrderFn">取消订单</view>
         <view class="btn btn1"
-          wx:if="{{(order.order.orderstatus==='S'||order.order.orderstatus==='SE'||order.order.orderstatus==='E') && !order.isSuggest}}"
+          wx:if="{{(order.order.orderstatus==='S'||order.order.orderstatus==='SE'||order.order.orderstatus==='E'||order.order.orderstatus==='D') && !order.isSuggest}}"
           catchtap="gotoEvaluateFn">投诉建议
         </view>
         <view class="btn" catchtap="makePhoneFn">客服电话</view>
