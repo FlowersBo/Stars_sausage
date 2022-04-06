@@ -3,7 +3,7 @@ import {
   Request
 } from './requestUrl';
 let baseUrl = 'https://res.morninggo.cn/';
-// let baseUrl = 'https://api.morninggo.cn/';
+// let baseUrl = 'http://restest.morninggo.cn/';
 
 function Auth(data = {}) {
   return Request(baseUrl + api.auth, data, 'get')
