@@ -9,7 +9,7 @@
 
 .reserveList .img {
   width: 100%;
-  height: 340rpx;
+  height: 456rpx;
   border-radius: 20rpx;
   margin-top: 20rpx;
 }

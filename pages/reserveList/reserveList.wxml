@@ -2,7 +2,7 @@
 <navigationBar home back text="在线预订" />
 <view class="container">
   <view class="reserveList">
-    <image class="img" src="/assets/img/IMG.png"></image>
+    <image class="img" src="https://mgproduct.oss-cn-beijing.aliyuncs.com/view/point1.png"></image>
     <view class="storeDistance">
       <view class="distance">
         <image style="width:60rpx;height:56rpx;margin-top:-4rpx;" src="../../assets/img/shop.png">
