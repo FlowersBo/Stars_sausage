@@ -6,7 +6,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-top: 80rpx;
+  padding-top: 60rpx;
 }
 
 .iconNone {
@@ -15,10 +15,11 @@
 
 .mask_icon {
   font-size: 400rpx;
-  color: #FFB606;
+  color: #FF9405;
 }
 
 .icon_text {
-  color: #FFB606;
-  margin-top: 30rpx;
+  color: #FF9405;
+  margin-top: 10rpx;
+  font-size: 28rpx;
 }

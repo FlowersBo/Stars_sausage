@@ -58,7 +58,7 @@
   </block>
   <!-- </scroll-view> -->
   <noData isFlag="{{isFlag}}">
-    <view slot="slot">暂无订单，亲亲稍后再来吧~~</view>
+    <view slot="slot">当前暂无订单，亲亲下单后再来吧~~</view>
   </noData>
 </scroll-y>
 <!-- </view> -->

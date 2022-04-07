@@ -141,6 +141,34 @@ Page({
   },
 
   onLoad(options) {
+    // wx.getSetting({
+    //   success(res) {
+    //     if (!res.authSetting['scope.addPhoneCalendar']) {
+    //       wx.authorize({
+    //         scope: 'scope.addPhoneCalendar',
+    //         success() {
+    //           wx.addPhoneCalendar({
+    //             title: '日程',
+    //             startTime: (new Date()).getTime() / 1000,
+    //             description: "日程内容",
+    //             alarm: 'true',
+    //             alarmOffset: 3000,
+    //             success: () => {
+    //               console.log('addCalendar is ok')
+    //             },
+    //             fail: (res) => {
+    //               console.log(res)
+    //             },
+    //             complete: (res) => {
+    //               console.log(res)
+    //             }
+    //           })
+    //         }
+    //       })
+    //     }
+    //   }
+    // })
+   
     that = this;
     console.log('跳转拿到参数', options);
     let mpOpenId = options.mpOpenId;

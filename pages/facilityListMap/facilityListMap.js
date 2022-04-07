@@ -11,9 +11,9 @@ Page({
     point: '',
     pointName: '',
     isFlag: false,
-    scale: 10.5,
     isShow: true,
-    equipmentStatusList: []
+    equipmentStatusList: [],
+    scale: 16
   },
   upper(e) {
     console.log(e)
@@ -92,7 +92,7 @@ Page({
           element.latitude = Number(element.coordinate.split(',')[0]);
           element.id = Number(element.id);
           element.width = 30;
-          element.height = 30;
+          element.height = 32;
           element.iconPath = '/assets/img/map.png';
           element.joinCluster = true;
           element.callout = {
@@ -106,14 +106,16 @@ Page({
         });
         that.setData({
           isFlag: false,
-          equipmentList: data
+          equipmentList: data,
+          scale: 16
         })
         that.bindEvent();
         that.deviceStatusFn(data);
       } else {
         that.setData({
           isFlag: true,
-          equipmentList: []
+          equipmentList: [],
+          scale: 9
         })
       }
     } catch (err) {

@@ -116,8 +116,15 @@ Page({
     //     deviceId: data[0].deviceId
     //   })
     // }
+    if (data.length <= 0) {
+      that.setData({
+        isShow: true
+      })
+      return
+    }
     data[0].distance = kmUnit(Number(data[0].distance));
     that.setData({
+      isShow: false,
       deviceDetail: data[0],
       distance: data[0].distance,
       deviceId: data[0].deviceId

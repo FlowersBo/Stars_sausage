@@ -14,7 +14,7 @@
 <view class="facilityListMap">
   <!-- bindmarkertap="showModal" -->
   <map id="map" longitude="{{longitude}}" latitude="{{latitude}}"
-    style="width: 100%; height: {{viewHeight/2}}px;"></map>
+  scale="{{scale}}"  style="width: 100%; height: {{viewHeight/2}}px;"></map>
   <view class="equipmentTitle">
     <view style="width: 8rpx;height:38rpx;background: #FFB606;margin-right: 10rpx;border-radius: 4rpx;"></view>
     附近点位
@@ -48,7 +48,7 @@
       </view>
       <view wx:if="{{!isFlag&&isShow}}" class="addBtn" catchtap="tapAddList">点击获取更多点位</view>
       <noData isFlag="{{isFlag}}">
-        <view slot="slot">附近暂无点位</view>
+        <view slot="slot">很抱歉，您附近暂无点位</view>
       </noData>
     </scroll-view>
   </view>
