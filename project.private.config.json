@@ -59,6 +59,12 @@
           "pathName": "pages/test/test",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "在线预订",
+          "pathName": "pages/reserveList/reserveList",
+          "query": "",
+          "scene": null
         }
       ]
     }

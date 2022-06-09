@@ -48,10 +48,10 @@
                 }
               </wxs>
               <van-stepper value="{{item.productCount}}" data-id="{{item.id}}" data-channel="{{item.channel}}"
-                disable-input="true" min="0" max="{{fn.flight(item.store)}}"
+                disable-input="true" min="0" max="{{fn.flight(item.store)}}" data-plusNum="{{item.productCount}}" 
                 disable-plus="{{item.isPlus||!device.deviceStatus}}" theme="round" integer="true" button-size="28px"
                 custom-class="addSubtract" plus-class="add-subtract subtract" minus-class="add-subtract"
-                input-class="inpNumber" bind:plus="bindPlusFn" bind:minus="bindMinus" />
+                input-class="inpNumber" bind:plus="bindPlusFn" bind:minus="bindMinus" bind:overlimit="numBtn"/>
             </view>
           </view>
         </view>
@@ -73,4 +73,4 @@
     <view wx:else class="SubmitBar-btn {{device.deviceStatus?'':'deviceStatus'}}" bindtap="gotoPlaceOrderFn">去结算</view>
   </view>
 </view>
-<!-- <van-dialog id="van-dialog" /> -->
+<van-dialog id="van-dialog" />

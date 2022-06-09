@@ -18,6 +18,18 @@ Page({
     mpOpenId: ''
   },
 
+  numBtn(e) {
+    if (e.detail === "plus") {
+      Dialog.confirm({
+        title: '提示',
+        message: '已超出当前最大预订库存，请稍后再试！',
+        theme: 'round-button',
+        showCancelButton: false,
+        confirmButtonText: '取消'
+      })
+    }
+  },
+
   bindPlusFn(e) {
     that.addSubtractFn('add', e.currentTarget.dataset.id, e.currentTarget.dataset.channel);
     that.setData({
@@ -40,6 +52,7 @@ Page({
 
   addSubtractFn(add, id, channel) {
     let products = that.data.products;
+    console.log(channel);
     let overallPrice = 0;
     let price = 0,
       count = 0;
@@ -48,8 +61,10 @@ Page({
       totalLimit = that.data.totalLimit;
     products.forEach(element => {
       if (element.id === id && element.channel === channel) {
+        console.log(element.productCount + 1, element.store[0])
         if (add) {
-          element.productCount = element.productCount + 1
+          console.log(element.productCount + 1, element.store[0])
+          element.productCount = element.productCount + 1;
         } else {
           element.productCount = element.productCount - 1
         }
@@ -59,17 +74,17 @@ Page({
     });
     console.log('累加', count)
     console.log('总数', totalLimit)
-    products.forEach(element => {
-      if (count >= totalLimit) {
-        element.isPlus = true;
-      } else {
-        element.isPlus = false;
-        if (element.store[1])
-          element.isPlus = true;
-        else
-          element.isPlus = false;
-      }
-    });
+    // products.forEach(element => {
+    //   if (count >= totalLimit) {
+    //     element.isPlus = true;
+    //   } else {
+    //     element.isPlus = false;
+    //     if (element.store[1])
+    //       element.isPlus = true;
+    //     else
+    //       element.isPlus = false;
+    //   }
+    // });
     overallPrice = price.toFixed(2)
     that.setData({
       products,

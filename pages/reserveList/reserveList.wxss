@@ -53,7 +53,7 @@
 }
 
 .name {
-  width: 260rpx;
+  width: 360rpx;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
