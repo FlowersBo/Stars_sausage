@@ -130,7 +130,7 @@ Page({
   dialogFn() {
     Dialog.confirm({
       title: '位置信息授权',
-      message: '需授权位置信息才能正常使用小程序功能',
+      message: '您需要授权位置信息获取附近点位',
       theme: 'round-button',
       confirmButtonOpenType: 'openSetting'
     }).then(() => {
