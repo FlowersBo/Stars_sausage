@@ -113,6 +113,9 @@ Page({
         const loaction = {};
         loaction.latitude = res.latitude;
         loaction.longitude = res.longitude;
+
+        // loaction.latitude = 39.95837890625;
+        // loaction.longitude = 116.49010823567708;
         wx.setStorageSync('loaction', loaction);
       },
       fail: function (res) {
