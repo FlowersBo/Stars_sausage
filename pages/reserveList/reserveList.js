@@ -74,17 +74,17 @@ Page({
     });
     console.log('累加', count)
     console.log('总数', totalLimit)
-    // products.forEach(element => {
-    //   if (count >= totalLimit) {
-    //     element.isPlus = true;
-    //   } else {
-    //     element.isPlus = false;
-    //     if (element.store[1])
-    //       element.isPlus = true;
-    //     else
-    //       element.isPlus = false;
-    //   }
-    // });
+    products.forEach(element => {
+      if (count >= totalLimit) {
+        element.isPlus = true;
+      } else {
+        element.isPlus = false;
+        if (element.store[1])
+          element.isPlus = true;
+        else
+          element.isPlus = false;
+      }
+    });
     overallPrice = price.toFixed(2)
     that.setData({
       products,
