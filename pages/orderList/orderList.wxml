@@ -35,10 +35,10 @@
             wx:if="{{index<2}}">
             <view class="imgWrap">
               <image style="width: 190rpx;height: 140rpx;border-radius: 10rpx;" src="{{items.pictureUrl}}"></image>
-              <view class="commodityName" wx:if="{{item.detailList.length>1}}">星斗锦绣芝士味道烤肠</view>
+              <view class="commodityName" wx:if="{{item.detailList.length>1}}">{{items.productName}}</view>
             </view>
+            <view class="omit" wx:if="{{item.detailList.length<2}}">{{items.productName}}</view>
           </view>
-          <view class="omit" wx:if="{{item.detailList.length<2}}">星斗锦绣芝士味道烤肠</view>
           <view class="ellipsis" wx:if="{{item.detailList.length>2}}">...</view>
         </view>
         <view style="color: #808080;">共{{item.detailList.length}}根</view>

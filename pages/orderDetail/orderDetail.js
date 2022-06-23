@@ -107,6 +107,7 @@ Page({
               icon: 'none',
               duration: 1000
             })
+            that.orderDetailFn(that.data.orderId);
             setTimeout(function () {
               wx.navigateBack({
                 delta: 1

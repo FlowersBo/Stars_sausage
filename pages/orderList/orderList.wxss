@@ -107,7 +107,7 @@
 .commodityList {
   display: flex;
   justify-content: space-between;
-  margin-right: 20rpx;
+  align-items: center;
 }
 
 .commodityName {
@@ -124,6 +124,7 @@
   min-width: 100rpx;
   letter-spacing: 6rpx;
   font-weight: bold;
+  margin-left: 20rpx;
 }
 
 .omit {
@@ -131,6 +132,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  margin-left: 20rpx;
 }
 
 .orderDate {
