@@ -143,17 +143,17 @@
 }
 
 .btn {
-  width: 620rpx;
-  margin: 0 auto;
+  width: 720rpx;
+  margin: 40rpx auto;
   height: 90rpx;
   text-align: center;
   line-height: 90rpx;
-  border-radius: 20rpx;
+  border-radius: 45rpx;
   background: #FFB606;
   color: #fff;
   font-weight: bold;
   font-size: 36rpx;
-  margin-top: 40rpx;
+  margin-bottom: 60rpx;
   letter-spacing: 10rpx;
 }
 
@@ -168,4 +168,36 @@
   font-size: 30rpx;
   color: #ffb606;
   margin-top: 30rpx;
+}
+
+
+.search{
+  width: 720rpx;
+  height: 70rpx;
+  border: 2rpx solid #aaa;
+  border-radius: 35rpx;
+  display: flex;
+  /* justify-content: space-between; */
+  box-sizing: border-box;
+  align-items: center;
+  padding: 0 30rpx;
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #aaa;
+  margin: 20rpx auto;
+}
+.icon-icon-search{
+  font-size: 46rpx;
+  color: #FFB606;
+  margin-left: auto;
+}
+
+.picker{
+  width: 180rpx;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  border-right: 2rpx solid #bbb;
+  color:#1f1f1f;
+  margin-right: 30rpx;
 }

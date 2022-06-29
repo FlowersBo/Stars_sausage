@@ -157,6 +157,19 @@ Page({
     })
   },
 
+
+  // 城市选择
+  bindRegionChange: function (e) {
+    this.triggerEvent('city', {
+      region: e.detail.value,
+      regionCode: e.detail.code
+    })
+    this.setData({
+      region: e.detail.value
+    })
+  },
+
+
   gotoReserveListFn(e) {
     if (!this.data.deviceId) {
       wx.showToast({
@@ -190,7 +203,7 @@ Page({
           'longitude': element.longitude
         });
         wx.navigateTo({
-          url: 'plugin://routePlan/index?key=' + key + '&referer=' + referer + '&endPoint=' + endPoint + '&mode=' + mode+'&themeColor='+themeColor
+          url: 'plugin://routePlan/index?key=' + key + '&referer=' + referer + '&endPoint=' + endPoint + '&mode=' + mode + '&themeColor=' + themeColor
         });
         // this.mapCtx.openMapApp({
         //   longitude: element.longitude,

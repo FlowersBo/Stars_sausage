@@ -1,8 +1,9 @@
 // index.js
 let that;
 const app = getApp()
+let QQMapWX = require('../../utils/qqmap-wx-jssdk.js');
 import Dialog from '../../miniprogram_npm/@vant/weapp/dialog/dialog';
-
+let qqmap;
 Page({
   data: {
     imgarr: [{
@@ -111,12 +112,12 @@ Page({
       success: function (res) {
         console.log(res)
         const loaction = {};
-        loaction.latitude = res.latitude;
-        loaction.longitude = res.longitude;
-
-        // loaction.latitude = 39.95837890625;
-        // loaction.longitude = 116.49010823567708;
+        // loaction.latitude = res.latitude;
+        // loaction.longitude = res.longitude;
+        loaction.latitude = 39.95837890625;
+        loaction.longitude = 116.49010823567708;
         wx.setStorageSync('loaction', loaction);
+        that.getUserLocation(loaction.latitude, loaction.longitude);
       },
       fail: function (res) {
         wx.getSetting({
@@ -128,6 +129,23 @@ Page({
         })
       }
     });
+  },
+
+  // 获取用户当前位置
+  getUserLocation(latitude, longitude) {
+    qqmap.reverseGeocoder({ //逆地址解析（经纬度 ==> 坐标位置）
+      location: {
+        latitude,
+        longitude
+      },
+      success(res) {
+        console.log(res);
+        let adcode = res.result.ad_info.adcode;
+        // adcode = adcode.slice(0,4)
+        wx.setStorageSync('adcode', adcode);
+        wx.setStorageSync('province', res.result.ad_info.province);
+      }
+    })
   },
 
   dialogFn() {
@@ -171,8 +189,11 @@ Page({
     //     }
     //   }
     // })
-   
+
     that = this;
+    qqmap = new QQMapWX({
+      key: '6UXBZ-3HTWX-MMW4G-TX4UC-RP2U6-K7B4V'
+    })
     console.log('跳转拿到参数', options);
     let mpOpenId = options.mpOpenId;
     if (!mpOpenId) {

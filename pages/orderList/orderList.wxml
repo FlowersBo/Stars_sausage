@@ -1,19 +1,28 @@
 <!--pages/orderList/orderList.wxml-->
 <navigationBar class="custom" text="我的订单" />
-<!-- <view class="content"> -->
-<!-- <view class="content-imgWrap" style="height: 100%">
+<!-- <view class="content">
+  <view class="content-imgWrap" style="height: 100%">
     <image src="/assets/img/background1.jpg" style="height: 100%;" mode="scaleToFill"></image>
   </view>
   <view class="content-imgWrap" style="z-index: 2;height: 300rpx;" style="top:{{top[1]}}px;">
     <image src="/assets/img/sun.png" mode="widthFix" style="width: 150%;"></image>
   </view>
   <view class="content-imgWrap" style="z-index: 3;height: 400rpx;" style="top:{{top[2]}}px;">
-    <image src="/assets/img/planet1.png" mode="widthFix" style="width: 60%;"></image>
+    <image src="/assets/img/hx.png" mode="widthFix" style="width: 60%;"></image>
   </view>
   <view class="content-imgWrap" style="z-index: 4;height: 500rpx;" style="top:{{top[3]}}px;">
     <image src="/assets/img/earth.png" mode="widthFix" style="width: 40%;"></image>
-  </view> -->
-<!-- <scroll-view bindscroll="onScorll" class="mainView" scroll-y="true" scroll-x="false" style="z-index: 5;"> -->
+  </view>
+  <scroll-view bindscroll="onScorll" class="mainView" scroll-y="true" scroll-x="false" style="z-index: 5;">
+    <view style="width: 700rpx;height: 300rpx;background: #fff;margin:20rpx auto;opacity: 0.5;" wx:for="{{10}}"></view>
+  </scroll-view>
+</view> -->
+
+
+
+
+
+<!-- P 待支付 Q 已支付排队中 W已支付待出货 S 成功 SE 异常退款 E 异常 D 废弃 -->
 
 <scroll-y id="tip" class="scroll-view" pull="{{pull}}" push="{{push}}"
   style="position: absolute;top: {{customHeight}}px;bottom: 0;width: 100%;flex: 1;" bindrefresh="refresh"
@@ -24,7 +33,6 @@
         <image src="../../assets/img/cat.png" style="width:62rpx;height: 62rpx;margin-left:-10rpx"></image>
         <view style="margin:0 4rpx;">{{item.pointName}}</view>
         <icon class="iconfont icon-youjiantou"></icon>
-        <!-- P 待支付 Q 已支付排队中 W已支付待出货 S 成功 SE 异常退款 E 异常 D 废弃 -->
         <view class="startus">
           {{item.orderStatus==='Q'?'排队中':((!item.orderStatus.roastDate&&item.orderStatus==='W')?'准备中':((item.orderStatus==='W'&&order.order.roastDate)?'待取餐':(item.orderStatus==='S'?'取餐成功':'已取消')))}}
         </view>
@@ -56,9 +64,7 @@
       </view>
     </view>
   </block>
-  <!-- </scroll-view> -->
   <noData isFlag="{{isFlag}}">
     <view slot="slot">当前暂无订单，亲亲下单后再来吧~~</view>
   </noData>
 </scroll-y>
-<!-- </view> -->

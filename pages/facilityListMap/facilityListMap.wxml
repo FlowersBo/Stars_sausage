@@ -13,8 +13,22 @@
 </view>
 <view class="facilityListMap">
   <!-- bindmarkertap="showModal" -->
-  <map id="map" longitude="{{longitude}}" latitude="{{latitude}}"
-  scale="{{scale}}"  style="width: 100%; height: {{viewHeight/2}}px;"></map>
+  <map id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="{{scale}}"
+    style="width: 100%; height: {{viewHeight/2}}px;"></map>
+  <view class="searchWrap">
+    <view class="search">
+      <picker class="section" mode="selector" bindchange="bindRegionChange" value="{{region}}">
+        <view class="picker">
+          <view>
+            {{region?region:'选择城市'}}
+          </view>
+          <icon style="font-size: 20rpx;margin:-24rpx 0 0 4rpx;" class="iconfont icon-xiajiantou1"></icon>
+        </view>
+      </picker>
+      搜索点位
+      <icon class="iconfont icon-icon-search"></icon>
+    </view>
+  </view>
   <view class="equipmentTitle">
     <view style="width: 8rpx;height:38rpx;background: #FFB606;margin-right: 10rpx;border-radius: 4rpx;"></view>
     附近点位
@@ -25,7 +39,7 @@
       <view wx:if="{{!isFlag}}" class="equipmentList {{item.isShow?'color-on':''}}" wx:for="{{equipmentList}}"
         wx:key="index" wx:for-item="item" data-id="{{item.id}}" data-index="{{index}}" bindtap="equipmentFn">
         <view class="ribbon {{items.status?'':'no-ribbon'}}" wx:for="{{equipmentStatusList}}" wx:for-item="items"
-         wx:if="{{items.id===item.id}}" wx:key="id">
+          wx:if="{{items.id===item.id}}" wx:key="id">
           <!-- <wxs module="fn">
             module.exports = {
               flight: function (index) {

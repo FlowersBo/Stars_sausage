@@ -1,6 +1,6 @@
 <!--pages/facilityList/facilityList.wxml-->
-<!-- <navigationBar isNav back text="附近设备" bind:city="cityFn" bind:searchVal="searchVal" pointName="{{pointName}}" region="{{region}}" /> -->
-<navigationBar back text="附近设备"/>
+<navigationBar isNav back text="附近设备" bind:city="cityFn" bind:searchVal="searchVal" pointName="{{pointName}}" region="{{region}}" />
+<!-- <navigationBar back text="附近设备"/> -->
 <view>
   
 </view>
