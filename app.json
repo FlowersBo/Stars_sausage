@@ -10,7 +10,8 @@
     "pages/orderDetail/orderDetail",
     "pages/evaluate/evaluate",
     "pages/facilityListMap/facilityListMap",
-    "pages/test/test"
+    "pages/test/test",
+    "pages/facilityListMap/addressSearch/addressSearch"
   ],
   "window": {
     "backgroundTextStyle": "light",

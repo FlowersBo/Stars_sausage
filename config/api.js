@@ -14,4 +14,5 @@ module.exports = {
 	suggest: 'reserve/common/suggest',
 	recreate: 'reserve/order/recreate',
 	status: 'reserve/order/dev/status', //设备状态
+	getCity: 'reserve/common/getCity', //城市列表
 }

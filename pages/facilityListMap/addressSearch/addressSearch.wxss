@@ -1,0 +1,40 @@
+/* pages/facilityListMap/addressSearch/addressSearch.wxss */
+.search{
+  width: 720rpx;
+  height: 70rpx;
+  border: 2rpx solid #aaa;
+  border-radius: 35rpx;
+  display: flex;
+  /* justify-content: space-between; */
+  box-sizing: border-box;
+  align-items: center;
+  padding: 0 30rpx;
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #aaa;
+  margin: 20rpx auto;
+}
+
+.searchChild{
+  width: 400rpx;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.icon-icon-search{
+  font-size: 46rpx;
+  color: #FFB606;
+  margin-left: auto;
+}
+
+.picker{
+  width: 180rpx;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  border-right: 2rpx solid #bbb;
+  color:#1f1f1f;
+  margin-right: 30rpx;
+}

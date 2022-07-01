@@ -12,21 +12,23 @@
   </view>
 </view>
 <view class="facilityListMap">
-  <!-- bindmarkertap="showModal" -->
   <map id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="{{scale}}"
-    style="width: 100%; height: {{viewHeight/2}}px;"></map>
+    style="width: 100%; height: {{5*viewHeight/11}}px;" bindmarkertap="markertap"></map>
   <view class="searchWrap">
     <view class="search">
-      <picker class="section" mode="selector" bindchange="bindRegionChange" value="{{region}}">
+      <wxs src="./facilityListMap.wxs" module="tools" />
+      <picker class="section" mode="selector" bindchange="bindPickerChange" value="{{index}}" range="{{cityList}}">
         <view class="picker">
           <view>
-            {{region?region:'选择城市'}}
+            {{cityList[index]?cityList[index]: city}}
           </view>
-          <icon style="font-size: 20rpx;margin:-24rpx 0 0 4rpx;" class="iconfont icon-xiajiantou1"></icon>
+          <icon style="font-size: 20rpx;margin:-24rpx 0 0 10rpx;" class="iconfont icon-xiajiantou1"></icon>
         </view>
       </picker>
-      搜索点位
-      <icon class="iconfont icon-icon-search"></icon>
+      <view class="searchChild" data-cityCode="{{cityValue?cityValue.value:adcode}}" bindtap="gotoAddressSerach">
+        搜索点位
+        <icon class="iconfont icon-icon-search"></icon>
+      </view>
     </view>
   </view>
   <view class="equipmentTitle">
@@ -34,10 +36,12 @@
     附近点位
   </view>
   <view class="page-section-spacing">
-    <scroll-view scroll-y="true" style="width: 100%; height: {{viewHeight/3}}px;" bindscrolltoupper="upper"
-      bindscrolltolower="lower" bindscroll="scroll" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
+    <scroll-view scroll-y style="width: 100%; height: {{viewHeight/3}}px;" bindscrolltoupper="upper"
+      scroll-with-animation="{{true}}" bindscrolltolower="lower" bindscroll="scroll" scroll-into-view="{{mid}}"
+      scroll-top="{{scrollTop}}">
       <view wx:if="{{!isFlag}}" class="equipmentList {{item.isShow?'color-on':''}}" wx:for="{{equipmentList}}"
-        wx:key="index" wx:for-item="item" data-id="{{item.id}}" data-index="{{index}}" bindtap="equipmentFn">
+        wx:key="index" wx:for-item="item" id="{{item.mid}}" data-id="{{item.id}}" data-index="{{index}}"
+        bindtap="equipmentFn">
         <view class="ribbon {{items.status?'':'no-ribbon'}}" wx:for="{{equipmentStatusList}}" wx:for-item="items"
           wx:if="{{items.id===item.id}}" wx:key="id">
           <!-- <wxs module="fn">
@@ -60,7 +64,7 @@
           <view class="navigationBtn" data-id="{{item.id}}" catchtap="showModal">导航</view>
         </view>
       </view>
-      <view wx:if="{{!isFlag&&isShow}}" class="addBtn" catchtap="tapAddList">点击获取更多点位</view>
+      <!-- <view wx:if="{{!isFlag&&isShow}}" class="addBtn" catchtap="tapAddList">点击获取更多点位</view> -->
       <noData isFlag="{{isFlag}}">
         <view slot="slot">很抱歉，您附近暂无点位</view>
       </noData>

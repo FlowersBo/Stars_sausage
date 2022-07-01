@@ -1,0 +1,7 @@
+var getProvince = function (num) {
+  var province = wx.getStorageSync('province');
+  return province;
+}
+module.exports = {
+  getProvince: getProvince
+} 

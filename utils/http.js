@@ -3,7 +3,7 @@ import {
   Request
 } from './requestUrl';
 // let baseUrl = 'https://res.morninggo.cn/';
-let baseUrl = '192.168.110.97:8080/reserve-http/';
+let baseUrl = 'http://192.168.110.97:8080/reserve-http/';
 // let baseUrl = 'http://restest.morninggo.cn/';
 
 function Auth(data = {}) {
@@ -61,6 +61,9 @@ function Suggest(data = {}) {
 function Status(data = {}) {
   return Request(baseUrl + api.status, data, 'get')
 }
+function GetCity(data = {}) {
+  return Request(baseUrl + api.getCity, data, 'get')
+}
 module.exports = {
   baseUrl,
   Auth,
@@ -76,5 +79,6 @@ module.exports = {
   OrderList,
   Recreate,
   Suggest,
-  Status
+  Status,
+  GetCity
 }

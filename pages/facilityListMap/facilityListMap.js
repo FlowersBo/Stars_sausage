@@ -13,26 +13,148 @@ Page({
     isFlag: false,
     isShow: true,
     equipmentStatusList: [],
-    scale: 16
+    scale: 16,
+    city: wx.getStorageSync('province'),
+    isSearch: false,
+    adcode: wx.getStorageSync('adcode'),
   },
+
   upper(e) {
     console.log(e)
   },
 
   lower(e) {},
 
-  scroll(e) {},
+  scroll(e) {
+    // console.log('滚动', e);
+    let scrollTop = e.detail.scrollTop;
+    let scrollArr = this.data.equipmentList;
+    if (scrollTop >= scrollArr[scrollArr.length - 1] - (this.data.viewHeight / 3)) {
+      return;
+    } else {
+      for (let i = 0; i < scrollArr.length; i++) {
+        if (scrollTop >= 0 && scrollTop < scrollArr[0]) {
+          // selectFloorIndex控制筛选块高亮显示
+          this.setData({
+            selectFloorIndex: 0
+          });
+        } else if (scrollTop >= scrollArr[i - 1] && scrollTop < scrollArr[i]) {
+          this.setData({
+            selectFloorIndex: i
+          });
+        }
+      }
+    }
+  },
+
   scrollToTop() {
     this.setAction({
       scrollTop: 0
     })
   },
 
-  equipmentFn(e) {
+
+
+  async facilityListFn() {
+    try {
+      let {
+        data
+      } = await (app.http.Near({
+        coordinate: `${wx.getStorageSync('loaction').latitude},${wx.getStorageSync('loaction').longitude}`,
+        // point: that.data.point,
+        // pointName: that.data.pointName,
+        isAgency: false,
+        region: `${that.data.cityValue?that.data.cityValue.value:wx.getStorageSync('adcode')}`,
+      }))
+      if (data.length > 0) {
+        data.forEach(element => {
+          element.mid = `m${element.id}`;
+          element.distance = kmUnit(Number(element.distance));
+          element.longitude = Number(element.coordinate.split(',')[1]);
+          element.latitude = Number(element.coordinate.split(',')[0]);
+          element.id = Number(element.id);
+          element.width = 30;
+          element.height = 32;
+          element.iconPath = '/assets/img/map.png';
+          element.joinCluster = true;
+          element.callout = {
+            content: element.name,
+            display: 'ALWAYS',
+            padding: '6px',
+            borderRadius: '20px',
+            color: '#fff',
+            bgColor: '#FFB606'
+          }
+        });
+        that.setData({
+          isFlag: false,
+          equipmentList: data,
+          scale: 16
+        })
+        if (that.data.isSearch) {
+          that.setData({
+            longitude: data[0].longitude,
+            latitude: data[0].latitude
+          })
+          that.equipmentFn('', data[0].id);
+        }
+        that.bindEvent();
+        that.deviceStatusFn(data);
+      } else {
+        that.setData({
+          isFlag: true,
+          equipmentList: [],
+          scale: 9
+        })
+      }
+    } catch (err) {
+      that.setData({
+        isFlag: true,
+        equipmentList: []
+      })
+    }
+  },
+
+  bindEvent() {
+    // this.mapCtx.initMarkerCluster({
+    //   enableDefaultStyle: true,
+    //   zoomOnClick: true,
+    //   gridSize: 60,
+    //   complete(res) {
+    //     console.log('initMarkerCluster', res)
+    //   }
+    // })
+    console.log(that.data.equipmentList);
+    this.mapCtx.addMarkers({
+      markers: that.data.equipmentList,
+      clear: true,
+      complete(res) {
+        console.log('addMarkers', res)
+      }
+    })
+  },
+
+  markertap(e) {
+    console.log('地图点击标记', e);
+    let equipmentList = that.data.equipmentList;
+    console.log(equipmentList)
+    equipmentList.forEach(element => {
+      if (e.detail.markerId == element.id) {
+        that.setData({
+          mid: element.mid
+        })
+        let elementDataId = element.id;
+        that.equipmentFn('', elementDataId);
+      }
+    });
+  },
+
+
+  equipmentFn(e, elementDataId) {
     console.log(e);
     let equipmentList = that.data.equipmentList;
     equipmentList.forEach(element => {
-      if (e.currentTarget.dataset.id === element.id) {
+      if ((elementDataId ? elementDataId : e.currentTarget.dataset.id) === element.id) {
         element.isShow = true;
         element.iconPath = '/assets/img/mapOn.png';
         element.callout.bgColor = '#EF6819';
@@ -66,76 +188,9 @@ Page({
     })
   },
 
-  tapAddList() {
-    let isAgency = false;
-    that.facilityListFn(isAgency);
-    that.setData({
-      isShow: !that.data.isShow,
-      equipmentStatusList: []
-    })
-  },
-
-  async facilityListFn(isAgency = true) {
-    try {
-      let {
-        data
-      } = await (app.http.Near({
-        coordinate: `${wx.getStorageSync('loaction').latitude},${wx.getStorageSync('loaction').longitude}`,
-        // point: that.data.point,
-        // pointName: that.data.pointName,
-        isAgency
-      }))
-      if (data.length > 0) {
-        data.forEach(element => {
-          element.distance = kmUnit(Number(element.distance));
-          element.longitude = Number(element.coordinate.split(',')[1]);
-          element.latitude = Number(element.coordinate.split(',')[0]);
-          element.id = Number(element.id);
-          element.width = 30;
-          element.height = 32;
-          element.iconPath = '/assets/img/map.png';
-          element.joinCluster = true;
-          element.callout = {
-            content: element.name,
-            display: 'ALWAYS',
-            padding: '6px',
-            borderRadius: '20px',
-            color: '#fff',
-            bgColor: '#FFB606'
-          }
-        });
-        that.setData({
-          isFlag: false,
-          equipmentList: data,
-          scale: 16
-        })
-        that.bindEvent();
-        that.deviceStatusFn(data);
-      } else {
-        that.setData({
-          isFlag: true,
-          equipmentList: [],
-          scale: 9
-        })
-      }
-    } catch (err) {
-      that.setData({
-        isFlag: true,
-        equipmentList: []
-      })
-    }
-
-    // .then(res => {
-
-    // })
-    // .catch(err => {
-
-    // })
-  },
-
-
+  // 状态
   deviceStatusFn(equipmentList) {
-    let equipmentStatusList = that.data.equipmentStatusList;
+    let equipmentStatusList = [];
     equipmentList.forEach(element => {
       app.http.Status({
           deviceId: element.deviceId
@@ -144,9 +199,7 @@ Page({
           let data = {};
           data.id = element.id;
           data.status = res.data;
-          console.log(data)
           equipmentStatusList = equipmentStatusList.concat(data);
-          console.log(equipmentStatusList);
           that.setData({
             equipmentStatusList,
           })
@@ -157,18 +210,33 @@ Page({
     })
   },
 
-
-  // 城市选择
-  bindRegionChange: function (e) {
-    this.triggerEvent('city', {
-      region: e.detail.value,
-      regionCode: e.detail.code
-    })
-    this.setData({
-      region: e.detail.value
+  async cityFn() {
+    let result = await (app.http.GetCity());
+    console.log('城市列表', result)
+    let cityList = [],
+      cityListData = [];
+    for (let key in result.data) {
+      cityListData.push({
+        label: result.data[key],
+        value: key
+      })
+      cityList.push(result.data[key])
+    }
+    that.setData({
+      cityList,
+      cityListData
     })
   },
 
+  // 城市选择
+  bindPickerChange: function (e) {
+    this.setData({
+      index: e.detail.value,
+      cityValue: that.data.cityListData[e.detail.value],
+      isSearch: true
+    })
+    that.facilityListFn();
+  },
 
   gotoReserveListFn(e) {
     if (!this.data.deviceId) {
@@ -188,6 +256,27 @@ Page({
     // })
   },
 
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    that = this;
+    that.setData({
+      statusBarHeight: app.globalData.StatusBar + 'px',
+      navigationBarHeight: (app.globalData.StatusBar + 44) + 'px'
+    })
+    that.facilityListFn();
+    that.cityFn();
+    that.setData({
+      longitude: wx.getStorageSync('loaction').longitude,
+      latitude: wx.getStorageSync('loaction').latitude,
+      viewHeight: app.globalData.screenHeight
+    })
+    this.mapCtx = wx.createMapContext('map');
+  },
+
+
+  //导航
   showModal(e) {
     console.log('当前id', e)
     that.data.equipmentList.forEach(element => {
@@ -214,52 +303,38 @@ Page({
     });
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    that = this;
-    that.setData({
-      statusBarHeight: app.globalData.StatusBar + 'px',
-      navigationBarHeight: (app.globalData.StatusBar + 44) + 'px'
-    })
-    that.facilityListFn();
-    that.setData({
-      longitude: wx.getStorageSync('loaction').longitude,
-      latitude: wx.getStorageSync('loaction').latitude,
-      viewHeight: app.globalData.screenHeight
-    })
-    this.mapCtx = wx.createMapContext('map');
-  },
-
-  bindEvent() {
-    // this.mapCtx.initMarkerCluster({
-    //   enableDefaultStyle: true,
-    //   zoomOnClick: true,
-    //   gridSize: 60,
-    //   complete(res) {
-    //     console.log('initMarkerCluster', res)
-    //   }
-    // })
-    console.log(that.data.equipmentList);
-    this.mapCtx.addMarkers({
-      markers: that.data.equipmentList,
-      clear: true,
-      complete(res) {
-        console.log('addMarkers', res)
-      }
-    })
-  },
   back: function () {
     wx.navigateBack({
       delta: 1
     })
   },
+
+  gotoAddressSerach(e) {
+    wx.navigateTo({
+      url: './addressSearch/addressSearch?cityCode=' + e.currentTarget.dataset.citycode,
+    })
+  },
+
+  //点击获取更多
+  // tapAddList() {
+  //   let isAgency = false;
+  //   that.facilityListFn(isAgency);
+  //   that.setData({
+  //     isShow: !that.data.isShow,
+  //     equipmentStatusList: []
+  //   })
+  // },
+
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    setTimeout(function () {
+      wx.createSelectorQuery().select('.equipmentList').boundingClientRect(function (rect) {
+        console.log(rect)
+      }).exec()
+    }, 2000)
   },
 
   /**

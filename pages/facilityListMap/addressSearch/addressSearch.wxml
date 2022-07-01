@@ -1,0 +1,18 @@
+<!--pages/facilityListMap/addressSearch/addressSearch.wxml-->
+<navigationBar class="custom" back text="搜索点位" />
+<view class="searchWrap">
+  <view class="search">
+    <picker class="section" mode="selector" bindchange="bindPickerChange" value="{{index}}" range="{{cityList}}">
+      <view class="picker">
+        <view>
+          {{cityList[index]?cityList[index]: city}}
+        </view>
+        <icon style="font-size: 20rpx;margin:-24rpx 0 0 10rpx;" class="iconfont icon-xiajiantou1"></icon>
+      </view>
+    </picker>
+    <view class="searchChild">
+      <input type="text" placeholder="搜索点位" />
+      <icon class="iconfont icon-icon-search"></icon>
+    </view>
+  </view>
+</view>

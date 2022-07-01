@@ -144,7 +144,7 @@
 
 .btn {
   width: 720rpx;
-  margin: 40rpx auto;
+  margin: 30rpx auto;
   height: 90rpx;
   text-align: center;
   line-height: 90rpx;
@@ -186,6 +186,15 @@
   color: #aaa;
   margin: 20rpx auto;
 }
+
+.searchChild{
+  width: 400rpx;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .icon-icon-search{
   font-size: 46rpx;
   color: #FFB606;
@@ -201,3 +210,10 @@
   color:#1f1f1f;
   margin-right: 30rpx;
 }
+
+/* 滚动条消失术 */
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+ }
