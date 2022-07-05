@@ -310,8 +310,9 @@ Page({
   },
 
   gotoAddressSerach(e) {
+    console.log(e)
     wx.navigateTo({
-      url: './addressSearch/addressSearch?cityCode=' + e.currentTarget.dataset.citycode,
+      url: './addressSearch/addressSearch?cityCode=' + e.currentTarget.dataset.citycode + '&city=' + e.currentTarget.dataset.city,
     })
   },
 

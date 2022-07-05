@@ -65,6 +65,12 @@
           "pathName": "pages/reserveList/reserveList",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "搜索点位",
+          "pathName": "pages/facilityListMap/addressSearch/addressSearch",
+          "query": "cityCode=110105&city=北京市",
+          "scene": null
         }
       ]
     }

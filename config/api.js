@@ -15,4 +15,5 @@ module.exports = {
 	recreate: 'reserve/order/recreate',
 	status: 'reserve/order/dev/status', //设备状态
 	getCity: 'reserve/common/getCity', //城市列表
+	search: 'reserve/common/search', //搜索点位
 }

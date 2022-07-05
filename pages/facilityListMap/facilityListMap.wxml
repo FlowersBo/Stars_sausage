@@ -25,7 +25,7 @@
           <icon style="font-size: 20rpx;margin:-24rpx 0 0 10rpx;" class="iconfont icon-xiajiantou1"></icon>
         </view>
       </picker>
-      <view class="searchChild" data-cityCode="{{cityValue?cityValue.value:adcode}}" bindtap="gotoAddressSerach">
+      <view class="searchChild" data-city="{{cityList[index]?cityList[index]: city}}" data-cityCode="{{cityValue?cityValue.value:adcode}}" bindtap="gotoAddressSerach">
         搜索点位
         <icon class="iconfont icon-icon-search"></icon>
       </view>

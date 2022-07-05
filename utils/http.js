@@ -58,11 +58,18 @@ function Recreate(orderId, data = {}) {
 function Suggest(data = {}) {
   return Request(baseUrl + api.suggest, data, 'post')
 }
+
 function Status(data = {}) {
   return Request(baseUrl + api.status, data, 'get')
 }
+
 function GetCity(data = {}) {
   return Request(baseUrl + api.getCity, data, 'get')
+}
+
+function Search(data = {}) {
+  return Request(baseUrl + api.search, data, 'get')
+
 }
 module.exports = {
   baseUrl,
@@ -80,5 +87,6 @@ module.exports = {
   Recreate,
   Suggest,
   Status,
-  GetCity
+  GetCity,
+  Search
 }
