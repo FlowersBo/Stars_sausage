@@ -148,6 +148,8 @@
   font-size: 30rpx;
   font-weight: bold;
   border-bottom: 1rpx solid #F0F0F0;
+  display: flex;
+  justify-content: space-between;
 }
 
 .sausageNum {

@@ -26,8 +26,7 @@
     "color": "#a9b7b7",
     "selectedColor": "#11cd6e",
     "borderStyle": "white",
-    "list": [
-      {
+    "list": [{
         "selectedIconPath": "/assets/tabbar/xiangchang-h.png",
         "iconPath": "/assets/tabbar/xiangchang.png",
         "pagePath": "pages/home/home",
@@ -58,6 +57,7 @@
   "usingComponents": {
     "navigationBar": "/component/navigationBar/navigationBar",
     "noData": "/component/noData/noData",
+    "mask": "/component/mask/index",
     "scroll-y": "/component/scroll-y/index",
     "van-button": "@vant/weapp/button/index",
     "van-cell": "@vant/weapp/cell/index",

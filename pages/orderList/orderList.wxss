@@ -146,11 +146,26 @@
 
 .btnWrap {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: flex-end;
   padding: 20rpx 0;
 }
-
+.tanhao{
+  width: 40rpx;
+  height: 40rpx;
+  text-align: center;
+  line-height: 40rpx;
+  background: #f74747;
+  color: #fff;
+  border-radius: 50%;
+  display: inline-block;
+  font-weight: bold;
+}
+.btns{
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
 .btn {
   width: 130rpx;
   height: 54rpx;

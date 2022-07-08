@@ -54,6 +54,7 @@ Page({
       that.setData({
         suggestion: [],
       })
+      return
     }
     that.setData({
       equipmentList: [],
@@ -80,6 +81,7 @@ Page({
             equipmentList: res.data,
             isFlag: false
           })
+          that.deviceStatusFn(res.data);
         } else {
           qqmapsdk.getSuggestion({
             keyword: e.detail.value, //可设置固定值,如keyword:'KFC'
@@ -247,8 +249,8 @@ Page({
       })
       return
     }
-    unfreezeNavigateTo({
-      url: 'pages/reserveList/reserveList?deviceId=' + this.data.deviceId
+    wx.navigateTo({
+      url: '/pages/reserveList/reserveList?deviceId=' + this.data.deviceId
     });
     console.log(this.data.deviceId)
   },

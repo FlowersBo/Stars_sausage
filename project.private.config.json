@@ -31,12 +31,6 @@
           "scene": null
         },
         {
-          "name": "订单详情",
-          "pathName": "pages/orderDetail/orderDetail",
-          "query": "orderId=1498537686456074240",
-          "scene": null
-        },
-        {
           "name": "投诉建议",
           "pathName": "pages/evaluate/evaluate",
           "query": "orderId=1490864145250123776",
@@ -70,6 +64,12 @@
           "name": "搜索点位",
           "pathName": "pages/facilityListMap/addressSearch/addressSearch",
           "query": "cityCode=110105&city=北京市",
+          "scene": null
+        },
+        {
+          "name": "订单详情",
+          "pathName": "pages/orderDetail/orderDetail",
+          "query": "orderId=1539901662804574208",
           "scene": null
         }
       ]

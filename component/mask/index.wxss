@@ -15,9 +15,8 @@
 /*content*/
 .drawer_box {
   width: 600rpx;
-  height: 360rpx;
-  /* background-color: #0042BB; */
-  background-image: linear-gradient(135deg, #FF9900, #F7C67E);
+  background-color: #fafafa;
+  /* background-image: linear-gradient(135deg, #FF9900, #F7C67E); */
   overflow: hidden;
   position: fixed;
   top: 50%;
@@ -35,16 +34,13 @@
 
 .drawer_box_content {
   width: 600rpx;
-  height: 200rpx;
   /* background-color: #fff; */
   border-radius: 20rpx;
   padding: 10rpx;
-  color: #fff;
+  color: #353535;
 }
 .drawer_box_contentText{
   width: 100%;
-  height: 100%;
-  padding: 20rpx 0;
   font-size: 32rpx;
   display: flex;
   flex-direction: column;
@@ -56,12 +52,16 @@
   font-weight: bold;
 }
 .authorization_content{
-  text-indent: 42rpx;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 20rpx;
+  /* text-indent: 42rpx; */
 }
 .btnWrap{
   width: 100%;
   display: flex;
   justify-content: space-between;
+  margin: 30rpx 0;
 }
 .drawer_box_btn {
   width: 150rpx;
@@ -69,8 +69,11 @@
   line-height: 60rpx;
   text-align: center;
   border-radius: 10rpx;
-  background-image: linear-gradient(135deg, #f74f4f, #cc9595);
-  /* background-color: #FEA91F; */
+  /* background-image: linear-gradient(135deg, #FF6F03, #FEB906); */
+  background-color: #FF6F03;
   color: #fff;
   font-size: 32rpx;
+}
+.drawer_box_btn:last-child{
+  background-color: #FEB906;
 }

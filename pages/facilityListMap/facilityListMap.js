@@ -54,7 +54,6 @@ Page({
   },
 
 
-
   async facilityListFn() {
     try {
       let {

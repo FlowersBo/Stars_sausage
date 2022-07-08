@@ -23,7 +23,6 @@
 
 
 <!-- P 待支付 Q 已支付排队中 W已支付待出货 S 成功 SE 异常退款 E 异常 D 废弃 -->
-
 <scroll-y id="tip" class="scroll-view" pull="{{pull}}" push="{{push}}"
   style="position: absolute;top: {{customHeight}}px;bottom: 0;width: 100%;flex: 1;" bindrefresh="refresh"
   bindtoload="toload" bindtouchend="onScorll">
@@ -58,9 +57,16 @@
         </view>
       </view>
       <view class="btnWrap">
-        <view class="btn btn1" wx:if="{{item.orderStatus==='S'}}" data-btn="0" data-orderid="{{item.id}}"
-          catchtap="bindnavFn">再来一单</view>
-        <view class="btn" data-btn="1" data-orderid="{{item.id}}" catchtap="bindnavFn">订单详情</view>
+        <!--  -->
+        <view wx:if="{{item.orderStatus==='E'}}" style="font-size: 28rpx;color: #f74747;">
+          <view class="tanhao">!</view>
+          您购买的商品部分烤制异常
+        </view>
+        <view class="btns">
+          <view class="btn btn1" wx:if="{{item.orderStatus==='S'}}" data-btn="0" data-orderid="{{item.id}}"
+            catchtap="bindnavFn">再来一单</view>
+          <view class="btn" data-btn="1" data-orderid="{{item.id}}" catchtap="bindnavFn">订单详情</view>
+        </view>
       </view>
     </view>
   </block>

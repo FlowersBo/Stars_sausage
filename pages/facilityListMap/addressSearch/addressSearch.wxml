@@ -16,38 +16,34 @@
       <icon class="iconfont icon-icon-search"></icon>
     </view>
   </view>
-  <view class="addressListWrap">
-    <view wx:for="{{suggestion}}" wx:key="index" class="addressList" bindtap="backfill" id="{{index}}">{{item.title}}
-    </view>
-    <!--渲染详细地址-->
-    <!-- <view style="font-size:12px;color:#666;text-align:center;">{{item.addr}}</view> -->
+</view>
+<view class="addressListWrap">
+  <view wx:for="{{suggestion}}" wx:key="index" class="addressList" bindtap="backfill" id="{{index}}">{{item.title}}
   </view>
+  <!--渲染详细地址-->
+  <!-- <view style="font-size:12px;color:#666;text-align:center;">{{item.addr}}</view> -->
+</view>
 
-  <view class="page-section-spacing">
-    <scroll-view scroll-y style="width: 100%;" bindscrolltoupper="upper" scroll-with-animation="{{true}}"
-      bindscrolltolower="lower" bindscroll="scroll">
-      <view wx:if="{{!isFlag}}" class="equipmentList {{item.isShow?'color-on':''}}" wx:for="{{equipmentList}}"
-        wx:key="index" wx:for-item="item" data-id="{{item.id}}" data-index="{{index}}" bindtap="equipmentFn">
-        <view class="ribbon {{items.status?'':'no-ribbon'}}" wx:for="{{equipmentStatusList}}" wx:for-item="items"
-          wx:if="{{items.id===item.id}}" wx:key="id">
-          {{items.status?'可预订':'不可预订'}}
-        </view>
-        <view class="equipment-left">
-          <view style="font-size: 32rpx;font-weight: bold;">{{item.name}}</view>
-          <view>地址：{{item.address}}</view>
-          <view style="color: #FFB606;">营业时间：{{item.startOpen}}~{{item.endOpen}}</view>
-        </view>
-        <view class="equipment-right">
-          <view>{{item.distance}}</view>
-          <view class="navigationBtn" data-id="{{item.id}}" catchtap="showModal">导航</view>
-        </view>
-      </view>
-      <!-- <noData isFlag="{{isFlag}}">
-        <view slot="slot">很抱歉，您附近暂无点位</view>
-      </noData> -->
-    </scroll-view>
+<scroll-view scroll-y style="width: 100%;" bindscrolltoupper="upper" scroll-with-animation="{{true}}"
+  bindscrolltolower="lower" bindscroll="scroll" style="padding-bottom: 150rpx;">
+  <view wx:if="{{!isFlag}}" class="equipmentList {{item.isShow?'color-on':''}}" wx:for="{{equipmentList}}"
+    wx:key="index" wx:for-item="item" data-id="{{item.id}}" data-index="{{index}}" bindtap="equipmentFn">
+    <view class="ribbon {{items.status?'':'no-ribbon'}}" wx:for="{{equipmentStatusList}}" wx:for-item="items"
+      wx:if="{{items.id===item.id}}" wx:key="id">
+      {{items.status?'可预订':'不可预订'}}
+    </view>
+    <view class="equipment-left">
+      <view style="font-size: 32rpx;font-weight: bold;">{{item.name}}</view>
+      <view>地址：{{item.address}}</view>
+      <view style="color: #FFB606;">营业时间：{{item.startOpen}}~{{item.endOpen}}</view>
+    </view>
+    <view class="equipment-right">
+      <view>{{item.distance}}</view>
+      <view class="navigationBtn" data-id="{{item.id}}" catchtap="showModal">导航</view>
+    </view>
   </view>
-  <view class="btnWrap">
-    <view class="btn {{isFlag?'noList':''}}" catchtap="gotoReserveListFn">去下单</view>
-  </view>
+</scroll-view>
+
+<view class="btnWrap">
+  <view class="btn {{isFlag?'noList':''}}" catchtap="gotoReserveListFn">去下单</view>
 </view>

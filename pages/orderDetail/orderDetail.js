@@ -23,12 +23,34 @@ Page({
    */
   onLoad: function (options) {
     that = this;
+    this.mask = this.selectComponent('#mask');
     let bol = dayjs().isBefore(dayjs('2022-02-11'));
     console.log(bol)
     console.log(options.orderId)
     that.setData({
       orderId: options.orderId
     })
+  },
+
+  refundFn: function (e) {
+    console.log(e)
+    let btnId = e.currentTarget.dataset.id;
+    that.setData({
+      btnId
+    })
+    this.mask.util('open');
+  },
+
+  statusNumberFn: e => {
+    console.log(e)
+    let btnStatus = e.detail.status;
+    if (btnStatus == 0) {
+      if (that.data.btnId == 0) {
+
+      } else {
+
+      }
+    }
   },
 
   // 跳转导航

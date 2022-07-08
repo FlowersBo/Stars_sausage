@@ -30,7 +30,6 @@ Component({
     },
     // 模态动画
     util: function(currentStatu,status){
-      console.log('模态动画');
       /* 动画部分 */
       // 第1步：创建动画实例
       var animation = wx.createAnimation({

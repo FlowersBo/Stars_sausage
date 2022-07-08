@@ -13,11 +13,11 @@
     <view class="takeaway_menu">
       <view class="reserve" data-bannerurl="/pages/reserveList/reserveList" bindtap="gotoReserveList">
         <image class="reserve-img" src="../../assets/img/ordering.png"></image>
-        <view style="margin-top:14rpx;">附近预订</view>
+        <view style="margin-top:14rpx;">在线预订</view>
       </view>
       <view class="reserve" data-bannerurl="/pages/facilityListMap/facilityListMap" bindtap="gotoReserveList">
         <image class="reserve-img" src="../../assets/img/purchase.png"></image>
-        <view style="margin-top:14rpx;">选择预订</view>
+        <view style="margin-top:14rpx;">附近烤肠机</view>
       </view>
       <!-- <view class="reserve" data-bannerurl="/pages/facilityListMap/facilityListMap" bindtap="gotoReserveList">
         <image class="reserve-img" src="../../assets/img/join.png"></image>
