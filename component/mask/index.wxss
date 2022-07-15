@@ -14,7 +14,7 @@
 
 /*content*/
 .drawer_box {
-  width: 600rpx;
+  width: 640rpx;
   background-color: #fafafa;
   /* background-image: linear-gradient(135deg, #FF9900, #F7C67E); */
   overflow: hidden;
@@ -22,8 +22,8 @@
   top: 50%;
   left: 0;
   z-index: 1001;
-  margin: -200rpx 75rpx 0 75rpx;
-  border-radius: 10rpx;
+  margin: -300rpx 55rpx 0 55rpx;
+  border-radius: 30rpx;
   box-sizing: border-box;
   padding: 20rpx;
   display: flex;
@@ -35,7 +35,6 @@
 .drawer_box_content {
   width: 600rpx;
   /* background-color: #fff; */
-  border-radius: 20rpx;
   padding: 10rpx;
   color: #353535;
 }
@@ -64,16 +63,17 @@
   margin: 30rpx 0;
 }
 .drawer_box_btn {
-  width: 150rpx;
-  height: 60rpx;
-  line-height: 60rpx;
+  width: 200rpx;
+  height: 70rpx;
+  line-height: 70rpx;
   text-align: center;
-  border-radius: 10rpx;
+  border-radius: 20rpx;
   /* background-image: linear-gradient(135deg, #FF6F03, #FEB906); */
-  background-color: #FF6F03;
+  background-color: #F21D28;
   color: #fff;
   font-size: 32rpx;
+  border: none;
 }
 .drawer_box_btn:last-child{
-  background-color: #FEB906;
+  background-color: #ff9900;
 }

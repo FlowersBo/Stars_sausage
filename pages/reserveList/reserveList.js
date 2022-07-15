@@ -185,6 +185,26 @@ Page({
         }
       }
     });
+    that.setData({
+      device: data,
+      deviceStatus: data.deviceStatus,
+      inMaintenance: data.inMaintenance,
+      products: data.products,
+      storeA: data.storeA,
+      storeB: data.storeB,
+      totalLimit: data.totalLimit,
+    })
+
+    if (data.deviceStatus && data.inMaintenance) {
+      setTimeout(function () {
+        wx.showToast({
+          title: '很抱歉，当前设备正在维护中，请稍后再试',
+          icon: 'none',
+          duration: 3000
+        })
+      }, 500)
+      return
+    }
     if (!data.deviceStatus) {
       setTimeout(function () {
         wx.showToast({
@@ -193,32 +213,11 @@ Page({
           duration: 5000
         })
       }, 500)
-      // Dialog.confirm({
-      //     title: '提示',
-      //     message: '当前点位不可预订',
-      //     theme: 'round-button',
-      //     showCancelButton: false,
-      //     confirmButtonText: '返回'
-      //   })
-      //   .then(() => {
-      //     wx.navigateBack({
-      //       delta: 1
-      //     })
-      //   })
     }
-
-    that.setData({
-      device: data,
-      deviceStatus: data.deviceStatus,
-      products: data.products,
-      storeA: data.storeA,
-      storeB: data.storeB,
-      totalLimit: data.totalLimit,
-    })
   },
 
   gotoPlaceOrderFn() {
-    if (!that.data.deviceStatus) {
+    if (!that.data.deviceStatus||(that.data.deviceStatus&&that.data.inMaintenance)) {
       wx.showToast({
         title: '当前设备不可购买',
         icon: 'none',

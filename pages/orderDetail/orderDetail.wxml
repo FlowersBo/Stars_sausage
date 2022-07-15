@@ -73,7 +73,7 @@
         </view> -->
         <view class="businessHours" wx:if="{{order.order.orderstatus==='W'}}">
           <view>预计取餐时间：</view>
-          <view style="color:#07C160;font-size: 32rpx;">{{order.takeMin}}</view>
+          <view style="color:#07C160;font-size: 36rpx;">{{order.takeMin}}</view>
         </view>
       </view>
       <view class="sausageWrap">
@@ -88,16 +88,25 @@
                     <view class="promotion">热销</view>
                     <view>{{item.productName}}</view>
                   </view>
-                  <view style="color:#999">x{{item.quantity}}</view>
+                  <view class="price" style="font-size: 24rpx;">￥<text
+                      style="font-weight: bold;font-size: 28rpx;">{{item.price}}</text>
+                  </view>
+                  <!-- <view style="color:#999">x{{item.quantity}}</view> -->
                 </view>
               </view>
-              <view class="price" style="font-size: 24rpx;">￥<text
-                  style="font-weight: bold;font-size: 28rpx;">{{item.price}}</text>
+              <view style="height: 100rpx;">
+                <view
+                  style="font-size: 24rpx;font-weight: bold;margin-bottom: 20rpx;color:{{(item.status==='2'||item.status==='3'||item.status==='5'||item.status==='7')?'#F21D28':'#07C160'}};">
+                  {{item.status==='0'?'待烤制':(item.status==='1'?'烤制中':(item.status==='2'?'烤制完成':(item.status==='3'?'烤制失败':(item.status==='4'?'出餐失败':(item.status==='5'?'出餐成功':(item.status==='6'?'取餐失败':(item.status==='7'?'取餐成功':'已退款')))))))}}
+                </view>
               </view>
             </view>
           </block>
           <view class="total" style="font-size:24rpx;color:#666;">合计：￥<text
-              style="color:#FF7003;font-size: 38rpx;font-weight: bold;">{{order.order.orderprice}}</text> </view>
+              style="color:#FF7003;font-size: 38rpx;font-weight: bold;">{{order.order.realpay}}</text> </view>
+        </view>
+        <view wx:if="{{order.showRefund}}" style="margin-top: 30rpx;color: red;">备注：您预订的商品共{{order.totalNum}}根，<text
+            wx:if="{{order.successNum!==0}}">{{order.successNum}}根烤制完成可出餐，</text>{{order.failNum}}根烤制异常无法为您正常出餐，请选择是否{{order.totalNum>1?'部分':'全部'}}退货退款
         </view>
       </view>
       <view class="order-message">
@@ -123,9 +132,13 @@
       <view class="btnWrap">
         <view class="btn" wx:if="{{order.order.orderstatus==='Q'||order.order.orderstatus==='W'}}"
           data-orderstatus="{{order.order.orderstatus}}" bindtap="cancelOrderFn">取消订单</view>
-        <block wx:if="{{order.order.orderstatus==='E'}}">
-          <view class="btn" data-id="0" bindtap="refundFn">部分退款</view>
-          <view class="btn" data-id="1" bindtap="refundFn">全部退款</view>
+        <block wx:if="{{order.showRefund}}">
+          <view wx:if="{{order.totalNum>1}}" class="btn"
+            style="font-size: 20rpx;background:#FF7C03;color:#fff;border: none;" data-id="0" bindtap="refundFn">
+            部分退货退款</view>
+          <view class="btn" style="font-size: 20rpx;background:#F12D37;color:#fff;border: none;" data-id="1"
+            bindtap="refundFn">
+            全部退货退款</view>
         </block>
         <view class="btn btn1"
           wx:if="{{(order.order.orderstatus==='S'||order.order.orderstatus==='SE'||order.order.orderstatus==='E'||order.order.orderstatus==='D') && !order.isSuggest}}"
@@ -137,26 +150,25 @@
   <mask id="mask" openSetting="{{openSetting}}" bind:statusNumber="statusNumberFn">
     <view slot='isTitle'>退款确认</view>
     <view slot='isContent'>
-      <view wx:for="{{order.detail}}" wx:key="index"
+      <view wx:for="{{refundDetail.detail}}" wx:key="index"
         style="display: flex;margin: 20rpx 0;padding: 20rpx 0;border-bottom: 2rpx solid #ddd;">
         <image style="width:120rpx;height:100rpx;border-radius: 6rpx;" src="{{item.pictureUrl}}"></image>
         <view style="margin-left: 30rpx;">
           <view style="font-size: 28rpx;font-weight: bold;">{{item.productName}}</view>
           <view style="display: flex;align-items: center;font-size: 28rpx;margin-top: 24rpx;">
-            <view style="color:#999;margin-right: 30rpx;">x{{item.quantity}}</view>
+            <!-- <view style="color:#999;margin-right: 30rpx;">x{{item.quantity}}</view> -->
             <view class="price" style="font-size: 24rpx;">￥<text
                 style="font-weight: bold;font-size: 28rpx;">{{item.price}}</text>
             </view>
           </view>
         </view>
-
-
-
       </view>
-      <view style="font-size: 28rpx;font-weight: bold;color: #f85246;">
-        <view>退款原因：烤制异常</view>
-        <view style="margin:20rpx 0;">退款金额：￥3.00</view>
-        <view>退款方式：原路退回</view>
+      <view style="font-size: 28rpx;font-weight: bold;">
+        <view>退款原因：{{refundDetail.reason}}</view>
+        <view style="margin:20rpx 0;">退款金额：￥{{refundDetail.amount}}</view>
+        <view>退款方式：{{refundDetail.refundWay}}</view>
+        <view wx:if="{{order.totalNum>1}}" style="margin:20rpx 0;color: #f85246;">
+          唯有爱和美食不可gu负！小主，您有{{order.successNum}}根烤肠已烤制完成，难道就这样和美味擦肩而过吗😔😟</view>
       </view>
     </view>
   </mask>

@@ -111,6 +111,10 @@
   align-items: center;
 }
 
+.imgWrap{
+  margin: 0 10rpx;
+}
+
 .commodityName {
   width: 190rpx;
   white-space: nowrap;

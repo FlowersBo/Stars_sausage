@@ -18,7 +18,8 @@
       </view>
       <view class="distance">
         <view class="storeName">
-          <view>{{device.deviceStatus?'':'当前不可预定'}}</view>
+          <view style="font-size: 24rpx;color: red;">{{device.deviceStatus?'':'当前不可预定'}}</view>
+          <view style="font-size: 24rpx;color: red;">{{(device.deviceStatus&&device.inMaintenance)?'当前设备维护中':''}}</view>
           <!-- <view style="color:#FF7304;" wx:if="{{deviceDetail.startOpen}}">
             {{deviceDetail.startOpen}}~{{deviceDetail.endOpen}}</view> -->
           <view class="btn" bindtap="gotoFacilityList">切换点位</view>
@@ -48,10 +49,11 @@
                 }
               </wxs>
               <van-stepper value="{{item.productCount}}" data-id="{{item.id}}" data-channel="{{item.channel}}"
-                disable-input="true" min="0" max="{{fn.flight(item.store)}}" data-plusNum="{{item.productCount}}" 
-                disable-plus="{{item.isPlus||!device.deviceStatus}}" theme="round" integer="true" button-size="28px"
-                custom-class="addSubtract" plus-class="add-subtract subtract" minus-class="add-subtract"
-                input-class="inpNumber" bind:plus="bindPlusFn" bind:minus="bindMinus" bind:overlimit="numBtn"/>
+                disable-input="true" min="0" max="{{fn.flight(item.store)}}" data-plusNum="{{item.productCount}}"
+                disable-plus="{{item.isPlus||!device.deviceStatus||(device.deviceStatus&&device.inMaintenance)}}"
+                theme="round" integer="true" button-size="28px" custom-class="addSubtract"
+                plus-class="add-subtract subtract" minus-class="add-subtract" input-class="inpNumber"
+                bind:plus="bindPlusFn" bind:minus="bindMinus" bind:overlimit="numBtn" />
             </view>
           </view>
         </view>
@@ -70,7 +72,7 @@
     </view>
     <button class="SubmitBar-btn" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumberFn"
       wx:if="{{isPhone}}">去结算</button>
-    <view wx:else class="SubmitBar-btn {{device.deviceStatus?'':'deviceStatus'}}" bindtap="gotoPlaceOrderFn">去结算</view>
+    <view wx:else class="SubmitBar-btn {{(!device.deviceStatus||(device.deviceStatus&&device.inMaintenance))?'deviceStatus':''}}" bindtap="gotoPlaceOrderFn">去结算</view>
   </view>
 </view>
 <van-dialog id="van-dialog" />

@@ -33,7 +33,7 @@
         <view style="margin:0 4rpx;">{{item.pointName}}</view>
         <icon class="iconfont icon-youjiantou"></icon>
         <view class="startus">
-          {{item.orderStatus==='Q'?'排队中':((!item.orderStatus.roastDate&&item.orderStatus==='W')?'准备中':((item.orderStatus==='W'&&order.order.roastDate)?'待取餐':(item.orderStatus==='S'?'取餐成功':'已取消')))}}
+          {{item.orderStatus==='Q'?'排队中':((!item.orderStatus.roastDate&&item.orderStatus==='W')?'准备中':((item.orderStatus==='W'&&order.order.roastDate)?'待取餐':(item.orderStatus==='S'?'取餐成功':(item.orderStatus==='E'?'异常订单':'已取消'))))}}
         </view>
       </view>
       <view class="shopWrap">
@@ -57,11 +57,10 @@
         </view>
       </view>
       <view class="btnWrap">
-        <!--  -->
-        <view wx:if="{{item.orderStatus==='E'}}" style="font-size: 28rpx;color: #f74747;">
+        <!-- <view wx:if="{{item.orderStatus==='E'}}" style="font-size: 28rpx;color: #f74747;">
           <view class="tanhao">!</view>
           您购买的商品部分烤制异常
-        </view>
+        </view> -->
         <view class="btns">
           <view class="btn btn1" wx:if="{{item.orderStatus==='S'}}" data-btn="0" data-orderid="{{item.id}}"
             catchtap="bindnavFn">再来一单</view>

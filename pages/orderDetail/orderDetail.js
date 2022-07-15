@@ -35,21 +35,46 @@ Page({
   refundFn: function (e) {
     console.log(e)
     let btnId = e.currentTarget.dataset.id;
-    that.setData({
-      btnId
-    })
-    this.mask.util('open');
+    let isAll = false;
+    if (btnId == 0) {
+      isAll = false
+    } else {
+      isAll = true
+    }
+    app.http.RefundShow({
+        isAll,
+        orderId: that.data.orderId
+      })
+      .then(res => {
+        console.log('弹窗', res)
+        that.setData({
+          btnId,
+          isAll,
+          refundDetail: res.data
+        })
+        this.mask.util('open');
+      })
   },
 
   statusNumberFn: e => {
     console.log(e)
     let btnStatus = e.detail.status;
     if (btnStatus == 0) {
+      let isAll = that.data.isAll;
       if (that.data.btnId == 0) {
-
-      } else {
-
+        isAll = false
       }
+      app.http.Refund({
+          orderId: that.data.orderId,
+          isAll
+        })
+        .then(res => {
+          console.log('退款成功', res);
+          that.orderDetailFn(that.data.orderId);
+        })
+        .catch(err => {
+
+        })
     }
   },
 

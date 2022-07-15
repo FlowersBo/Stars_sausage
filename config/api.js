@@ -7,7 +7,7 @@ module.exports = {
 	createOrder: 'reserve/order/create',
 	confirm: 'reserve/order/confirm',
 	pay: 'reserve/order/pay',
-	detail: 'reserve/order/detail',
+	detail: 'reserve/order/2/detail',
 	cancel: 'reserve/order/cancel',
 	orderList: 'reserve/order/list',
 	upload: 'reserve/common/upload',
@@ -16,4 +16,6 @@ module.exports = {
 	status: 'reserve/order/dev/status', //设备状态
 	getCity: 'reserve/common/getCity', //城市列表
 	search: 'reserve/common/search', //搜索点位
+	refund: 'reserve/order/refund', //退款
+	refundShow: 'reserve/order/refund/show', //退款确认弹框
 }
