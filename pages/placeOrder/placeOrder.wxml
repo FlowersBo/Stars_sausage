@@ -11,7 +11,7 @@
       <view class="facilityAddress">
         <view>
           <view class="facilityName">{{product.pointName}}</view>
-          <view class="distance">距离您位置 <text style="color:#FF7003;">{{distance}}</text></view>
+          <view class="distance">距离您当前位置 <text style="color:#FF7003;">{{distance}}</text></view>
         </view>
         <!-- <icon class="iconfont icon-youjiantou distanceICon"></icon> -->
       </view>

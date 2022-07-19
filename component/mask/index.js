@@ -24,12 +24,15 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    gotobargainDetailFuns: function(e) {
+    noTouch: function () {
+      return;
+    },
+    gotobargainDetailFuns: function (e) {
       let status = e.currentTarget.dataset.status;
-      this.util('close',status);
+      this.util('close', status);
     },
     // 模态动画
-    util: function(currentStatu,status){
+    util: function (currentStatu, status) {
       /* 动画部分 */
       // 第1步：创建动画实例
       var animation = wx.createAnimation({
@@ -59,7 +62,9 @@ Component({
           this.setData({
             showModalStatus: false
           });
-          this.triggerEvent('statusNumber', { status: status });
+          this.triggerEvent('statusNumber', {
+            status: status
+          });
         } else if (currentStatu == "open") {
           this.setData({
             showModalStatus: true

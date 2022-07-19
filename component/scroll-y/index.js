@@ -1,3 +1,30 @@
+function throttle(fn, interval) {
+  var enterTime = 0; //触发的时间
+  var gapTime = interval || 300; //间隔时间，如果interval不传，则默认300ms
+  return function () {
+    var thisArg = this;
+    var backTime = new Date(); //第一次函数return即触发的时间
+    if (backTime - enterTime > gapTime) {
+      fn.call(thisArg, arguments);
+      enterTime = backTime; //赋值给第一次触发的时间，这样就保存了第二次触发的时间
+    }
+  };
+}
+/*函数防抖*/
+function debounce(fn, interval) {
+  var timer;  
+  var gapTime = interval || 200;//间隔时间，如果interval不传，则默认200ms
+  return function() {
+    clearTimeout(timer);
+    var thisArg = this;
+    var args = arguments;//保存此处的arguments，因为setTimeout是全局的，arguments不是防抖函数需要的。
+    timer = setTimeout(function() {
+      console.log(args)
+      fn.call(thisArg,args);
+    }, gapTime);
+  };
+}
+
 Component({
   options: {
     multipleSlots: true, // 在组建定义时的选项中启用多slot支持
@@ -61,12 +88,19 @@ Component({
     },
 
     // 获取滚动条当前位置
-    scrolltoupper: function (e) {
-      let scrollTop = e.detail.scrollTop;
-      this.triggerEvent('scrollTopFn', {
-        scrollTop: scrollTop
-      })
-    },
+    scrolltoupper: debounce(function (res) {
+      // this.triggerEvent('scrollTopFn', {
+      //   scrollTop: res[0].detail.scrollTop
+      // })
+    }),
+
+
+    // scrolltoupper: function (e) {
+    //   let scrollTop = e.detail.scrollTop;
+    //   this.triggerEvent('scrollTopFn', {
+    //     scrollTop: scrollTop
+    //   })
+    // },
 
 
     /**滑动 */

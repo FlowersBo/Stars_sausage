@@ -61,7 +61,6 @@ Page({
       totalLimit = that.data.totalLimit;
     products.forEach(element => {
       if (element.id === id && element.channel === channel) {
-        console.log(element.productCount + 1, element.store[0])
         if (add) {
           console.log(element.productCount + 1, element.store[0])
           element.productCount = element.productCount + 1;

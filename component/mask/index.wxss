@@ -15,6 +15,7 @@
 /*content*/
 .drawer_box {
   width: 640rpx;
+  height: 600rpx;
   background-color: #fafafa;
   /* background-image: linear-gradient(135deg, #FF9900, #F7C67E); */
   overflow: hidden;
@@ -24,8 +25,6 @@
   z-index: 1001;
   margin: -300rpx 55rpx 0 55rpx;
   border-radius: 30rpx;
-  box-sizing: border-box;
-  padding: 20rpx;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -33,8 +32,6 @@
 }
 
 .drawer_box_content {
-  width: 600rpx;
-  /* background-color: #fff; */
   padding: 10rpx;
   color: #353535;
 }
@@ -60,7 +57,8 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
-  margin: 30rpx 0;
+  box-sizing: border-box;
+  padding: 20rpx 0;
 }
 .drawer_box_btn {
   width: 200rpx;

@@ -96,7 +96,7 @@
               </view>
               <view style="height: 100rpx;">
                 <view
-                  style="font-size: 24rpx;font-weight: bold;margin-bottom: 20rpx;color:{{(item.status==='2'||item.status==='3'||item.status==='5'||item.status==='7')?'#F21D28':'#07C160'}};">
+                  style="font-size: 24rpx;font-weight: bold;margin-bottom: 20rpx;color:{{(item.status==='3'||item.status==='4'||item.status==='6'||item.status==='8')?'#F21D28':'#07C160'}};">
                   {{item.status==='0'?'待烤制':(item.status==='1'?'烤制中':(item.status==='2'?'烤制完成':(item.status==='3'?'烤制失败':(item.status==='4'?'出餐失败':(item.status==='5'?'出餐成功':(item.status==='6'?'取餐失败':(item.status==='7'?'取餐成功':'已退款')))))))}}
                 </view>
               </view>
@@ -168,7 +168,8 @@
         <view style="margin:20rpx 0;">退款金额：￥{{refundDetail.amount}}</view>
         <view>退款方式：{{refundDetail.refundWay}}</view>
         <view wx:if="{{order.totalNum>1}}" style="margin:20rpx 0;color: #f85246;">
-          唯有爱和美食不可gu负！小主，您有{{order.successNum}}根烤肠已烤制完成，难道就这样和美味擦肩而过吗😔😟</view>
+          唯有爱和美食不可gu负！小主，您有{{order.successNum}}根烤肠已烤制完成，难道就这样与美味擦肩而过吗😔😟</view>
+        <view wx:else style="margin:20rpx 0;height: 50rpx;"></view>
       </view>
     </view>
   </mask>

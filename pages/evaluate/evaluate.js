@@ -1,6 +1,49 @@
 // pages/evaluate/evaluate.js
 let app = getApp();
 let that;
+
+function shuiyin(img) {
+  wx.createSelectorQuery().select('#myCanvas').context(function (res) {
+    console.log(res)
+    let ctx = res.context;
+    console.log(ctx)
+    ctx.drawImage(img, 0, 0, 375, 375) //在画布上绘入图片，参数含义移步手册。
+    ctx.rotate(45 * Math.PI / 180); //设置文字的旋转角度，角度为45°；
+
+    //对斜对角线以左部分进行文字的填充
+    for (let j = 1; j < 10; j++) { //用for循环达到重复输出文字的效果，这个for循环代表纵向循环
+      ctx.beginPath();
+      ctx.setFontSize(30);
+      ctx.setFillStyle("rgba(255,255,255,.5)");
+
+      ctx.fillText("水印", 0, 50 * j);
+      for (let i = 1; i < 10; i++) { //这个for循环代表横向循环，
+        ctx.beginPath();
+        ctx.setFontSize(30);
+        ctx.setFillStyle("rgba(255,255,255,.5)");
+        ctx.fillText("zgu", 80 * i, 50 * j);
+      }
+    } //两个for循环的配合，使得文字充满斜对角线的左下部分
+
+    //对斜对角线以右部分进行文字的填充逻辑同上
+    for (let j = 0; j < 10; j++) {
+      ctx.beginPath();
+      ctx.setFontSize(30);
+      ctx.setFillStyle("rgba(255,255,255,.5)");
+
+      ctx.fillText("水印", 0, -50 * j);
+      for (let i = 1; i < 10; i++) {
+        ctx.beginPath();
+        ctx.setFontSize(30);
+        ctx.setFillStyle("rgba(255,255,255,.5)");
+        ctx.fillText("水印", 80 * i, -50 * j);
+      }
+    }
+    ctx.draw();
+  }).exec()
+}
+
+
 Page({
 
   /**
@@ -26,6 +69,16 @@ Page({
     });
   },
 
+  getInfo(e) {
+    wx.getImageInfo({
+      src: e,
+      success(res) {
+        console.log(res) //可以获取图片路径，图片长宽等信息
+        // shuiyin(res.path)
+      }
+    })
+  },
+
   afterRead(event) {
     that.setData({
       isShow: true
@@ -34,6 +87,8 @@ Page({
     const {
       file
     } = event.detail;
+    that.getInfo(file[0].url)
+    console.log(file)
     // 当设置 mutiple 为 true 时, file 为数组格式，否则为对象格式
     file.forEach(element => {
       wx.uploadFile({
@@ -52,8 +107,6 @@ Page({
             ...element,
             url: JSON.parse(res.data).data
           });
-          console.log(file)
-          console.log(fileList)
           that.setData({
             fileList
           })

@@ -9,6 +9,7 @@ import {
 } from '../../utils/util';
 let dayjs = require('dayjs')
 const app = getApp();
+
 Page({
 
   /**
@@ -24,12 +25,13 @@ Page({
   onLoad: function (options) {
     that = this;
     this.mask = this.selectComponent('#mask');
-    let bol = dayjs().isBefore(dayjs('2022-02-11'));
+    let bol = dayjs().isBefore(dayjs('2022-07-18'));
     console.log(bol)
     console.log(options.orderId)
     that.setData({
       orderId: options.orderId
     })
+
   },
 
   refundFn: function (e) {

@@ -1,6 +1,7 @@
 // pages/orderList/orderList.js
 let app = getApp();
 let that;
+
 Page({
 
   /**
@@ -23,7 +24,7 @@ Page({
     pageSize: 20,
     isFlag: false
   },
-
+  
   onScorll(event) {
     // console.log(event)
     // console.log(this.selectComponent("#tip").scrolltoupper()); 

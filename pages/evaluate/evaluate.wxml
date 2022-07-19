@@ -25,4 +25,6 @@
   <button class="btn {{isShow?'isBtn':''}}" disabled="{{isShow}}" bindtap="submitFrom">提交评价</button>
 </view>
 
+<!-- <canvas id='myCanvas' canvas-id='myCanvas' style='width:500px;height:500px;background-color:black;'></canvas> -->
+
 <!-- <van-icon class="iconfont" class-prefix="icon" name="shijian" /> -->

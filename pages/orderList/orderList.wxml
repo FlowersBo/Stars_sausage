@@ -32,7 +32,7 @@
         <image src="../../assets/img/cat.png" style="width:62rpx;height: 62rpx;margin-left:-10rpx"></image>
         <view style="margin:0 4rpx;">{{item.pointName}}</view>
         <icon class="iconfont icon-youjiantou"></icon>
-        <view class="startus">
+        <view class="startus {{(item.orderStatus==='SE'||item.orderStatus==='E'||item.orderStatus==='D')?'startus-off':''}}">
           {{item.orderStatus==='Q'?'排队中':((!item.orderStatus.roastDate&&item.orderStatus==='W')?'准备中':((item.orderStatus==='W'&&order.order.roastDate)?'待取餐':(item.orderStatus==='S'?'取餐成功':(item.orderStatus==='E'?'异常订单':'已取消'))))}}
         </view>
       </view>
