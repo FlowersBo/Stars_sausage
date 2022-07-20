@@ -262,7 +262,9 @@ Page({
     that = this;
     that.setData({
       statusBarHeight: app.globalData.StatusBar + 'px',
-      navigationBarHeight: (app.globalData.StatusBar + 44) + 'px'
+      navigationBarHeight: (app.globalData.StatusBar + 44) + 'px',
+      city: wx.getStorageSync('province'),
+      adcode: wx.getStorageSync('adcode'),
     })
     that.facilityListFn();
     that.cityFn();
