@@ -1,3 +1,4 @@
+/*函数节流*/
 function throttle(fn, interval) {
   var enterTime = 0; //触发的时间
   var gapTime = interval || 300; //间隔时间，如果interval不传，则默认300ms
@@ -13,13 +14,12 @@ function throttle(fn, interval) {
 /*函数防抖*/
 function debounce(fn, interval) {
   var timer;  
-  var gapTime = interval || 200;//间隔时间，如果interval不传，则默认200ms
+  var gapTime = interval || 200;//间隔时间
   return function() {
     clearTimeout(timer);
     var thisArg = this;
     var args = arguments;//保存此处的arguments，因为setTimeout是全局的，arguments不是防抖函数需要的。
     timer = setTimeout(function() {
-      console.log(args)
       fn.call(thisArg,args);
     }, gapTime);
   };
@@ -89,9 +89,7 @@ Component({
 
     // 获取滚动条当前位置
     scrolltoupper: debounce(function (res) {
-      // this.triggerEvent('scrollTopFn', {
-      //   scrollTop: res[0].detail.scrollTop
-      // })
+      
     }),
 
 

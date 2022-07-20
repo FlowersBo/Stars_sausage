@@ -24,7 +24,7 @@ Page({
     pageSize: 20,
     isFlag: false
   },
-  
+
   onScorll(event) {
     // console.log(event)
     // console.log(this.selectComponent("#tip").scrolltoupper()); 
