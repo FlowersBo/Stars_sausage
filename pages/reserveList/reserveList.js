@@ -311,7 +311,7 @@ Page({
     }));
     console.log('订单号', data)
     if (data) {
-      wx.navigateTo({
+      unfreezeNavigateTo({
         url: '/pages/placeOrder/placeOrder?orderId=' + data + '&distance=' + that.data.distance,
       })
     } else {
