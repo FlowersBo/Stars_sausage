@@ -37,7 +37,7 @@
           <view class="materials" style="color: #999;">{{item.description}}</view>
           <view class="price-count">
             <view class="price" style="color: #FF7303;font-weight:bold;">
-              ￥{{item.factAmount}} <text
+              ￥{{item.factAmount}} <text wx:if="{{item.discount>0}}"
                 style="font-size: 26rpx;color:#999;text-decoration:line-through;margin-left:8rpx;">￥{{item.price}}</text>
             </view>
             <view class="count">
