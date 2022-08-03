@@ -12,7 +12,7 @@
     </picker>
     <view class="searchChild">
       <input style="color: #1f1f1f;" placeholder="搜索点位" bindconfirm="getsuggest" value="{{backfill}}"
-        confirm-type="search"></input>
+        confirm-type="search" bindinput="bindInputFn"></input>
       <icon class="iconfont icon-icon-search"></icon>
     </view>
   </view>

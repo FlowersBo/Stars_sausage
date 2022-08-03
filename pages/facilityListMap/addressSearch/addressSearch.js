@@ -49,6 +49,14 @@ Page({
     })
   },
 
+  bindInputFn(e){
+    if(!e.detail.value){
+      that.setData({
+        suggestion: []
+      })
+    }
+  },
+
   getsuggest: function (e) {
     if (!e.detail.value) {
       that.setData({
