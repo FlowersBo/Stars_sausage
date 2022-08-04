@@ -147,9 +147,18 @@ Page({
           orderId
         )
         .then(res => {
-          wx.navigateTo({
-            url: '../placeOrder/placeOrder?orderId=' + orderId,
-          })
+          console.log(res)
+          if (res.code === 200) {
+            wx.navigateTo({
+              url: '../placeOrder/placeOrder?orderId=' + res.data.id,
+            })
+          }else{
+            wx.showToast({
+              title: res.data.msg,
+              icon: 'none',
+              duration: 2000
+            })
+          }
         })
         .catch(err => {
 
