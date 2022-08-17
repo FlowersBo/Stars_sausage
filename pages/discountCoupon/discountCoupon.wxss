@@ -1,8 +1,4 @@
 /* pages/discountCoupon/discountCoupon.wxss */
-.discount {
-  /* width: 690rpx; */
-}
-
 .van-item {
   width: 690rpx;
   height: 196rpx;
