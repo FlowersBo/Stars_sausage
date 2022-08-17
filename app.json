@@ -11,7 +11,8 @@
     "pages/evaluate/evaluate",
     "pages/facilityListMap/facilityListMap",
     "pages/test/test",
-    "pages/facilityListMap/addressSearch/addressSearch"
+    "pages/facilityListMap/addressSearch/addressSearch",
+    "pages/discountCoupon/discountCoupon"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -26,7 +27,8 @@
     "color": "#a9b7b7",
     "selectedColor": "#11cd6e",
     "borderStyle": "white",
-    "list": [{
+    "list": [
+      {
         "selectedIconPath": "/assets/tabbar/xiangchang-h.png",
         "iconPath": "/assets/tabbar/xiangchang.png",
         "pagePath": "pages/home/home",

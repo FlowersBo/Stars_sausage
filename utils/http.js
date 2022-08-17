@@ -2,9 +2,9 @@ import * as api from '../config/api';
 import {
   Request
 } from './requestUrl';
-let baseUrl = 'https://res.morninggo.cn/';
+// let baseUrl = 'https://res.morninggo.cn/';
 // let baseUrl = 'http://192.168.110.97:8080/reserve-http/';
-// let baseUrl = 'http://restest.morninggo.cn/';
+let baseUrl = 'http://restest.morninggo.cn/';
 
 function Auth(data = {}) {
   return Request(baseUrl + api.auth, data, 'get')
@@ -81,12 +81,17 @@ function Refund(data = {}) {
   for (const key in data) {
     paramsData.push(`${key}=${data[key]}`)
   }
-  return Request(`${baseUrl + api.refund}?${paramsData.join('&')}`,data, 'post')
+  return Request(`${baseUrl + api.refund}?${paramsData.join('&')}`, data, 'post')
 }
 
 function RefundShow(data = {}) {
   return Request(baseUrl + api.refundShow, data, 'get')
 }
+
+function CouponList(data = {}) {
+  return Request(baseUrl + api.couponList, data, 'get')
+}
+
 module.exports = {
   baseUrl,
   Auth,
@@ -106,5 +111,6 @@ module.exports = {
   GetCity,
   Search,
   Refund,
-  RefundShow
+  RefundShow,
+  CouponList
 }

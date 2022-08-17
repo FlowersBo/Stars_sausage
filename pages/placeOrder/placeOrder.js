@@ -71,7 +71,12 @@ Page({
         })
       }
     })
+  },
 
+  gotodiscountCoupon(){
+    wx.navigateTo({
+      url: '/pages/discountCoupon/discountCoupon',
+    })
   },
 
   /**

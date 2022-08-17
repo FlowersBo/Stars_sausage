@@ -213,3 +213,105 @@
   font-weight: bold;
   letter-spacing: 4rpx;
 }
+
+.waveWrap {
+  width: 100%;
+  background: #fff;
+  border-radius: 20rpx;
+  box-sizing: border-box;
+  padding: 10rpx;
+  margin-top: 30rpx;
+  box-shadow: 0 2rpx 20rpx 0 rgba(0, 0, 0, 0.08);
+  padding: 30rpx 20rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.gengduo {
+  width: 117rpx;
+  border-radius: 20rpx;
+  height: 117rpx;
+  border: 2rpx solid #FF7603;
+  border-radius: 20rpx;
+  padding: 20rpx;
+  color: #FF7603;
+  font-size: 40rpx;
+  writing-mode: vertical-lr;
+  text-align: center;
+  line-height: 117rpx;
+}
+
+.wave {
+  /* position: relative; */
+  background: #fff;
+  display: flex;
+  height: 120rpx;
+  min-height: 50px;
+  color: #fff;
+  align-items: center;
+  border-radius: 20rpx;
+}
+
+.wave-child {
+  width: 316rpx;
+  height: 100%;
+  padding: 20rpx 0;
+  border-radius: 20rpx 0 0 20rpx;
+  background: radial-gradient(circle at 90rpx 80rpx, transparent 76rpx, #FF7603 21px);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.youhuiImg {
+  width: 120rpx;
+  height: 80rpx;
+  position: absolute;
+  top: 40rpx;
+  left: 30rpx;
+}
+
+.sum {
+  width: 170rpx;
+  height: 100%;
+  background: #FF7603;
+  padding: 20rpx 0;
+  border-radius: 0 20rpx 20rpx 0;
+  color: #fff;
+  font-size: 48rpx;
+  text-align: center;
+  line-height: 120rpx;
+  position: relative;
+}
+
+.sum::before {
+  content: '';
+  width: 1rpx;
+  height: 60%;
+  background: #FF7603;
+  position: absolute;
+  left: 0;
+  top: 20%;
+  border-left: 2rpx dotted #fff;
+}
+
+/* .wave::before {
+  content: ' ';
+  width: 0;
+  height: 100%;
+  width: 0;
+  position: absolute;
+  border-right: 6px dotted white;
+  top: 0;
+  left: -3px;
+}
+
+.wave::after {
+  content: ' ';
+  height: 100%;
+  position: absolute;
+  border-left: 6px dotted white;
+  top: 0;
+  right: -3px;
+} */

@@ -18,4 +18,5 @@ module.exports = {
 	search: 'reserve/common/search', //搜索点位
 	refund: 'reserve/order/refund', //退款
 	refundShow: 'reserve/order/refund/show', //退款确认弹框
+	couponList: 'reserve/coupon/list', //优惠券列表
 }

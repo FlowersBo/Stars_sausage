@@ -53,6 +53,16 @@
       </view>
       <view style="color:#07C160;font-size: 26rpx;font-weight: 500;">{{product.takeMin}}分钟后可取</view>
     </view>
+
+    <view class="waveWrap">
+      <view class="wave">
+        <view class="wave-child">
+          <image class="youhuiImg" src="../../assets/img/youhuiquan.png"></image>
+        </view>
+        <view class="sum"><text style="font-size: 32rpx;">-￥</text>1</view>
+      </view>
+      <view class="gengduo" bindtap="gotodiscountCoupon">更多</view>
+    </view>
   </view>
 </view>
 <view class="SubmitBarWrap">

@@ -1,0 +1,58 @@
+/* pages/discountCoupon/discountCoupon.wxss */
+.discount {
+  /* width: 690rpx; */
+}
+
+.van-item {
+  width: 690rpx;
+  height: 196rpx;
+  margin: 20rpx auto;
+  border-radius: 20rpx;
+  background: #fff;
+  display: flex;
+  box-shadow: 6rpx 6rpx 10rpx 4rpx rgba(0, 0, 0, 0.1);
+}
+
+.coupon {
+  width: 265rpx;
+  height: 100%;
+  background-image: linear-gradient(90deg, #FF9900, #F7C67E);
+  border-radius: 20rpx 0 0 20rpx;
+  position: relative;
+  color: #fff;
+  font-size: 22rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.coupon::after {
+  content: ' ';
+  height: 100%;
+  width: 0;
+  position: absolute;
+  border-right: 4rpx dotted #fff;
+  right: -2rpx;
+  top: 0;
+}
+
+.couponDetail {
+  flex: 1;
+  display: flex;
+  padding: 0 20rpx;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.couponBtn {
+  width: 126rpx;
+  height: 42rpx;
+  color: #fff;
+  font-size: 24rpx;
+  line-height: 42rpx;
+  text-align: center;
+  border-radius: 10rpx;
+  background: #feb906;
+
+}

@@ -171,7 +171,7 @@ Page({
         }
       });
     });
-
+    console.log(data.products)
     data.products.forEach(element => {
       if (data.totalLimit <= 0) {
         element.isPlus = true;

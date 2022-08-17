@@ -87,7 +87,8 @@ Page({
     }
     if (e.currentTarget.dataset.index === 0) {
       wx.navigateToMiniProgram({
-        appId: 'wx8ab6fcdcbc881c7d',
+        appId: 'wx41a8aabec46e8080',
+        //wx8ab6fcdcbc881c7d
         // path: 'page/index/index?id=123',
         // extraData: {
         //   foo: 'bar'

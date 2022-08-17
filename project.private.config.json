@@ -71,6 +71,12 @@
           "pathName": "pages/orderDetail/orderDetail",
           "query": "orderId=1539901662804574208",
           "scene": null
+        },
+        {
+          "name": "优惠券",
+          "pathName": "pages/discountCoupon/discountCoupon",
+          "query": "",
+          "scene": null
         }
       ]
     }
