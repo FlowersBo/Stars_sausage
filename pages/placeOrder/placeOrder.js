@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    couponId: ''
   },
 
   /**
@@ -15,18 +15,19 @@ Page({
    */
   onLoad: function (options) {
     that = this;
+    console.log(options)
     that.setData({
       orderId: options.orderId,
       distance: options.distance
     })
-    that.confirmFn();
   },
 
   async confirmFn() {
     let {
       data
     } = await (app.http.confirm({
-      orderId: that.data.orderId
+      orderId: that.data.orderId,
+      couponId: that.data.couponId
     }));
     let overallPrice = 0,
       price = 0,
@@ -35,7 +36,18 @@ Page({
       price += Number(element.price);
       productQuantity += JSON.parse(element.quantity)
     });
-    overallPrice = price.toFixed(2)
+    if (data.coupon) {
+      let couponMoney = Number(data.coupon.coupon.money)
+      if (price - couponMoney <= 0) {
+        overallPrice = 0;
+      }
+      overallPrice = (price - couponMoney).toFixed(2);
+      that.setData({
+        couponId: data.coupon.id
+      })
+    } else {
+      overallPrice = price.toFixed(2);
+    }
     that.setData({
       product: data,
       overallPrice,
@@ -47,9 +59,10 @@ Page({
   async wxPayFn() {
     let {
       data
-    } = await (app.http.pay(
-      that.data.orderId
-    ));
+    } = await (app.http.pay({
+      orderId: that.data.orderId,
+      couponId: that.data.couponId
+    }));
     console.log('支付', data)
     wx.requestPayment({
       timeStamp: data.timeStamp,
@@ -69,11 +82,14 @@ Page({
           icon: 'error',
           duration: 2000
         })
+        wx.navigateBack({
+          delta: 1,
+        })
       }
     })
   },
 
-  gotodiscountCoupon(){
+  gotodiscountCoupon() {
     wx.navigateTo({
       url: '/pages/discountCoupon/discountCoupon',
     })
@@ -90,7 +106,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    that.confirmFn();
   },
 
   /**

@@ -12,7 +12,8 @@
     "pages/facilityListMap/facilityListMap",
     "pages/test/test",
     "pages/facilityListMap/addressSearch/addressSearch",
-    "pages/discountCoupon/discountCoupon"
+    "pages/discountCoupon/discountCoupon",
+    "pages/coupon/coupon"
   ],
   "window": {
     "backgroundTextStyle": "light",

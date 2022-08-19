@@ -77,6 +77,12 @@
           "pathName": "pages/discountCoupon/discountCoupon",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "抢券",
+          "pathName": "pages/coupon/coupon",
+          "query": "",
+          "scene": null
         }
       ]
     }

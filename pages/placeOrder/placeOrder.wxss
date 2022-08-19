@@ -271,6 +271,14 @@
   top: 40rpx;
   left: 30rpx;
 }
+.text{
+  height: 60rpx;
+  position: absolute;
+  top: 50%;
+  line-height: 60rpx;
+  margin-top: -30rpx;
+  right: 10rpx;
+}
 
 .sum {
   width: 170rpx;

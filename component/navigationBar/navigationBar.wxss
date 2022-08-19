@@ -2,7 +2,7 @@
 @import "/utils/iconfont.wxss";
 
 .navbar {
-  width: 100%;
+  width: 750rpx;
   position: fixed;
   /* background: linear-gradient(to right, #FF6F04,10%,#FEB906); */
   background: linear-gradient(90deg, #FF6F03 0%, #FEB906 100%);

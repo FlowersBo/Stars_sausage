@@ -5,7 +5,15 @@ import {
 // let baseUrl = 'https://res.morninggo.cn/';
 // let baseUrl = 'http://192.168.110.97:8080/reserve-http/';
 let baseUrl = 'http://restest.morninggo.cn/';
-
+function addQueryString(params) { //post拼接参数
+  let paramStr = '';
+  for (const key in params) {
+    if (Object.hasOwnProperty.call(params, key)) {
+      paramStr += key + '=' + params[key] + '&';
+    }
+  }
+  return '?' + paramStr.substr(0, paramStr.length - 1);
+}
 function Auth(data = {}) {
   return Request(baseUrl + api.auth, data, 'get')
 }
@@ -34,8 +42,8 @@ function confirm(data = {}) {
   return Request(baseUrl + api.confirm, data, 'get')
 }
 
-function pay(orderId, data = {}) {
-  return Request(`${baseUrl + api.pay}?orderId=${orderId}`, data, 'post')
+function pay(data = {}) {
+  return Request(`${baseUrl + api.pay+addQueryString(data)}`, data, 'post')
 }
 
 function Detail(data = {}) {
@@ -92,6 +100,22 @@ function CouponList(data = {}) {
   return Request(baseUrl + api.couponList, data, 'get')
 }
 
+function CouponBag(data = {}) {
+  return Request(baseUrl + api.couponBag, data, 'get')
+}
+
+function CouponBc(data = {}) {
+  return Request(baseUrl + api.couponBc, data, 'get')
+}
+
+function DrawBag(data = {}) {
+  return Request(`${baseUrl + api.drawBag+addQueryString(data)}`, data, 'post')
+}
+
+function DrawCoupon(data = {}) {
+  return Request(`${baseUrl + api.drawCoupon+addQueryString(data)}`, data, 'post')
+}
+
 module.exports = {
   baseUrl,
   Auth,
@@ -112,5 +136,9 @@ module.exports = {
   Search,
   Refund,
   RefundShow,
-  CouponList
+  CouponList,
+  CouponBag,
+  CouponBc,
+  DrawBag,
+  DrawCoupon
 }

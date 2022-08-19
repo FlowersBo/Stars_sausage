@@ -1,20 +1,20 @@
 <!--pages/discountCoupon/discountCoupon.wxml-->
 <navigationBar back text="优惠券" />
 <view class="discount">
-  <van-tabs animated sticky offset-top="84">
+  <van-tabs animated sticky offset-top="84" bind:click="onClick">
     <van-tab title="{{item.tabsName}}" wx:for="{{fatherList}}" wx:for-index="index" wx:key="index">
       <block wx:for="{{item.list}}" wx:key="index">
         <view class="van-item">
           <view class="coupon">
-            <view>￥<text style="font-size: 50rpx;font-weight: bold;">1</text></view>
-            <view>满10可用</view>
+            <view>￥<text style="font-size: 50rpx;font-weight: bold;">{{item.coupon.money}}</text></view>
+            <view>{{item.coupon.couponName}}</view>
           </view>
           <view class="couponDetail">
             <view>
               <view>满减券</view>
-              <view style="color: #feb906;font-size: 24rpx;margin-top:18rpx">2022-09-10到期</view>
+              <view style="color: #feb906;font-size: 24rpx;margin-top:18rpx">{{item.expireDate}}到期</view>
             </view>
-            <view class="couponBtn">立即使用</view>
+            <view class="couponBtn" data-couponid="{{item.id}}" bindtap="useCountFn">立即使用</view>
           </view>
         </view>
       </block>

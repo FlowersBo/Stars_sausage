@@ -19,4 +19,8 @@ module.exports = {
 	refund: 'reserve/order/refund', //退款
 	refundShow: 'reserve/order/refund/show', //退款确认弹框
 	couponList: 'reserve/coupon/list', //优惠券列表
+	couponBag: 'reserve/coupon/bag', //优惠券包
+	couponBc: 'reserve/coupon/bc', //优惠券单张
+	drawBag: 'reserve/coupon/drawBag', //领取优惠券包
+	drawCoupon: 'reserve/coupon/drawCoupon', //领取优惠券单张
 }

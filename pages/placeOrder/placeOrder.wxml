@@ -42,8 +42,11 @@
             </view>
           </view>
         </block>
-        <view class="total" style="font-size:24rpx;color:#666;">合计：￥<text
-            style="color:#FF7003;font-size: 38rpx;font-weight: bold;">{{overallPrice}}</text> </view>
+        <view class="total" style="font-size:24rpx;color:#FF7003;">
+          <text style="margin-right: 20rpx;color:#00DB60;" wx:if="{{product.coupon.coupon.couponName}}">已优惠：￥<text
+            style="font-size: 38rpx;font-weight: bold;">{{product.coupon.coupon.money}}</text></text>
+          小计：￥<text
+            style="font-size: 38rpx;font-weight: bold;">{{overallPrice}}</text> </view>
       </view>
     </view>
     <view class="sausageTime">
@@ -54,12 +57,13 @@
       <view style="color:#07C160;font-size: 26rpx;font-weight: 500;">{{product.takeMin}}分钟后可取</view>
     </view>
 
-    <view class="waveWrap">
+    <view wx:if="{{product.coupon}}" class="waveWrap">
       <view class="wave">
         <view class="wave-child">
           <image class="youhuiImg" src="../../assets/img/youhuiquan.png"></image>
+          <view class="text">{{product.coupon.coupon.couponName}}</view>
         </view>
-        <view class="sum"><text style="font-size: 32rpx;">-￥</text>1</view>
+        <view class="sum"><text style="font-size: 32rpx;">-￥</text>{{product.coupon.coupon.money}}</view>
       </view>
       <view class="gengduo" bindtap="gotodiscountCoupon">更多</view>
     </view>

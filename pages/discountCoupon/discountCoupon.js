@@ -7,18 +7,15 @@ Page({
    * 页面的初始数据
    */
   data: {
+    isShow: 0,
     fatherList: [{
         tabsName: "可用",
-        list: [{
-          name: '哈哈哈哈哈'
-        }]
+        list: []
 
       },
       {
         tabsName: "过期",
-        list: [{
-          name: '呵呵呵呵呵'
-        }]
+        list: []
       },
     ]
   },
@@ -30,13 +27,40 @@ Page({
     that = this;
     that.couponListFn();
   },
+  onClick(e) {
+    that.setData({
+      isShow: e.detail.index
+    })
+    that.couponListFn();
+  },
 
   async couponListFn() {
     let result = await (app.http.CouponList({
-      isShow: 0,
+      isShow: that.data.isShow,
       customerId: wx.getStorageSync('customerId')
     }));
     console.log(result)
+    if (result.code === 200) {
+      that.setData({
+        [`fatherList[${that.data.isShow}].list`]: result.data.list
+      })
+    }
+  },
+  useCountFn(e){
+    console.log(e)
+    var pages = getCurrentPages();
+    var currPage = pages[pages.length - 1];   //当前页面
+    var prevPage = pages[pages.length - 2];  
+    prevPage.setData({
+      couponId: e.target.dataset.couponid
+    })
+    wx.navigateBack({
+      delta: 1,
+    })
+    // let countId = e.target.dataset.countid;
+    // wx.redirectTo({
+    //   url: '/pages/placeOrder/placeOrder?countId='+countId
+    // })
   },
 
   /**

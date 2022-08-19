@@ -156,22 +156,22 @@ Page({
     data.products.forEach(element => {
       element.productCount = 0;
     });
-    let storeA = data.storeA,
-      storeB = data.storeB,
-      aIceStatus = data.aIceStatus,
-      bIceStatus = data.bIceStatus;
+      let aIceStatus = data.aIceStatus,
+    bIceStatus = data.bIceStatus;
     // Object.values(form)//将form对象转化数组，返回值是form值的数组
     [
-      [storeA, aIceStatus],
-      [storeB, bIceStatus]
+      [data.storeA, aIceStatus, {storeA:data.storeA}],
+      [data.storeA, bIceStatus, {storeB:data.storeB}]
     ].forEach((element, key) => {
-      data.products.forEach((el, k) => {
-        if (key === k) {
-          el.store = element
-        }
-      });
+      for (var p in element[2]){
+        data.products.forEach((el, k) => {
+          if (el.channel === p.substr(p.length - 1, 1)) {
+            el.store = element
+          }
+        });
+      }
     });
-    console.log(data.products)
+    console.log('返回新list',data.products)
     data.products.forEach(element => {
       if (data.totalLimit <= 0) {
         element.isPlus = true;
@@ -216,7 +216,7 @@ Page({
   },
 
   gotoPlaceOrderFn() {
-    if (!that.data.deviceStatus||(that.data.deviceStatus&&that.data.inMaintenance)) {
+    if (!that.data.deviceStatus || (that.data.deviceStatus && that.data.inMaintenance)) {
       wx.showToast({
         title: '当前设备不可购买',
         icon: 'none',
