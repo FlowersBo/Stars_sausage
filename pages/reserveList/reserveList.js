@@ -156,14 +156,18 @@ Page({
     data.products.forEach(element => {
       element.productCount = 0;
     });
-      let aIceStatus = data.aIceStatus,
-    bIceStatus = data.bIceStatus;
+    let aIceStatus = data.aIceStatus,
+      bIceStatus = data.bIceStatus;
     // Object.values(form)//将form对象转化数组，返回值是form值的数组
     [
-      [data.storeA, aIceStatus, {storeA:data.storeA}],
-      [data.storeA, bIceStatus, {storeB:data.storeB}]
+      [data.storeA, aIceStatus, {
+        storeA: data.storeA
+      }],
+      [data.storeA, bIceStatus, {
+        storeB: data.storeB
+      }]
     ].forEach((element, key) => {
-      for (var p in element[2]){
+      for (var p in element[2]) {
         data.products.forEach((el, k) => {
           if (el.channel === p.substr(p.length - 1, 1)) {
             el.store = element
@@ -171,7 +175,7 @@ Page({
         });
       }
     });
-    console.log('返回新list',data.products)
+    console.log('返回新list', data.products)
     data.products.forEach(element => {
       if (data.totalLimit <= 0) {
         element.isPlus = true;
@@ -209,7 +213,7 @@ Page({
         wx.showToast({
           title: '很抱歉，当前设备暂不可预订，您可切换点位购买',
           icon: 'none',
-          duration: 5000
+          duration: 3000
         })
       }, 500)
     }
@@ -225,7 +229,13 @@ Page({
       return
     }
     if (that.data.overallPrice > 0) {
-      that.createOrderFn();
+      Dialog.confirm({
+        title: '提示',
+        message: `确定取餐地点为${that.data.deviceDetail.address}吗？`,
+        theme: 'round-button',
+      }).then(() => {
+        that.createOrderFn();
+      }).catch(() => {})
     } else {
       wx.showToast({
         title: '请选择商品后下单',
@@ -250,7 +260,13 @@ Page({
                 isPhone: false
               })
               if (that.data.overallPrice > 0) {
-                that.createOrderFn();
+                Dialog.confirm({
+                  title: '提示',
+                  message: `确定取餐地点为${that.data.deviceDetail.address}吗？`,
+                  theme: 'round-button',
+                }).then(() => {
+                  that.createOrderFn();
+                }).catch(() => {})
               } else {
                 wx.showToast({
                   title: '请选择商品后下单',

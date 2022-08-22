@@ -16,11 +16,13 @@ Page({
    */
   onLoad: function (options) {
     that = this;
-    let scene = "1556833781908766720%2C0";
+    let scene = options.scene;
+    console.log(options.scene);
     // scene = "1560464164395155456%2C1";
     scene = decodeURIComponent(scene);
     let sceneId = scene.split(',')[0];
     let sceneType = scene.split(',')[1];
+    console.log('截取参数',sceneId,sceneType);
     that.setData({
       sceneId,
       sceneType

@@ -22,6 +22,9 @@
   align-items: center;
   justify-content: center;
 }
+.off-coupon{
+  background: #B4B4B4;
+}
 
 .coupon::after {
   content: ' ';
@@ -39,6 +42,16 @@
   padding: 0 20rpx;
   justify-content: space-between;
   align-items: center;
+  position: relative;
+}
+
+.couponDetail-img{
+  width: 150rpx;
+  height: 150rpx;
+  position: absolute;
+  top: 50%;
+  margin-top: -75rpx;
+  right: 20rpx;
 }
 
 .couponBtn {

@@ -3,18 +3,19 @@
 <view class="discount">
   <van-tabs animated sticky offset-top="84" bind:click="onClick">
     <van-tab title="{{item.tabsName}}" wx:for="{{fatherList}}" wx:for-index="index" wx:key="index">
-      <block wx:for="{{item.list}}" wx:key="index">
+      <block wx:for="{{item.list}}" wx:for-item="items" wx:key="index">
         <view class="van-item">
-          <view class="coupon">
-            <view>￥<text style="font-size: 50rpx;font-weight: bold;">{{item.coupon.money}}</text></view>
-            <view>{{item.coupon.couponName}}</view>
+          <view class="coupon {{item.tabsName==='过期'?'off-coupon':''}}">
+            <view>￥<text style="font-size: 50rpx;font-weight: bold;">{{items.coupon.money}}</text></view>
+            <view>{{items.coupon.couponName}}</view>
           </view>
           <view class="couponDetail">
+            <image class="couponDetail-img" wx:if="{{item.tabsName==='过期'}}" src="{{items.useDate?'/assets/img/yishiyong.png':'/assets/img/guoqi.png'}}"></image>
             <view>
               <view>满减券</view>
-              <view style="color: #feb906;font-size: 24rpx;margin-top:18rpx">{{item.expireDate}}到期</view>
+              <view style="color:{{item.tabsName==='过期'?'#B4B4B4':'#feb906'}};font-size: 24rpx;margin-top:18rpx;">{{items.expireDate}}到期</view>
             </view>
-            <view class="couponBtn" data-couponid="{{item.id}}" bindtap="useCountFn">立即使用</view>
+            <view wx:if="{{item.tabsName==='可用'}}" class="couponBtn" data-couponid="{{items.id}}" bindtap="useCountFn">立即使用</view>
           </view>
         </view>
       </block>
