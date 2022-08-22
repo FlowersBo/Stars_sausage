@@ -5,17 +5,16 @@ import {
 let baseUrl = 'https://res.morninggo.cn/';
 // let baseUrl = 'http://192.168.110.97:8080/reserve-http/';
 // let baseUrl = 'http://restest.morninggo.cn/';
-
-module.exports = {
-  addQueryString(params) { //post拼接参数
-    let paramStr = '';
-    for (const key in params) {
-      if (Object.hasOwnProperty.call(params, key)) {
-        paramStr += key + '=' + params[key] + '&';
-      }
+function addQueryString(params) { //post拼接参数
+  let paramStr = '';
+  for (const key in params) {
+    if (Object.hasOwnProperty.call(params, key)) {
+      paramStr += key + '=' + params[key] + '&';
     }
-    return '?' + paramStr.substr(0, paramStr.length - 1);
-  },
+  }
+  return '?' + paramStr.substr(0, paramStr.length - 1);
+}
+module.exports = {
   Auth(data = {}) {
     return Request(baseUrl + api.auth, data, 'get')
   },
