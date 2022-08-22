@@ -7,9 +7,9 @@ Page({
     img: "/assets/img/coupon.jpg",
     wechat: "/assets/img/cat.png",
     xiazai: "/assets/img/cat.png",
-    share: "/assets/img/shop-bag.png",
+    // share: "/assets/img/shop-bag.png",
     maskHidden: false,
-    name: "",
+    name: ""
   },
   /**
    * 生命周期函数--监听页面加载
