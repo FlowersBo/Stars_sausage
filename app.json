@@ -57,8 +57,10 @@
   "requiredBackgroundModes": [
     "location"
   ],
-  "requiredPrivateInfos": [
-    "getLocation"
+  "requiredPrivateInfos":[
+    "getLocation",
+    "chooseAddress"
+ 
   ],
   "usingComponents": {
     "navigationBar": "/component/navigationBar/navigationBar",

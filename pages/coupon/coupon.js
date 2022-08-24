@@ -17,7 +17,7 @@ Page({
   onLoad: function (options) {
     that = this;
     let scene = options.scene;
-    console.log(options.scene);
+    console.log(options);
     // scene = "1560464164395155456%2C1";
     scene = decodeURIComponent(scene);
     let sceneId = scene.split(',')[0];

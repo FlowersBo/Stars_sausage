@@ -1,12 +1,13 @@
 /* pages/orderDetail/orderDetail.wxss */
 
-.orderDetailWrap{
+.orderDetailWrap {
   width: 750rpx;
-  overflow-x:hidden;
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+
 .orderDetail {
   width: 690rpx;
   position: relative;
@@ -58,7 +59,7 @@
   font-weight: bold;
 }
 
-.statusColor{
+.statusColor {
   color: #FF7003;
 }
 
@@ -95,7 +96,7 @@
   justify-content: space-between;
 }
 
-.navigation{
+.navigation {
   display: flex;
   align-items: center;
   width: 150rpx;
@@ -150,6 +151,23 @@
   border-bottom: 1rpx solid #F0F0F0;
   display: flex;
   justify-content: space-between;
+}
+
+.share-btn image {
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.share-btn {
+  width: 54rpx;
+  height: 54rpx;
+  background: #fff;
+  margin: 0;
+  padding: 0;
+}
+
+.share-btn::after {
+  border: none;
 }
 
 .sausageNum {
@@ -219,7 +237,7 @@
   color: #333;
 }
 
-.btnWrap{
+.btnWrap {
   display: flex;
   justify-content: flex-end;
   margin-top: 40rpx;
@@ -242,7 +260,8 @@
   color: #fff;
   border: none;
 }
-.plane image{
+
+.plane image {
   width: 70rpx;
   height: 80rpx;
 }
