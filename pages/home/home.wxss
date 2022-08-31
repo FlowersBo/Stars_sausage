@@ -110,6 +110,68 @@
   height: 220rpx;
 }
 
+/* 新人券 */
+.ticket{
+  width: 580rpx;
+  height: 180rpx;
+  background: #fff;
+  font-size: 28rpx;
+  color: #333;
+  position: relative;
+  border-radius: 8rpx;
+  display: flex;
+  align-items: center;
+  margin-top: 30rpx;
+}
+
+.ticket::before,
+.ticket::after {
+  border-radius: 50%;
+  content: '';
+  width: 34rpx;
+  height: 34rpx;
+  position: absolute;
+  z-index: 1;
+  left: 30%;
+  background:#FEA305;
+}
+
+.ticket::before {
+  top: -17rpx;
+}
+
+.ticket::after {
+  bottom: -17rpx;
+}
+
+.ticket-left{
+  width: calc(30% + 17rpx);
+  height: 130rpx;
+  border-right: 2rpx dotted #FE9B0E;
+  line-height: 130rpx;
+  display: flex;
+  justify-content: center;
+}
+.ticket-left view{
+  display: inline-block;
+  width: 128rpx;
+  height: 128rpx;
+  border-radius: 64rpx;
+  font-size: 80rpx;
+  text-align: center;
+  line-height: 128rpx;
+  color: #fff;
+  background: #FF7603;
+}
+.ticket-right{
+  width: 65%;
+  height: 130rpx;
+  color: #8C8C8C;
+  font-size: 36rpx;
+  box-sizing: border-box;
+  padding: 0 20rpx;
+  padding-top: 10rpx;
+}
 /* .van-goods-action .van-goods-action--safe{
   width: 640rpx !important;
   display: flex !important;

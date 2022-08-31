@@ -1,4 +1,5 @@
 // component/console/index.js
+let app = getApp();
 Component({
   /**
    * 组件的属性列表
@@ -6,6 +7,10 @@ Component({
   properties: {
     openSetting: {
       type: String,
+      value: ''
+    },
+    isBtn: {
+      type: Boolean,
       value: ''
     }
   },
@@ -31,6 +36,28 @@ Component({
       let status = e.currentTarget.dataset.status;
       this.util('close', status);
     },
+
+    getPhoneNumberFn: (e) => {
+      app.http.getPhone({
+          customerId: wx.getStorageSync('customerId'),
+          encryptedData: e.detail.encryptedData,
+          iv: e.detail.iv,
+        })
+        .then(res => {
+          console.log('首页授权手机号', res)
+          wx.setStorageSync('phoneNumber', res.data.phoneNumber);
+        })
+        .catch(rej => {
+          console.log(rej)
+          wx.showToast({
+            title: rej.error,
+            icon: 'none',
+            duration: 2000
+          })
+        })
+    },
+
+
     // 模态动画
     util: function (currentStatu, status) {
       /* 动画部分 */

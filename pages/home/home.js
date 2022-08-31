@@ -24,7 +24,8 @@ Page({
       },
     ],
     Height: "", //这是swiper要动态设置的高度属性
-    isFlag: true
+    isFlag: true,
+    isBtn: true
   },
   imgHeight(e) {
     console.log(e)
@@ -72,6 +73,27 @@ Page({
           })
           .then(res => {
             wx.setStorageSync('customerId', res.data.id);
+            if (!res.data.phone) {
+              this.mask.util('open');
+              app.http.Np({})
+                .then(res => {
+                  console.log('新人券', res)
+                  if (res.code == 200) {
+                    that.setData({
+                      ticket: res.data
+                    })
+                  } else {
+                    this.mask.util('close');
+                    wx.showToast({
+                      title: res.msg,
+                      icon: 'none',
+                      duration: 2000
+                    })
+                  }
+                }).catch(err => {
+
+                })
+            }
             wx.setStorageSync('phoneNumber', res.data.phone);
           })
       }
@@ -192,6 +214,7 @@ Page({
     // })
 
     that = this;
+    this.mask = this.selectComponent('#mask');
     qqmap = new QQMapWX({
       key: '6UXBZ-3HTWX-MMW4G-TX4UC-RP2U6-K7B4V'
     })
@@ -203,6 +226,7 @@ Page({
     that.setData({
       mpOpenId
     })
+    that.authFn(that.data.mpOpenId);
     Promise.allSettled([
         that.bannerFn(),
         that.activityFn()
@@ -214,16 +238,22 @@ Page({
       })
   },
 
+  // mask返回
+  statusNumberFn: e => {
+    console.log(e)
+  },
 
   onShow() {
     this.getTabBar().setData({
       selected: 0
     });
-    that.authFn(that.data.mpOpenId);
     if (wx.getStorageSync('isLoaction')) {
       console.log('调用地址')
       that.getSelfLocation();
-    }
+    };
+  },
+  onHide() {
+    this.mask.util('close');
   },
 
   // onShareAppMessage:function () {

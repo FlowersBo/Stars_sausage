@@ -2,9 +2,9 @@ import * as api from '../config/api';
 import {
   Request
 } from './requestUrl';
-let baseUrl = 'https://res.morninggo.cn/';
+// let baseUrl = 'https://res.morninggo.cn/';
 // let baseUrl = 'http://192.168.110.97:8080/reserve-http/';
-// let baseUrl = 'http://restest.morninggo.cn/';
+let baseUrl = 'http://restest.morninggo.cn/';
 function addQueryString(params) { //post拼接参数
   let paramStr = '';
   for (const key in params) {
@@ -39,7 +39,7 @@ module.exports = {
     return Request(baseUrl + api.createOrder, data, 'post')
   },
 
-  confirm(data = {}) {
+  Confirm(data = {}) {
     return Request(baseUrl + api.confirm, data, 'get')
   },
 
@@ -115,5 +115,8 @@ module.exports = {
 
   DrawCoupon(data = {}) {
     return Request(`${baseUrl + api.drawCoupon+addQueryString(data)}`, data, 'post')
+  },
+  Np(data = {}) {
+    return Request(baseUrl + api.np, data, 'get')
   },
 }

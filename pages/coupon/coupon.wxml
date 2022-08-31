@@ -18,7 +18,8 @@
     <view wx:else>
       <view class="discountCouponList">
         <view class="discountCoupon">
-          <view class="money"><text style="font-size: 50rpx;">{{coupon.money}}</text>￥</view>
+          <view class="money" wx:if="{{coupon.couponType===1||coupon.couponType===2}}"><text style="font-size: 50rpx;">{{coupon.money}}</text>{{coupon.couponType===1?'￥':'折'}}</view>
+          <view style="height: 50rpx;" wx:else></view>
           <view style="color: #893204;font-size: 28rpx;">{{coupon.couponName}}</view>
         </view>
       </view>

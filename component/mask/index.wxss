@@ -31,11 +31,17 @@
   justify-content: space-around;
 }
 
+.ticketDetail {
+  /* background-image: linear-gradient(#FEB906, #FE7B16); */
+  background: #FEA305;
+}
+
 .drawer_box_content {
   padding: 10rpx;
   color: #353535;
 }
-.drawer_box_contentText{
+
+.drawer_box_contentText {
   width: 100%;
   font-size: 32rpx;
   display: flex;
@@ -43,23 +49,27 @@
   justify-content: space-between;
   align-items: center;
 }
-.authorization_title{
+
+.authorization_title {
   font-size: 36rpx;
   font-weight: bold;
 }
-.authorization_content{
+
+.authorization_content {
   width: 100%;
   box-sizing: border-box;
   padding: 0 20rpx;
   /* text-indent: 42rpx; */
 }
-.btnWrap{
+
+.btnWrap {
   width: 100%;
   display: flex;
   justify-content: space-between;
   box-sizing: border-box;
   padding: 20rpx 0;
 }
+
 .drawer_box_btn {
   width: 200rpx;
   height: 70rpx;
@@ -72,6 +82,23 @@
   font-size: 32rpx;
   border: none;
 }
-.drawer_box_btn:last-child{
+
+.drawer_box_btn:last-child {
   background-color: #ff9900;
+}
+
+/* 新人券btn */
+.ticketBtn {
+  width: 560rpx;
+  height: 100rpx;
+  text-align: center;
+  line-height: 100rpx;
+  border-radius: 50rpx;
+  background: #FFDC28;
+  font-size: 44rpx;
+  margin-top: 100rpx;
+}
+
+.ticketBtn::after {
+  border: none;
 }

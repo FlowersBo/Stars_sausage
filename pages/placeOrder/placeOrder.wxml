@@ -43,10 +43,10 @@
           </view>
         </block>
         <view class="total" style="font-size:24rpx;color:#FF7003;">
-          <text style="margin-right: 20rpx;color:#00DB60;" wx:if="{{product.coupon.coupon.couponName}}">已优惠：￥<text
-            style="font-size: 38rpx;font-weight: bold;">{{product.coupon.coupon.money}}</text></text>
-          小计：￥<text
-            style="font-size: 38rpx;font-weight: bold;">{{overallPrice}}</text> </view>
+          <text style="margin-right: 20rpx;color:#00DB60;" wx:if="{{product.couponMoney}}">已优惠：￥<text
+              style="font-size: 38rpx;font-weight: bold;">{{product.couponMoney}}</text></text>
+          小计：￥<text style="font-size: 38rpx;font-weight: bold;">{{price}}</text>
+        </view>
       </view>
     </view>
     <view class="sausageTime">
@@ -58,12 +58,31 @@
     </view>
 
     <view wx:if="{{product.coupon}}" class="waveWrap">
-      <view class="wave">
+      <view class="wave" wx:if="{{product.coupon.coupon.couponType===3}}">
+        <view class="wave-child childone">
+          <view class="youhuiquan">满赠券</view>
+          <view class="wave-childText">
+            <view>{{product.coupon.coupon.couponName}}</view>
+            <view style="font-size: 22rpx;margin-top: 10rpx;">{{product.coupon.coupon.memo}}</view>
+            <view style="font-size: 22rpx;margin-top: 10rpx;">（满{{product.coupon.coupon.norm}}元可使用）</view>
+          </view>
+        </view>
+        
+      </view>
+      <view class="wave" wx:else>
         <view class="wave-child">
-          <image class="youhuiImg" src="../../assets/img/youhuiquan.png"></image>
+          <view class="youhuiquan">
+            {{product.coupon.coupon.couponType===1?'满减券':'折扣券'}}</view>
           <view class="text">{{product.coupon.coupon.couponName}}</view>
         </view>
-        <view class="sum"><text style="font-size: 32rpx;">-￥</text>{{product.coupon.coupon.money}}</view>
+        <view class="sum">
+          <block wx:if="{{product.coupon.coupon.couponType===1}}">
+            <text style="font-size: 32rpx;">-￥</text>{{product.coupon.coupon.money}}
+          </block>
+          <block wx:else>
+            {{product.coupon.coupon.money}}<text style="font-size: 32rpx;">折</text>
+          </block>
+        </view>
       </view>
       <view class="gengduo" bindtap="gotodiscountCoupon">更多</view>
     </view>

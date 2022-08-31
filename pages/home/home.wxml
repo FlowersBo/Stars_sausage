@@ -29,12 +29,31 @@
         <view class="line"></view>
         <view style="font-weight: bold;">最近上新</view>
       </view>
-      <view wx:for="{{activityList}}" wx:key="index"
-          data-bannerurl="{{item.link}}" data-index="{{index}}" bindtap="gotoReserveList" style="margin-bottom: 20rpx;" class="activity-img">
+      <view wx:for="{{activityList}}" wx:key="index" data-bannerurl="{{item.link}}" data-index="{{index}}"
+        bindtap="gotoReserveList" style="margin-bottom: 20rpx;" class="activity-img">
         <image mode="scaleToFill" src="{{item.url}}" class="slide-image" />
       </view>
     </view>
   </view>
 </view>
+
+<mask id="mask" isBtn="{{isBtn}}" bind:statusNumber="statusNumberFn">
+  <!-- <view slot='isTitle'>新人券</view> -->
+  <view slot='isContent'>
+    <view style="font-size: 54rpx;color: #fff;text-align: center;margin: 20rpx 0;">新人有礼</view>
+    <block wx:for="{{ticket}}" wx:key="index">
+      <view class="ticket">
+        <view class="ticket-left">
+          <view>券</view>
+        </view>
+        <view class="ticket-right">
+          <view style="font-size: 44rpx;color: #333;">{{item.couponName}}</view>
+          <view style="font-size: 22rpx;margin-top: 6rpx;">{{item.memo}}</view>
+        </view>
+      </view>
+    </block>
+  </view>
+</mask>
+
 <van-dialog id="van-dialog" />
 <!-- <noData isFlag="{{isFlag}}" /> -->

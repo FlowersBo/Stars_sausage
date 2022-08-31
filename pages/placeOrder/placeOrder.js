@@ -25,7 +25,7 @@ Page({
   async confirmFn() {
     let {
       data
-    } = await (app.http.confirm({
+    } = await (app.http.Confirm({
       orderId: that.data.orderId,
       couponId: that.data.couponId
     }));
@@ -37,7 +37,7 @@ Page({
       productQuantity += JSON.parse(element.quantity)
     });
     if (data.coupon) {
-      let couponMoney = Number(data.coupon.coupon.money)
+      let couponMoney = Number(data.couponMoney)
       if (price - couponMoney <= 0) {
         overallPrice = 0;
       }
@@ -51,7 +51,8 @@ Page({
     that.setData({
       product: data,
       overallPrice,
-      productQuantity
+      productQuantity,
+      price
     })
   },
 

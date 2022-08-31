@@ -23,4 +23,6 @@ module.exports = {
 	couponBc: 'reserve/coupon/bc', //优惠券单张
 	drawBag: 'reserve/coupon/drawBag', //领取优惠券包
 	drawCoupon: 'reserve/coupon/drawCoupon', //领取优惠券单张
+	np: 'reserve/coupon/np', //新人券
+	
 }

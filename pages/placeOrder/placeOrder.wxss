@@ -264,14 +264,41 @@
   position: relative;
 }
 
-.youhuiImg {
-  width: 120rpx;
-  height: 80rpx;
-  position: absolute;
-  top: 40rpx;
-  left: 30rpx;
+.childone {
+  width: 486rpx;
+  border-radius: 20rpx;
+  text-align: center;
 }
-.text{
+
+.wave-childText {
+  width: 65%;
+  position: absolute;
+  top: 20rpx;
+  right: 10rpx;
+}
+
+.youhuiquan::before,
+.youhuiquan::after {
+  background-color: #fff;
+  border-radius: 50%;
+  content: '';
+  width: 24rpx;
+  height: 24rpx;
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  margin-left: -12rpx;
+}
+
+.youhuiquan::before {
+  top: -12rpx;
+}
+
+.youhuiquan::after {
+  bottom: -12rpx;
+}
+
+.text {
   height: 60rpx;
   position: absolute;
   top: 50%;
@@ -302,6 +329,21 @@
   left: 0;
   top: 20%;
   border-left: 2rpx dotted #fff;
+}
+
+.youhuiquan {
+  width: 120rpx;
+  height: 82rpx;
+  line-height: 82rpx;
+  text-align: center;
+  background: #FF7603;
+  font-size: 28rpx;
+  color: #fff;
+  /* position: relative; */
+  position: absolute;
+  top: 40rpx;
+  left: 30rpx;
+  border-radius: 8rpx;
 }
 
 /* .wave::before {

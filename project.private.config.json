@@ -25,12 +25,6 @@
           "scene": null
         },
         {
-          "name": "订单确认",
-          "pathName": "pages/placeOrder/placeOrder",
-          "query": "",
-          "scene": null
-        },
-        {
           "name": "投诉建议",
           "pathName": "pages/evaluate/evaluate",
           "query": "orderId=1490864145250123776",
@@ -82,6 +76,12 @@
           "name": "抢券",
           "pathName": "pages/coupon/coupon",
           "query": "",
+          "scene": null
+        },
+        {
+          "name": "订单确认",
+          "pathName": "pages/placeOrder/placeOrder",
+          "query": "orderId=1564808336245784576&distance=5.61km",
           "scene": null
         }
       ]

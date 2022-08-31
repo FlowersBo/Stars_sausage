@@ -78,9 +78,9 @@
       </view>
       <view class="sausageWrap">
         <view class="address-title">餐品详情
-          <button class="share-btn" open-type="share">
-            <image src="/assets/img/share.png"></image>
-          </button>
+          <!-- <button class="share-btn" open-type="share">
+            <image src="/assets/img/money.gif"></image>
+          </button> -->
         </view>
         <view class="sausageDetail">
           <block wx:for="{{order.detail}}" wx:key="index">

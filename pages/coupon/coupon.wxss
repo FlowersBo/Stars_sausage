@@ -89,4 +89,5 @@ page {
   border-bottom: 4rpx dotted #333;
   color: #984708;
   margin-bottom: 10rpx;
+  font-size: 28rpx;
 }

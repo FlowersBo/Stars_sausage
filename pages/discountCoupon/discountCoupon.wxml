@@ -6,13 +6,14 @@
       <block wx:for="{{item.list}}" wx:for-item="items" wx:key="index">
         <view class="van-item">
           <view class="coupon {{item.tabsName==='过期'?'off-coupon':''}}">
-            <view>￥<text style="font-size: 50rpx;font-weight: bold;">{{items.coupon.money}}</text></view>
-            <view>{{items.coupon.couponName}}</view>
+            <view wx:if="{{items.coupon.couponType===1||items.coupon.couponType===2}}"><text wx:if="{{items.coupon.couponType===1}}">￥</text><text style="font-size: 50rpx;font-weight: bold;">{{items.coupon.money}}</text> <text wx:if="{{items.coupon.couponType===2}}">折</text></view>
+            <view style="font-size:{{items.coupon.couponType===3?'32':'22'}}rpx">{{items.coupon.couponName}}</view>
+            <view style="font-size: 22rpx;margin-top: 10rpx;">（满{{items.coupon.norm}}元可使用）</view>
           </view>
           <view class="couponDetail">
             <image class="couponDetail-img" wx:if="{{item.tabsName==='过期'}}" src="{{items.useDate?'/assets/img/yishiyong.png':'/assets/img/guoqi.png'}}"></image>
             <view>
-              <view>满减券</view>
+              <view>{{items.coupon.couponType===1?'满减券':(items.coupon.couponType===2?'折扣券':'满赠券')}}</view>
               <view style="color:{{item.tabsName==='过期'?'#B4B4B4':'#feb906'}};font-size: 24rpx;margin-top:18rpx;">{{items.expireDate}}到期</view>
             </view>
             <view wx:if="{{item.tabsName==='可用'}}" class="couponBtn" data-couponid="{{items.id}}" bindtap="useCountFn">立即使用</view>
