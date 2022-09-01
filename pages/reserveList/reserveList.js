@@ -163,7 +163,7 @@ Page({
       [data.storeA, aIceStatus, {
         storeA: data.storeA
       }],
-      [data.storeA, bIceStatus, {
+      [data.storeB, bIceStatus, {
         storeB: data.storeB
       }]
     ].forEach((element, key) => {
