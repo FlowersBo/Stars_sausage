@@ -83,6 +83,18 @@
           "pathName": "pages/placeOrder/placeOrder",
           "query": "orderId=1564808336245784576&distance=5.61km",
           "scene": null
+        },
+        {
+          "name": "我的",
+          "pathName": "pages/mine/mine",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "测试订单详情",
+          "pathName": "pages/orderDetail/orderDetail",
+          "query": "orderId=1546734303298191360",
+          "scene": null
         }
       ]
     }

@@ -1,0 +1,20 @@
+<!--pages/mine/mine.wxml-->
+<navigationBar text="我的" isShow />
+<view class="userWrap">
+  <view class="userNavImg">
+    <image class="img" src="/assets/img/userNavImg.png">
+      <view class="bubble"></view>
+    </image>
+  </view>
+  <view class="userInfo">
+    <view class="userinfo-avatar">
+      <open-data type="userAvatarUrl" class="userAvatarUrl"></open-data>
+    </view>
+    <open-data type="userNickName" class="userNickName"></open-data>
+  </view>
+  <view class="marketMoneyWrap">
+    <navigator url="../orderList/index" hover-class="none" class="subdivideWrap">
+      <view class="subdivide">我的订单</view>
+    </navigator>
+  </view>
+</view>

@@ -25,18 +25,22 @@
   z-index: 1001;
   margin: -300rpx 55rpx 0 55rpx;
   border-radius: 30rpx;
+}
+.scrollWrap{
+  overflow: hidden scroll;
+  overflow-y: scroll;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
 }
-
 .ticketDetail {
   /* background-image: linear-gradient(#FEB906, #FE7B16); */
   background: #FEA305;
 }
 
 .drawer_box_content {
+  box-sizing: border-box;
   padding: 10rpx;
   color: #353535;
 }
@@ -68,6 +72,11 @@
   justify-content: space-between;
   box-sizing: border-box;
   padding: 20rpx 0;
+  position: absolute;
+  left: 0;
+  top: 600rpx;
+  margin-top: -112rpx;
+  z-index: 1002;
 }
 
 .drawer_box_btn {

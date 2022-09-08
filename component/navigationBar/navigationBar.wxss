@@ -11,6 +11,10 @@
   z-index: 10;
 }
 
+.isShow{
+  background: none;
+}
+
 .backWrap {
   width: 100%;
   position: absolute;

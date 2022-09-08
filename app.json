@@ -13,7 +13,8 @@
     "pages/test/test",
     "pages/facilityListMap/addressSearch/addressSearch",
     "pages/discountCoupon/discountCoupon",
-    "pages/coupon/coupon"
+    "pages/coupon/coupon",
+    "pages/mine/mine"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -57,10 +58,9 @@
   "requiredBackgroundModes": [
     "location"
   ],
-  "requiredPrivateInfos":[
+  "requiredPrivateInfos": [
     "getLocation",
     "chooseAddress"
- 
   ],
   "usingComponents": {
     "navigationBar": "/component/navigationBar/navigationBar",

@@ -1,5 +1,5 @@
 <!--component/navigationBar/navigationBar.wxml-->
-<view class="navbar" style="{{'height:' + navigationBarHeight}}">
+<view class="navbar {{isShow?'isShow':''}}" style="{{'height:' + navigationBarHeight}}">
   <image wx:if="{{isNav}}" style="width: 750rpx;height:auto;position: relative;" mode="widthFix"
     src="../../assets/img/shopList.png">
   </image>
@@ -44,4 +44,4 @@
     </view>
   </view>
 </view>
-<view style="background:#fff;height:{{isNav?'131px':navigationBarHeight}}"></view>
+<view hidden="{{isShow}}" style="background:#fff;height:{{isNav?'131px':navigationBarHeight}}"></view>

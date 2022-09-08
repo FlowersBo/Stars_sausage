@@ -27,6 +27,10 @@ Component({
       type: String,
       value: ''
     },
+    isShow:{
+      type: Boolean,
+      value: false
+    }
   },
 
   // attached: function () {

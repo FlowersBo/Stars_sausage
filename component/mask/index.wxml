@@ -2,25 +2,28 @@
 <view class="drawer_screen" bindtap="gotobargainDetailFuns" data-status="1" wx:if="{{showModalStatus}}"
   catchtouchmove="noTouch"></view>
 <!--content-->
-<scroll-view scroll-y="true" animation="{{animationData}}" class="drawer_box {{isBtn?'ticketDetail':''}}" wx:if="{{showModalStatus}}"
-  catchtouchmove="noTouch">
-  <view class="drawer_box_content">
-    <view class="drawer_box_contentText">
-      <view class="authorization_title">
-        <slot name='isTitle'></slot>
-      </view>
-      <view class="authorization_content">
-        <slot name='isContent'></slot>
-      </view>
-      <!-- <view class="authorization_title">授权位置信息</view>
+<view class="drawer_box {{isBtn?'ticketDetail':''}}" animation="{{animationData}}"
+    wx:if="{{showModalStatus}}" catchtouchmove="noTouch">
+  <scroll-view scroll-y="true" class="scrollWrap">
+    <view class="drawer_box_content">
+      <view class="drawer_box_contentText">
+        <view class="authorization_title">
+          <slot name='isTitle'></slot>
+        </view>
+        <view class="authorization_content">
+          <slot name='isContent'></slot>
+        </view>
+        <!-- <view class="authorization_title">授权位置信息</view>
       <view class="authorization_content">获取您当前位置信息仅用于展示附近存包柜位置，拒绝将返回首页</view> -->
+      </view>
     </view>
-  </view>
+  </scroll-view>
   <view class="btnWrap" wx:if="{{isBtn}}">
-    <button class="ticketBtn" data-status="0" catchtap="gotobargainDetailFuns" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumberFn">确认领取</button>
+    <button class="ticketBtn" data-status="0" catchtap="gotobargainDetailFuns" open-type="getPhoneNumber"
+      bindgetphonenumber="getPhoneNumberFn">确认领取</button>
   </view>
   <view class="btnWrap" wx:else>
     <button class="drawer_box_btn" data-status="0" catchtap="gotobargainDetailFuns">确认</button>
     <button class="drawer_box_btn" data-status="1" catchtap="gotobargainDetailFuns">取消</button>
   </view>
-</scroll-view>
+</view>
