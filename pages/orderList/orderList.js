@@ -187,7 +187,7 @@ Page({
 
   refresh(e) {
     that.setData({
-      pageNum: 1,
+      pageNum: 1, 
       orderList: []
     })
     if (that.data.orderList.length <= 0) {
