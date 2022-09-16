@@ -1,5 +1,5 @@
 <!--pages/orderList/orderList.wxml-->
-<navigationBar class="custom" text="我的订单" />
+<navigationBar class="custom" text="我的订单" back />
 <!-- <view class="content">
   <view class="content-imgWrap" style="height: 100%">
     <image src="/assets/img/background1.jpg" style="height: 100%;" mode="scaleToFill"></image>

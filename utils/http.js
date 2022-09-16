@@ -2,9 +2,9 @@ import * as api from '../config/api';
 import {
   Request
 } from './requestUrl';
-// let baseUrl = 'https://res.morninggo.cn/';
+let baseUrl = 'https://res.morninggo.cn/';
 // let baseUrl = 'http://192.168.110.97:8080/reserve-http/';
-let baseUrl = 'http://restest.morninggo.cn/';
+// let baseUrl = 'http://restest.morninggo.cn/';
 function addQueryString(params) { //post拼接参数
   let paramStr = '';
   for (const key in params) {

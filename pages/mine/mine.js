@@ -1,18 +1,32 @@
 // pages/mine/mine.js
+let that;
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    isVip: false
   },
+
+  opendMaskFn(){
+    that.setData({
+      isFlag: true
+    })
+  },
+
+  deleteMaskFn(){
+    that.setData({
+      isFlag: false
+    })
+  },
+
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    that = this;
   },
 
   /**
@@ -26,7 +40,17 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.getTabBar().setData({
+      selected: 1
+    })
+  },
+  makePhoneFn() {
+    wx.makePhoneCall({
+      phoneNumber: '4008800975',
+      fail(err) {
 
+      }
+    })
   },
 
   /**

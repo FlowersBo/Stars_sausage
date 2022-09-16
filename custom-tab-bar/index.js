@@ -19,8 +19,8 @@ Component({
         selectedIconPath: "/assets/tabbar/xiangchang-h.png"
       },
       {
-        pagePath: "/pages/orderList/orderList",
-        text: "订单",
+        pagePath: "/pages/mine/mine",
+        text: "我的",
         iconPath: "/assets/tabbar/dingdan.png",
         selectedIconPath: "/assets/tabbar/dingdan-h.png"
       }

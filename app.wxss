@@ -13,6 +13,9 @@
 page{
   background: #fafafa;
   color: #1f1f1f;
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica,
+  Segoe UI, Arial, Roboto, 'PingFang SC', 'miui', 'Hiragino Sans GB', 'Microsoft Yahei',
+  sans-serif;
 }
 .van-goods-action .van-goods-action--safe{
   width: 640rpx !important;

@@ -1,20 +1,112 @@
 <!--pages/mine/mine.wxml-->
-<navigationBar text="我的" isShow />
-<view class="userWrap">
-  <view class="userNavImg">
-    <image class="img" src="/assets/img/userNavImg.png">
-      <view class="bubble"></view>
-    </image>
-  </view>
+<navigationBar text="个人中心" />
+<view class="userWrap" bindtap="deleteMaskFn">
   <view class="userInfo">
-    <view class="userinfo-avatar">
-      <open-data type="userAvatarUrl" class="userAvatarUrl"></open-data>
+    <view class="bubble {{isVip?'bubble-on':''}}">
+      <text wx:if="{{isVip}}">vip</text>
     </view>
-    <open-data type="userNickName" class="userNickName"></open-data>
+    <view class="userinfo-avatar {{isVip?'isVip':''}}">
+      <image class="img avatar {{isVip?'isVip':''}}" src="/assets/img/avtar.jpg"></image>
+      <image wx:if="{{isVip}}" class="avatar-img" src="/assets/mine/vip-icon.png"></image>
+    </view>
+    <view class="iphoneWrap">
+      <view>18001134320</view>
+      <view class="jifen">
+        <view>积分</view>
+        <view style="margin: 0 20rpx;">200</view>
+        <icon style="font-size: 40rpx;margin: -12rpx 10rpx 0 -4rpx;color: #5A5A5A;" class="iconfont icon-tishi"
+          catchtap="opendMaskFn"></icon>
+        <view class="btn">积分兑换</view>
+      </view>
+      <view hidden="{{!isFlag}}" class="qipao">每消费1元增加10积分</view>
+    </view>
   </view>
-  <view class="marketMoneyWrap">
-    <navigator url="../orderList/index" hover-class="none" class="subdivideWrap">
-      <view class="subdivide">我的订单</view>
-    </navigator>
+  <view wx:if="{{!isVip}}" class="vipCard">
+    <view class="card-top">
+      <view class="vip">开通会员</view>
+      <text style="color: rgb(100, 100, 100);font-size: 24rpx;">开通后购买有优惠呦~</text>
+    </view>
+    <view class="card-bottom">
+      <view>余额：￥<text style="font-size: 48rpx;">200</text></view>
+      <view class="vip refill" catchtap="refillFn">充值优惠</view>
+    </view>
+  </view>
+  <image wx:else class="vipCard" style="position: relative;" src="/assets/mine/vipcard.png">
+    <view class="vipCard" style="position: absolute;top: 0;left: 0;">
+      <view class="card-top card-top-on">
+        <view class="vip-on">会员卡</view>
+        <view style="font-size: 24rpx;">2022-12-31到期</view>
+      </view>
+      <view class="card-bottom" style="background: none;">
+        <view>余额：￥<text style="font-size: 48rpx;">200</text></view>
+        <view class="vip refill" catchtap="refillFn">充值优惠</view>
+      </view>
+    </view>
+  </image>
+  <view class="navWrap">
+    <view style="height:80rpx;line-height:80rpx;border-bottom: 2rpx solid #ddd;font-size: 30rpx;font-weight: bold;">预订订单
+    </view>
+    <view class="imgWrap">
+      <navigator hover-class="none" url="/pages/orderList/orderList" class="changBtn">
+        <image src="/assets/mine/icon1.png"></image>
+        <view>全部</view>
+      </navigator>
+      <view class="changBtn">
+        <image src="/assets/mine/icon2.png"></image>
+        <view>准备中</view>
+      </view>
+      <view class="changBtn">
+        <image style="width: 46rpx;" src="/assets/mine/icon3.png"></image>
+        <view>待取餐</view>
+      </view>
+      <view class="changBtn">
+        <image src="/assets/mine/icon4.png"></image>
+        <view>异常单</view>
+      </view>
+    </view>
+  </view>
+  <!-- <view class="navWrap">
+    <view style="height:80rpx;line-height:80rpx;border-bottom: 2rpx solid #ddd;font-size: 30rpx;font-weight: bold;">商城订单
+    </view>
+    <view class="imgWrap">
+      <view class="changBtn">
+        <image src="/assets/mine/icon5.png"></image>
+        <view>待支付</view>
+      </view>
+      <view class="changBtn">
+        <image src="/assets/mine/icon6.png"></image>
+        <view>待发货</view>
+      </view>
+      <view class="changBtn">
+        <image style="width: 54rpx;height: 44rpx;" src="/assets/mine/icon7.png"></image>
+        <view>物流中</view>
+      </view>
+      <view class="changBtn">
+        <image src="/assets/mine/icon8.png"></image>
+        <view>已完成</view>
+      </view>
+    </view>
+  </view> -->
+  <view class="navWrap">
+    <view style="height:80rpx;line-height:80rpx;border-bottom: 2rpx solid #ddd;font-size: 30rpx;font-weight: bold;">工具箱
+    </view>
+    <view class="imgWrap" style="justify-content: space-around;">
+      <navigator hover-class="none" url="/pages/discountCoupon/discountCoupon?isCoupon=true" class="changBtn">
+        <image style="width: 54rpx;height: 44rpx;" src="/assets/mine/icon9.png"></image>
+        <view>优惠券</view>
+      </navigator>
+      <!-- <view class="changBtn">
+        <image style="width: 54rpx;height: 44rpx;" src="/assets/mine/icon10.png"></image>
+        <view>投诉建议</view>
+      </view>
+      <view class="changBtn">
+        <image style="width: 64rpx;height: 36rpx;" src="/assets/mine/icon11.png"></image>
+        <view>关于我们</view>
+      </view> -->
+      <view catchtap="makePhoneFn" class="changBtn">
+        <image src="/assets/mine/icon12.png"></image>
+        <view>联系客服</view>
+      </view>
+    </view>
   </view>
 </view>
