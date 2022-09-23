@@ -16,7 +16,7 @@
         <view style="margin: 0 20rpx;">200</view>
         <icon style="font-size: 40rpx;margin: -12rpx 10rpx 0 -4rpx;color: #5A5A5A;" class="iconfont icon-tishi"
           catchtap="opendMaskFn"></icon>
-        <view class="btn">积分兑换</view>
+        <navigator hover-class="none" url="integral/integral" class="btn">积分兑换</navigator>
       </view>
       <view hidden="{{!isFlag}}" class="qipao">每消费1元增加10积分</view>
     </view>

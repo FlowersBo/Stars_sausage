@@ -14,7 +14,11 @@
     "pages/facilityListMap/addressSearch/addressSearch",
     "pages/discountCoupon/discountCoupon",
     "pages/coupon/coupon",
-    "pages/mine/mine"
+    "pages/mine/mine",
+    "pages/mine/integral/integral",
+    "pages/mine/integral/cutIntegral/cutIntegral",
+    "pages/template/template",
+    "pages/mine/integral/cutDetail/cutDetail"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -36,7 +40,6 @@
         "pagePath": "pages/home/home",
         "text": "首页"
       },
-      
       {
         "selectedIconPath": "/assets/tabbar/dingdan-h.png",
         "iconPath": "/assets/tabbar/dingdan.png",

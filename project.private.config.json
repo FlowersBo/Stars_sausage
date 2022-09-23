@@ -95,6 +95,18 @@
           "pathName": "pages/orderDetail/orderDetail",
           "query": "orderId=1546734303298191360",
           "scene": null
+        },
+        {
+          "name": "我的积分",
+          "pathName": "pages/mine/integral/integral",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "转增填写",
+          "pathName": "pages/mine/integral/cutDetail/cutDetail",
+          "query": "",
+          "scene": null
         }
       ]
     }

@@ -26,6 +26,10 @@
   margin: -300rpx 55rpx 0 55rpx;
   border-radius: 30rpx;
 }
+.openSetting_box{
+  width: 520rpx;
+  margin: -300rpx 115rpx 0 115rpx;
+}
 .scrollWrap{
   overflow: hidden scroll;
   overflow-y: scroll;
@@ -94,6 +98,16 @@
 
 .drawer_box_btn:last-child {
   background-color: #ff9900;
+}
+
+/* 兑换券 */
+.openSetting{
+  border-radius: 35rpx;
+}
+.openSetting:first-child{
+  border: 2rpx solid #ff9900;
+  color: #ff9900;
+  background: #fff;
 }
 
 /* 新人券btn */
