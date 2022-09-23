@@ -34,7 +34,7 @@ Page({
       })
     } else if (!count) {
       wx.showToast({
-        title: '请先输入转增积分',
+        title: '请先输入转赠积分',
         icon: 'none',
         duration: 2000
       })
@@ -47,7 +47,7 @@ Page({
     }else{
       Dialog.confirm({
         title: '转赠积分',
-        message: `您确认转增当前积分吗？`,
+        message: `您确认转赠当前积分吗？`,
         theme: 'round-button',
       }).then(() => {
         console.log('确认')

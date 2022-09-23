@@ -9,7 +9,7 @@ Page({
     item: {
       scrollbar: false,
       currentTab: 0,
-      nav: ['转增记录', '接收记录'],
+      nav: ['转赠记录', '接收记录'],
       navIndex:1
     }
   },

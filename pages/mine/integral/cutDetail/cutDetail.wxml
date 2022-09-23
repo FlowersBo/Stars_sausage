@@ -9,15 +9,15 @@
   </view>
 </image>
 <form catchsubmit="formSubmit" class="formClass">
-  <view class="jifen" bindtap="gotoCutInitegral">积分转增详情<icon style="font-size: 22rpx;margin: -24rpx 0 0 8rpx;" class="iconfont icon-youjiantou"></icon></view>
+  <view class="jifen" bindtap="gotoCutInitegral">积分转赠详情<icon style="font-size: 22rpx;margin: -24rpx 0 0 8rpx;" class="iconfont icon-youjiantou"></icon></view>
   <view class="inputWrap">
     接收手机号:
     <input type="number" name="phone" placeholder="仅限注册手机号" placeholder-style="color: #aaa" maxlength="11" />
   </view>
   <view class="inputWrap">
-    转增积分数量:
-    <input type="number" name="count" placeholder-style="color: #aaa" placeholder="请输入转增积分数量" maxlength="5" />
+    转赠积分数量:
+    <input type="number" name="count" placeholder-style="color: #aaa" placeholder="请输入转赠积分数量" maxlength="5" />
   </view>
-  <button class="formBtn" form-type="submit">确认转增</button>
+  <button class="formBtn" form-type="submit">确认转赠</button>
 </form>
 <van-dialog id="van-dialog" />

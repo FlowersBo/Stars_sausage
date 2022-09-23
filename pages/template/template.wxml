@@ -7,7 +7,7 @@
         <view style="font-size: 48rpx;">6600</view>
         <view style="font-size: 22rpx;color: #bbb;margin-top: 6rpx;">当前积分</view>
       </view>
-      <view wx:if="{{!navIndex}}" class="cutIntegral" bindtap="cutIntegralFn">积分转增</view>
+      <view wx:if="{{!navIndex}}" class="cutIntegral" bindtap="cutIntegralFn">积分转赠</view>
     </view>
   </image>
   <scroll-view enhanced show-scrollbar="{{scrollbar}}" class="integral integralDetail" scroll-y lower-threshold="10"
@@ -22,12 +22,12 @@
       <block wx:for="{{60}}" wx:key="index">
         <view class="integral-item">
           <view class="item-left">
-            <view>我 {{currentTab?'接收':'转增'}} 13333333333</view>
+            <view>我 {{currentTab?'接收':'转赠'}} 13333333333</view>
             <view style="font-size: 22rpx;color: #bbb;">2022.09.20 11:22:50</view>
           </view>
           <view class="item-right">
             <view>积分 2500</view>
-            <view class="giveStatus">{{currentTab?'接收':'转增'}}成功</view>
+            <view class="giveStatus">{{currentTab?'接收':'转赠'}}成功</view>
           </view>
         </view>
       </block>
