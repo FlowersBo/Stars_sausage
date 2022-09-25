@@ -253,7 +253,7 @@ Page({
     };
   },
   onHide() {
-    this.mask.util('close');
+    // this.mask.util('close');
   },
 
   // onShareAppMessage:function () {
