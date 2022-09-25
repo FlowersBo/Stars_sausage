@@ -19,11 +19,17 @@ Component({
         selectedIconPath: "/assets/tabbar/xiangchang-h.png"
       },
       {
-        pagePath: "/pages/mine/mine",
-        text: "我的",
-        iconPath: "/assets/tabbar/dingdan.png",
-        selectedIconPath: "/assets/tabbar/dingdan-h.png"
+        pagePath: "/pages/orderList/orderList",
+        text: "订单",
+        iconPath: "/assets/tabbar/dingdan1.png",
+        selectedIconPath: "/assets/tabbar/dingdan1-h.png"
       }
+      // {
+      //   pagePath: "/pages/mine/mine",
+      //   text: "我的",
+      //   iconPath: "/assets/tabbar/dingdan.png",
+      //   selectedIconPath: "/assets/tabbar/dingdan-h.png"
+      // }
     ]
     this.setData({
       list

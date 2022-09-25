@@ -73,28 +73,28 @@ Page({
           })
           .then(res => {
             wx.setStorageSync('customerId', res.data.id);
-            if (!res.data.phone) {
-              this.mask.util('open');
-              app.http.Np({})
-                .then(res => {
-                  console.log('新人券', res)
-                  if (res.code == 200) {
-                    that.setData({
-                      ticket: res.data
-                    })
-                  } else {
-                    this.mask.util('close');
-                    wx.showToast({
-                      title: res.msg,
-                      icon: 'none',
-                      duration: 2000
-                    })
-                  }
-                }).catch(err => {
-
-                })
-            }
             wx.setStorageSync('phoneNumber', res.data.phone);
+            // if (!res.data.phone) {
+            //   this.mask.util('open');
+            //   app.http.Np({})
+            //     .then(res => {
+            //       console.log('新人券', res)
+            //       if (res.code == 200) {
+            //         that.setData({
+            //           ticket: res.data
+            //         })
+            //       } else {
+            //         this.mask.util('close');
+            //         wx.showToast({
+            //           title: res.msg,
+            //           icon: 'none',
+            //           duration: 2000
+            //         })
+            //       }
+            //     }).catch(err => {
+
+            //     })
+            // }
           })
       }
     })

@@ -36,9 +36,9 @@
     </view>
   </view>
 </view>
+<van-dialog id="van-dialog" />
 
-<mask id="mask" isBtn="{{isBtn}}" bind:statusNumber="statusNumberFn">
-  <!-- <view slot='isTitle'>新人券</view> -->
+<!-- <mask id="mask" isBtn="{{isBtn}}" bind:statusNumber="statusNumberFn">
   <view slot='isContent'>
     <view style="font-size: 54rpx;color: #fff;text-align: center;margin: 20rpx 0;">新人有礼</view>
     <block wx:for="{{ticket}}" wx:key="index">
@@ -53,7 +53,6 @@
       </view>
     </block>
   </view>
-</mask>
+</mask> -->
 
-<van-dialog id="van-dialog" />
 <!-- <noData isFlag="{{isFlag}}" /> -->
