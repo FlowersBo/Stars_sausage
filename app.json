@@ -18,7 +18,8 @@
     "pages/mine/integral/integral",
     "pages/mine/integral/cutIntegral/cutIntegral",
     "pages/template/template",
-    "pages/mine/integral/cutDetail/cutDetail"
+    "pages/mine/integral/cutDetail/cutDetail",
+    "pages/mine/recharge/recharge"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -41,10 +42,10 @@
         "text": "首页"
       },
       {
-        "selectedIconPath": "/assets/tabbar/dingdan1-h.png",
-        "iconPath": "/assets/tabbar/dingdan1.png",
-        "pagePath": "pages/orderList/orderList",
-        "text": "订单"
+        "selectedIconPath": "/assets/tabbar/dingdan-h.png",
+        "iconPath": "/assets/tabbar/dingdan.png",
+        "pagePath": "pages/mine/mine",
+        "text": "我的"
       }
     ]
   },

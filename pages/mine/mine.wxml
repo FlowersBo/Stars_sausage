@@ -2,7 +2,7 @@
 <navigationBar text="个人中心" />
 <view class="userWrap" bindtap="deleteMaskFn">
   <view class="userInfo">
-    <view class="bubble {{isVip?'bubble-on':''}}">
+    <view catchtap="clickBubble" animation="{{animation}}" class="bubble {{isVip?'bubble-on':''}}">
       <text wx:if="{{isVip}}">vip</text>
     </view>
     <view class="userinfo-avatar {{isVip?'isVip':''}}">
@@ -10,10 +10,10 @@
       <image wx:if="{{isVip}}" class="avatar-img" src="/assets/mine/vip-icon.png"></image>
     </view>
     <view class="iphoneWrap">
-      <view>18001134320</view>
+      <view>{{customer.customerInfo.phone}}</view>
       <view class="jifen">
         <view>积分</view>
-        <view style="margin: 0 20rpx;">200</view>
+        <view style="margin: 0 20rpx;">{{customer.customerInfo.integral}}</view>
         <icon style="font-size: 40rpx;margin: -12rpx 10rpx 0 -4rpx;color: #5A5A5A;" class="iconfont icon-tishi"
           catchtap="opendMaskFn"></icon>
         <navigator hover-class="none" url="integral/integral" class="btn">积分兑换</navigator>
@@ -48,18 +48,22 @@
     </view>
     <view class="imgWrap">
       <navigator hover-class="none" url="/pages/orderList/orderList" class="changBtn">
+      <view wx:if="{{customer.oa}}" class="dot"></view>
         <image src="/assets/mine/icon1.png"></image>
         <view>全部</view>
       </navigator>
       <view class="changBtn">
+        <view wx:if="{{customer.ob}}" class="dot"></view>
         <image src="/assets/mine/icon2.png"></image>
         <view>准备中</view>
       </view>
       <view class="changBtn">
+        <view wx:if="{{customer.oc}}" class="dot"></view>
         <image style="width: 46rpx;" src="/assets/mine/icon3.png"></image>
         <view>待取餐</view>
       </view>
       <view class="changBtn">
+        <view wx:if="{{customer.od}}" class="dot"></view>
         <image src="/assets/mine/icon4.png"></image>
         <view>异常单</view>
       </view>

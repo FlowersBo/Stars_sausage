@@ -1,17 +1,19 @@
 // pages/mine/integral/cutDetail/cutDetail.js
 import Dialog from '../../../../miniprogram_npm/@vant/weapp/dialog/dialog';
+let app = getApp();
+let that;
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    integral: ''
   },
 
   gotoCutInitegral() {
     wx.navigateTo({
-      url: '../cutIntegral/cutIntegral',
+      url: '../cutIntegral/cutIntegral?integral=' + that.data.integral,
     })
   },
 
@@ -19,7 +21,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    that = this;
+    that.setData({
+      integral: options.integral,
+      isDisabled: false
+    })
   },
 
   formSubmit(e) {
@@ -44,13 +50,38 @@ Page({
         icon: 'none',
         duration: 2000
       })
-    }else{
+    } else if (phone === wx.getStorageSync('phoneNumber')) {
+      wx.showToast({
+        title: '接收号码错误',
+        icon: 'none',
+        duration: 2000
+      })
+    } else {
       Dialog.confirm({
         title: '转赠积分',
         message: `您确认转赠当前积分吗？`,
         theme: 'round-button',
       }).then(() => {
-        console.log('确认')
+        that.setData({
+          isDisabled: true
+        })
+        app.http.Present({
+          customerId: wx.getStorageSync('customerId'),
+          number: count,
+          phone
+        }).then(res => {
+          console.log('积分转增', res);
+          wx.showToast({
+            title: res.data,
+            icon: 'none',
+            duration: 2000
+          })
+          setTimeout(function () {
+            wx.navigateBack({
+              delta: 1
+            })
+          }, 1500)
+        })
       })
     }
   },

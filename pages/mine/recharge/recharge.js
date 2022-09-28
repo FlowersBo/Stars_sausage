@@ -1,65 +1,27 @@
-// pages/mine/integral/cutIntegral/cutIntegral.js
-let app = getApp();
+// pages/mine/recharge/recharge.js
 let that;
+let app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    item: {
-      scrollbar: false,
-      currentTab: 0,
-      nav: ['转赠记录', '接收记录'],
-      navIndex:1,
-      recordList: []
-    },
     pageNum: 1,
-    pageSize: 10
+    pageSize: 20
   },
 
-  cutIntegralFn() {
-    wx.navigateTo({
-      url: '',
-    })
-  },
-
-  tabNav(e) {
-    let currentTab = e.currentTarget.dataset.index;
-    this.setData({
-      "item.currentTab": currentTab,
-      pageNum: 1,
-      "item.recordList": []
-    })
-    that.recordFn(that.data.pageNum);
-  },
-
-  async recordFn(pageNum) {
-    let result = await (app.http.PresentRecord({
-      customerId: wx.getStorageSync('customerId'),
-      pageNum,
-      pageSize: that.data.pageSize,
-      changeType: `${that.data.item.currentTab==0?'2':'1'}`
-    }));
-    console.log(result, '转赠记录');
+  changeSum(e) {
     that.setData({
-      "item.recordList": that.data.item.recordList.concat(result.data.records.list),
-      pageNum,
-      total: result.data.records.total
+      changeIndex: e.currentTarget.dataset.index
     })
   },
-
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     that = this;
-    that.setData({
-      'item.integral': options.integral,
-      isDisabled: false
-    })
-    that.recordFn(that.data.pageNum);
   },
 
   bindscrolltolowerFn(e) {
@@ -69,6 +31,10 @@ Page({
       return
     }
     that.recordFn(pageNum + 1);
+  },
+
+  conversionFn() {
+    
   },
 
   /**

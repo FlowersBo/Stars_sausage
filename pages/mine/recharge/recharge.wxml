@@ -1,0 +1,36 @@
+<!--pages/mine/recharge/recharge.wxml-->
+<image mode="widthFix" style="width: 100%;position: relative;" src="/assets/img/recharge.png"></image>
+<view class="recharge">
+  <view style="width: 100%;height: 50rpx;border-bottom: 2rpx solid #eee;font-weight: bold;">充值金额</view>
+  <view class="moneyWrap">
+    <view wx:for="{{4}}" wx:key="index" class="money {{changeIndex===index? 'money-off':''}}" data-index="{{index}}"
+      bindtap="changeSum">
+      20元 <text style="font-size: 24rpx;color: #bbb;">送2元</text>
+      <text wx:if="{{changeIndex===index}}" class="dgWrap">
+        <text class="dg"></text>
+      </text>
+    </view>
+  </view>
+</view>
+<view class="scrollWrap">
+  <view style="width: 100%;height: 50rpx;border-bottom: 2rpx solid #eee;font-weight: bold;">充值记录</view>
+  <scroll-view enhanced show-scrollbar="{{scrollbar}}" class="integralDetail" scroll-y lower-threshold="10"
+    bindscrolltolower="bindscrolltolowerFn">
+    <view class="smallNav" style="font-size: 28rpx;color: #444;height: 80rpx;line-height: 80rpx;">
+      <view>充值金额</view>
+      <view>赠送金额</view>
+      <view>充值时间</view>
+    </view>
+    <view>
+      <block wx:for="{{50}}" wx:key="index">
+        <view class="smallNav">
+          <view>20元</view>
+          <view>2元</view>
+          <view>2022.09.28</view>
+        </view>
+      </block>
+    </view>
+  </scroll-view>
+</view>
+<view class="ticketBtn" bindtap="conversionFn">￥20 立即支付</view>
+<view class="guize">购买即视为同意<text style="color: #FF911D;">《星斗锦绣肠会员用户协议》</text></view>

@@ -3,7 +3,7 @@
 <image mode="widthFix" style="width: 100%;position: relative;" src="/assets/img/integral.png">
   <view class="integral">
     <view style="display: flex;flex-direction: column;align-items: center;">
-      <view style="font-size: 48rpx;">6600</view>
+      <view style="font-size: 48rpx;">{{integral}}</view>
       <view style="font-size: 22rpx;color: #bbb;margin-top: 6rpx;">当前积分</view>
     </view>
   </view>
@@ -18,6 +18,6 @@
     转赠积分数量:
     <input type="number" name="count" placeholder-style="color: #aaa" placeholder="请输入转赠积分数量" maxlength="5" />
   </view>
-  <button class="formBtn" form-type="submit">确认转赠</button>
+  <button class="formBtn" disabled="{{isDisabled}}" form-type="submit">确认转赠</button>
 </form>
 <van-dialog id="van-dialog" />

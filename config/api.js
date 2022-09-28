@@ -24,5 +24,10 @@ module.exports = {
 	drawBag: 'reserve/coupon/drawBag', //领取优惠券包
 	drawCoupon: 'reserve/coupon/drawCoupon', //领取优惠券单张
 	np: 'reserve/coupon/np', //新人券
-	
+	info: 'reserve/center/info', //个人中心
+	article: 'reserve/center/article', //积分页面
+	exchange: 'reserve/center/article/exchange', //积分兑换优惠券
+	record: 'reserve/center/article/record', //积分兑换记录
+	present: 'reserve/center/integral/present', //积分转赠
+	presentRecord: 'reserve/center/integral/record', //转赠记录
 }

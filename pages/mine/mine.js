@@ -1,4 +1,6 @@
 // pages/mine/mine.js
+// let parseURL = require('');
+const app = getApp();
 let that;
 Page({
 
@@ -9,26 +11,54 @@ Page({
     isVip: false
   },
 
-  opendMaskFn(){
+  opendMaskFn() {
     that.setData({
       isFlag: true
     })
   },
 
-  deleteMaskFn(){
+  deleteMaskFn() {
     that.setData({
       isFlag: false
     })
   },
 
+  // 充值
+  refillFn(){
+    wx.navigateTo({
+      url: './recharge/recharge',
+    })
+  },
+
+  clickBubble(){
+    let animation = wx.createAnimation({
+      duration: 90,
+      timingFunction: 'linear',
+    });
+    animation.translate(80, -50).step();
+    // that.setData({
+    //   animation
+    // })
+  },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     that = this;
+    that.infoFn();
   },
-
+  infoFn() {
+    app.http.Info({
+      customerId: wx.getStorageSync('customerId')
+    })
+    .then(res=>{
+      console.log('用户信息',res);
+      that.setData({
+        customer: res.data
+      })
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

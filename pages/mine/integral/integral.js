@@ -1,5 +1,6 @@
 // pages/mine/integral/integral.js
 let that;
+let app = getApp();
 Page({
 
   /**
@@ -13,42 +14,82 @@ Page({
       navIndex: 0,
       ticketIndex: '',
       openSetting: true
-    }
+    },
+    pageNum: 1,
+    pageSize: 20
   },
   cutIntegralFn() {
     wx.navigateTo({
       // url: 'cutIntegral/cutIntegral',
-      url: 'cutDetail/cutDetail',
+      url: 'cutDetail/cutDetail?integral=' + that.data.item.integral,
     })
   },
   tabNav(e) {
     let currentTab = e.currentTarget.dataset.index;
     this.setData({
       "item.currentTab": currentTab,
-      pageIndex: 1,
-      orderList: []
+      pageNum: 1,
+      "item.recordList": []
     })
-    // this.renderOrderList();
+    if (currentTab == 0) {
+      that.articleFn();
+    } else {
+      that.recordFn(that.data.pageNum);
+    }
+  },
+
+  async recordFn(pageNum) {
+    let result = await (app.http.Record({
+      customerId: wx.getStorageSync('customerId'),
+      pageNum,
+      pageSize: that.data.pageSize
+    }));
+    console.log(result, '兑换记录');
+    that.setData({
+      "item.recordList": that.data.item.recordList.concat(result.data.records.list),
+      pageNum,
+      total: result.data.records.total
+    })
   },
 
   selectTicket(e) {
     console.log('选择的优惠券', e);
     that.setData({
-      "item.ticketIndex": e.currentTarget.dataset.index
+      "item.ticketIndex": e.currentTarget.dataset.index,
+      articleId: e.currentTarget.dataset.id
     })
   },
 
   // 确认兑换
   conversionFn() {
-    this.mask.util('open');
+    if (!that.data.articleId) {
+      wx.showToast({
+        title: '请先选择兑换商品',
+        icon: 'none',
+        duration: 2000
+      })
+      return
+    }
+    app.http.Exchange({
+      articleId: that.data.articleId,
+      customerId: wx.getStorageSync('customerId')
+    }).then(res => {
+      that.articleFn();
+      this.mask.util('open');
+    }).catch(err => {
+
+    })
   },
 
   statusNumberFn: e => {
     console.log(e);
-    if(e.detail.status==0){
-
+    if (e.detail.status == 0) {
+      wx.switchTab({
+        url: '/pages/home/home',
+      })
     }
   },
+  
   /**
    * 生命周期函数--监听页面加载
    */
@@ -57,8 +98,24 @@ Page({
     this.mask = this.selectComponent('#mask');
   },
 
+  async articleFn() {
+    let result = await (app.http.Article({
+      customerId: wx.getStorageSync('customerId')
+    }));
+    console.log(result, '积分');
+    that.setData({
+      "item.integral": result.data.integral,
+      "item.articles": result.data.articles
+    })
+  },
+
   bindscrolltolowerFn(e) {
-    console.log('加载', e)
+    let pageNum = that.data.pageNum;
+    let pageSize = that.data.pageSize;
+    if (that.data.total <= pageSize * pageNum) {
+      return
+    }
+    that.recordFn(pageNum + 1);
   },
 
   /** 
@@ -72,7 +129,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    that.articleFn();
   },
 
   /**

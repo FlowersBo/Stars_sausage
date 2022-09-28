@@ -2,7 +2,18 @@
   "setting": {
     "compileHotReLoad": true
   },
+  "projectname": "Stars_sausage",
+  "description": "项目私有配置文件。此文件中的内容将覆盖 project.config.json 中的相同字段。项目的改动优先同步到此文件中。详见文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html",
   "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
     "miniprogram": {
       "list": [
         {
@@ -100,10 +111,14 @@
           "pathName": "pages/mine/integral/cutDetail/cutDetail",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "充值",
+          "pathName": "pages/mine/recharge/recharge",
+          "query": "",
+          "scene": null
         }
       ]
     }
-  },
-  "projectname": "Stars_sausage",
-  "description": "项目私有配置文件。此文件中的内容将覆盖 project.config.json 中的相同字段。项目的改动优先同步到此文件中。详见文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html"
+  }
 }

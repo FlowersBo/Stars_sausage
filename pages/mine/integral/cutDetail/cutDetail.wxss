@@ -62,3 +62,6 @@
   border-radius: 50rpx;
   margin-top: 100rpx;
 }
+button::after{
+  border: none;
+}

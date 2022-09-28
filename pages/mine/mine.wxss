@@ -282,6 +282,16 @@ page {
   flex-direction: column;
   align-items: center;
   margin-top: 40rpx;
+  position: relative;
+}
+.dot{
+  width: 16rpx;
+  height: 16rpx;
+  background: red;
+  border-radius: 50%;
+  position: absolute;
+  top: -24rpx;
+  right: 4rpx;
 }
 .changBtn image{
   width: 50rpx;
