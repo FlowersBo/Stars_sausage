@@ -19,7 +19,8 @@
     "pages/mine/integral/cutIntegral/cutIntegral",
     "pages/template/template",
     "pages/mine/integral/cutDetail/cutDetail",
-    "pages/mine/recharge/recharge"
+    "pages/mine/recharge/recharge",
+    "pages/mine/rechargeVip/rechargeVip"
   ],
   "window": {
     "backgroundTextStyle": "light",

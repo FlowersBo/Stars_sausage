@@ -1,0 +1,49 @@
+<!--pages/mine/rechargeVip/rechargeVip.wxml-->
+<navigationBar text="开通会员" back />
+<view class="rechargeVip">
+  <image mode="widthFix" style="width: 700rpx;" src="/assets/img/vip.png"></image>
+  <view class="recharge">
+    <view class="moneyWrap">
+      <view style="width: 100%;height: 50rpx;border-bottom: 2rpx solid #eee;font-weight: bold;">会员选择</view>
+      <view wx:for="{{moneyList}}" wx:key="index" class="money {{changeIndex===index? 'money-off':''}}"
+        data-index="{{index}}" bindtap="changeSum">
+        <view>{{item.name}}</view>
+        <view style="font-size: 24rpx;margin-top: 6rpx;color: {{changeIndex===index?'#FF911D':'#aaa;'}};">
+          {{item.money}}元</view>
+        <text wx:if="{{changeIndex===index}}" class="dgWrap">
+          <text class="dg"></text>
+        </text>
+      </view>
+    </view>
+  </view>
+  <view class="quanyi">
+    <view style="width: 100%;height: 50rpx;border-bottom: 2rpx solid #eee;font-weight: bold;font-size: 32rpx;">会员权益
+    </view>
+    <view class="quanyi-item">
+      <text class="dot"></text>
+      开通后购买所有烤肠均打九折
+    </view>
+    <view class="quanyi-item">
+      <text class="dot"></text>
+      可与优惠券叠加使用
+    </view>
+  </view>
+  <view class="ticketBtn" bindtap="conversionFn">￥10 立即支付</view>
+  <view class="guize">购买即视为同意<text style="color: #FF911D;">《星斗锦绣肠会员用户协议》</text></view>
+</view>
+<mask id="mask" isVip="{{isVip}}" openSetting="{{openSetting}}" bind:statusNumber="statusNumberFn">
+<view wx:if="{{isVip==='1'}}" slot='isTitle'>
+  <view class="title">确认购买会员</view>
+</view>
+  <view slot='isContent'>
+    <view class="pop-up">
+      <image wx:if="{{isVip==='1'}}" style="width: 320rpx;height: 320rpx;" src="/assets/img/kc.png"></image>
+      <block wx:else>
+        <view class="circle">
+          <view class="maxdg"></view>
+        </view>
+        购买成功
+      </block>
+    </view>
+  </view>
+</mask>

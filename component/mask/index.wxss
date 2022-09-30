@@ -16,7 +16,7 @@
 .drawer_box {
   width: 640rpx;
   height: 600rpx;
-  background-color: #fafafa;
+  background-color: #fff;
   /* background-image: linear-gradient(135deg, #FF9900, #F7C67E); */
   overflow: hidden;
   position: fixed;
@@ -59,7 +59,8 @@
 }
 
 .authorization_title {
-  font-size: 36rpx;
+  width: 100%;
+  font-size: 32rpx;
   font-weight: bold;
 }
 
@@ -122,6 +123,15 @@
   margin-top: 100rpx;
 }
 
-.ticketBtn::after {
+.ticketBtn::after,.isVip::after {
   border: none;
+}
+
+.isVip{
+  border: 2rpx solid #ff9900;
+  color: #ff9900;
+  background: #fff;
+  border-radius: 35rpx;
+  color: #aaa;
+  border: 2rpx solid #aaa;
 }

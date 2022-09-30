@@ -24,13 +24,20 @@ Page({
   },
 
   // 充值
-  refillFn(){
+  refillFn() {
     wx.navigateTo({
       url: './recharge/recharge',
     })
   },
 
-  clickBubble(){
+  // 充值会员
+  rechargeVipFn() {
+    wx.navigateTo({
+      url: './rechargeVip/rechargeVip',
+    })
+  },
+
+  clickBubble() {
     let animation = wx.createAnimation({
       duration: 90,
       timingFunction: 'linear',
@@ -50,14 +57,14 @@ Page({
   },
   infoFn() {
     app.http.Info({
-      customerId: wx.getStorageSync('customerId')
-    })
-    .then(res=>{
-      console.log('用户信息',res);
-      that.setData({
-        customer: res.data
+        customerId: wx.getStorageSync('customerId')
       })
-    })
+      .then(res => {
+        console.log('用户信息', res);
+        that.setData({
+          customer: res.data
+        })
+      })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

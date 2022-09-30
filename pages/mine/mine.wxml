@@ -23,7 +23,7 @@
   </view>
   <view wx:if="{{!isVip}}" class="vipCard">
     <view class="card-top">
-      <view class="vip">开通会员</view>
+      <view class="vip" bindtap="rechargeVipFn">开通会员</view>
       <text style="color: rgb(100, 100, 100);font-size: 24rpx;">开通后购买有优惠呦~</text>
     </view>
     <view class="card-bottom">

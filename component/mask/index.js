@@ -12,6 +12,10 @@ Component({
     isBtn: {
       type: Boolean,
       value: ''
+    },
+    isVip: {
+      type: String,
+      value: ''
     }
   },
 

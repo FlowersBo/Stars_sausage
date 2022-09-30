@@ -117,6 +117,12 @@
           "pathName": "pages/mine/recharge/recharge",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "开通会员",
+          "pathName": "pages/mine/rechargeVip/rechargeVip",
+          "query": "",
+          "scene": null
         }
       ]
     }

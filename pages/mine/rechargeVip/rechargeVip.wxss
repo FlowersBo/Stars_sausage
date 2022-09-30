@@ -1,0 +1,149 @@
+/* pages/mine/rechargeVip/rechargeVip.wxss */
+.rechargeVip{
+  width: 700rpx;
+  margin: 0 auto;
+  padding-top: 50rpx;
+}
+.recharge{
+  width: 700rpx;
+  height: 340rpx;
+  background: #fff;
+  border-radius: 20rpx;
+  position: relative;
+  top: -20rpx;
+  box-sizing: border-box;
+  padding: 20rpx;
+  box-shadow: 2rpx 10rpx 12rpx rgba(0, 0, 0, .1);
+}
+
+.moneyWrap{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.money{
+  width: 137rpx;
+  height: 180rpx;
+  border: 2rpx solid #ddd;
+  border-radius: 10rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;  
+  justify-content: center;
+  position: relative;
+  margin-top: 40rpx;
+  font-size: 28rpx;
+}
+
+.money-off{
+  border: 2rpx solid #FF911D;
+  color: #FF911D;
+}
+
+.dgWrap{
+  display: inline-block;
+  width: 60rpx;
+  height: 40rpx;
+  background: #FF911D;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  border-top-left-radius: 10rpx;
+  border-bottom-right-radius: 8rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dg{
+  display: block;
+  width: 22rpx;
+  height: 12rpx;
+  border-bottom: 4rpx solid #fff;
+  border-left: 4rpx solid #fff;
+  transform: rotate(-45deg);
+  margin-top: -4rpx;
+}
+
+.quanyi{
+  width: 700rpx;
+  height: 260rpx;
+  background: #fff;
+  border-radius: 20rpx;
+  margin-top: 50rpx;
+  box-shadow: 2rpx 10rpx 12rpx rgba(0, 0, 0, .1);
+  box-sizing: border-box;
+  padding: 20rpx;
+  font-size: 28rpx;
+}
+.quanyi-item{
+  margin: 20rpx;
+}
+.quanyi-item:nth-child(2){
+  margin-top: 50rpx;
+}
+.dot{
+  display: inline-block;
+  width: 16rpx;
+  height: 16rpx;
+  border-radius: 50%;
+  background: #aaa;
+}
+.ticketBtn{
+  width: 620rpx;
+  height: 100rpx;
+  font-size: 40rpx;
+  color: #fff;
+  text-align: center;
+  line-height: 100rpx;
+  background: #FF911D;
+  border-radius: 50rpx;
+  margin: 0 auto;
+  margin-top: 60rpx;
+}
+.guize{
+  width: 100%;
+  height: 80rpx;
+  text-align: center;
+  line-height: 80rpx;
+  color: #aaa;
+  font-size: 22rpx;
+}
+
+.pop-up{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  padding-top: 60rpx;
+  color: #555;
+  font-size: 32rpx;
+}
+
+.circle{
+  width: 150rpx;
+  height: 150rpx;
+  background:#ff9900;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20rpx;
+}
+
+.maxdg{
+  width: 70rpx;
+  height: 40rpx;
+  border-left: 6rpx solid #fff;
+  border-bottom: 6rpx solid #fff;
+  transform: rotate(-45deg);
+  margin-top: -10rpx;
+}
+.title{
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  border-bottom: 2rpx solid #eee;
+  text-align: center;
+}
