@@ -2,7 +2,7 @@
 <navigationBar text="个人中心" />
 <view class="userWrap" bindtap="deleteMaskFn">
   <view class="userInfo">
-    <view catchtap="clickBubble" animation="{{animation}}" class="bubble {{isVip?'bubble-on':''}}">
+    <view catchtap="clickBubble" animation="{{animationMiddleHeaderItem}}" class="bubble {{isVip?'bubble-on':''}}">
       <text wx:if="{{isVip}}">vip</text>
     </view>
     <view class="userinfo-avatar {{isVip?'isVip':''}}">
@@ -13,7 +13,7 @@
       <view>{{customer.customerInfo.phone}}</view>
       <view class="jifen">
         <view>积分</view>
-        <view style="margin: 0 20rpx;">{{customer.customerInfo.integral}}</view>
+        <view style="margin: 0 20rpx;">{{customer.customerInfo.integral?customer.customerInfo.integral:0}}</view>
         <icon style="font-size: 40rpx;margin: -12rpx 10rpx 0 -4rpx;color: #5A5A5A;" class="iconfont icon-tishi"
           catchtap="opendMaskFn"></icon>
         <navigator hover-class="none" url="integral/integral" class="btn">积分兑换</navigator>
@@ -21,24 +21,24 @@
       <view hidden="{{!isFlag}}" class="qipao">每消费1元增加10积分</view>
     </view>
   </view>
-  <view wx:if="{{!isVip}}" class="vipCard">
+  <view wx:if="{{customer.customerInfo.cardId&&!isVip}}" class="vipCard">
     <view class="card-top">
       <view class="vip" bindtap="rechargeVipFn">开通会员</view>
       <text style="color: rgb(100, 100, 100);font-size: 24rpx;">开通后购买有优惠呦~</text>
     </view>
-    <view class="card-bottom">
-      <view>余额：￥<text style="font-size: 48rpx;">200</text></view>
-      <view class="vip refill" catchtap="refillFn">充值优惠</view>
+    <view class="card-bottom {{customer.customerInfo.balance>0?'':'card-bottom-on'}}">
+      <view>余额：￥<text style="font-size: 48rpx;">{{customer.customerInfo.balance}}</text></view>
+      <view class="vip refill" style="color: {{customer.customerInfo.balance>0?'':'#BABABA'}};" catchtap="refillFn">充值优惠</view>
     </view>
   </view>
   <image wx:else class="vipCard" style="position: relative;" src="/assets/mine/vipcard.png">
     <view class="vipCard" style="position: absolute;top: 0;left: 0;">
       <view class="card-top card-top-on">
         <view class="vip-on">会员卡</view>
-        <view style="font-size: 24rpx;">2022-12-31到期</view>
+        <view style="font-size: 24rpx;">{{cardExpire}} 到期</view>
       </view>
       <view class="card-bottom" style="background: none;">
-        <view>余额：￥<text style="font-size: 48rpx;">200</text></view>
+        <view>余额：￥<text style="font-size: 48rpx;">{{customer.customerInfo.balance}}</text></view>
         <view class="vip refill" catchtap="refillFn">充值优惠</view>
       </view>
     </view>
@@ -46,12 +46,12 @@
   <view class="navWrap">
     <view style="height:80rpx;line-height:80rpx;border-bottom: 2rpx solid #ddd;font-size: 30rpx;font-weight: bold;">预订订单
     </view>
-    <view class="imgWrap">
-      <navigator hover-class="none" url="/pages/orderList/orderList" class="changBtn">
-      <view wx:if="{{customer.oa}}" class="dot"></view>
+    <navigator class="imgWrap" hover-class="none" url="/pages/orderList/orderList">
+      <view class="changBtn">
+        <view wx:if="{{customer.oa}}" class="dot"></view>
         <image src="/assets/mine/icon1.png"></image>
         <view>全部</view>
-      </navigator>
+      </view>
       <view class="changBtn">
         <view wx:if="{{customer.ob}}" class="dot"></view>
         <image src="/assets/mine/icon2.png"></image>
@@ -67,7 +67,7 @@
         <image src="/assets/mine/icon4.png"></image>
         <view>异常单</view>
       </view>
-    </view>
+    </navigator>
   </view>
   <!-- <view class="navWrap">
     <view style="height:80rpx;line-height:80rpx;border-bottom: 2rpx solid #ddd;font-size: 30rpx;font-weight: bold;">商城订单

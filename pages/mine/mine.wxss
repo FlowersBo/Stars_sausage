@@ -145,7 +145,7 @@ page {
   transform: rotate(45deg);
   /*盒子阴影 x位移 y位移 羽化 半径 颜色 */
   box-shadow: -8rpx -8rpx 50rpx -8rpx #873940 inset;
-  animation: bubble 3s ease-in-out infinite;
+  /* animation: bubble 3s ease-in-out infinite; */
 }
 
 .bubble-on {
@@ -204,6 +204,9 @@ page {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+.card-bottom-on{
+  background: #BABABA;
 }
 
 .vip {

@@ -30,4 +30,6 @@ module.exports = {
 	record: 'reserve/center/article/record', //积分兑换记录
 	present: 'reserve/center/integral/present', //积分转赠
 	presentRecord: 'reserve/center/integral/record', //转赠记录
+	moneyList: 'reserve/recharge/list', //充值金额、记录
+	payMoney: 'reserve/recharge/pay', //充值
 }

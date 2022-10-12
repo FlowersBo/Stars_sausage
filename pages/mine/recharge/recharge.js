@@ -13,7 +13,9 @@ Page({
 
   changeSum(e) {
     that.setData({
-      changeIndex: e.currentTarget.dataset.index
+      changeIndex: e.currentTarget.dataset.index,
+      changeMoney: e.currentTarget.dataset.money,
+      rechargeId: e.currentTarget.dataset.rechargeid
     })
   },
 
@@ -22,11 +24,26 @@ Page({
    */
   onLoad: function (options) {
     that = this;
+    that.recordFn(that.data.pageNum);
+  },
+
+  async recordFn(pageNum) {
+    let result = await (app.http.MoneyList({
+      customerId: wx.getStorageSync('customerId'),
+      pageNum,
+      pageSize: that.data.pageSize
+    }));
+    console.log('充值页面', result);
+    that.setData({
+      pageNum,
+      orderList: result.data.orders.list,
+      rechargeInfos: result.data.rechargeInfos
+    })
   },
 
   bindscrolltolowerFn(e) {
     let pageNum = that.data.pageNum;
-    let pageSize = that.data.pageSize;
+    let pageSize = that.data.pageSize; 
     if (that.data.total <= pageSize * pageNum) {
       return
     }
@@ -34,7 +51,55 @@ Page({
   },
 
   conversionFn() {
-    
+    if (!that.data.changeMoney) {
+      wx.showToast({
+        title: '请选择充值金额',
+        icon: 'none',
+        duration: 2000
+      })
+      return
+    }
+    app.http.PayMoney({
+        customerId: wx.getStorageSync('customerId'),
+        rechargeId: that.data.rechargeId
+      }).then(res => {
+        console.log('支付返回', res);
+        wx.requestPayment({
+          timeStamp: res.data.timeStamp,
+          nonceStr: res.data.nonceStr,
+          package: res.data.package,
+          signType: res.data.signType,
+          paySign: res.data.paySign,
+          success(res) {
+            wx.navigateBack({
+              delta: 1
+            })
+          },
+          fail(res) {
+            wx.showToast({
+              title: '充值失败',
+              icon: 'none',
+              duration: 2000
+            })
+          }
+        })
+      })
+      .catch(err => {
+        wx.showToast({
+          title: err.msg,
+          icon: 'none',
+          duration: 2000
+        })
+      })
+    // wx.showModal({
+    //   title: '提示',
+    //   content: `您确定充值${that.data.changeMoney}元吗？`,
+    //   success (res) {
+    //     if (res.confirm) {
+
+    //     } 
+    //   }
+    // })
   },
 
   /**

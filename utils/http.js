@@ -138,4 +138,10 @@ module.exports = {
   PresentRecord(data = {}) {
     return Request(baseUrl + api.presentRecord, data, 'get')
   },
+  MoneyList(data = {}) {
+    return Request(baseUrl + api.moneyList, data, 'get')
+  },
+  PayMoney(data = {}) {
+    return Request(`${baseUrl + api.payMoney+addQueryString(data)}`, data, 'post')
+  },
 }

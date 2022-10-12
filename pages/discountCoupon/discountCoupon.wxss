@@ -2,7 +2,7 @@
 .van-item {
   width: 690rpx;
   height: 196rpx;
-  margin: 20rpx auto;
+  margin: 30rpx auto;
   border-radius: 20rpx;
   background: #fff;
   display: flex;

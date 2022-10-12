@@ -30,7 +30,8 @@ Page({
 
   changeSum(e) {
     that.setData({
-      changeIndex: e.currentTarget.dataset.index
+      changeIndex: e.currentTarget.dataset.index,
+      changeMoney: e.currentTarget.dataset.money
     })
   },
 

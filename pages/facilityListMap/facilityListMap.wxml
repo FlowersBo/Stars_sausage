@@ -25,7 +25,8 @@
           <icon style="font-size: 20rpx;margin:-24rpx 0 0 10rpx;" class="iconfont icon-xiajiantou1"></icon>
         </view>
       </picker>
-      <view class="searchChild" data-city="{{cityList[index]?cityList[index]: city}}" data-cityCode="{{cityValue?cityValue.value:adcode}}" bindtap="gotoAddressSerach">
+      <view class="searchChild" data-city="{{cityList[index]?cityList[index]: city}}"
+        data-cityCode="{{cityValue?cityValue.value:adcode}}" bindtap="gotoAddressSerach">
         搜索点位
         <icon class="iconfont icon-icon-search"></icon>
       </view>
@@ -57,7 +58,8 @@
         <view class="equipment-left">
           <view style="font-size: 32rpx;font-weight: bold;">{{item.name}}</view>
           <view>地址：{{item.address}}</view>
-          <view style="color: #FFB606;">营业时间：{{item.startOpen}}~{{item.endOpen}}</view>
+          <view style="color:#FFB606;" wx:if="{{item.isAllDay}}">营业时间：24小时营业</view>
+          <view style="color: #FFB606;" wx:else>营业时间：{{item.startOpen}}~{{item.endOpen}}</view>
         </view>
         <view class="equipment-right">
           <view>{{item.distance}}</view>

@@ -2,15 +2,20 @@
 page{
   height: 100%;
 }
-.recharge{
+
+.rechargeWrap{
   width: 700rpx;
-  height: 340rpx;
-  background: #fff;
-  border-radius: 20rpx;
+  height: calc(100% - 175px);
   position: absolute;
   top: 250rpx;
   left: 50%;
   margin-left: -350rpx;
+}
+
+.recharge{
+  width: 700rpx;
+  background: #fff;
+  border-radius: 20rpx;
   box-sizing: border-box;
   padding: 20rpx;
   box-shadow: 2rpx 10rpx 12rpx rgba(0, 0, 0, .1);
@@ -33,6 +38,21 @@ page{
 }
 .money-off{
   border: 2rpx solid #FF911D;
+}
+
+.tj{
+  width: 60rpx;
+  height: 30rpx;
+  background: #F40024;
+  position: absolute;
+  color: #fff;
+  font-size: 16rpx;
+  text-align: center;
+  line-height: 30rpx;
+  left: 0;
+  top: 0;
+  border-top-left-radius: 8rpx;
+  border-bottom-right-radius: 10rpx;
 }
 
 .dgWrap{
@@ -62,10 +82,9 @@ page{
 
 .scrollWrap{
   width: 700rpx;
-  margin: 0 auto;
-  margin-top: 280rpx;
+  margin: 50rpx 0;
   border-radius: 20rpx;
-  height: 40%;
+  height: 54%;
   background: #fff;
   box-sizing: border-box;
   padding: 20rpx 30rpx;
@@ -106,7 +125,6 @@ page{
   background: #FF911D;
   border-radius: 50rpx;
   margin: 0 auto;
-  margin-top: 50rpx;
 }
 .guize{
   width: 100%;
