@@ -32,4 +32,6 @@ module.exports = {
 	presentRecord: 'reserve/center/integral/record', //转赠记录
 	moneyList: 'reserve/recharge/list', //充值金额、记录
 	payMoney: 'reserve/recharge/pay', //充值
+	vipMoneyList: 'reserve/card/list', // 会员页面选项
+	vipPayMoney: 'reserve/card/pay', //开会员
 }

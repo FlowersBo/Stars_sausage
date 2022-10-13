@@ -144,4 +144,10 @@ module.exports = {
   PayMoney(data = {}) {
     return Request(`${baseUrl + api.payMoney+addQueryString(data)}`, data, 'post')
   },
+  VipMoneyList(data = {}) {
+    return Request(baseUrl + api.vipMoneyList, data, 'get')
+  },
+  VipPayMoney(data = {}) {
+    return Request(`${baseUrl + api.vipPayMoney+addQueryString(data)}`, data, 'post')
+  },
 }

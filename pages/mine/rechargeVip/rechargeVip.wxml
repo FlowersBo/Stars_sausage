@@ -5,11 +5,11 @@
   <view class="recharge">
     <view class="moneyWrap">
       <view style="width: 100%;height: 50rpx;border-bottom: 2rpx solid #eee;font-weight: bold;">会员选择</view>
-      <view wx:for="{{moneyList}}" wx:key="index" class="money {{changeIndex===index? 'money-off':''}}"
-        data-index="{{index}}" data-money="{{item.money}}" bindtap="changeSum">
-        <view>{{item.name}}</view>
+      <view wx:for="{{cardMoney}}" wx:key="index" class="money {{changeIndex===index? 'money-off':''}}"
+        data-index="{{index}}" data-money="{{item.cardPrice}}" data-cardid="{{item.id}}" bindtap="changeSum">
+        <view>{{item.effectiveDay}}天</view>
         <view style="font-size: 24rpx;margin-top: 6rpx;color: {{changeIndex===index?'#FF911D':'#aaa;'}};">
-          {{item.money}}元</view>
+          {{item.cardPrice}}元</view>
         <text wx:if="{{changeIndex===index}}" class="dgWrap">
           <text class="dg"></text>
         </text>

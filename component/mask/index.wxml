@@ -22,7 +22,7 @@
   </view>
   <view class="btnWrap" wx:elif="{{openSetting}}">
     <button class="drawer_box_btn {{(openSetting&&isVip==='1')?'isVip':(openSetting?'openSetting':'')}}" data-status="1" catchtap="gotobargainDetailFuns">{{isVip==='1'?'拒绝离开':(isVip==='2'?'立即分享':'继续兑换')}}</button>
-    <button class="drawer_box_btn {{openSetting?'openSetting':''}}" data-status="0" catchtap="gotobargainDetailFuns">{{sVip==='1'?'继续开通':'马上下单'}}</button>
+    <button class="drawer_box_btn {{openSetting?'openSetting':''}}" data-status="0" catchtap="gotobargainDetailFuns">{{isVip==='1'?'继续开通':'马上下单'}}</button>
   </view>
   <view class="btnWrap" wx:else>
     <button class="drawer_box_btn" data-status="0" catchtap="gotobargainDetailFuns">确认</button>

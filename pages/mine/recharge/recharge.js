@@ -71,8 +71,8 @@ Page({
           signType: res.data.signType,
           paySign: res.data.paySign,
           success(res) {
-            wx.navigateBack({
-              delta: 1
+            wx.switchTab({
+              url: '/pages/mine/mine'
             })
           },
           fail(res) {

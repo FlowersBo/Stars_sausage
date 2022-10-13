@@ -9,29 +9,13 @@ Page({
   data: {
     openSetting: true,
     isVip: '1',
-    moneyList: [{
-        name: '一个月',
-        money: 10
-      },
-      {
-        name: '三个月',
-        money: 25
-      },
-      {
-        name: '六个月',
-        money: 45
-      },
-      {
-        name: '一年',
-        money: 88
-      },
-    ]
   },
 
   changeSum(e) {
     that.setData({
       changeIndex: e.currentTarget.dataset.index,
-      changeMoney: e.currentTarget.dataset.money
+      changeMoney: e.currentTarget.dataset.money,
+      cardId: e.currentTarget.dataset.cardid
     })
   },
 
@@ -42,6 +26,17 @@ Page({
   onLoad: function (options) {
     that = this;
     this.mask = this.selectComponent('#mask');
+    that.vipMoneyListFn();
+  },
+
+  async vipMoneyListFn() {
+    let result = await (app.http.VipMoneyList({
+      customerId: wx.getStorageSync('customerId')
+    }));
+    console.log('金额', result)
+    that.setData({
+      cardMoney: result.data.cards
+    })
   },
 
   // 支付
@@ -61,7 +56,38 @@ Page({
     console.log(e);
     if (e.detail.status == 0) {
       if (that.data.isVip === '1') {
-
+        app.http.VipPayMoney({
+            customerId: wx.getStorageSync('customerId'),
+            cardId: that.data.cardId
+          }).then(res => {
+            console.log('支付返回', res);
+            wx.requestPayment({
+              timeStamp: res.data.timeStamp,
+              nonceStr: res.data.nonceStr,
+              package: res.data.package,
+              signType: res.data.signType,
+              paySign: res.data.paySign,
+              success(res) {
+                wx.switchTab({
+                  url: '/pages/mine/mine'
+                })
+              },
+              fail(res) {
+                wx.showToast({
+                  title: '充值失败',
+                  icon: 'none',
+                  duration: 2000
+                })
+              }
+            })
+          })
+          .catch(err => {
+            wx.showToast({
+              title: err.msg,
+              icon: 'none',
+              duration: 2000
+            })
+          })
       } else {
 
       }
