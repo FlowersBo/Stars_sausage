@@ -33,9 +33,19 @@ Page({
     let result = await (app.http.VipMoneyList({
       customerId: wx.getStorageSync('customerId')
     }));
+    let cardMoney = result.data.cards;
+    cardMoney.forEach((element, key) => {
+      if (element.recommend) {
+        that.setData({
+          changeIndex: key,
+          changeMoney: element.cardPrice,
+          cardId: element.id
+        })
+      }
+    });
     console.log('金额', result)
     that.setData({
-      cardMoney: result.data.cards
+      cardMoney
     })
   },
 
@@ -68,9 +78,10 @@ Page({
               signType: res.data.signType,
               paySign: res.data.paySign,
               success(res) {
-                wx.switchTab({
-                  url: '/pages/mine/mine'
+                that.setData({
+                  isVip: '2'
                 })
+                that.mask.util('open');
               },
               fail(res) {
                 wx.showToast({
@@ -89,7 +100,16 @@ Page({
             })
           })
       } else {
-
+        wx.switchTab({
+          url: '/pages/home/home'
+        })
+      }
+    } else {
+      if (that.data.isVip === '2') {
+        that.setData({
+          isVip: '1'
+        })
+        that.onShareAppMessage();
       }
     }
   },
@@ -140,6 +160,10 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    return {
+      title: '我在预订烤肠，邀请你也来品尝一下吧~',
+      path: '/pages/home/home',
+      imageUrl: '/assets/img/vip.png'
+    }
   }
 })

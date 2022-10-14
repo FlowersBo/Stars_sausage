@@ -7,7 +7,7 @@
     <view class="moneyWrap">
       <view wx:for="{{rechargeInfos}}" wx:key="index" class="money {{changeIndex===index? 'money-off':''}}"
         data-index="{{index}}" data-money="{{item.amount}}" data-rechargeid="{{item.id}}" bindtap="changeSum">
-        <view class="tj" wx:if="{{item.istj}}">推荐</view>
+        <view class="tj" wx:if="{{item.hot}}">推荐</view>
         {{item.amount}}元 <text style="font-size: 24rpx;color: #bbb;">赠{{item.present}}元</text>
         <text wx:if="{{changeIndex===index}}" class="dgWrap">
           <text class="dg"></text>
@@ -25,11 +25,11 @@
         <view>充值时间</view>
       </view>
       <view wx:if="{{rechargeInfos.length>0}}">
-        <block wx:for="{{rechargeInfos}}" wx:key="index">
+        <block wx:for="{{orderList}}" wx:key="index">
           <view class="smallNav">
             <view>{{item.amount}}元</view>
             <view>{{item.present}}元</view>
-            <view>2022.09.28</view>
+            <view>{{item.createDate}}</view>
           </view>
         </block>
       </view>

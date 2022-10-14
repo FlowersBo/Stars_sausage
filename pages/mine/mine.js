@@ -69,14 +69,18 @@ Page({
         let cardExpire = res.data.customerInfo.cardExpire;
         let date = Date.parse(new Date());
         console.log(date);
-        if (cardExpire && date > cardExpire) {
+        if (!cardExpire && date > cardExpire || res.data.customerInfo.cardId == 0) {
           that.setData({
             isVip: false
+          })
+        } else {
+          that.setData({
+            isVip: true
           })
         }
         that.setData({
           customer: res.data,
-          cardExpire: formatTime(new Date(cardExpire))
+          cardExpire: `${cardExpire?formatTime(new Date(cardExpire)):''}`
         })
       })
   },
@@ -88,7 +92,7 @@ Page({
     let circleCount = 0;
     // 心跳的外框动画 
     this.animationMiddleHeaderItem = wx.createAnimation({
-      duration: 1500, // 以毫秒为单位 
+      duration: 1200, // 以毫秒为单位 
       timingFunction: 'ease-in-out',
       delay: 0,
       transformOrigin: '50% 50%',
@@ -104,10 +108,10 @@ Page({
         animationMiddleHeaderItem: this.animationMiddleHeaderItem.export()
       });
       circleCount++;
-      if (circleCount == 1500) {
+      if (circleCount == 1200) {
         circleCount = 0;
       }
-    }.bind(this), 1500);
+    }.bind(this), 1200);
   },
 
   /**

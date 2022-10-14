@@ -40,7 +40,20 @@
   border: 2rpx solid #FF911D;
   color: #FF911D;
 }
-
+.tj{
+  width: 60rpx;
+  height: 30rpx;
+  background: #F40024;
+  position: absolute;
+  color: #fff;
+  font-size: 16rpx;
+  text-align: center;
+  line-height: 30rpx;
+  left: 0;
+  top: 0;
+  border-top-left-radius: 8rpx;
+  border-bottom-right-radius: 10rpx;
+}
 .dgWrap {
   display: inline-block;
   width: 60rpx;

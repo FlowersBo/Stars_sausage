@@ -1,11 +1,12 @@
-const formatTime = date => {
+const formatTime = (date, min) => {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
   const day = date.getDate()
   const hour = date.getHours()
   const minute = date.getMinutes()
   const second = date.getSeconds()
-  // return `${[year, month, day].map(formatNumber).join('-')} ${[hour, minute, second].map(formatNumber).join(':')}`
+  if (min)
+    return `${[year, month, day].map(formatNumber).join('-')} ${[hour, minute, second].map(formatNumber).join(':')}`;
   return `${[year, month, day].map(formatNumber).join('-')}`
 }
 
@@ -39,11 +40,11 @@ const MAX_VALUE = 10;
  * @param obj
  */
 export function unfreezeNavigateTo(obj) {
-  let pages = getCurrentPages(),  // 页面栈
-      len = pages.length,
-      dlt = '',
-      url = '/' + obj.url.replace(/^\//, ''); // 如果有，将第一个‘/’去掉，然后再补上
-      console.log(pages)
+  let pages = getCurrentPages(), // 页面栈
+    len = pages.length,
+    dlt = '',
+    url = '/' + obj.url.replace(/^\//, ''); // 如果有，将第一个‘/’去掉，然后再补上
+  console.log(pages)
   // 查找目标页在页面栈的位置
   for (let i = 0; i < len; i++) {
     if (pages[i].route == url) {

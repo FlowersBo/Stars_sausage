@@ -1,4 +1,4 @@
-<!--component/console/index.wxml-->
+<!--component/mask/index.wxml-->
 <view class="drawer_screen" bindtap="gotobargainDetailFuns" data-status="1" wx:if="{{showModalStatus}}"
   catchtouchmove="noTouch"></view>
 <!--content-->
@@ -21,7 +21,7 @@
       bindgetphonenumber="getPhoneNumberFn">确认领取</button>
   </view>
   <view class="btnWrap" wx:elif="{{openSetting}}">
-    <button class="drawer_box_btn {{(openSetting&&isVip==='1')?'isVip':(openSetting?'openSetting':'')}}" data-status="1" catchtap="gotobargainDetailFuns">{{isVip==='1'?'拒绝离开':(isVip==='2'?'立即分享':'继续兑换')}}</button>
+    <button class="drawer_box_btn {{(openSetting&&isVip==='1')?'isVip':(openSetting?'openSetting':'')}}" data-status="1" catchtap="gotobargainDetailFuns" 	open-type="{{isVip==='2'?'share':''}}">{{isVip==='1'?'拒绝离开':(isVip==='2'?'立即分享':'继续兑换')}}</button>
     <button class="drawer_box_btn {{openSetting?'openSetting':''}}" data-status="0" catchtap="gotobargainDetailFuns">{{isVip==='1'?'继续开通':'马上下单'}}</button>
   </view>
   <view class="btnWrap" wx:else>

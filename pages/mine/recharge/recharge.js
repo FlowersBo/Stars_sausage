@@ -1,6 +1,9 @@
 // pages/mine/recharge/recharge.js
 let that;
 let app = getApp();
+import {
+  formatTime
+} from '../../../utils/util';
 Page({
 
   /**
@@ -34,16 +37,30 @@ Page({
       pageSize: that.data.pageSize
     }));
     console.log('充值页面', result);
+    let orderList = result.data.orders.list,
+      rechargeInfos = result.data.rechargeInfos;
+    orderList.forEach(element => {
+      element.createDate = formatTime(new Date(element.createDate), 'min');
+    });
+    rechargeInfos.forEach((element, key) => {
+      if (element.hot) {
+        that.setData({
+          changeIndex: key,
+          changeMoney: element.amount,
+          rechargeId: element.id
+        })
+      }
+    });
     that.setData({
       pageNum,
-      orderList: result.data.orders.list,
-      rechargeInfos: result.data.rechargeInfos
+      orderList,
+      rechargeInfos
     })
   },
 
   bindscrolltolowerFn(e) {
     let pageNum = that.data.pageNum;
-    let pageSize = that.data.pageSize; 
+    let pageSize = that.data.pageSize;
     if (that.data.total <= pageSize * pageNum) {
       return
     }

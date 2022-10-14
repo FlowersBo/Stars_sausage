@@ -9,6 +9,14 @@ page {
   -o-filter: grayscale(100%); */
 }
 
+.noPhone {
+  filter: grayscale(100%);
+  -webkit-filter: grayscale(100%);
+  -moz-filter: grayscale(100%);
+  -ms-filter: grayscale(100%);
+  -o-filter: grayscale(100%);
+}
+
 .userWrap {
   width: 96%;
   margin: 0 auto;
@@ -205,7 +213,8 @@ page {
   justify-content: space-between;
   align-items: center;
 }
-.card-bottom-on{
+
+.card-bottom-on {
   background: #BABABA;
 }
 
@@ -264,7 +273,7 @@ page {
   /* border-color: #FEAE06 #FEAE06 #FEAE06 #fff; */
 }
 
-.navWrap{
+.navWrap {
   width: 100%;
   height: 260rpx;
   background: #fff;
@@ -274,20 +283,23 @@ page {
   padding: 0 30rpx;
   box-shadow: 0rpx 8rpx 14rpx rgba(0, 0, 0, .1);
 }
-.imgWrap{
+
+.imgWrap {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 30rpx;
 }
-.changBtn{
+
+.changBtn {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 40rpx;
   position: relative;
 }
-.dot{
+
+.dot {
   width: 16rpx;
   height: 16rpx;
   background: red;
@@ -296,10 +308,12 @@ page {
   top: -24rpx;
   right: 4rpx;
 }
-.changBtn image{
+
+.changBtn image {
   width: 50rpx;
   height: 50rpx;
 }
-.changBtn view{
+
+.changBtn view {
   margin-top: 10rpx;
 }
