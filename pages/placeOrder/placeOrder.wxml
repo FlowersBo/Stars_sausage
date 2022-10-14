@@ -57,6 +57,7 @@
       <view style="color:#07C160;font-size: 26rpx;font-weight: 500;">{{product.takeMin}}分钟后可取</view>
     </view>
 
+    <view class="paymentTitle">优惠券</view>
     <view wx:if="{{product.coupon}}" class="waveWrap">
       <view class="wave" wx:if="{{product.coupon.coupon.couponType===3}}">
         <view class="wave-child childone">
@@ -67,7 +68,7 @@
             <view style="font-size: 22rpx;margin-top: 10rpx;">（满{{product.coupon.coupon.norm}}元可使用）</view>
           </view>
         </view>
-        
+
       </view>
       <view class="wave" wx:else>
         <view class="wave-child">
@@ -86,6 +87,12 @@
       </view>
       <view class="gengduo" bindtap="gotodiscountCoupon">更多</view>
     </view>
+    <view class="paymentTitle">月卡</view>
+    <view class="vipCard">
+      <image src="/assets/img/vip.png"></image>
+      
+    </view>
+
   </view>
 </view>
 <view class="SubmitBarWrap">

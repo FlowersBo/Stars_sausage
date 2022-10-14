@@ -220,7 +220,7 @@
   border-radius: 20rpx;
   box-sizing: border-box;
   padding: 10rpx;
-  margin-top: 30rpx;
+  margin-top: 10rpx;
   box-shadow: 0 2rpx 20rpx 0 rgba(0, 0, 0, 0.08);
   padding: 30rpx 20rpx;
   display: flex;
@@ -344,6 +344,10 @@
   top: 40rpx;
   left: 30rpx;
   border-radius: 8rpx;
+}
+.paymentTitle{
+  margin-top: 20rpx;
+  font-weight: bold;
 }
 
 /* .wave::before {
