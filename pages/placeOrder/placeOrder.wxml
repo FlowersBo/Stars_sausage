@@ -42,11 +42,6 @@
             </view>
           </view>
         </block>
-        <view class="total" style="font-size:24rpx;color:#FF7003;">
-          <text style="margin-right: 20rpx;color:#00DB60;" wx:if="{{product.couponMoney}}">已优惠：￥<text
-              style="font-size: 38rpx;font-weight: bold;">{{product.couponMoney}}</text></text>
-          小计：￥<text style="font-size: 38rpx;font-weight: bold;">{{price}}</text>
-        </view>
       </view>
     </view>
     <view class="sausageTime">
@@ -60,7 +55,7 @@
     <view class="paymentTitle">优惠券</view>
     <view wx:if="{{product.coupon}}" class="waveWrap">
       <view class="wave" wx:if="{{product.coupon.coupon.couponType===3}}">
-        <view class="wave-child childone">
+        <view class="wave-child">
           <view class="youhuiquan">满赠券</view>
           <view class="wave-childText">
             <view>{{product.coupon.coupon.couponName}}</view>
@@ -71,7 +66,7 @@
 
       </view>
       <view class="wave" wx:else>
-        <view class="wave-child">
+        <view class="wave-child wave-child-on">
           <view class="youhuiquan">
             {{product.coupon.coupon.couponType===1?'满减券':'折扣券'}}</view>
           <view class="text">{{product.coupon.coupon.couponName}}</view>
@@ -87,12 +82,48 @@
       </view>
       <view class="gengduo" bindtap="gotodiscountCoupon">更多</view>
     </view>
-    <view class="paymentTitle">月卡</view>
-    <view class="vipCard">
-      <image src="/assets/img/vip.png"></image>
-      
+    <block wx:if="{{product.cardFreeAmount}}">
+      <view class="paymentTitle">月卡</view>
+      <view class="childone">
+        <image style="width: 60rpx;height: 40rpx;position: absolute;top: -38rpx;right: 10rpx;"
+          src="/assets/img/yueka.png"></image>
+        <view class="childone-vipCard">
+          <image style="width: 174rpx;height: 140rpx;position: absolute;top: 24rpx;left: -40rpx;"
+            src="/assets/img/yueka.png"></image>
+          <view class="card-text">
+           <text style="margin-top: 26rpx;">-￥</text> <text style="font-size: 70rpx;font-weight: bold;">{{product.cardFreeAmount}}</text>
+            <view class="vip">
+              <view>会员享优惠</view>
+              <view>9折</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+
+    <view class="total" style="font-size:24rpx;color:#FF7003;">
+      <text style="margin-right: 20rpx;color:#00DB60;" wx:if="{{product.couponMoney}}">已优惠：￥<text
+          style="font-size: 44rpx;font-weight: bold;">{{product.couponMoney}}</text></text>
+      小计：￥<text style="font-size: 44rpx;font-weight: bold;">{{price}}</text>
     </view>
 
+    <van-radio-group value="{{ radio }}" bind:change="onChange">
+      <van-cell-group>
+        <view class="radioWrap">
+          <image src="/assets/img/wallet.png"></image>
+          <van-cell style="width: 100%;" title="余额支付" clickable data-name="1">
+          <view style="position: absolute;left:200rpx;top: 50%;margin-top: -24rpx;color: #FF7003;">余额：￥<text style="font-size: 36rpx;">{{product.balance}}</text></view>
+            <van-radio slot="right-icon" name="1" disabled="{{product.balance<=0}}" checked-color="#F4D6AB" />
+          </van-cell>
+        </view>
+        <view class="radioWrap">
+          <image src="/assets/img/wxpay.png"></image>
+          <van-cell style="width: 100%;" title="微信支付" clickable data-name="2">
+            <van-radio slot="right-icon" name="2" checked-color="#F4D6AB" />
+          </van-cell>
+        </view>
+      </van-cell-group>
+    </van-radio-group>
   </view>
 </view>
 <view class="SubmitBarWrap">

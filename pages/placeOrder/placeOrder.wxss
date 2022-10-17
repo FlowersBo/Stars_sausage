@@ -1,6 +1,7 @@
 /* pages/placeOrder/placeOrder.wxss */
 .placeOrder {
   width: 690rpx;
+  padding-bottom: 140rpx;
 }
 
 .address {
@@ -116,8 +117,13 @@
 }
 
 .total {
+  width: 100%;
+  height: 100rpx;
+  line-height: 100rpx;
   text-align: right;
   margin-top: 20rpx 0;
+  box-sizing: border-box;
+  padding-right: 20rpx;
 }
 
 .sausageTime {
@@ -254,22 +260,48 @@
 }
 
 .wave-child {
-  width: 316rpx;
+  width: 486rpx;
   height: 100%;
   padding: 20rpx 0;
-  border-radius: 20rpx 0 0 20rpx;
-  background: radial-gradient(circle at 90rpx 80rpx, transparent 76rpx, #FF7603 21px);
+  border-radius: 20rpx;
+  background: radial-gradient(circle at 90rpx 80rpx, transparent 76rpx, #FF7603 21rpx);
   background-size: 100% 100%;
   background-repeat: no-repeat;
   position: relative;
-}
-
-.childone {
-  width: 486rpx;
-  border-radius: 20rpx;
   text-align: center;
 }
 
+.wave-child-on{
+  width: 316rpx;
+  border-radius: 20rpx 0 0 20rpx;
+}
+
+.childone{
+  width: 100%;
+  height: 190rpx;
+  background: #F4D6AB;
+  border-radius: 20rpx;
+  position: relative;
+}
+.childone-vipCard{
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+.card-text{
+  width: 70%;
+  height: 100%;
+  margin-left: 24%;
+  font-size: 28rpx;
+  color: #266F0F;
+  display: flex;
+  align-items: center;
+}
+.card-text .vip{
+  width: 200rpx;
+  margin-left: 30rpx;
+}
 .wave-childText {
   width: 65%;
   position: absolute;
@@ -348,6 +380,31 @@
 .paymentTitle{
   margin-top: 20rpx;
   font-weight: bold;
+}
+
+/* 支付选项 */
+.radioWrap{
+  width: 690rpx;
+  display: flex;
+  align-items: center;
+  background: #FFF;
+  box-sizing: border-box;
+  padding: 0 20rpx;
+  position: relative;
+}
+
+.radioWrap:first-child{
+  border-radius: 20rpx 20rpx 0 0;
+}
+
+.radioWrap:last-child{
+  border-radius: 0 0 20rpx 20rpx;
+}
+
+
+.radioWrap image{
+  width: 40rpx;
+  height: 40rpx;
 }
 
 /* .wave::before {

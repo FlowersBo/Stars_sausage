@@ -7,8 +7,23 @@ Page({
    * 页面的初始数据
    */
   data: {
-    couponId: ''
+    couponId: '',
   },
+
+  onChange(event) {
+    this.setData({
+      radio: event.detail,
+    });
+  },
+
+  // onClick(event) {
+  //   const {
+  //     name
+  //   } = event.currentTarget.dataset;
+  //   this.setData({
+  //     radio: name,
+  //   });
+  // },
 
   /**
    * 生命周期函数--监听页面加载
@@ -52,7 +67,8 @@ Page({
       product: data,
       overallPrice,
       productQuantity,
-      price
+      price,
+      radio: `${data.balance==0?'2':'1'}`
     })
   },
 
@@ -62,9 +78,16 @@ Page({
       data
     } = await (app.http.pay({
       orderId: that.data.orderId,
-      couponId: that.data.couponId
+      couponId: that.data.couponId,
+      useAccount: `${that.data.radio==='1'?true:false}`
     }));
     console.log('支付', data)
+    if (data.payType == 2) {
+      wx.redirectTo({
+        url: './accomplishOrder/accomplishOrder?orderId=' + that.data.orderId,
+      })
+      return
+    }
     wx.requestPayment({
       timeStamp: data.timeStamp,
       nonceStr: data.nonceStr,
