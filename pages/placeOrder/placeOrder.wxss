@@ -282,6 +282,7 @@
   background: #F4D6AB;
   border-radius: 20rpx;
   position: relative;
+  margin-top: 10rpx;
 }
 .childone-vipCard{
   width: 100%;

@@ -20,7 +20,7 @@ page {
 .userWrap {
   width: 96%;
   margin: 0 auto;
-  height: calc(100% - 180rpx);
+  height: calc(100% - 182rpx);
   font-size: 28rpx;
 }
 

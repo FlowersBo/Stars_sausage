@@ -36,7 +36,7 @@
   <image wx:else class="vipCard" style="position: relative;" src="/assets/mine/vipcard.png">
     <view class="vipCard" style="position: absolute;top: 0;left: 0;">
       <view class="card-top card-top-on">
-        <view class="vip-on">会员卡</view>
+        <view class="vip-on" bindtap="rechargeVipFn">会员卡</view>
         <view style="font-size: 24rpx;" wx:if="{{cardExpire?cardExpire:''}}">{{cardExpire}} 到期</view>
       </view>
       <view class="card-bottom" style="background: none;">

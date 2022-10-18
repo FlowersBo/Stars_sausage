@@ -1,6 +1,7 @@
 // pages/placeOrder/placeOrder.js
 let that;
 const app = getApp();
+import dayjs from '../../miniprogram_npm/dayjs/index'
 Page({
 
   /**
@@ -35,6 +36,7 @@ Page({
       orderId: options.orderId,
       distance: options.distance
     })
+    console.log('当前时间',dayjs().format('YYYY-MM-DD HH:mm:ss'))
   },
 
   async confirmFn() {

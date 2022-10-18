@@ -80,7 +80,11 @@ Page({
             wx.navigateBack({
               delta: 1
             })
-          }, 1500)
+          }, 1000)
+        }).catch(err=>{
+          that.setData({
+            isDisabled: false
+          })
         })
       })
     }
