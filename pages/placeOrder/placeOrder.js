@@ -1,7 +1,18 @@
 // pages/placeOrder/placeOrder.js
 let that;
 const app = getApp();
-import dayjs from '../../miniprogram_npm/dayjs/index'
+const deraulHours = ['00点', '01点', '02点', '03点', '04点', '05点', '06点', '07点', '08点', '09点', "10点", "11点", "12点", "13点", "14点", "15点", "16点", "17点", "18点", "19点", "20点", "21点", "22点", "23点"];
+const deraulMinutes = ['00分', '01分', '02分', '03分', '04分', '05分', '06分', '07分', '08分', '09分', "10分", "11分", "12分", "13分", "14分", "15分", "16分", "17分", "18分", "19分", "20分", "21分", "22分", "23分", "24分", "25分", "26分", "27分", "28分", "29分", "30分", "31分", "32分", "33分", "34分", "35分", "36分", "37分", "38分", "39分", "40分", "41分", "42分", "43分", "44分", "45分", "46分", "47分", "48分", "49分", "50分", "51分", "52分", "53分", "54分", "55分", "56分", "57分", "58分", "59分"];
+const weeks = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
+const dayjs = require('dayjs');
+const dateList = new Array(33).fill(1).map((item, idx) => {
+  const currentDay = dayjs().add(idx, 'days');
+  return {
+    time: currentDay.format('YYYY-MM-DD'),
+    // name: `${currentDay.format('MM月DD日')} ${idx === 0 ? '明日' : weeks[currentDay.day()]}`
+    name: `${currentDay.format('MM月DD日')} ${weeks[currentDay.day()]}`
+  };
+})
 Page({
 
   /**
@@ -26,6 +37,96 @@ Page({
   //   });
   // },
 
+  onChangeTime() {
+    that.setData({
+      popMeetShow: true,
+    })
+    // const valueOf = 1 * 3600000;
+    // console.log(dayjs(dayjs().valueOf() + valueOf))
+    const startTime = dayjs(dayjs().valueOf());
+    this.startTime = startTime;
+    let _timeValues = [];
+    let dayTime = new Array(2).fill(1).map((item, idx) => {
+      const currentDay = startTime.add(idx, 'days');
+      _timeValues.push(currentDay.format('YYYY-MM-DD'));
+      this._timeValues = _timeValues;
+      return `${currentDay.format('MM月DD日')} ${idx === 0 ? '今日' : weeks[currentDay.day()]}`
+      // return `${currentDay.format('MM月DD日')} ${weeks[currentDay.day()]}`
+    })
+    let meetColumns = new Array(3).fill(1);
+    meetColumns[0] = {
+      values: dayTime
+    }
+    let endTime = dayjs(dayjs().valueOf() + 1860000);
+    this.endTime = endTime;
+    if (endTime) {
+      meetColumns[1] = {
+        values: deraulHours.slice(Number(endTime.format('H')))
+      }
+      meetColumns[2] = {
+        values: deraulMinutes.slice(Number(endTime.format('m')))
+      }
+    }
+    that.setData({
+      meetColumns
+    })
+  },
+
+  onStartTimeChange(e) {
+    console.log('时间弹窗', e)
+    const currentColumn = e.detail.value;
+    const index = e.detail.index;
+    console.log(this.endTime)
+    if (index === 0) {
+      if (this.data.meetColumns[0].values.indexOf(currentColumn[0])) {
+        this.data.meetColumns[1] = {
+          values: deraulHours
+        };
+        this.data.meetColumns[2] = {
+          values: deraulMinutes
+        };
+      } else {
+        this.data.meetColumns[1] = {
+          values: deraulHours.slice(Number(this.endTime.format('H')))
+        }
+        this.data.meetColumns[2] = {
+          values: deraulMinutes.slice(Number(this.endTime.format('m')))
+        }
+      }
+    }
+    if (index === 1) {
+      if (this.data.meetColumns[0].values.indexOf(currentColumn[0]) === 0 && this.data.meetColumns[1].values.indexOf(currentColumn[1]) === 0) {
+        this.data.meetColumns[2] = {
+          values: deraulMinutes.slice(Number(this.startTime.format('m')))
+        }
+      } else {
+        this.data.meetColumns[2] = {
+          values: deraulMinutes
+        };
+      }
+    }
+    this.setData({
+      meetColumns: this.data.meetColumns
+    })
+  },
+
+  onClose() {
+    this.setData({
+      popMeetShow: false,
+    })
+  },
+  getTime() {
+    const currentStartTimePicker = this.selectComponent("#start-time-picker");
+    console.log(currentStartTimePicker.getIndexes()[0])
+    this._startTime = `${this._timeValues[currentStartTimePicker.getIndexes()[0]]} ${currentStartTimePicker.getValues()[1].replace('点', '')}:${currentStartTimePicker.getValues()[2].replace('分', '')}:00`
+    let timer = currentStartTimePicker.getValues().join(' ');
+   console.log(this._startTime)
+   that.setData({
+    timer,
+
+   })
+    this.onClose();
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -36,7 +137,7 @@ Page({
       orderId: options.orderId,
       distance: options.distance
     })
-    console.log('当前时间',dayjs().format('YYYY-MM-DD HH:mm:ss'))
+    console.log('当前时间', dayjs().format('YYYY-MM-DD HH:mm:ss'))
   },
 
   async confirmFn() {

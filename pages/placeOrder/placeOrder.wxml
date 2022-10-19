@@ -49,7 +49,13 @@
         <image style="width: 28rpx;height: 28rpx;margin:2rpx 6rpx 0 0" src="../../assets/img/time.png"></image>
         <view>取餐时间</view>
       </view>
-      <view style="color:#07C160;font-size: 26rpx;font-weight: 500;">{{product.takeMin}}分钟后可取</view>
+      <view style="display: flex;align-items: center;" catchtap="onChangeTime">
+        <view style="text-align: center;">
+          <view style="color:#07C160;font-size: 26rpx;">{{product.takeMin}}分钟后可取</view>
+          <view style="font-size: 22rpx;color: #bbb;">(可修改取餐时间)</view>
+        </view>
+        <image style="width: 60rpx;height: 60rpx;margin-left: 10rpx;" src="/assets/img/timer.png"></image>
+      </view>
     </view>
 
     <view class="paymentTitle">优惠券</view>
@@ -91,7 +97,8 @@
           <image style="width: 174rpx;height: 140rpx;position: absolute;top: 24rpx;left: -40rpx;"
             src="/assets/img/yueka.png"></image>
           <view class="card-text">
-           <text style="margin-top: 26rpx;">-￥</text> <text style="font-size: 70rpx;font-weight: bold;">{{product.cardFreeAmount}}</text>
+            <text style="margin-top: 26rpx;">-￥</text> <text
+              style="font-size: 70rpx;font-weight: bold;">{{product.cardFreeAmount}}</text>
             <view class="vip">
               <view>会员享优惠</view>
               <view>9折</view>
@@ -112,7 +119,8 @@
         <view class="radioWrap">
           <image src="/assets/img/wallet.png"></image>
           <van-cell style="width: 100%;" title="余额支付" clickable data-name="1">
-          <view style="position: absolute;left:200rpx;top: 50%;margin-top: -24rpx;color: #FF7003;">余额：￥<text style="font-size: 36rpx;">{{product.balance}}</text></view>
+            <view style="position: absolute;left:200rpx;top: 50%;margin-top: -24rpx;color: #FF7003;">余额：￥<text
+                style="font-size: 36rpx;">{{product.balance}}</text></view>
             <van-radio slot="right-icon" name="1" disabled="{{product.balance<=0}}" checked-color="#F4D6AB" />
           </van-cell>
         </view>
@@ -137,3 +145,16 @@
     <view class="SubmitBar-btn" bindtap="wxPayFn">去支付</view>
   </view>
 </view>
+
+<van-popup show="{{ popMeetShow }}" position="bottom" bind:close="onClose" custom-class="pop-wrap">
+  <view class="header">
+    <view class="close" bindtap="onClose">取消</view>
+    <view class="titles">请选择取餐时间</view>
+    <view class="confirm" bindtap="getTime">确认</view>
+  </view>
+  <view class="meet-picker-wrap">
+    <van-picker id="start-time-picker" custom-class="custom-time" active-class="active-time"
+      columns="{{ meetColumns }}" bind:change="onStartTimeChange" />
+  </view>
+  <view style="height:32rpx;"></view>
+</van-popup>

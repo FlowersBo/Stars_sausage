@@ -427,3 +427,40 @@
   top: 0;
   right: -3px;
 } */
+
+/* 时间选择 */
+.pop-wrap {
+  padding-bottom: 36rpx;
+  border-top-left-radius: 20rpx;
+  border-top-right-radius: 20rpx;
+}
+
+.pop-wrap .header {
+  display: flex;
+  justify-content: space-between;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  box-sizing: border-box;
+  padding: 0 20rpx;
+}
+
+.pop-wrap .header .close {
+  color: #aaaaaa;
+  font-size: 34rpx;
+  font-weight: bold;
+}
+
+.pop-wrap .header .titles {
+  font-size: 30rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: bold;
+  color: #333333;
+}
+
+.pop-wrap .header .confirm {
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-size: 34rpx;
+  font-weight: bold;
+  color: #ffca90;
+}

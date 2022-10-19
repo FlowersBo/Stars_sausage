@@ -5,7 +5,7 @@
   "main": ".eslintrc.js",
   "dependencies": {
     "@vant/weapp": "^1.10.0",
-    "dayjs": "^1.10.7"
+    "dayjs": "^1.11.5"
   },
   "devDependencies": {},
   "scripts": {
