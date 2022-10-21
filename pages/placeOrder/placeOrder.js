@@ -41,11 +41,21 @@ Page({
     that.setData({
       popMeetShow: true,
     })
+    setTimeout(function () {
+      const currentStartTimePicker = that.selectComponent("#start-time-picker");
+      currentStartTimePicker.setColumnIndex(0, 0);
+      currentStartTimePicker.setColumnIndex(1, 0);
+      currentStartTimePicker.setColumnIndex(2, 0);
+    }, 10)
+    let startOpen = that.data.startOpen,
+      endOpen = that.data.endOpen;
     // const valueOf = 1 * 3600000;
     // console.log(dayjs(dayjs().valueOf() + valueOf))
     const startTime = dayjs(dayjs().valueOf());
     this.startTime = startTime;
     let _timeValues = [];
+    let statusMinuteValues = [];
+    let endMinuteValues = [];
     let dayTime = new Array(2).fill(1).map((item, idx) => {
       const currentDay = startTime.add(idx, 'days');
       _timeValues.push(currentDay.format('YYYY-MM-DD'));
@@ -53,19 +63,45 @@ Page({
       return `${currentDay.format('MM月DD日')} ${idx === 0 ? '今日' : weeks[currentDay.day()]}`
       // return `${currentDay.format('MM月DD日')} ${weeks[currentDay.day()]}`
     })
+    _timeValues.forEach(element => {
+      return statusMinuteValues.push(dayjs(dayjs(element + ' ' + startOpen).valueOf() + 5460000))
+    });
+    _timeValues.forEach(element => {
+      return endMinuteValues.push(dayjs(dayjs(element + ' ' + endOpen).valueOf() - 5460000))
+    });
+    console.log('营业', statusMinuteValues);
+    console.log('停业', endMinuteValues);
+    this.statusMinuteValues = statusMinuteValues;
+    this.endMinuteValues = endMinuteValues;
     let meetColumns = new Array(3).fill(1);
     meetColumns[0] = {
-      values: dayTime
+      values: dayTime,
+      defaultIndex: 0
     }
     let endTime = dayjs(dayjs().valueOf() + 1860000);
+    // console.log(dayjs().hour(14))
+    // console.log(dayjs().minute(30))
     this.endTime = endTime;
-    if (endTime) {
+    console.log(dayjs().valueOf() + 1860000 > dayjs(dayjs().format('YYYY-MM-DD') + ' ' + endOpen).valueOf() - 5460000)
+    if (dayjs().valueOf() + 1860000 > dayjs(dayjs().format('YYYY-MM-DD') + ' ' + endOpen).valueOf() - 5460000) {
+      meetColumns[0].values = meetColumns[0].values.slice(1)
       meetColumns[1] = {
-        values: deraulHours.slice(Number(endTime.format('H')))
+        values: deraulHours.slice(Number(statusMinuteValues[1].format('H')), Number(endMinuteValues[1].format('H')) + 1)
       }
       meetColumns[2] = {
-        values: deraulMinutes.slice(Number(endTime.format('m')))
+        values: deraulMinutes.slice(Number(statusMinuteValues[1].format('m')))
       }
+      console.log(Number(endMinuteValues[1].format('m')))
+      that.setData({
+        meetColumns
+      })
+      return
+    }
+    meetColumns[1] = {
+      values: deraulHours.slice(`${dayjs().valueOf() > dayjs(dayjs().format('YYYY-MM-DD') + ' ' + startOpen).valueOf() + 1860000?Number(endTime.format('H')):Number(statusMinuteValues[0].format('H'))}`, Number(endMinuteValues[0].format('H')) + 1)
+    }
+    meetColumns[2] = {
+      values: deraulMinutes.slice(`${dayjs().valueOf() > dayjs(dayjs().format('YYYY-MM-DD') + ' ' + startOpen).valueOf() + 1860000?Number(endTime.format('m')):Number(statusMinuteValues[0].format('m'))}`, `${deraulHours.slice(`${dayjs().valueOf() > dayjs(dayjs().format('YYYY-MM-DD') + ' ' + startOpen).valueOf() + 1860000?Number(endTime.format('H')):Number(statusMinuteValues[0].format('H'))}`, Number(endMinuteValues[0].format('H')) + 1).length==1?Number(endMinuteValues[0].format('m')):59+1}`)
     }
     that.setData({
       meetColumns
@@ -73,36 +109,52 @@ Page({
   },
 
   onStartTimeChange(e) {
-    console.log('时间弹窗', e)
     const currentColumn = e.detail.value;
     const index = e.detail.index;
-    console.log(this.endTime)
+    let startOpen = that.data.startOpen;
     if (index === 0) {
-      if (this.data.meetColumns[0].values.indexOf(currentColumn[0])) {
+      if (this.data.meetColumns[0].values.indexOf(currentColumn[0])) { //1
         this.data.meetColumns[1] = {
-          values: deraulHours
-        };
+          values: deraulHours.slice(Number(this.statusMinuteValues[1].format('H')), Number(this.endMinuteValues[1].format('H')) + 1)
+        }
         this.data.meetColumns[2] = {
-          values: deraulMinutes
-        };
+          values: deraulMinutes.slice(Number(this.statusMinuteValues[1].format('m')))
+        }
+        // this.data.meetColumns[1] = { values: deraulHours };
+        // this.data.meetColumns[2] = { values: deraulMinutes };
       } else {
         this.data.meetColumns[1] = {
-          values: deraulHours.slice(Number(this.endTime.format('H')))
+          values: deraulHours.slice(`${dayjs().valueOf() > dayjs(dayjs().format('YYYY-MM-DD') + ' ' + startOpen).valueOf() + 1860000?Number(this.endTime.format('H')):Number(this.statusMinuteValues[0].format('H'))}`, Number(this.endMinuteValues[0].format('H')) + 1)
         }
         this.data.meetColumns[2] = {
-          values: deraulMinutes.slice(Number(this.endTime.format('m')))
+          values: deraulMinutes.slice(`${dayjs().valueOf() > dayjs(dayjs().format('YYYY-MM-DD') + ' ' + startOpen).valueOf() + 1860000?Number(this.endTime.format('m')):Number(this.statusMinuteValues[0].format('m'))}`, `${deraulHours.slice(`${dayjs().valueOf() > dayjs(dayjs().format('YYYY-MM-DD') + ' ' + startOpen).valueOf() + 1860000?Number(this.endTime.format('H')):Number(this.statusMinuteValues[0].format('H'))}`, Number(this.endMinuteValues[0].format('H')) + 1).length==1?Number(this.endMinuteValues[0].format('m')):59+1}`)
         }
+        // this.data.meetColumns[1] = {
+        //   values: deraulHours.slice(Number(this.endTime.format('H')))
+        // }
+        // this.data.meetColumns[2] = {
+        //   values: deraulMinutes.slice(Number(this.endTime.format('m')))
+        // }
       }
     }
     if (index === 1) {
+      console.log(this.data.meetColumns[1].values.indexOf(currentColumn[1]))
       if (this.data.meetColumns[0].values.indexOf(currentColumn[0]) === 0 && this.data.meetColumns[1].values.indexOf(currentColumn[1]) === 0) {
         this.data.meetColumns[2] = {
-          values: deraulMinutes.slice(Number(this.startTime.format('m')))
+          values: deraulMinutes.slice(`${dayjs().valueOf() > dayjs(dayjs().format('YYYY-MM-DD') + ' ' + startOpen).valueOf() + 1860000?Number(this.endTime.format('m')):Number(this.statusMinuteValues[0].format('m'))}`, `${deraulHours.slice(`${dayjs().valueOf() > dayjs(dayjs().format('YYYY-MM-DD') + ' ' + startOpen).valueOf() + 1860000?Number(this.endTime.format('H')):Number(this.statusMinuteValues[0].format('H'))}`, Number(this.endMinuteValues[0].format('H')) + 1).length==1?Number(this.endMinuteValues[0].format('m')):59+1}`)
         }
+        // this.data.meetColumns[2] = {
+        //   values: deraulMinutes.slice(Number(this.startTime.format('m')))
+        // }
       } else {
+        const currentStartTimePicker = that.selectComponent("#start-time-picker");
         this.data.meetColumns[2] = {
-          values: deraulMinutes
-        };
+          values: deraulMinutes.slice(`${currentStartTimePicker.getColumnIndex(1)==0?Number(this.statusMinuteValues[1].format('m')):0}`, `${currentStartTimePicker.getColumnIndex(1)==currentStartTimePicker.getColumnValues(1).length-1?Number(this.endMinuteValues[1].format('m'))+1:59+1}`)
+        }
+
+        // this.data.meetColumns[2] = {
+        //   values: deraulMinutes
+        // };
       }
     }
     this.setData({
@@ -120,11 +172,11 @@ Page({
     console.log(currentStartTimePicker.getIndexes()[0])
     this._startTime = `${this._timeValues[currentStartTimePicker.getIndexes()[0]]} ${currentStartTimePicker.getValues()[1].replace('点', '')}:${currentStartTimePicker.getValues()[2].replace('分', '')}:00`
     let timer = currentStartTimePicker.getValues().join(' ');
-   console.log(this._startTime)
-   that.setData({
-    timer,
-
-   })
+    console.log(this._startTime)
+    console.log(timer)
+    that.setData({
+      timer
+    })
     this.onClose();
   },
   /**
@@ -144,7 +196,7 @@ Page({
     let {
       data
     } = await (app.http.Confirm({
-      orderId: that.data.orderId,
+      orderId: that.data.orderId, //'1582911461057888256'
       couponId: that.data.couponId
     }));
     let overallPrice = 0,
@@ -168,6 +220,8 @@ Page({
     }
     that.setData({
       product: data,
+      startOpen: data.startOpen,
+      endOpen: data.endOpen,
       overallPrice,
       productQuantity,
       price,
