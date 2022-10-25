@@ -9,6 +9,7 @@ Page({
   data: {
     openSetting: true,
     isVip: '1',
+    explain: ['开通后购买所有烤肠均打九折', '可与优惠券叠加使用']
   },
 
   changeSum(e) {
@@ -31,7 +32,8 @@ Page({
 
   async vipMoneyListFn() {
     let result = await (app.http.VipMoneyList({
-      customerId: wx.getStorageSync('customerId')
+      customerId: wx.getStorageSync('customerId'),
+      cardId:'222'
     }));
     let cardMoney = result.data.cards;
     cardMoney.forEach((element, key) => {
@@ -45,8 +47,10 @@ Page({
     });
     console.log('金额', result)
     that.setData({
-      cardMoney
+      cardMoney,
+      // memo:`${cardMoney[0].memo?cardMoney[0].memo.split('|'):''}`
     })
+    // console.log(that.data.memo)
   },
 
   // 支付

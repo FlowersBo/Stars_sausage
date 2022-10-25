@@ -20,13 +20,9 @@
   <view class="quanyi">
     <view style="width: 100%;height: 50rpx;border-bottom: 2rpx solid #eee;font-weight: bold;font-size: 32rpx;">会员权益
     </view>
-    <view class="quanyi-item">
-      <text class="dot"></text>
-      开通后购买所有烤肠均打九折
-    </view>
-    <view class="quanyi-item">
-      <text class="dot"></text>
-      可与优惠券叠加使用
+    <view class="quanyi-item" wx:for="{{memo?memo:explain}}" wx:key="index">
+      <view class="dot"></view>
+      {{item}}
     </view>
   </view>
   <view class="ticketBtn" bindtap="conversionFn">{{changeMoney?'￥'+changeMoney:''}} 立即支付</view>

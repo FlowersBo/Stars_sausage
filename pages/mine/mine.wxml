@@ -116,4 +116,11 @@
       </view>
     </view>
   </view>
+  <button open-type="share" class="share-btn">
+    <view class="sy"></view>
+    <view class="sy sy1"></view>
+    <view class="line"></view>
+    <view class="line line1"></view>
+    <image mode="widthFix" class="share" src="/assets/img/share1.png"></image>
+  </button>
 </view>

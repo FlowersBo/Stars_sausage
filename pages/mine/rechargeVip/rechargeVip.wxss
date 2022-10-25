@@ -81,7 +81,6 @@
 
 .quanyi {
   width: 700rpx;
-  height: 260rpx;
   background: #fff;
   border-radius: 20rpx;
   margin-top: 50rpx;

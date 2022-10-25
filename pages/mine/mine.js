@@ -164,6 +164,11 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    let scene = "1559467227550318592%2C0";
+    return {
+      title: '我在预订烤肠，邀请你也来品尝一下吧~ 点击抢购优惠券',
+      path: `/pages/coupon/coupon?scene=${scene}`,
+      imageUrl: 'http://file.xinghuitrip.com/mp/user-share.png'
+    }
   }
 })

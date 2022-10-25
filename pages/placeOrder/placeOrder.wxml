@@ -58,6 +58,26 @@
       </view>
     </view>
 
+    <block wx:if="{{product.cardFreeAmount}}">
+      <view class="paymentTitle">会员卡</view>
+      <view class="childone">
+        <image style="width: 60rpx;height: 40rpx;position: absolute;top: -38rpx;right: 10rpx;"
+          src="/assets/img/yueka.png"></image>
+        <view class="childone-vipCard">
+          <image style="width: 174rpx;height: 140rpx;position: absolute;top: 24rpx;left: -40rpx;"
+            src="/assets/img/yueka.png"></image>
+          <view class="card-text">
+            <text style="margin-top: 26rpx;">-￥</text> <text
+              style="font-size: 70rpx;font-weight: bold;">{{product.cardFreeAmount}}</text>
+            <view class="vip">
+              <view>会员享优惠</view>
+              <view>{{product.memberCard.cardId=='222'?'每日第一根烤肠免单':'9折'}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+
     <view class="paymentTitle">优惠券</view>
     <view wx:if="{{product.coupon}}" class="waveWrap">
       <view class="wave" wx:if="{{product.coupon.coupon.couponType===3}}">
@@ -88,25 +108,6 @@
       </view>
       <view class="gengduo" bindtap="gotodiscountCoupon">更多</view>
     </view>
-    <block wx:if="{{product.cardFreeAmount}}">
-      <view class="paymentTitle">月卡</view>
-      <view class="childone">
-        <image style="width: 60rpx;height: 40rpx;position: absolute;top: -38rpx;right: 10rpx;"
-          src="/assets/img/yueka.png"></image>
-        <view class="childone-vipCard">
-          <image style="width: 174rpx;height: 140rpx;position: absolute;top: 24rpx;left: -40rpx;"
-            src="/assets/img/yueka.png"></image>
-          <view class="card-text">
-            <text style="margin-top: 26rpx;">-￥</text> <text
-              style="font-size: 70rpx;font-weight: bold;">{{product.cardFreeAmount}}</text>
-            <view class="vip">
-              <view>会员享优惠</view>
-              <view>9折</view>
-            </view>
-          </view>
-        </view>
-      </view>
-    </block>
 
     <view class="total" style="font-size:24rpx;color:#FF7003;">
       <text style="margin-right: 20rpx;color:#00DB60;" wx:if="{{product.couponMoney}}">已优惠：￥<text
@@ -153,8 +154,8 @@
     <view class="confirm" bindtap="getTime">确认</view>
   </view>
   <view class="meet-picker-wrap">
-    <van-picker id="start-time-picker" custom-class="custom-time" active-class="active-time"
-      columns="{{ meetColumns }}" bind:change="onStartTimeChange" />
+    <van-picker id="start-time-picker" custom-class="custom-time" active-class="active-time" columns="{{ meetColumns }}"
+      bind:change="onStartTimeChange" />
   </view>
   <view style="height:32rpx;"></view>
 </van-popup>

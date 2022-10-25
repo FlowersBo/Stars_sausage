@@ -22,6 +22,10 @@ Page({
     couponId: '',
   },
 
+  bindgetuserinfo(e){
+    console.log('用户信息',e)
+  },
+
   onChange(event) {
     this.setData({
       radio: event.detail,
@@ -112,7 +116,10 @@ Page({
     const currentColumn = e.detail.value;
     const index = e.detail.index;
     let startOpen = that.data.startOpen;
+    let currentStartTimePicker = that.selectComponent("#start-time-picker");
     if (index === 0) {
+      currentStartTimePicker.setColumnIndex(1, 0);
+      currentStartTimePicker.setColumnIndex(2, 0);
       if (this.data.meetColumns[0].values.indexOf(currentColumn[0])) { //1
         this.data.meetColumns[1] = {
           values: deraulHours.slice(Number(this.statusMinuteValues[1].format('H')), Number(this.endMinuteValues[1].format('H')) + 1)
@@ -147,11 +154,9 @@ Page({
         //   values: deraulMinutes.slice(Number(this.startTime.format('m')))
         // }
       } else {
-        const currentStartTimePicker = that.selectComponent("#start-time-picker");
         this.data.meetColumns[2] = {
           values: deraulMinutes.slice(`${currentStartTimePicker.getColumnIndex(1)==0?Number(this.statusMinuteValues[1].format('m')):0}`, `${currentStartTimePicker.getColumnIndex(1)==currentStartTimePicker.getColumnValues(1).length-1?Number(this.endMinuteValues[1].format('m'))+1:59+1}`)
         }
-
         // this.data.meetColumns[2] = {
         //   values: deraulMinutes
         // };
@@ -167,10 +172,11 @@ Page({
       popMeetShow: false,
     })
   },
+
   getTime() {
     const currentStartTimePicker = this.selectComponent("#start-time-picker");
     console.log(currentStartTimePicker.getIndexes()[0])
-    this._startTime = `${this._timeValues[currentStartTimePicker.getIndexes()[0]]} ${currentStartTimePicker.getValues()[1].replace('点', '')}:${currentStartTimePicker.getValues()[2].replace('分', '')}:00`
+    this._startTime = `${this._timeValues[currentStartTimePicker.getIndexes()[0]]} ${currentStartTimePicker.getValues()[1].replace('点', '')}:${currentStartTimePicker.getValues()[2].replace('分', '')}:00`;
     let timer = currentStartTimePicker.getValues().join(' ');
     console.log(this._startTime)
     console.log(timer)
@@ -179,6 +185,7 @@ Page({
     })
     this.onClose();
   },
+  
   /**
    * 生命周期函数--监听页面加载
    */
@@ -236,6 +243,7 @@ Page({
     } = await (app.http.pay({
       orderId: that.data.orderId,
       couponId: that.data.couponId,
+      roastTime: that._startTime,
       useAccount: `${that.data.radio==='1'?true:false}`
     }));
     console.log('支付', data)
