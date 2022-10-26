@@ -27,13 +27,38 @@ Page({
   onLoad: function (options) {
     that = this;
     this.mask = this.selectComponent('#mask');
-    that.vipMoneyListFn();
+    let cardId = options.cardId?options.cardId:'';
+    console.log(options);
+    cardId = decodeURIComponent(cardId);
+    // cardId = '222'
+    console.log('参数',cardId);
+    that.setData({
+      cardId
+    })
+    that.authFn();
+  },
+
+  authFn(mpOpenId = '') {
+    console.log('传参', mpOpenId)
+    wx.login({
+      success: res => {
+        app.http.Auth({
+            code: res.code,
+            mpOpenId
+          })
+          .then(res => {
+            wx.setStorageSync('customerId', res.data.id);
+            wx.setStorageSync('phoneNumber', res.data.phone);
+            that.vipMoneyListFn();
+          })
+      }
+    })
   },
 
   async vipMoneyListFn() {
     let result = await (app.http.VipMoneyList({
       customerId: wx.getStorageSync('customerId'),
-      cardId:'222'
+      cardId: that.data.cardId
     }));
     let cardMoney = result.data.cards;
     cardMoney.forEach((element, key) => {
@@ -48,9 +73,8 @@ Page({
     console.log('金额', result)
     that.setData({
       cardMoney,
-      // memo:`${cardMoney[0].memo?cardMoney[0].memo.split('|'):''}`
+      memo:cardMoney[0].memo?cardMoney[0].memo.split('|'):''
     })
-    // console.log(that.data.memo)
   },
 
   // 支付
@@ -164,6 +188,9 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
+    wx.switchTab({
+      url: '/pages/mine/mine'
+    })
     return {
       title: '我在预订烤肠，邀请你也来品尝一下吧~',
       path: '/pages/home/home',

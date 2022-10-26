@@ -21,7 +21,22 @@
       <view hidden="{{!isFlag}}" class="qipao">每消费1元增加10积分</view>
     </view>
   </view>
-  <view wx:if="{{customer.customerInfo.cardId==0&&!isVip}}" class="vipCard">
+  <image wx:if="{{customer.customerInfo.cardId!=0&&isVip}}" class="vipCard" style="position: relative;"
+    src="/assets/mine/vipcard.png">
+    <view class="vipCard" style="position: absolute;top: 0;left: 0;">
+      <view class="card-top card-top-on">
+        <view class="vip-on">会员卡</view>
+        <view style="font-size: 24rpx;" wx:if="{{cardExpire}}">{{cardExpire}} 到期</view>
+      </view>
+      <view class="card-bottom" style="background: none;">
+        <view>余额：￥<text
+            style="font-size: 48rpx;">{{customer.customerInfo.balance?customer.customerInfo.balance:0}}</text></view>
+        <view class="vip refill" catchtap="refillFn">充值优惠</view>
+      </view>
+    </view>
+  </image>
+
+  <view wx:else class="vipCard">
     <view class="card-top">
       <view class="vip" bindtap="rechargeVipFn">开通会员</view>
       <text style="color: rgb(100, 100, 100);font-size: 24rpx;">开通后购买有优惠呦~</text>
@@ -33,19 +48,7 @@
       </view>
     </view>
   </view>
-  <image wx:else class="vipCard" style="position: relative;" src="/assets/mine/vipcard.png">
-    <view class="vipCard" style="position: absolute;top: 0;left: 0;">
-      <view class="card-top card-top-on">
-        <view class="vip-on" bindtap="rechargeVipFn">会员卡</view>
-        <view style="font-size: 24rpx;" wx:if="{{cardExpire?cardExpire:''}}">{{cardExpire}} 到期</view>
-      </view>
-      <view class="card-bottom" style="background: none;">
-        <view>余额：￥<text
-            style="font-size: 48rpx;">{{customer.customerInfo.balance?customer.customerInfo.balance:0}}</text></view>
-        <view class="vip refill" catchtap="refillFn">充值优惠</view>
-      </view>
-    </view>
-  </image>
+
   <view class="navWrap">
     <view style="height:80rpx;line-height:80rpx;border-bottom: 2rpx solid #ddd;font-size: 30rpx;font-weight: bold;">预订订单
     </view>
@@ -116,7 +119,7 @@
       </view>
     </view>
   </view>
-  <button open-type="share" class="share-btn">
+  <button wx:if="{{bagId!=='0'}}" open-type="share" class="share-btn">
     <view class="sy"></view>
     <view class="sy sy1"></view>
     <view class="line"></view>

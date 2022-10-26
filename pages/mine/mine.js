@@ -68,18 +68,18 @@ Page({
         console.log('用户信息', res);
         let cardExpire = res.data.customerInfo.cardExpire;
         let date = Date.parse(new Date());
-        console.log(date);
-        if (!cardExpire && date > cardExpire || res.data.customerInfo.cardId == 0) {
+        if (cardExpire && date < cardExpire && res.data.customerInfo.cardId != 0) {
           that.setData({
-            isVip: false
+            isVip: true
           })
         } else {
           that.setData({
-            isVip: true
+            isVip: false
           })
         }
         that.setData({
           customer: res.data,
+          bagId: res.data.bagId,
           cardExpire: `${cardExpire?formatTime(new Date(cardExpire)):''}`
         })
       })
@@ -164,10 +164,9 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-    let scene = "1559467227550318592%2C0";
     return {
       title: '我在预订烤肠，邀请你也来品尝一下吧~ 点击抢购优惠券',
-      path: `/pages/coupon/coupon?scene=${scene}`,
+      path: `/pages/coupon/coupon?scene=${that.data.bagId}`,
       imageUrl: 'http://file.xinghuitrip.com/mp/user-share.png'
     }
   }

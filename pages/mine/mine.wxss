@@ -333,6 +333,7 @@ button::after {
   width: 120rpx;
   animation: shareImg 3s ease-in-out infinite;
   transform-origin: 50% 0%;
+  /* transform-style: preserve-3d; */
   margin-top: 40rpx;
 }
 .line{
@@ -360,7 +361,7 @@ button::after {
 }
 .sy1{
   left: 110rpx;
-  top: -38rpx;
+  top: -40rpx;
 }
 
 @keyframes shareImg {

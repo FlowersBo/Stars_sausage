@@ -300,7 +300,7 @@
   align-items: center;
 }
 .card-text .vip{
-  width: 200rpx;
+  width: 300rpx;
   margin-left: 30rpx;
 }
 .wave-childText {

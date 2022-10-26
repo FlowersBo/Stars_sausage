@@ -80,9 +80,9 @@
 
     <view class="paymentTitle">优惠券</view>
     <view wx:if="{{product.coupon}}" class="waveWrap">
-      <view class="wave" wx:if="{{product.coupon.coupon.couponType===3}}">
+      <view class="wave" wx:if="{{product.coupon.coupon.couponType===3||product.coupon.coupon.couponType===4}}">
         <view class="wave-child">
-          <view class="youhuiquan">满赠券</view>
+          <view class="youhuiquan">{{product.coupon.coupon.couponType===3?'满赠券':'一口价'}}</view>
           <view class="wave-childText">
             <view>{{product.coupon.coupon.couponName}}</view>
             <view style="font-size: 22rpx;margin-top: 10rpx;">{{product.coupon.coupon.memo}}</view>
