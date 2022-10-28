@@ -9,7 +9,8 @@
       <view class="discountCouponList">
         <block wx:for="{{coupon.coupons}}" wx:key="index">
           <view class="discountCoupon">
-            <view class="money"><text style="font-size: 50rpx;">{{item.money}}</text>￥</view>
+            <view style="height: 50rpx;" wx:if="{{item.couponType===4}}"></view>
+            <view wx:else class="money"><text style="font-size: 50rpx;">{{item.money}}</text>￥</view>
             <view style="color: #893204;font-size: 28rpx;">{{item.couponName}}</view>
           </view>
         </block>

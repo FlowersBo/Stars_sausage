@@ -44,6 +44,33 @@
         </block>
       </view>
     </view>
+
+    <!-- new取餐时间 -->
+    <block>
+      <view class="paymentTitle">取餐时间</view>
+      <van-radio-group value="{{ timeRadio }}" bind:change="timeRadioChange">
+        <view class="timeRadioWrap">
+          <view class="timeRadio {{timeRadio==='1'?'timeRadio_on':''}}">
+            <van-radio name="1" checked-color="#F4D6AB" />
+            <image style="width: 50rpx;height: 50rpx;" src="/assets/img/qucan.png"></image>
+            <view style="width: 150rpx;color:#07C160;font-size: 28rpx;">{{product.takeMin}}分钟后可取</view>
+          </view>
+          <view class="timeRadio {{timeRadio==='2'?'timeRadio_on':''}}">
+            <image style="width: 50rpx;height: 50rpx;" src="/assets/img/qucan_on.png"></image>
+            <view style="width: 150rpx;font-size: 28rpx;">
+              <view>取餐时间</view>
+              <view style="font-size:20rpx;display:flex;align-items: center;">
+                选择时间
+                <image mode="widthFix" style="margin-left:6rpx;width: 20rpx;transform: rotate(-90deg);" src="/assets/img/back.png">
+                </image>
+              </view>
+            </view>
+            <van-radio name="2" checked-color="#F4D6AB" catchtap="onChangeTime" />
+          </view>
+        </view>
+      </van-radio-group>
+    </block>
+
     <view class="sausageTime">
       <view class="timeImg">
         <image style="width: 28rpx;height: 28rpx;margin:2rpx 6rpx 0 0" src="../../assets/img/time.png"></image>
@@ -51,10 +78,11 @@
       </view>
       <view style="display: flex;align-items: center;" catchtap="onChangeTime">
         <view style="text-align: center;">
-          <view style="color:#07C160;font-size: 26rpx;">{{timer?timer:product.takeMin+'分钟后可取'}}</view>
-          <view style="font-size: 22rpx;color: #bbb;">(点击可修改取餐时间)</view>
+          <view style="color:#07C160;font-size: 26rpx;">{{(product.takeMin?product.takeMin:'')+'分钟后可取'}}
+          </view>
+          <!-- <view style="font-size: 22rpx;color: #bbb;">(点击可修改取餐时间)</view> -->
         </view>
-        <image style="width: 60rpx;height: 60rpx;margin-left: 10rpx;" src="/assets/img/timer.png"></image>
+        <!-- <image style="width: 60rpx;height: 60rpx;margin-left: 10rpx;" src="/assets/img/timer.png"></image> -->
       </view>
     </view>
 
@@ -64,55 +92,58 @@
         <image style="width: 60rpx;height: 40rpx;position: absolute;top: -38rpx;right: 10rpx;"
           src="/assets/img/yueka.png"></image>
         <view class="childone-vipCard">
-          <image style="width: 174rpx;height: 140rpx;position: absolute;top: 24rpx;left: -40rpx;"
+          <image mode="widthFix" style="width: 180rpx;position: absolute;top: 30rpx;left: -40rpx;"
             src="/assets/img/yueka.png"></image>
           <view class="card-text">
             <text style="margin-top: 26rpx;">-￥</text> <text
               style="font-size: 70rpx;font-weight: bold;">{{product.cardFreeAmount}}</text>
             <view class="vip">
               <view>会员享优惠</view>
-              <view>{{product.memberCard.cardId=='222'?'每日第一根烤肠免单':'9折'}}</view>
+              <view>{{product.memberCard.cardType==1?'每日第一根烤肠免单':'9折'}}</view>
             </view>
           </view>
         </view>
       </view>
     </block>
 
-    <view class="paymentTitle">优惠券</view>
-    <view wx:if="{{product.coupon}}" class="waveWrap">
-      <view class="wave" wx:if="{{product.coupon.coupon.couponType===3||product.coupon.coupon.couponType===4}}">
-        <view class="wave-child">
-          <view class="youhuiquan">{{product.coupon.coupon.couponType===3?'满赠券':'一口价'}}</view>
-          <view class="wave-childText">
-            <view>{{product.coupon.coupon.couponName}}</view>
-            <view style="font-size: 22rpx;margin-top: 10rpx;">{{product.coupon.coupon.memo}}</view>
-            <view style="font-size: 22rpx;margin-top: 10rpx;">（满{{product.coupon.coupon.norm}}元可使用）</view>
+    <block wx:if="{{couponId}}">
+      <view class="paymentTitle">优惠券</view>
+      <view wx:if="{{product.coupon}}" class="waveWrap">
+        <view class="wave" wx:if="{{product.coupon.coupon.couponType===3||product.coupon.coupon.couponType===4}}">
+          <view class="wave-child">
+            <view class="youhuiquan">{{product.coupon.coupon.couponType===3?'满赠券':'一口价'}}</view>
+            <view class="wave-childText">
+              <view>{{product.coupon.coupon.couponName}}</view>
+              <view style="font-size: 22rpx;margin-top: 10rpx;">{{product.coupon.coupon.memo}}</view>
+              <view style="font-size: 22rpx;margin-top: 10rpx;">（满{{product.coupon.coupon.norm}}元可使用）</view>
+            </view>
+          </view>
+
+        </view>
+        <view class="wave" wx:else>
+          <view class="wave-child wave-child-on">
+            <view class="youhuiquan">
+              {{product.coupon.coupon.couponType===1?'满减券':'折扣券'}}</view>
+            <view class="text">{{product.coupon.coupon.couponName}}</view>
+          </view>
+          <view class="sum">
+            <block wx:if="{{product.coupon.coupon.couponType===1}}">
+              <text style="font-size: 32rpx;">-￥</text>{{product.coupon.coupon.money}}
+            </block>
+            <block wx:else>
+              {{product.coupon.coupon.money}}<text style="font-size: 32rpx;">折</text>
+            </block>
           </view>
         </view>
+        <view class="gengduo" bindtap="gotodiscountCoupon">更多</view>
+      </view>
+    </block>
 
-      </view>
-      <view class="wave" wx:else>
-        <view class="wave-child wave-child-on">
-          <view class="youhuiquan">
-            {{product.coupon.coupon.couponType===1?'满减券':'折扣券'}}</view>
-          <view class="text">{{product.coupon.coupon.couponName}}</view>
-        </view>
-        <view class="sum">
-          <block wx:if="{{product.coupon.coupon.couponType===1}}">
-            <text style="font-size: 32rpx;">-￥</text>{{product.coupon.coupon.money}}
-          </block>
-          <block wx:else>
-            {{product.coupon.coupon.money}}<text style="font-size: 32rpx;">折</text>
-          </block>
-        </view>
-      </view>
-      <view class="gengduo" bindtap="gotodiscountCoupon">更多</view>
-    </view>
 
     <view class="total" style="font-size:24rpx;color:#FF7003;">
-      <text style="margin-right: 20rpx;color:#00DB60;" wx:if="{{product.couponMoney}}">已优惠：￥<text
-          style="font-size: 44rpx;font-weight: bold;">{{product.couponMoney}}</text></text>
-      小计：￥<text style="font-size: 44rpx;font-weight: bold;">{{price}}</text>
+      <text style="margin-right: 20rpx;color:#00DB60;" wx:if="{{overallPrice}}">已优惠：￥<text
+          style="font-size: 44rpx;font-weight: bold;">{{overallPrice}}</text></text>
+      小计：￥<text style="font-size: 44rpx;font-weight: bold;">{{product.totalMoney}}</text>
     </view>
 
     <van-radio-group value="{{ radio }}" bind:change="onChange">
@@ -141,7 +172,7 @@
       src="../../assets/img/shop-bag.png"></image>
     <text class="SubmitBar-count">{{productQuantity}}</text>
     <view class="money">
-      合计：￥<text style="font-size:48rpx;font-weight: bold;">{{overallPrice}}</text>
+      合计：￥<text style="font-size:48rpx;font-weight: bold;">{{product.payMoney}}</text>
     </view>
     <view class="SubmitBar-btn" bindtap="wxPayFn">去支付</view>
   </view>

@@ -14,16 +14,16 @@ Page({
     imgList: [{
       src: '/assets/img/coupon.jpg'
     }, {
-      src: '/assets/img/1.jpg',
+      src: '/assets/img/avtar.jpg',
       value: '哈哈哈哈哈哈'
     }],
-    avatarPath: '/assets/img/1.jpg',
+    avatarPath: '/assets/img/avtar.jpg',
     helpBuyBegin: {
       userName: '烟酒情话',
       commodityName: '【好友拼单】，一起来抢芝士味的香喷喷的烤肠哇！！！！！！',
     },
     shopImagePath: '/assets/img/hd.png',
-    ewmImg: '/assets/img/qrCode.png'
+    ewmImg: '/assets/img/guoqi.png'
   },
   /**
    * 生命周期函数--监听页面加载

@@ -20,10 +20,23 @@ Page({
    */
   data: {
     couponId: '',
+    timeRadio: '1',
+    timer: ''
   },
 
-  bindgetuserinfo(e){
-    console.log('用户信息',e)
+  bindgetuserinfo(e) {
+    console.log('用户信息', e)
+  },
+
+  timeRadioChange(event){
+    // this.setData({
+    //   timer: '',
+    // });
+    // if(event.detail==='2'){
+    //   this.setData({
+    //     timeRadio: event.detail,
+    //   });
+    // }
   },
 
   onChange(event) {
@@ -185,7 +198,7 @@ Page({
     })
     this.onClose();
   },
-  
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -203,27 +216,33 @@ Page({
     let {
       data
     } = await (app.http.Confirm({
-      orderId: that.data.orderId, //'1582911461057888256'
+      orderId: that.data.orderId,
       couponId: that.data.couponId
     }));
     let overallPrice = 0,
-      price = 0,
+      // price = 0,
       productQuantity = 0;
+    overallPrice = (Number(data.couponMoney) + Number(data.cardFreeAmount)).toFixed(2);
     data.detail.forEach(element => {
-      price += Number(element.price);
+      // price += Number(element.price);
       productQuantity += JSON.parse(element.quantity)
     });
+    // if (data.coupon) {
+    //   let couponMoney = Number(data.couponMoney)
+    //   if (price - couponMoney <= 0) {
+    //     overallPrice = 0;
+    //   }
+    //   overallPrice = (price - couponMoney).toFixed(2);
+    //   that.setData({
+    //     couponId: data.coupon.id
+    //   })
+    // } else {
+    //   overallPrice = price.toFixed(2);
+    // }
     if (data.coupon) {
-      let couponMoney = Number(data.couponMoney)
-      if (price - couponMoney <= 0) {
-        overallPrice = 0;
-      }
-      overallPrice = (price - couponMoney).toFixed(2);
       that.setData({
         couponId: data.coupon.id
       })
-    } else {
-      overallPrice = price.toFixed(2);
     }
     that.setData({
       product: data,
@@ -231,7 +250,7 @@ Page({
       endOpen: data.endOpen,
       overallPrice,
       productQuantity,
-      price,
+      // price,
       radio: `${data.balance==0?'2':'1'}`
     })
   },

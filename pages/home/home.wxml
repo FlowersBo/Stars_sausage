@@ -19,10 +19,6 @@
         <image class="reserve-img" src="../../assets/img/purchase.png"></image>
         <view style="margin-top:14rpx;">附近烤肠机</view>
       </view>
-      <!-- <view class="reserve" data-bannerurl="/pages/facilityListMap/facilityListMap" bindtap="gotoReserveList">
-        <image class="reserve-img" src="../../assets/img/join.png"></image>
-        <view style="margin-top:14rpx;">合作加盟</view>
-      </view> -->
     </view>
     <view class="activity">
       <view class="activity-title">

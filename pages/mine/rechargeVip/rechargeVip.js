@@ -27,11 +27,14 @@ Page({
   onLoad: function (options) {
     that = this;
     this.mask = this.selectComponent('#mask');
-    let cardId = options.cardId?options.cardId:'';
+    let scene = options.scene ? options.scene : '';
     console.log(options);
-    cardId = decodeURIComponent(cardId);
+    scene = decodeURIComponent(scene);
+    let cardId = scene.split(',')[0];
+    let sceneType = scene.split(',')[1];
+    console.log('截取参数',cardId,sceneType);
     // cardId = '222'
-    console.log('参数',cardId);
+    console.log('参数', cardId);
     that.setData({
       cardId
     })
@@ -73,7 +76,7 @@ Page({
     console.log('金额', result)
     that.setData({
       cardMoney,
-      memo:cardMoney[0].memo?cardMoney[0].memo.split('|'):''
+      memo: cardMoney[0].memo ? cardMoney[0].memo.split('|') : ''
     })
   },
 
@@ -188,9 +191,11 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-    wx.switchTab({
-      url: '/pages/mine/mine'
-    })
+    setTimeout(function () {
+      wx.switchTab({
+        url: '/pages/mine/mine'
+      })
+    }.bind(this), 1500)
     return {
       title: '我在预订烤肠，邀请你也来品尝一下吧~',
       path: '/pages/home/home',
