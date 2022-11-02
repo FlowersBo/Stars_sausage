@@ -19,10 +19,11 @@ Page({
     let scene = options.scene;
     console.log(options);
     // scene = "1560464164395155456%2C1";
+    // scene = "1585167955853836288,0";
     scene = decodeURIComponent(scene);
     let sceneId = scene.split(',')[0];
     let sceneType = scene.split(',')[1];
-    console.log('截取参数',sceneId,sceneType);
+    console.log('截取参数', sceneId, sceneType);
     that.setData({
       sceneId,
       sceneType
@@ -109,8 +110,8 @@ Page({
             showCancelButton: false,
             confirmButtonText: '去下单'
           }).then(() => {
-            wx.switchTab({
-              url: '/pages/home/home'
+            wx.reLaunch({
+              url: '/pages/reserveList/reserveList'
             })
           }).catch(() => {});
         })
@@ -123,8 +124,8 @@ Page({
             showCancelButton: false,
             confirmButtonText: '去下单'
           }).then(() => {
-            wx.switchTab({
-              url: '/pages/home/home'
+            wx.reLaunch({
+              url: '/pages/reserveList/reserveList'
             })
           }).catch(() => {});
         })
@@ -142,8 +143,8 @@ Page({
             showCancelButton: false,
             confirmButtonText: '去下单'
           }).then(() => {
-            wx.switchTab({
-              url: '/pages/home/home'
+            wx.reLaunch({
+              url: '/pages/reserveList/reserveList'
             })
           }).catch(() => {});
         })
@@ -156,8 +157,8 @@ Page({
             showCancelButton: false,
             confirmButtonText: '去下单'
           }).then(() => {
-            wx.switchTab({
-              url: '/pages/home/home'
+            wx.reLaunch({
+              url: '/pages/reserveList/reserveList'
             })
           }).catch(() => {});
         })

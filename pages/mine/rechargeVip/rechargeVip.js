@@ -9,14 +9,14 @@ Page({
   data: {
     openSetting: true,
     isVip: '1',
-    explain: ['开通后购买所有烤肠均打九折', '可与优惠券叠加使用']
   },
 
   changeSum(e) {
     that.setData({
       changeIndex: e.currentTarget.dataset.index,
       changeMoney: e.currentTarget.dataset.money,
-      cardId: e.currentTarget.dataset.cardid
+      cardId: e.currentTarget.dataset.cardid,
+      memo: that.data.cardMoney[e.currentTarget.dataset.index].memo
     })
   },
 
@@ -30,9 +30,9 @@ Page({
     let scene = options.scene ? options.scene : '';
     console.log(options);
     scene = decodeURIComponent(scene);
-    let cardId = scene.split(',')[0];
+    let cardId = scene.split(',')[0];``
     let sceneType = scene.split(',')[1];
-    console.log('截取参数',cardId,sceneType);
+    console.log('截取参数', cardId, sceneType);
     // cardId = '222'
     console.log('参数', cardId);
     that.setData({
@@ -65,18 +65,18 @@ Page({
     }));
     let cardMoney = result.data.cards;
     cardMoney.forEach((element, key) => {
+      element.memo = element.memo.split('|')
       if (element.recommend) {
         that.setData({
           changeIndex: key,
           changeMoney: element.cardPrice,
-          cardId: element.id
+          cardId: element.id,
         })
       }
     });
     console.log('金额', result)
     that.setData({
       cardMoney,
-      memo: cardMoney[0].memo ? cardMoney[0].memo.split('|') : ''
     })
   },
 

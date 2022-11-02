@@ -1,28 +1,63 @@
 <!--pages/coupon/coupon.wxml-->
 <!-- <navigationBar back text="活动" /> -->
-<image class="img" style="width: 100%;height: {{clientHeight}}px;" src="/assets/img/coupon.jpg">
-  <view class="btn" bindtap="robcouponFn">抢</view>
+<image class="img" style="width: 100%;height: {{clientHeight}}px;" src="{{coupon.backImg}}">
   <view class="coupon">
+    <view class="btnWrap">
+      <view class="btn" bindtap="robcouponFn">领</view>
+      <view class="guli">{{sceneType == 0?coupon.bagName:'惊喜优惠'}}</view>
+    </view>
     <view class="coupon-child" wx:if="{{sceneType == 0}}">
-      <view class="guli">{{coupon.bagName}}</view>
-      <view style="margin: 20rpx 0;">有机会获得以下奖励</view>
-      <view class="discountCouponList">
+      <view style="margin: 16rpx 0 30rpx;font-size: 24rpx;color: #bbb;">有机会获得以下奖励</view>
+      <view class="discountCouponList" wx:if="{{coupon.coupons.length>1}}">
         <block wx:for="{{coupon.coupons}}" wx:key="index">
-          <view class="discountCoupon">
-            <view style="height: 50rpx;" wx:if="{{item.couponType===4}}"></view>
-            <view wx:else class="money"><text style="font-size: 50rpx;">{{item.money}}</text>￥</view>
-            <view style="color: #893204;font-size: 28rpx;">{{item.couponName}}</view>
+          <view class="youhuiquan">
+            <view>
+              {{item.couponName[0]+item.couponName[1]}}
+            </view>
+            <view>{{item.couponName}}</view>
           </view>
         </block>
       </view>
-    </view>
-    <view wx:else>
-      <view class="discountCouponList">
-        <view class="discountCoupon">
-          <view class="money" wx:if="{{coupon.couponType===1||coupon.couponType===2}}"><text style="font-size: 50rpx;">{{coupon.money}}</text>{{coupon.couponType===1?'￥':'折'}}</view>
-          <view style="height: 50rpx;" wx:else></view>
-          <view style="color: #893204;font-size: 28rpx;">{{coupon.couponName}}</view>
+      <block wx:else>
+        <view class="conMsg" wx:for="{{coupon.coupons}}" wx:key="index">
+          <view class="conMsg-left">
+            <view>{{item.couponName[0]+item.couponName[1]}}</view>
+            <view style="margin-top: 10rpx;font-size: 28rpx;">{{item.couponName}}</view>
+            <view class="circle-left leftTop"></view>
+            <view class="circle-left rightTop"></view>
+            <view class="circle-left leftBottom"></view>
+            <view class="circle-left rightBottom"></view>
+          </view>
+          <view class="conMsg-right">
+            <view>恭喜获得</view>
+            <view class="yhtext">优惠券</view>
+          </view>
+          <view class="circle leftTop"></view>
+          <view class="circle rightTop"></view>
+          <view class="circle leftBottom"></view>
+          <view class="circle rightBottom"></view>
         </view>
+      </block>
+    </view>
+    <view class="coupon-child" wx:else>
+      <view style="margin: 16rpx 0 30rpx;font-size: 24rpx;color: #bbb;">有机会获得以下奖励</view>
+      <view class="conMsg">
+        <view class="conMsg-left">
+          <view>{{coupon.couponName[0]+coupon.couponName[1]}}</view>
+          <view style="margin-top: 10rpx;font-size: 28rpx;">{{coupon.couponName}}</view>
+          <view class="circle-left leftTop"></view>
+          <view class="circle-left rightTop"></view>
+          <view class="circle-left leftBottom"></view>
+          <view class="circle-left rightBottom"></view>
+        </view>
+        <view class="conMsg-right">
+          <view>恭喜获得</view>
+          <view class="yhtext">优惠券</view>
+        </view>
+        <view class="circle leftTop"></view>
+        <view class="circle rightTop"></view>
+        <view class="circle leftBottom"></view>
+        <view class="circle rightBottom"></view>
       </view>
     </view>
   </view>

@@ -8,8 +8,8 @@
           <view class="coupon {{item.tabsName==='过期'?'off-coupon':''}}">
             <view wx:if="{{items.coupon.couponType===1||items.coupon.couponType===2}}"><text
                 wx:if="{{items.coupon.couponType===1}}">￥</text><text
-                style="font-size: 50rpx;font-weight: bold;">{{items.coupon.money}}</text> <text
-                wx:if="{{items.coupon.couponType===2}}">折</text></view>
+                style="font-size: 50rpx;font-weight: bold;">{{items.coupon.couponType===1?items.coupon.money:items.coupon.money*10}}</text>
+              <text wx:if="{{items.coupon.couponType===2}}">折</text></view>
             <view style="font-size:{{items.coupon.couponType===3?'32':'22'}}rpx">{{items.coupon.couponName}}</view>
             <view style="font-size: 22rpx;margin-top: 10rpx;">（满{{items.coupon.norm}}元可使用）</view>
           </view>
@@ -28,4 +28,7 @@
       </block>
     </van-tab>
   </van-tabs>
+  <noData isFlag="{{isFlag}}">
+    <view slot="slot">您当前暂无优惠券</view>
+  </noData>
 </view>

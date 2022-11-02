@@ -8,86 +8,235 @@ page {
   position: relative;
 }
 
+.btnWrap {
+  width: 540rpx;
+  position: relative;
+  margin: 0 auto;
+  margin-top: 60rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .btn {
   position: absolute;
-  top: 59%;
-  left: 50%;
-  width: 260rpx;
-  height: 260rpx;
-  margin-left: -146rpx;
-  margin-top: -146rpx;
+  left: -4rpx;
+  width: 130rpx;
+  height: 130rpx;
+  line-height: 130rpx;
   border-radius: 50%;
   background: red;
   color: #fff;
-  font-size: 170rpx;
-  font-weight: bold;
+  font-size: 80rpx;
   text-align: center;
-  line-height: 250rpx;
-  border: 16rpx solid #fff;
-  animation: btn 2s linear infinite;
+  border: 6rpx solid #fff;
+  /* animation: btn 2s linear infinite; */
 }
 
-@keyframes btn{
-  0%{transform: scale(.9); opacity: .9;}
-  25%{transform:  scale(1); opacity: 1;}
-  100%{transform:  scale(.9); opacity: .9;}
+.guli {
+  width: 100%;
+  height: 80rpx;
+  border-radius: 40rpx;
+  text-align: center;
+  line-height: 80rpx;
+  background: #292675;
+  font-size: 40rpx;
+  box-sizing: border-box;
+  padding-left: 80rpx;
+  color: #fff;
+  /* letter-spacing: 24rpx; */
+  /* text-indent: 6rpx; */
+}
+
+@keyframes btn {
+  0% {
+    transform: scale(.9);
+    opacity: .9;
+  }
+
+  25% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(.9);
+    opacity: .9;
+  }
 }
 
 .coupon {
   position: absolute;
-  top: 72%;
-  left: 0;
-  width: 100%;
+  width: 78%;
+  top: 60%;
+  left: 50%;
+  margin-left: -39%;
 }
 
-.coupon-child{
+.coupon-child {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.guli {
-  width: 540rpx;
-  height: 80rpx;
-  border-radius: 40rpx;
-  border: 6rpx solid #E37021;
-  text-align: center;
-  line-height: 80rpx;
-  background: #913801;
-  font-size: 48rpx;
-  font-weight: bold;
-  color: #F2BC43;
-  letter-spacing: 24rpx;
-  text-indent: 6rpx;
-}
 
 .discountCouponList {
   width: 100%;
+  background: #F0970F;
   box-sizing: border-box;
-  padding: 0 60rpx;
+  padding: 20rpx;
   display: flex;
-  justify-content: center;
+  flex-wrap: wrap;
+  border-radius: 20rpx;
 }
 
-.discountCoupon {
-  width: 150rpx;
-  height: 150rpx;
-  border: 1rpx solid #333;
+.youhuiquan {
+  width: 120rpx;
+  height: 144rpx;
+  text-align: center;
+  background: #fff;
+  font-size: 24rpx;
+  position: relative;
+  border-radius: 12rpx;
+  font-size: 22rpx;
+  color: #F0970F;
+  margin: 0 8rpx 8rpx 8rpx;
+}
+
+.youhuiquan::before,
+.youhuiquan::after {
+  background-color: #F0970F;
+  border-radius: 50%;
+  content: '';
+  width: 12rpx;
+  height: 24rpx;
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  margin-top: -12rpx;
+}
+
+.youhuiquan::before {
+  left: -2rpx;
+  border-radius: 0 12rpx 12rpx 0;
+}
+
+.youhuiquan::after {
+  right: -2rpx;
+  border-radius: 12rpx 0 0 12rpx;
+}
+
+.youhuiquan view {
+  height: 72rpx;
+  line-height: 72rpx;
+  text-align: center;
+}
+
+.youhuiquan view:first-child {
+  border-bottom: 2rpx dashed #ddd;
+}
+
+.conMsg {
+  position: relative;
+  width: 98%;
+  height: 200rpx;
+  background: #ED9703;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding: 30rpx;
+  margin-top: 20rpx;
+}
+
+.circle {
+  position: absolute;
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 20rpx;
+  background: #fff;
+}
+
+.conMsg-left {
+  position: relative;
+  width: 54%;
+  height: 100%;
+  background: #fff;
+  color: #ED9703;
   font-size: 36rpx;
   display: flex;
   flex-direction: column;
   align-items: center;
-  box-sizing: border-box;
-  border-radius: 30rpx;
-  margin: 0 10rpx;
+  justify-content: center;
 }
 
-.money {
-  width: 70%;
-  text-align: center;
-  border-bottom: 4rpx dotted #333;
-  color: #984708;
-  margin-bottom: 10rpx;
-  font-size: 28rpx;
+.circle-left {
+  position: absolute;
+  width: 34rpx;
+  height: 34rpx;
+  border-radius: 17rpx;
+  background: #ED9703;
+}
+
+.leftTop {
+  left: -20rpx;
+  top: -20rpx;
+}
+
+.rightTop {
+  right: -20rpx;
+  top: -20rpx;
+}
+
+.leftBottom {
+  left: -20rpx;
+  bottom: -20rpx;
+}
+
+.rightBottom {
+  right: -20rpx;
+  bottom: -20rpx;
+}
+
+.conMsg-right {
+  width: 38%;
+  height: 100%;
+  border-left: 2rpx dashed #eee;
+  position: relative;
+  box-sizing: border-box;
+  padding-left: 30rpx;
+  font-size: 32rpx;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.yhtext {
+  font-size: 50rpx;
+  font-weight: bold;
+  letter-spacing: 4rpx;
+  margin-top: 10rpx;
+}
+
+.conMsg-right::before,
+.conMsg-right::after {
+  background-color: #fff;
+  border-radius: 50%;
+  content: '';
+  width: 40rpx;
+  height: 40rpx;
+  position: absolute;
+  z-index: 1;
+  left: -20rpx;
+}
+
+.conMsg-right::before {
+  top: -50rpx;
+}
+
+.conMsg-right::after {
+  bottom: -50rpx;
 }

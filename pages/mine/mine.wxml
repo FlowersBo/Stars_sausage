@@ -119,7 +119,7 @@
       </view>
     </view>
   </view>
-  <button wx:if="{{bagId!=0}}" open-type="share" class="share-btn">
+  <button wx:if="{{bagId[0]!=0}}" open-type="share" class="share-btn">
     <view class="sy"></view>
     <view class="sy sy1"></view>
     <view class="line"></view>

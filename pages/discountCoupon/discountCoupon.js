@@ -26,14 +26,16 @@ Page({
   onLoad: function (options) {
     console.log(options);
     that = this;
-    that.couponListFn();
     that.setData({
-      isCoupon: options.isCoupon
+      isCoupon: options.isCoupon,
+      norm: options.norm ? options.norm : ''
     })
+    that.couponListFn();
   },
   onClick(e) {
     that.setData({
-      isShow: e.detail.index
+      isShow: e.detail.index,
+      isFlag: true
     })
     that.couponListFn();
   },
@@ -41,20 +43,22 @@ Page({
   async couponListFn() {
     let result = await (app.http.CouponList({
       isShow: that.data.isShow,
-      customerId: wx.getStorageSync('customerId')
+      customerId: wx.getStorageSync('customerId'),
+      norm: that.data.norm
     }));
     console.log(result)
     if (result.code === 200) {
       that.setData({
-        [`fatherList[${that.data.isShow}].list`]: result.data.list
+        [`fatherList[${that.data.isShow}].list`]: result.data.list,
+        isFlag: result.data.list.length > 0 ? false : true
       })
     }
   },
-  useCountFn(e){
+  useCountFn(e) {
     console.log(e)
     var pages = getCurrentPages();
-    var currPage = pages[pages.length - 1];   //当前页面
-    var prevPage = pages[pages.length - 2];  
+    var currPage = pages[pages.length - 1]; //当前页面
+    var prevPage = pages[pages.length - 2];
     prevPage.setData({
       couponId: e.target.dataset.couponid
     })

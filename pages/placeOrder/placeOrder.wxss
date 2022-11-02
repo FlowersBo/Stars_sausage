@@ -292,9 +292,9 @@
   overflow: hidden;
 }
 .card-text{
-  width: 70%;
+  width: 78%;
   height: 100%;
-  margin-left: 24%;
+  margin-left: 22%;
   font-size: 28rpx;
   color: #266F0F;
   display: flex;
@@ -302,7 +302,7 @@
 }
 .card-text .vip{
   width: 300rpx;
-  margin-left: 30rpx;
+  margin-left: 20rpx;
 }
 .wave-childText {
   width: 65%;

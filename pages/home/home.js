@@ -107,7 +107,7 @@ Page({
       that.getSelfLocation();
       return
     }
-    if (e.currentTarget.dataset.index === 0) {
+    if (e.currentTarget.dataset.bannerurl === 'link') {
       wx.navigateToMiniProgram({
         appId: 'wx41a8aabec46e8080',
         //wx8ab6fcdcbc881c7d

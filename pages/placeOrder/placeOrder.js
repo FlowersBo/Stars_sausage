@@ -28,7 +28,7 @@ Page({
     console.log('用户信息', e)
   },
 
-  timeRadioChange(event){
+  timeRadioChange(event) {
     // this.setData({
     //   timer: '',
     // });
@@ -251,7 +251,8 @@ Page({
       overallPrice,
       productQuantity,
       // price,
-      radio: `${data.balance==0?'2':'1'}`
+      radio: `${data.balance==0?'2':'1'}`,
+      norm: data.cardAfterAmount
     })
   },
 
@@ -262,7 +263,7 @@ Page({
     } = await (app.http.pay({
       orderId: that.data.orderId,
       couponId: that.data.couponId,
-      roastTime: that._startTime,
+      // roastTime: that._startTime,
       useAccount: `${that.data.radio==='1'?true:false}`
     }));
     console.log('支付', data)
@@ -299,7 +300,7 @@ Page({
 
   gotodiscountCoupon() {
     wx.navigateTo({
-      url: '/pages/discountCoupon/discountCoupon',
+      url: '/pages/discountCoupon/discountCoupon?norm='+that.data.norm,
     })
   },
 

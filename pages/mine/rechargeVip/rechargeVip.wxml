@@ -8,7 +8,7 @@
       <view wx:for="{{cardMoney}}" wx:key="index" class="money {{changeIndex===index? 'money-off':''}}"
         data-index="{{index}}" data-money="{{item.cardPrice}}" data-cardid="{{item.id}}" bindtap="changeSum">
         <view class="tj" wx:if="{{item.recommend}}">推荐</view>
-        <view>{{item.effectiveDay}}天</view>
+        <view>{{item.cardName}}</view>
         <view style="font-size: 24rpx;margin-top: 6rpx;color: {{changeIndex===index?'#FF911D':'#aaa;'}};">
           {{item.cardPrice}}元</view>
         <text wx:if="{{changeIndex===index}}" class="dgWrap">
@@ -20,7 +20,7 @@
   <view class="quanyi">
     <view style="width: 100%;height: 50rpx;border-bottom: 2rpx solid #eee;font-weight: bold;font-size: 32rpx;">会员权益
     </view>
-    <view class="quanyi-item" wx:for="{{memo?memo:explain}}" wx:key="index">
+    <view class="quanyi-item" wx:for="{{memo?memo:cardMoney[changeIndex].memo}}" wx:key="index">
       <view class="dot"></view>
       {{item}}
     </view>

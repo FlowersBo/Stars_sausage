@@ -46,7 +46,7 @@
     </view>
 
     <!-- new取餐时间 -->
-    <block>
+    <!-- <block>
       <view class="paymentTitle">取餐时间</view>
       <van-radio-group value="{{ timeRadio }}" bind:change="timeRadioChange">
         <view class="timeRadioWrap">
@@ -69,14 +69,14 @@
           </view>
         </view>
       </van-radio-group>
-    </block>
+    </block> -->
 
     <view class="sausageTime">
       <view class="timeImg">
         <image style="width: 28rpx;height: 28rpx;margin:2rpx 6rpx 0 0" src="../../assets/img/time.png"></image>
         <view>取餐时间</view>
       </view>
-      <view style="display: flex;align-items: center;" catchtap="onChangeTime">
+      <view style="display: flex;align-items: center;">
         <view style="text-align: center;">
           <view style="color:#07C160;font-size: 26rpx;">{{(product.takeMin?product.takeMin:'')+'分钟后可取'}}
           </view>
@@ -92,7 +92,7 @@
         <image style="width: 60rpx;height: 40rpx;position: absolute;top: -38rpx;right: 10rpx;"
           src="/assets/img/yueka.png"></image>
         <view class="childone-vipCard">
-          <image mode="widthFix" style="width: 180rpx;position: absolute;top: 30rpx;left: -40rpx;"
+          <image mode="widthFix" style="width: 180rpx;position: absolute;top: 30rpx;left: -40rpx;"  
             src="/assets/img/yueka.png"></image>
           <view class="card-text">
             <text style="margin-top: 26rpx;">-￥</text> <text
@@ -131,7 +131,7 @@
               <text style="font-size: 32rpx;">-￥</text>{{product.coupon.coupon.money}}
             </block>
             <block wx:else>
-              {{product.coupon.coupon.money}}<text style="font-size: 32rpx;">折</text>
+              {{product.coupon.coupon.money*10}}<text style="font-size: 32rpx;">折</text>
             </block>
           </view>
         </view>
