@@ -209,6 +209,7 @@ Page({
       orderId: options.orderId,
       distance: options.distance
     })
+    that.confirmFn();
     console.log('当前时间', dayjs().format('YYYY-MM-DD HH:mm:ss'))
   },
 
@@ -315,7 +316,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    that.confirmFn();
+    // that.confirmFn();
   },
 
   /**

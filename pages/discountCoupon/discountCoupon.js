@@ -59,6 +59,7 @@ Page({
     var pages = getCurrentPages();
     var currPage = pages[pages.length - 1]; //当前页面
     var prevPage = pages[pages.length - 2];
+    prevPage.confirmFn();
     prevPage.setData({
       couponId: e.target.dataset.couponid
     })
