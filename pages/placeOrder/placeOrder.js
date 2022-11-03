@@ -21,7 +21,8 @@ Page({
   data: {
     couponId: '',
     timeRadio: '1',
-    timer: ''
+    timer: '',
+    isDisabled: true
   },
 
   bindgetuserinfo(e) {
@@ -29,14 +30,9 @@ Page({
   },
 
   timeRadioChange(event) {
-    // this.setData({
-    //   timer: '',
-    // });
-    // if(event.detail==='2'){
-    //   this.setData({
-    //     timeRadio: event.detail,
-    //   });
-    // }
+    that.setData({
+      timeRadio: event.detail
+    });
   },
 
   onChange(event) {
@@ -194,7 +190,9 @@ Page({
     console.log(this._startTime)
     console.log(timer)
     that.setData({
-      timer
+      timer,
+      isDisabled: false,
+      timeRadio: '2'
     })
     this.onClose();
   },
@@ -301,7 +299,7 @@ Page({
 
   gotodiscountCoupon() {
     wx.navigateTo({
-      url: '/pages/discountCoupon/discountCoupon?norm='+that.data.norm,
+      url: '/pages/discountCoupon/discountCoupon?norm=' + that.data.norm,
     })
   },
 

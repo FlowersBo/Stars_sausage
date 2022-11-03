@@ -2,9 +2,9 @@
 <!-- <navigationBar back text="活动" /> -->
 <image class="img" style="width: 100%;height: {{clientHeight}}px;" src="{{coupon.backImg}}">
   <view class="coupon">
-    <view class="btnWrap">
-      <view class="btn" bindtap="robcouponFn">领</view>
-      <view class="guli">{{sceneType == 0?coupon.bagName:'惊喜优惠'}}</view>
+    <view class="btnWrap" bindtap="robcouponFn">
+      <view class="btn">领</view>
+      <view class="guli">点击领取</view>
     </view>
     <view class="coupon-child" wx:if="{{sceneType == 0}}">
       <view style="margin: 16rpx 0 30rpx;font-size: 24rpx;color: #bbb;">有机会获得以下奖励</view>

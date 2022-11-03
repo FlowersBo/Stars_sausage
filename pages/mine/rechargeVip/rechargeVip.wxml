@@ -1,5 +1,5 @@
 <!--pages/mine/rechargeVip/rechargeVip.wxml-->
-<navigationBar text="开通会员" back />
+<navigationBar text="开通会员" back home />
 <view class="rechargeVip">
   <image mode="widthFix" style="width: 700rpx;" src="/assets/img/vip.png"></image>
   <view class="recharge">
