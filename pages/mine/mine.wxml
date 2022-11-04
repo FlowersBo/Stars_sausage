@@ -1,7 +1,7 @@
 <!--pages/mine/mine.wxml-->
 <navigationBar text="个人中心" />
 <view class="userWrap" bindtap="deleteMaskFn">
-  <view class="userInfo">
+  <!-- <view class="userInfo">
     <view catchtap="clickBubble" animation="{{animationMiddleHeaderItem}}" class="bubble {{isVip?'bubble-on':''}}">
       <text wx:if="{{isVip}}">vip</text>
     </view>
@@ -20,8 +20,8 @@
       </view>
       <view hidden="{{!isFlag}}" class="qipao">每消费1元增加10积分</view>
     </view>
-  </view>
-  <image wx:if="{{customer.customerInfo.cardId!=0&&isVip}}" class="vipCard" style="position: relative;"
+  </view> -->
+  <!-- <image wx:if="{{isVip}}" class="vipCard" style="position: relative;"
     src="/assets/mine/vipcard.png">
     <view class="vipCard" style="position: absolute;top: 0;left: 0;">
       <view class="card-top card-top-on">
@@ -35,7 +35,6 @@
       </view>
     </view>
   </image>
-
   <view wx:else class="vipCard">
     <view class="card-top">
       <view class="vip" bindtap="rechargeVipFn">开通会员</view>
@@ -47,35 +46,82 @@
       <view class="vip refill" style="color: {{customer.customerInfo.balance>0?'':'#BABABA'}};" catchtap="refillFn">充值优惠
       </view>
     </view>
+  </view> -->
+
+
+  <view class="user">
+    <view class="{{isVip?'userInfoWrap':'userInfo-off'}}">
+      <view wx:if="{{isVip}}" class="card">
+        <view>{{customer.card.cardName}}</view>
+        <view style="font-size: 22rpx;margin-top: 8rpx;">
+          {{customer.card.cardType==0?customer.card.discount*10+'折':'剩余次数：'+(customer.card.presentNumber-customer.card.usedNumber)}}
+        </view>
+      </view>
+      <view wx:else class="card-off" bindtap="rechargeVipFn">开通能量卡</view>
+      <view class="userinfo-avatar {{isVip?'isVip':''}} {{customer.customerInfo.phone?'':'noPhone'}}">
+        <image class="img avatar {{isVip?'isVip':''}}" src="/assets/img/avtar.jpg"></image>
+        <view>{{customer.customerInfo.phone?customer.customerInfo.phone:''}}</view>
+      </view>
+      <view class="btnWrap">
+        <view class="vipbtn {{isVip?'':'vipbtn-off'}}" bindtap="rechargeVipFn">
+          {{isVip?'续费':'能量卡权益'}}</view>
+        <view wx:if="{{isVip}}" style="font-size: 22rpx;">{{cardExpire}} 到期</view>
+        <view wx:else style="height: 30rpx;"></view>
+      </view>
+    </view>
+    <view class="wallet">
+      <view class="wallet-left">
+        <view class="jifen">
+          <view style="font-size: 40rpx; color: #333;margin-right: 30rpx;">
+            {{customer.customerInfo.integral?customer.customerInfo.integral:0}}</view>
+          <navigator hover-class="none" url="integral/integral" class="btn">积分兑换</navigator>
+        </view>
+        <view class="jifen" style="position: relative;">
+          <view>积分</view>
+          <icon style="font-size: 40rpx;margin: -12rpx 0 0 20rpx;color: #aaa;" class="iconfont icon-tishi"
+            catchtap="opendMaskFn">
+          </icon>
+          <view hidden="{{!isFlag}}" class="qipao">每消费1元增加10积分</view>
+        </view>
+      </view>
+      <view class="wallet-left wallet-right" catchtap="refillFn">
+        <view class="jifen" style="color: #333;font-size: 40rpx;"><text
+            style="font-size: 22rpx;color: #aaa;margin-top: 10rpx;">￥
+          </text>{{customer.customerInfo.balance?customer.customerInfo.balance:0}}</view>
+        <view class="jifen">充值优惠</view>
+      </view>
+    </view>
   </view>
 
-  <view class="navWrap">
-    <view style="height:80rpx;line-height:80rpx;border-bottom: 2rpx solid #ddd;font-size: 30rpx;font-weight: bold;">预订订单
+  <view style="width: 96%;margin: 0 auto;">
+    <view class="navWrap">
+      <view style="height:80rpx;line-height:80rpx;border-bottom: 2rpx solid #ddd;font-size: 30rpx;font-weight: bold;">
+        预订订单
+      </view>
+      <navigator class="imgWrap" hover-class="none" url="/pages/orderList/orderList">
+        <view class="changBtn">
+          <view wx:if="{{customer.oa}}" class="dot"></view>
+          <image src="/assets/mine/icon1.png"></image>
+          <view>全部</view>
+        </view>
+        <view class="changBtn">
+          <view wx:if="{{customer.ob}}" class="dot"></view>
+          <image src="/assets/mine/icon2.png"></image>
+          <view>准备中</view>
+        </view>
+        <view class="changBtn">
+          <view wx:if="{{customer.oc}}" class="dot"></view>
+          <image style="width: 46rpx;" src="/assets/mine/icon3.png"></image>
+          <view>待取餐</view>
+        </view>
+        <view class="changBtn">
+          <view wx:if="{{customer.od}}" class="dot"></view>
+          <image src="/assets/mine/icon4.png"></image>
+          <view>异常单</view>
+        </view>
+      </navigator>
     </view>
-    <navigator class="imgWrap" hover-class="none" url="/pages/orderList/orderList">
-      <view class="changBtn">
-        <view wx:if="{{customer.oa}}" class="dot"></view>
-        <image src="/assets/mine/icon1.png"></image>
-        <view>全部</view>
-      </view>
-      <view class="changBtn">
-        <view wx:if="{{customer.ob}}" class="dot"></view>
-        <image src="/assets/mine/icon2.png"></image>
-        <view>准备中</view>
-      </view>
-      <view class="changBtn">
-        <view wx:if="{{customer.oc}}" class="dot"></view>
-        <image style="width: 46rpx;" src="/assets/mine/icon3.png"></image>
-        <view>待取餐</view>
-      </view>
-      <view class="changBtn">
-        <view wx:if="{{customer.od}}" class="dot"></view>
-        <image src="/assets/mine/icon4.png"></image>
-        <view>异常单</view>
-      </view>
-    </navigator>
-  </view>
-  <!-- <view class="navWrap">
+    <!-- <view class="navWrap">
     <view style="height:80rpx;line-height:80rpx;border-bottom: 2rpx solid #ddd;font-size: 30rpx;font-weight: bold;">商城订单
     </view>
     <view class="imgWrap">
@@ -97,15 +143,16 @@
       </view>
     </view>
   </view> -->
-  <view class="navWrap">
-    <view style="height:80rpx;line-height:80rpx;border-bottom: 2rpx solid #ddd;font-size: 30rpx;font-weight: bold;">工具箱
-    </view>
-    <view class="imgWrap" style="justify-content: space-around;">
-      <navigator hover-class="none" url="/pages/discountCoupon/discountCoupon?isCoupon=true" class="changBtn">
-        <image style="width: 54rpx;height: 44rpx;" src="/assets/mine/icon9.png"></image>
-        <view>优惠券</view>
-      </navigator>
-      <!-- <view class="changBtn">
+    <view class="navWrap">
+      <view style="height:80rpx;line-height:80rpx;border-bottom: 2rpx solid #ddd;font-size: 30rpx;font-weight: bold;">
+        工具箱
+      </view>
+      <view class="imgWrap" style="justify-content: space-around;">
+        <navigator hover-class="none" url="/pages/discountCoupon/discountCoupon?isCoupon=true" class="changBtn">
+          <image style="width: 54rpx;height: 44rpx;" src="/assets/mine/icon9.png"></image>
+          <view>优惠券</view>
+        </navigator>
+        <!-- <view class="changBtn">
         <image style="width: 54rpx;height: 44rpx;" src="/assets/mine/icon10.png"></image>
         <view>投诉建议</view>
       </view>
@@ -113,9 +160,10 @@
         <image style="width: 64rpx;height: 36rpx;" src="/assets/mine/icon11.png"></image>
         <view>关于我们</view>
       </view> -->
-      <view catchtap="makePhoneFn" class="changBtn">
-        <image src="/assets/mine/icon12.png"></image>
-        <view>联系客服</view>
+        <view catchtap="makePhoneFn" class="changBtn">
+          <image src="/assets/mine/icon12.png"></image>
+          <view>联系客服</view>
+        </view>
       </view>
     </view>
   </view>

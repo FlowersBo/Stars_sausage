@@ -13,11 +13,94 @@ page {
   -o-filter: grayscale(100%);
 }
 
+.userInfoWrap{
+  width: 100%;
+  height: 280rpx;
+  border-radius: 20rpx;
+  background: linear-gradient(90deg, #FF6F03 0%, #FEB906 100%);
+  position: relative;
+  margin-top: 30rpx;
+  color: #fff;
+}
+
+.userInfo-off{
+  width: 100%;
+  height: 280rpx;
+  border-radius: 20rpx;
+  background: linear-gradient(90deg, #999 0%, #ccc 100%);
+  position: relative;
+  margin-top: 30rpx;
+  color: #fff;
+}
+
+.userInfoWrap::after{
+  width: 90rpx;
+  height: 80rpx;
+  content: '';
+  position: absolute;
+  right: 220rpx;
+  top: 0;
+  background: linear-gradient(90deg, #EC8130 0%, #E78929 100%);
+}
+
+.userInfoWrap::before{
+  width: 150rpx;
+  height: 190rpx;
+  content: '';
+  position: absolute;
+  right: 238rpx;
+  top: 0;
+  z-index: 2;
+  border-radius: 50%;
+  background: linear-gradient(90deg, #FF9104 0%,#FFA105 100%);
+
+}
+
+.card{
+  width: 240rpx;
+  height: 100rpx;
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 1;
+  border-bottom-left-radius: 20rpx;
+  border-top-right-radius: 20rpx;
+  /* background: #fff; */
+  background: linear-gradient(90deg, #E78929 0%,#F1B941 100%);
+  font-size: 40rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+}
+
+.card-off{
+  width: 200rpx;
+  height: 80rpx;
+  text-align: center;
+  line-height: 80rpx;
+  color: #eee;
+  font-size: 32rpx;
+  border-radius: 40rpx;
+  position: absolute;
+  top: 40rpx;
+  right: 30rpx;
+  padding: 0 20rpx;
+  background: linear-gradient(90deg, #F28A34 0%,#E78929 100%);
+}
+
 .userWrap {
-  width: 96%;
-  margin: 0 auto;
   height: calc(100% - 182rpx);
   font-size: 28rpx;
+}
+
+.user{
+  box-sizing: border-box;
+  padding: 0 20rpx;
+  background: #fff;
+  box-shadow: 0rpx 8rpx 14rpx rgba(0, 0, 0, .1);
 }
 
 .iphoneWrap {
@@ -25,43 +108,42 @@ page {
 }
 
 .qipao {
-  width: 400rpx;
-  height: 80rpx;
+  width: 350rpx;
+  height: 70rpx;
   background: rgba(0, 0, 0, .5);
   border-radius: 10rpx;
   position: absolute;
   text-align: center;
-  line-height: 80rpx;
+  line-height: 70rpx;
   color: #fff;
-  top: 130rpx;
-  left: 0;
+  top: 14rpx;
+  left: -44rpx;
   z-index: 100;
 }
 
 .qipao::after {
   position: absolute;
   content: '';
-  left: 130rpx;
+  left: 40rpx;
   top: -40rpx;
   width: 0;
   height: 0;
   font-size: 0;
   border: solid 20rpx;
-  border-color: #fafafa #fafafa rgba(0, 0, 0, .5) #fafafa;
+  border-color: #fff #fff rgba(0, 0, 0, .5) #fff;
 }
 
-.userInfo {
+/* .userInfo {
   width: 100%;
   display: flex;
   align-items: center;
-  /* color: #fff; */
   position: relative;
   box-sizing: border-box;
   padding: 20rpx 0;
   font-size: 26rpx;
-}
+} */
 
-.userinfo-avatar {
+/* .userinfo-avatar {
   width: 140rpx;
   height: 140rpx;
   display: flex;
@@ -72,11 +154,46 @@ page {
   border: 2rpx solid #ccc;
   position: relative;
   margin-right: 30rpx;
+} */
+
+.userinfo-avatar{
+  color: #fff;
+  position: absolute;
+  top: 50rpx;
+  left: 40rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.isVip {
-  border-color: #FF982B;
+.btnWrap{
+  position: absolute;
+  right: 50rpx;
+  bottom: 10rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 24rpx;
 }
+.vipbtn{
+  height: 50rpx;
+  box-sizing: border-box;
+  padding: 0 50rpx;
+  text-align: center;
+  line-height: 50rpx;
+  border-radius: 25rpx;
+  border: 2rpx solid #fff;
+  margin-bottom: 16rpx;
+}
+
+.vipbtn-off{
+  border-radius: 10rpx;
+  padding: 0 20rpx;
+}
+
+/* .isVip {
+  border-color: #FF982B;
+} */
 
 .avatar {
   overflow: hidden;
@@ -94,6 +211,28 @@ page {
   right: 0;
   top: 0;
   background: #fafafa;
+}
+
+.wallet{
+  width: 100%;
+  background: #fff;
+  display: flex;
+  padding: 30rpx 0;
+}
+
+.wallet-left{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+  padding-left: 50rpx;
+}
+
+.wallet-right{
+  align-items: center;
+  color: #aaa;
+  border-left: 2rpx solid #ccc;
 }
 
 .jifen {
@@ -131,6 +270,7 @@ page {
   background-blend-mode: lighten;
   background-size: cover;
   position: relative;
+  margin-bottom: 10rpx;
   /* background: linear-gradient(to bottom, #f1f1f1, #AACCF9); */
 }
 
@@ -317,7 +457,7 @@ page {
 .share-btn {
   position: absolute;
   right: 0rpx;
-  bottom: 200rpx;
+  bottom: 196rpx;
   background: rgba(0, 0, 0, 0);
   padding-left: 50rpx;
   border-top: 6rpx solid #E77742;

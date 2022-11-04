@@ -10,9 +10,7 @@ Page({
   /**
    * 页面的初始数据
    */
-  data: {
-    isVip: true
-  },
+  data: {},
 
   opendMaskFn() {
     that.setData({
@@ -35,8 +33,14 @@ Page({
 
   // 充值会员
   rechargeVipFn() {
+    let scene;
+    if (that.data.isVip) {
+      scene = that.data.customer.card.id + '';
+    } else {
+      scene = ''
+    }
     wx.navigateTo({
-      url: './rechargeVip/rechargeVip',
+      url: './rechargeVip/rechargeVip?scene=' + scene,
     })
   },
 
@@ -77,6 +81,7 @@ Page({
             isVip: false
           })
         }
+        res.data.customerInfo.phone=res.data.customerInfo.phone.substring(0, 3) + '****' + res.data.customerInfo.phone.substring(7);
         that.setData({
           customer: res.data,
           bagId: res.data.bagId,

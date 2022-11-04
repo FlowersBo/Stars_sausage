@@ -30,7 +30,7 @@ Page({
     let scene = options.scene ? options.scene : '';
     console.log(options);
     scene = decodeURIComponent(scene);
-    let cardId = scene.split(',')[0];``
+    let cardId = scene.split(',')[0];
     let sceneType = scene.split(',')[1];
     console.log('截取参数', cardId, sceneType);
     // cardId = '222'
@@ -61,7 +61,8 @@ Page({
   async vipMoneyListFn() {
     let result = await (app.http.VipMoneyList({
       customerId: wx.getStorageSync('customerId'),
-      cardId: that.data.cardId
+      cardId: that.data.cardId,
+      sceneType: that.data.sceneType?that.data.sceneType:'',
     }));
     let cardMoney = result.data.cards;
     cardMoney.forEach((element, key) => {
@@ -77,6 +78,7 @@ Page({
     console.log('金额', result)
     that.setData({
       cardMoney,
+      groupId: result.data.groupId
     })
   },
 
@@ -99,7 +101,8 @@ Page({
       if (that.data.isVip === '1') {
         app.http.VipPayMoney({
             customerId: wx.getStorageSync('customerId'),
-            cardId: that.data.cardId
+            cardId: that.data.cardId,
+            groupId: that.data.groupId
           }).then(res => {
             console.log('支付返回', res);
             wx.requestPayment({

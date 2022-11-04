@@ -1,6 +1,7 @@
 // pages/placeOrder/placeOrder.js
 let that;
 const app = getApp();
+import Dialog from '../../miniprogram_npm/@vant/weapp/dialog/dialog';
 const deraulHours = ['00点', '01点', '02点', '03点', '04点', '05点', '06点', '07点', '08点', '09点', "10点", "11点", "12点", "13点", "14点", "15点", "16点", "17点", "18点", "19点", "20点", "21点", "22点", "23点"];
 const deraulMinutes = ['00分', '01分', '02分', '03分', '04分', '05分', '06分', '07分', '08分', '09分', "10分", "11分", "12分", "13分", "14分", "15分", "16分", "17分", "18分", "19分", "20分", "21分", "22分", "23分", "24分", "25分", "26分", "27分", "28分", "29分", "30分", "31分", "32分", "33分", "34分", "35分", "36分", "37分", "38分", "39分", "40分", "41分", "42分", "43分", "44分", "45分", "46分", "47分", "48分", "49分", "50分", "51分", "52分", "53分", "54分", "55分", "56分", "57分", "58分", "59分"];
 const weeks = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
@@ -256,45 +257,55 @@ Page({
   },
 
 
-  async wxPayFn() {
-    let {
-      data
-    } = await (app.http.pay({
-      orderId: that.data.orderId,
-      couponId: that.data.couponId,
-      // roastTime: that._startTime,
-      useAccount: `${that.data.radio==='1'?true:false}`
-    }));
-    console.log('支付', data)
-    if (data.payType == 2) {
-      wx.redirectTo({
-        url: './accomplishOrder/accomplishOrder?orderId=' + that.data.orderId,
-      })
-      return
-    }
-    wx.requestPayment({
-      timeStamp: data.timeStamp,
-      nonceStr: data.nonceStr,
-      package: data.package,
-      signType: data.signType,
-      paySign: data.paySign,
-      success(res) {
-        console.log(res)
-        wx.redirectTo({
-          url: './accomplishOrder/accomplishOrder?orderId=' + that.data.orderId,
+  wxPayFn() {
+    Dialog.confirm({
+      title: '确认付款',
+      message: '烤肠下单烤制后将无法取消订单',
+      theme: 'round-button',
+    }).then(() => {
+      app.http.pay({
+          orderId: that.data.orderId,
+          couponId: that.data.couponId,
+          // roastTime: that._startTime,
+          useAccount: `${that.data.radio==='1'?true:false}`
         })
-      },
-      fail(res) {
-        wx.showToast({
-          title: '支付失败',
-          icon: 'error',
-          duration: 2000
+        .then(res => {
+          console.log('支付', res)
+          if (res.data.payType == 2) {
+            wx.redirectTo({
+              url: './accomplishOrder/accomplishOrder?orderId=' + that.data.orderId,
+            })
+            return
+          }
+          wx.requestPayment({
+            timeStamp: res.data.timeStamp,
+            nonceStr: res.data.nonceStr,
+            package: res.data.package,
+            signType: res.data.signType,
+            paySign: res.data.paySign,
+            success(res) {
+              console.log(res)
+              wx.redirectTo({
+                url: './accomplishOrder/accomplishOrder?orderId=' + that.data.orderId,
+              })
+            },
+            fail(res) {
+              wx.showToast({
+                title: '支付失败',
+                icon: 'error',
+                duration: 2000
+              })
+              wx.navigateBack({
+                delta: 1,
+              })
+            }
+          })
+        }).catch(() => {
+          wx.navigateBack({
+            delta: 1,
+          })
         })
-        wx.navigateBack({
-          delta: 1,
-        })
-      }
-    })
+    }).catch(() => {})
   },
 
   gotodiscountCoupon() {

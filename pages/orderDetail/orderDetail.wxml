@@ -134,16 +134,16 @@
         </view>
       </view>
       <view class="btnWrap">
-        <view class="btn" wx:if="{{order.order.orderstatus==='Q'||order.order.orderstatus==='W'}}"
-          data-orderstatus="{{order.order.orderstatus}}" bindtap="cancelOrderFn">取消订单</view>
-        <block wx:if="{{order.showRefund}}">
+        <!-- <view class="btn" wx:if="{{order.order.orderstatus==='Q'||order.order.orderstatus==='W'}}"
+          data-orderstatus="{{order.order.orderstatus}}" bindtap="cancelOrderFn">取消订单</view> -->
+        <!-- <block wx:if="{{order.showRefund}}">
           <view wx:if="{{order.totalNum>1}}" class="btn"
             style="font-size: 20rpx;background:#FF7C03;color:#fff;border: none;" data-id="0" bindtap="refundFn">
             部分退货退款</view>
           <view class="btn" style="font-size: 20rpx;background:#F12D37;color:#fff;border: none;" data-id="1"
             bindtap="refundFn">
             全部退货退款</view>
-        </block>
+        </block> -->
         <view class="btn btn1"
           wx:if="{{(order.order.orderstatus==='S'||order.order.orderstatus==='SE'||order.order.orderstatus==='E'||order.order.orderstatus==='D') && !order.isSuggest}}"
           catchtap="gotoEvaluateFn">投诉建议

@@ -87,20 +87,22 @@
     </view>
 
     <block wx:if="{{product.cardFreeAmount}}">
-      <view class="paymentTitle">会员卡</view>
+      <view class="paymentTitle">{{product.memberCard.cardType==1?'能量卡':'会员卡'}}</view>
       <view class="childone">
         <image style="width: 60rpx;height: 40rpx;position: absolute;top: -38rpx;right: 10rpx;"
           src="/assets/img/yueka.png">
-          <view style="color: #fff;font-size:12rpx;position: absolute;top: 46%;left: 20%;">{{product.memberCard.cardType==1?'能量卡':'会员卡'}}</view>
+          <view style="color: #fff;font-size:12rpx;position: absolute;top: 46%;left: 20%;">
+            {{product.memberCard.cardType==1?'能量卡':'会员卡'}}</view>
         </image>
         <view class="childone-vipCard">
           <image mode="widthFix" style="width: 180rpx;position: absolute;top: 30rpx;left: -40rpx;"
             src="/assets/img/yueka.png">
-            <view style="color: #fff;font-size:40rpx;position: absolute;top: 46%;left: 20%;">{{product.memberCard.cardType==1?'能量卡':'会员卡'}}</view>
-            </image>
+            <view style="color: #fff;font-size:40rpx;position: absolute;top: 46%;left: 20%;">
+              {{product.memberCard.cardType==1?'能量卡':'会员卡'}}</view>
+          </image>
           <view class="card-text">
             <text style="margin-top: 26rpx;">-￥</text> <text
-              style="font-size: 70rpx;font-weight: bold;">{{product.cardFreeAmount}}</text>
+              style="font-size: 70rpx;font-weight: bold;">{{product.memberCard.cardType==1?product.cardAfterAmount:product.cardFreeAmount}}</text>
             <view class="vip">
               <view>会员享优惠</view>
               <view>{{product.memberCard.cardType==1?'每日第一根烤肠免单':'9折'}}</view>
@@ -194,3 +196,4 @@
   </view>
   <view style="height:32rpx;"></view>
 </van-popup>
+<van-dialog id="van-dialog" />
