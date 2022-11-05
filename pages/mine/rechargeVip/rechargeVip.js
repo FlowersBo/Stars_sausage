@@ -36,7 +36,8 @@ Page({
     // cardId = '222'
     console.log('参数', cardId);
     that.setData({
-      cardId
+      cardId,
+      sceneType
     })
     that.authFn();
   },
