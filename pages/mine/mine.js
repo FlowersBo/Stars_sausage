@@ -26,9 +26,9 @@ Page({
 
   // 充值
   refillFn() {
-    wx.navigateTo({
-      url: './recharge/recharge',
-    })
+    // wx.navigateTo({
+    //   url: './recharge/recharge',
+    // })
   },
 
   // 充值会员

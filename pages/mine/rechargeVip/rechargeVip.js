@@ -102,7 +102,7 @@ Page({
         app.http.VipPayMoney({
             customerId: wx.getStorageSync('customerId'),
             cardId: that.data.cardId,
-            groupId: that.data.groupId
+            groupId: that.data.groupId?that.data.groupId:''
           }).then(res => {
             console.log('支付返回', res);
             wx.requestPayment({
@@ -134,8 +134,8 @@ Page({
             })
           })
       } else {
-        wx.switchTab({
-          url: '/pages/home/home'
+        wx.reLaunch({
+          url: '/pages/reserveList/reserveList'
         })
       }
     } else {
