@@ -102,7 +102,7 @@
           </image>
           <view class="card-text">
             <text style="margin-top: 26rpx;">-￥</text> <text
-              style="font-size: 70rpx;font-weight: bold;">{{product.memberCard.cardType==1?product.cardAfterAmount:product.cardFreeAmount}}</text>
+              style="font-size: 70rpx;font-weight: bold;">{{product.memberCard.cardType==1?product.cardFreeAmount:product.cardAfterAmount}}</text>
             <view class="vip">
               <view>会员享优惠</view>
               <view>{{product.memberCard.cardType==1?'每日第一根烤肠免单':'9折'}}</view>
