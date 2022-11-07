@@ -2,12 +2,12 @@
 const http = require('./utils/http.js');
 App({
   http,
-  globalData:{
-  },
+  globalData: {},
   onShow: function (options) {
     console.log("app-onShow");
     let that = this;
     console.log('当前场景值', options.scene);
+    that.globalData.scene = options.scene;
     if (options.scene === 1038 || options.referrerInfo.appId == 'wxd8f3793ea3b935b8') { // 场景值1038：从被打开的小程序返回,但安卓手机返回的是10001，所以只能根据appid去识别支付分的。
       console.log("返回小程序")
       that.globalData.userTouch = 1;
@@ -20,44 +20,44 @@ App({
     const that = this;
     this.autoUpdate();
     wx.getSystemInfo({
-      success: e => {
-        that.globalData.screenWidth = e.screenWidth;
-        that.globalData.screenHeight = e.screenHeight;
-        that.globalData.windowWidth = e.windowWidth;
-        that.globalData.windowHeight = e.windowHeight;
-        that.globalData.StatusBar = e.statusBarHeight;
-        let capsule = wx.getMenuButtonBoundingClientRect();
-        let capsuleHeight = capsule.height;
-        if (capsuleHeight) {
-          that.globalData.Custom = capsule;
-          that.globalData.CustomBar = capsule.bottom + capsule.top - e.statusBarHeight;
-        } else {
-          let Custom = {
-            width: 87,
-            height: 32
+        success: e => {
+          that.globalData.screenWidth = e.screenWidth;
+          that.globalData.screenHeight = e.screenHeight;
+          that.globalData.windowWidth = e.windowWidth;
+          that.globalData.windowHeight = e.windowHeight;
+          that.globalData.StatusBar = e.statusBarHeight;
+          let capsule = wx.getMenuButtonBoundingClientRect();
+          let capsuleHeight = capsule.height;
+          if (capsuleHeight) {
+            that.globalData.Custom = capsule;
+            that.globalData.CustomBar = capsule.bottom + capsule.top - e.statusBarHeight;
+          } else {
+            let Custom = {
+              width: 87,
+              height: 32
+            }
+            that.globalData.Custom = Custom;
+            that.globalData.CustomBar = e.statusBarHeight + 46;
           }
-          that.globalData.Custom = Custom;
-          that.globalData.CustomBar = e.statusBarHeight + 46;
         }
-      }
-    })
+      })
 
-    !function(){
-      var PageTmp = Page;
-      Page = function (pageConfig) {
-        // 设置全局默认分享
-        pageConfig = Object.assign({
-          onShareAppMessage:function () {
-            return {
-              title: '星斗烤肠研究院',
-              path: '/pages/home/home'
-              // imageUrl: '/public/img/cat.jpg',
-            };
-          }
-        },pageConfig);
-        PageTmp(pageConfig);
-      };
-    }();
+      ! function () {
+        var PageTmp = Page;
+        Page = function (pageConfig) {
+          // 设置全局默认分享
+          pageConfig = Object.assign({
+            onShareAppMessage: function () {
+              return {
+                title: '星斗烤肠研究院',
+                path: '/pages/home/home'
+                // imageUrl: '/public/img/cat.jpg',
+              };
+            }
+          }, pageConfig);
+          PageTmp(pageConfig);
+        };
+      }();
   },
   // 版本更新
   autoUpdate: function () {
@@ -120,8 +120,8 @@ App({
       })
     }
   },
-   //纸飞机向右下滑动渐入渐出
-   sliderightupshow: function (that, param, px1, px2, opacity) {
+  //纸飞机向右下滑动渐入渐出
+  sliderightupshow: function (that, param, px1, px2, opacity) {
     var animation = wx.createAnimation({
       duration: 90,
       timingFunction: 'ease',

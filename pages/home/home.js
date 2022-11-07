@@ -244,6 +244,7 @@ Page({
   },
 
   onShow() {
+    console.log(this.getTabBar())
     this.getTabBar().setData({
       selected: 0
     });

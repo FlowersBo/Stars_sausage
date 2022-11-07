@@ -1,5 +1,7 @@
 // pages/reserveList/reserveList.js
 import Dialog from '../../miniprogram_npm/@vant/weapp/dialog/dialog';
+let QQMapWX = require('../../utils/qqmap-wx-jssdk.js');
+let qqmap;
 let that;
 import {
   kmUnit,
@@ -340,6 +342,10 @@ Page({
   },
 
   gotoFacilityList() {
+    if (!wx.getStorageSync('isLoaction')) {
+      that.getSelfLocation();
+      return
+    }
     // if (that.data.pageRoute) {
     unfreezeNavigateTo({
       url: 'pages/facilityListMap/facilityListMap'
@@ -356,6 +362,9 @@ Page({
   onLoad: function (options) {
     console.log(options)
     that = this;
+    qqmap = new QQMapWX({
+      key: '6UXBZ-3HTWX-MMW4G-TX4UC-RP2U6-K7B4V'
+    })
     let mpOpenId = options.mpOpenId;
     if (!mpOpenId) {
       mpOpenId = '';
@@ -368,7 +377,7 @@ Page({
         deviceId: options.deviceId
       })
     }
-    that.facilityListFn();
+    // that.facilityListFn();
     wx.getSetting({
       success(res) {
         // 已经授权，可以直接调用
@@ -423,6 +432,60 @@ Page({
    */
   onShow: function () {
     that.authFn(that.data.mpOpenId);
+    that.getSelfLocation();
+  },
+
+  //获取位置
+  getSelfLocation() {
+    wx.getLocation({
+      type: 'gcj02',
+      success: function (res) {
+        console.log(res)
+        const loaction = {};
+        loaction.latitude = res.latitude;
+        loaction.longitude = res.longitude;
+        // loaction.latitude = 39.95837890625;
+        // loaction.longitude = 116.49010823567708;
+        wx.setStorageSync('loaction', loaction);
+        that.getUserLocation(loaction.latitude, loaction.longitude);
+      },
+      fail: function (res) {
+        wx.getSetting({
+          success: (res) => {
+            if (!res.authSetting['scope.userLocation']) {
+              Dialog.confirm({
+                title: '位置信息授权',
+                message: '您需要授权位置信息获取附近点位',
+                theme: 'round-button',
+                confirmButtonOpenType: 'openSetting'
+              }).then(() => {
+                wx.setStorageSync('isLoaction', true);
+              }).catch(() => {
+                wx.setStorageSync('isLoaction', false);
+              });
+            }
+          }
+        })
+      }
+    });
+  },
+
+  // 获取用户当前位置
+  getUserLocation(latitude, longitude) {
+    qqmap.reverseGeocoder({ //逆地址解析（经纬度 ==> 坐标位置）
+      location: {
+        latitude,
+        longitude
+      },
+      success(res) {
+        console.log(res);
+        let adcode = res.result.ad_info.adcode;
+        // adcode = adcode.slice(0,4)
+        wx.setStorageSync('adcode', adcode);
+        wx.setStorageSync('province', res.result.ad_info.province);
+        that.facilityListFn();
+      }
+    })
   },
 
   authFn(mpOpenId = '') {
