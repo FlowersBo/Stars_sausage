@@ -46,7 +46,7 @@
     </view>
 
     <!-- new取餐时间 -->
-    <!-- <block>
+    <block>
       <view class="paymentTitle">取餐时间</view>
       <van-radio-group value="{{ timeRadio }}" bind:change="timeRadioChange">
         <view class="timeRadioWrap">
@@ -69,7 +69,7 @@
           </view>
         </view>
       </van-radio-group>
-    </block> -->
+    </block>
 
     <view class="sausageTime">
       <view class="timeImg">

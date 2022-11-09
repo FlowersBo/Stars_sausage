@@ -198,6 +198,8 @@ Page({
       storeA: data.storeA,
       storeB: data.storeB,
       totalLimit: data.totalLimit,
+      overallPrice: 0,
+      num: 0
     })
 
     if (data.deviceStatus && data.inMaintenance) {
