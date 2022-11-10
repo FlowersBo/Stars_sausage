@@ -34,6 +34,7 @@ Page({
     that.setData({
       timeRadio: event.detail
     });
+    that._startTime='';
   },
 
   onChange(event) {
@@ -266,7 +267,7 @@ Page({
       app.http.pay({
           orderId: that.data.orderId,
           couponId: that.data.couponId,
-          // roastTime: that._startTime,
+          roastTime: that._startTime?that._startTime:'',
           useAccount: `${that.data.radio==='1'?true:false}`
         })
         .then(res => {

@@ -71,7 +71,7 @@
           <view>营业时间</view>
           <view style="color:#07C160;">{{order.startOpen}}~{{order.endOpen}}</view>
         </view> -->
-        <view class="businessHours" wx:if="{{order.order.orderstatus==='W'}}">
+        <view class="businessHours" wx:if="{{(order.order.orderstatus==='Q'&&order.takeMin.length>10)||order.order.orderstatus==='W'}}">
           <view>预计取餐时间：</view>
           <view style="color:#07C160;font-size: 36rpx;">{{order.takeMin}}</view>
         </view>
