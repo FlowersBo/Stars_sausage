@@ -123,6 +123,12 @@
           "pathName": "pages/placeOrder/placeOrder",
           "query": "orderId=1588015302870827008&distance=5.61km",
           "scene": null
+        },
+        {
+          "name": "在线预订",
+          "pathName": "pages/reserveList/reserveList",
+          "query": "deviceId=1546700980492435456",
+          "scene": null
         }
       ]
     }

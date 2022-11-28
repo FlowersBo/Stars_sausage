@@ -3,28 +3,40 @@
 <view class="container">
   <view class="reserveList">
     <image class="img" src="https://mgproduct.oss-cn-beijing.aliyuncs.com/view/point1.png"></image>
-    <view wx:if="{{!isShow}}" class="storeDistance">
-      <view class="distance">
-        <image style="width:60rpx;height:56rpx;margin-top:-4rpx;" src="../../assets/img/shop.png">
-        </image>
-        <view class="store">
-          <view class="name">{{deviceDetail.name}}</view>
-          <view class="store-distance">
-            <view style="color:#999;">距离您 <text style="color:#FF7304;">{{deviceDetail.distance}}</text> </view>
-            <!-- <icon class="iconfont icon-youjiantou" style="font-size: 22rpx; margin:-26rpx 0 0 6rpx;"
+    <view wx:if="{{!isShow}}" class="storeDistanceWrap">
+      <view class="storeDistance">
+        <view class="distance">
+          <image style="width:60rpx;height:56rpx;margin-top:-4rpx;" src="../../assets/img/shop.png">
+          </image>
+          <view class="store">
+            <view class="name">{{deviceDetail.name}}</view>
+            <view class="store-distance">
+              <view style="color:#999;">距离您 <text style="color:#FF7304;">{{deviceDetail.distance}}</text> </view>
+              <!-- <icon class="iconfont icon-youjiantou" style="font-size: 22rpx; margin:-26rpx 0 0 6rpx;"
               wx:if="{{pageRoute}}"></icon> -->
+            </view>
+          </view>
+        </view>
+        <view class="distance">
+          <view class="storeName">
+            <view style="font-size: 24rpx;color: red;">{{device.deviceStatus?'':'当前不可预定'}}</view>
+            <view style="font-size: 24rpx;color: red;">{{(device.deviceStatus&&device.inMaintenance)?'当前设备维护中':''}}
+            </view>
+            <!-- <view style="color:#FF7304;" wx:if="{{deviceDetail.startOpen}}">
+            {{deviceDetail.startOpen}}~{{deviceDetail.endOpen}}</view> -->
+            <view class="btn" bindtap="gotoFacilityList">切换点位</view>
           </view>
         </view>
       </view>
-      <view class="distance">
-        <view class="storeName">
-          <view style="font-size: 24rpx;color: red;">{{device.deviceStatus?'':'当前不可预定'}}</view>
-          <view style="font-size: 24rpx;color: red;">{{(device.deviceStatus&&device.inMaintenance)?'当前设备维护中':''}}</view>
-          <!-- <view style="color:#FF7304;" wx:if="{{deviceDetail.startOpen}}">
-            {{deviceDetail.startOpen}}~{{deviceDetail.endOpen}}</view> -->
-          <view class="btn" bindtap="gotoFacilityList">切换点位</view>
+      <!-- <view class="yukaoNumber">
+        <view class="sausageAmount" wx:for="{{products}}" wx:key="index">
+          <view style="margin-right: 20rpx;font-size: 64rpx;">{{item.store[3]}}</view>
+          <view>
+            <view style="color: #999;">{{item.productname}}</view>
+            <view style="font-size: 32rpx;">烤好剩余</view>
+          </view>
         </view>
-      </view>
+      </view> -->
     </view>
     <noData isFlag="{{isShow}}">
       <view slot="slot">很抱歉，您当前位置暂无设备</view>
@@ -56,6 +68,7 @@
                 bind:plus="bindPlusFn" bind:minus="bindMinus" bind:overlimit="numBtn" />
             </view>
           </view>
+          <view style="margin-left: auto;padding-right: 30rpx;padding-top: 10rpx;color: #999;font-size: 24rpx;" wx:if="{{item.store[3]!='0'}}">已烤好<text style="color: #FF7403;font-size: 32rpx;"> {{item.store[3]}} </text>根</view>
         </view>
       </view>
     </block>
@@ -72,7 +85,9 @@
     </view>
     <button class="SubmitBar-btn" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumberFn"
       wx:if="{{isPhone}}">去结算</button>
-    <view wx:else class="SubmitBar-btn {{(!device.deviceStatus||(device.deviceStatus&&device.inMaintenance))?'deviceStatus':''}}" bindtap="gotoPlaceOrderFn">去结算</view>
+    <view wx:else
+      class="SubmitBar-btn {{(!device.deviceStatus||(device.deviceStatus&&device.inMaintenance))?'deviceStatus':''}}"
+      bindtap="gotoPlaceOrderFn">去结算</view>
   </view>
 </view>
 <van-dialog id="van-dialog" />

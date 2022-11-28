@@ -66,6 +66,13 @@ Page({
         if (add) {
           console.log(element.productCount + 1, element.store[0])
           element.productCount = element.productCount + 1;
+          if (Number(element.store[3]) > 0 && element.productCount > Number(element.store[3]) && element.productCount < Number(element.store[3]) + 2) {
+            wx.showToast({
+              title: '超出烤好数量，将需等待',
+              icon: 'none',
+              duration: 2000
+            })
+          }
         } else {
           element.productCount = element.productCount - 1
         }
@@ -159,15 +166,17 @@ Page({
       element.productCount = 0;
     });
     let aIceStatus = data.aIceStatus,
-      bIceStatus = data.bIceStatus;
+      bIceStatus = data.bIceStatus,
+      aHasRoast = data.aHasRoast,
+      bHasRoast = data.bHasRoast;
     // Object.values(form)//将form对象转化数组，返回值是form值的数组
     [
       [data.storeA, aIceStatus, {
         storeA: data.storeA
-      }],
+      }, aHasRoast],
       [data.storeB, bIceStatus, {
         storeB: data.storeB
-      }]
+      }, bHasRoast]
     ].forEach((element, key) => {
       for (var p in element[2]) {
         data.products.forEach((el, k) => {

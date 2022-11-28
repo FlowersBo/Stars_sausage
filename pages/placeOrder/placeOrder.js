@@ -34,6 +34,7 @@ Page({
     that.setData({
       timeRadio: event.detail
     });
+    console.log('11111111111111')
     that._startTime='';
   },
 

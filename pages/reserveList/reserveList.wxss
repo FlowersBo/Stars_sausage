@@ -14,15 +14,18 @@
   margin-top: 20rpx;
 }
 
-.storeDistance {
+.storeDistanceWrap{
   width: 100%;
-  height: 140rpx;
+  /* height: 140rpx; */
   box-sizing: border-box;
-  padding: 0 22rpx;
+  padding: 22rpx;
   margin: 40rpx 0;
   background: #FFFFFF;
   box-shadow: 0 2rpx 20rpx 0 rgba(0, 0, 0, 0.08);
   border-radius: 20rpx;
+}
+
+.storeDistance {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -57,6 +60,21 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.yukaoNumber{
+  display: flex;
+}
+.sausageAmount{
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 16rpx;
+}
+
+.sausageAmount:last-child{
+  border-left: 2rpx solid #eee;
 }
 
 .shopList {
