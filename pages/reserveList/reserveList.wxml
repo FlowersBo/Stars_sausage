@@ -68,7 +68,7 @@
                 bind:plus="bindPlusFn" bind:minus="bindMinus" bind:overlimit="numBtn" />
             </view>
           </view>
-          <view style="margin-left: auto;padding-right: 30rpx;padding-top: 10rpx;color: #999;font-size: 24rpx;" wx:if="{{item.store[3]!='0'}}">已烤好<text style="color: #FF7403;font-size: 32rpx;"> {{item.store[3]}} </text>根</view>
+          <view style="margin-left: auto;padding-right: 30rpx;padding-top: 10rpx;color: #999;font-size: 24rpx;" wx:if="{{item.store[3]!='0'}}">已烤好<text style="color: #FF7403;"> {{item.store[3]}} </text>根</view>
         </view>
       </view>
     </block>
