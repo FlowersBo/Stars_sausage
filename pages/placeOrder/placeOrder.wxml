@@ -61,7 +61,7 @@
               <view>{{timer?timer:'取餐时间'}}</view>
               <view style="font-size:20rpx;display:flex;align-items: center;">
                 选择时间
-                <image mode="widthFix" style="margin-left:6rpx;width: 20rpx;transform: rotate(-90deg);"
+                <image style="margin-left:6rpx;width: 20rpx;height:20rpx;transform: rotate(-90deg);"
                   src="/assets/img/back.png">
                 </image>
               </view>
