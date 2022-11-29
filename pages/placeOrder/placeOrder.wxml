@@ -53,7 +53,7 @@
           <view class="timeRadio {{timeRadio==='1'?'timeRadio_on':''}}">
             <van-radio name="1" checked-color="#F4D6AB" />
             <image style="width: 50rpx;height: 50rpx;" src="/assets/img/qucan.png"></image>
-            <view style="width: 150rpx;color:#07C160;font-size: 24rpx;">{{product.takeMin==='0'?'立即可取':product.takeMin+'分钟后可取'}}</view>
+            <view style="width: 150rpx;color:#07C160;font-size: 24rpx;">{{product.takeMin==='0'?'立即可取':(product.takeMin?product.takeMin:0)+'分钟后可取'}}</view>
           </view>
           <view class="timeRadio {{timeRadio==='2'?'timeRadio_on':''}}">
             <image style="width: 50rpx;height: 50rpx;" src="/assets/img/qucan_on.png"></image>
