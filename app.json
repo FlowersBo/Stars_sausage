@@ -52,7 +52,7 @@
   },
   "plugins": {
     "routePlan": {
-      "version": "1.0.19",
+      "version": "1.0.18",
       "provider": "wx50b5593e81dd937a"
     }
   },
